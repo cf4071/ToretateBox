@@ -1,0 +1,205 @@
+/* ================================
+   全体設定
+================================ */
+body {
+    margin: 0;
+    font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+    background-color: #f3f8f0; /* 柔らかい緑背景 */
+
+    /* ▼ ログイン画面を真ん中に配置する */
+    display: flex;
+    justify-content: center;  /* 左右の中央 */
+    align-items: center;      /* 上下の中央 */
+    min-height: 100vh;        /* 画面全体の高さを使用 */
+}
+
+/* ================================
+   ログイン全体
+================================ */
+.login-wrapper {
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+
+    text-align: center; /* 中身は中央寄せ */
+}
+
+/* ================================
+   タイトル
+================================ */
+.login-title {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #4a9e4c;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+/* ================================
+   フォーム全体
+================================ */
+.form-group {
+    margin-bottom: 50px;
+}
+
+/* ラベル（左揃え） */
+label {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 6px;
+
+    text-align: left;          /* ← 左揃えにする */
+    width: 80%;
+    max-width: 750px;
+    margin: 0 auto 6px auto;   /* 中央に置きつつ左揃え */
+}
+
+/* 入力欄 */
+input[type="text"],
+input[type="password"] {
+    width: 80%;
+    max-width: 750px;
+    padding: 14px;
+
+    border: 1px solid #cbdac5;
+    border-radius: 8px;
+    background-color: #fafdf8;
+
+    transition: border 0.3s, background-color 0.3s;
+
+    display: block;
+    margin: 0 auto;
+}
+
+/* フォーカス時 */
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #79c97a;
+    background-color: #ffffff;
+    outline: none;
+}
+
+/* エラーメッセージ */
+.error {
+    color: #d9534f;
+    font-size: 13px;
+    margin-top: 4px;
+    text-align: center;
+}
+
+/* ▼ ボタン横並びコンテナ */
+.button-group {
+    width: 80%;
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;   /* ← 左右に分ける */
+    gap: 20px;                         /* ボタン間のすきま */
+}
+
+/* ▼ ログインボタン（小さめ） */
+.login-btn {
+    flex: 1;                /* 同じ大きさにする */
+    padding: 10px;          /* 小さめ */
+    background-color: orangered;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+    margin: 0;              /* ← ここを上書き */
+}
+
+/* ▼ 戻るボタン（小さめ） */
+.back-button {
+    flex: 1;                /* 同じ大きさにする */
+    padding: 10px;          /* 小さめ */
+    background-color: lightblue;
+    border: none;
+    color: #333;
+    font-size: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.back-button:hover {
+    background-color: #b3b3b3;
+}
+
+.login-btn:hover {
+    background-color: #4a9e4c;
+}
+
+
+.login-btn:hover {
+    background-color: #4a9e4c;
+}
+
+/************** トップページ */
+
+.top-title {
+    grid-column: 1 / -1;     /* グリッド全幅を使う */
+    text-align: center;      /* 中央寄せ */
+    margin-bottom: 20px;     /* カードとの間隔 */
+}
+
+.top-title h2 {
+    font-size: 28px;
+    color: #ff7777;
+    margin: 0;
+}
+
+body {
+    font-family: sans-serif;
+    text-align: center;
+}
+
+header h1 {
+    color: #ff7777;
+    margin: 40px 0;
+}
+
+.grid {
+    width: 85%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4列 */
+    gap: 40px;
+}
+
+.card {
+    border: 2px solid #666;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.image-box {
+    border: 1px solid #333;
+    height: 140px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.image-box img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.name {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.price {
+    font-size: 16px;
+    color: #444;
+    margin-top: 5px;
+}

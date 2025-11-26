@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>とれたてBOX - トップ</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+
+
+<main>
+    <div class="grid">
+		<div class="top-title">
+			<h2>旬の季節</h1>
+		</div>
+
+        <!-- ここを繰り返し表示 -->
+        <div class="card" th:each="p : ${products}">
+
+            <div class="image-box">
+                <img th:src="@{${p.imageUrl}}" alt="商品画像">
+            </div>
+
+            <div class="name" th:text="${p.name}">商品名</div>
+            <div class="price" th:text="${p.price + '円'}">値段</div>
+
+        </div>
+
+    </div>
+</main>
+
+<footer>
+    &copy; 2025 とれたてBOX
+</footer>
+
+</body>
+</html>
