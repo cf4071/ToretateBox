@@ -1,0 +1,281 @@
+/*********************************
+   共通設定
+*********************************/
+body {
+    margin: 0;
+    font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+    background-color: #f3f8f0; /* 柔らかい緑背景 */
+}
+
+/*********************************
+   ログイン画面専用設定
+*********************************/
+.login-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/*********************************
+   ログイン画面
+*********************************/
+.login-wrapper {
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    text-align: center;
+}
+
+.login-title {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #4a9e4c;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 50px;
+}
+
+label {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 6px;
+    text-align: left;
+    width: 80%;
+    max-width: 750px;
+    margin: 0 auto 6px auto;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 80%;
+    max-width: 750px;
+    padding: 14px;
+    border: 1px solid #cbdac5;
+    border-radius: 8px;
+    background-color: #fafdf8;
+    transition: border 0.3s, background-color 0.3s;
+    display: block;
+    margin: 0 auto;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #79c97a;
+    background-color: #ffffff;
+    outline: none;
+}
+
+.error {
+    color: #d9534f;
+    font-size: 13px;
+    margin-top: 4px;
+    text-align: center;
+}
+
+.button-group {
+    width: 80%;
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.login-btn {
+    flex: 1;
+    padding: 10px;
+    background-color: orangered;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+    background-color: #4a9e4c;
+}
+
+.back-button {
+    flex: 1;
+    padding: 10px;
+    background-color: lightblue;
+    color: #333;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.back-button:hover {
+    background-color: #b3b3b3;
+}
+
+/*-------------------------------------
+  ヘッダー全体：横並び（左ロゴ + 右2段）
+-------------------------------------*/
+.site-header {
+    display: flex;
+    align-items: flex-start;  /* ロゴと上段を揃える */
+    justify-content: space-between;
+    padding: 12px 20px;
+    background-color: #ffffff;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+/*-------------------------------------
+  左：ロゴ BOX（PDF風）
+-------------------------------------*/
+.logo-box {
+    padding: 8px 20px;
+    border: 3px solid #4CAF50;
+    border-radius: 8px;
+    white-space: nowrap;
+}
+
+.logo-text {
+    color: #388E3C;
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/*-------------------------------------
+  右：メニュー＋検索の2段構造
+-------------------------------------*/
+.header-right {
+    display: flex;
+    flex-direction: column;   /* 縦に積み重ねる */
+    gap: 8px;                 /* 上段と下段の距離 */
+    margin: 0 auto;
+    align-items: center;
+}
+
+/*-------------------------------------
+  上段：メニュー横並び
+-------------------------------------*/
+.header-menu ul {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+    margin: 0;
+    padding: 20px;
+}
+
+.header-menu {
+    margin-left: 250px;         /* ロゴとの距離を調整 */
+    transform: translateX(20px); /* メニューだけ右へずらす */
+}
+
+.header-menu a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.header-menu a:hover {
+    color: #4CAF50;
+}
+
+/*-------------------------------------
+  下段：検索欄（ボタンと横並び）
+-------------------------------------*/
+.header-search {
+    display: flex;
+    gap: 0;
+}
+
+.header-search input {
+    width: 300px;
+    padding: 8px 10px;
+    border: 2px solid #4CAF50;
+    border-right: none;
+    border-radius: 5px 0 0 5px;
+}
+
+.header-search button {
+    padding: 8px 15px;
+    border: 2px solid #4CAF50;
+    background-color: #4CAF50;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+
+/*********************************
+   トップページ
+*********************************/
+.top-title {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.top-title h2 {
+    font-size: 28px;
+    color: #ff7777;
+    margin: 0;
+}
+
+.grid {
+    width: 95%; 
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+}
+
+.card {
+    border: 2px solid #666;
+    padding: 25px;
+    border-radius: 8px;
+    background-color: white;
+}
+
+.image-box {
+    border: 1px solid #333;
+    height: 170px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.image-box img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.name {
+    font-size: 18px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.price {
+    font-size: 16px;
+    margin-top: 5px;
+    text-align: center;
+}
+
+/*********************************
+   フッター
+*********************************/
+footer {
+    text-align: center;
+    padding: 15px;
+    color: #777;
+    margin-top: 60px;
+    font-size: 14px;
+}
