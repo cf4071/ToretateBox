@@ -29,12 +29,38 @@
             <div class="price" th:text="${p.price + '円'}">0円</div>
 
         </div>
-        
+
         <div th:if="${products == null}">
             <p>商品がありません</p>
         </div>
 
     </div>
+
+    <!-- ▼ ページネーションを追加 -->
+    <div class="pagination">
+
+        <!-- 前へ -->
+        <a th:if="${currentPage > 0}"
+           th:href="@{/top(page=${currentPage - 1})}">
+            前へ
+        </a>
+
+        <!-- ページ番号 -->
+        <span th:each="i : ${#numbers.sequence(0, totalPages - 1)}">
+            <a th:href="@{/top(page=${i})}"
+               th:text="${i + 1}"
+               th:classappend="${i == currentPage} ? 'active' : ''">
+            </a>
+        </span>
+
+        <!-- 次へ -->
+        <a th:if="${currentPage < totalPages - 1}"
+           th:href="@{/top(page=${currentPage + 1})}">
+            次へ
+        </a>
+
+    </div>
+
 </main>
 
 <div th:insert="layout/layout :: footer"></div>
