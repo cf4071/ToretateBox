@@ -34,4 +34,13 @@ public class ProductService {
     public void deleteById(Integer id) {
         productRepository.deleteById(id);
     }
+    
+ // 商品名で検索（あいまい検索）
+    public List<Product> searchProducts(String keyword) {
+        if (keyword == null || keyword.isBlank()) {
+            return List.of(); // キーワードが空なら空リストを返す
+        }
+        return productRepository.findByNameContaining(keyword);
+    }
+
 }

@@ -10,4 +10,6 @@ import katachi.example.toretatebox.domain.model.Product;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 	List<Product> findAll();
+	
+	List<Product> findByNameContaining(String keyword);
 }

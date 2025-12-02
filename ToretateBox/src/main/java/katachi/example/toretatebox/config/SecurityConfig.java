@@ -18,7 +18,7 @@ public class SecurityConfig {
 
             .authorizeHttpRequests(auth -> auth
                 // ▼ ゲストで見れるページ
-                .requestMatchers("/", "/top", "/css/**", "/images/**", "/product/**").permitAll()
+                .requestMatchers("/", "/top", "/css/**", "/search/**", "/images/**", "/product/**").permitAll()
 
                 // ▼ ログインページは誰でもアクセスOK
                 .requestMatchers("/login").permitAll()
