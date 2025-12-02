@@ -5,9 +5,11 @@
     <title>旬の季節 - TOPページ</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
+
 <body>
 
-<div th:insert="layout/layout :: header"></div>
+<!-- ▼ ヘッダー -->
+<div th:replace="layout/header :: header"></div>
 
 <main>
     <div class="grid">
@@ -36,16 +38,14 @@
 
     </div>
 
-    <!-- ▼ ページネーションを追加 -->
+    <!-- ▼ ページネーション -->
     <div class="pagination">
 
-        <!-- 前へ -->
         <a th:if="${currentPage > 0}"
            th:href="@{/top(page=${currentPage - 1})}">
             前へ
         </a>
 
-        <!-- ページ番号 -->
         <span th:each="i : ${#numbers.sequence(0, totalPages - 1)}">
             <a th:href="@{/top(page=${i})}"
                th:text="${i + 1}"
@@ -53,7 +53,6 @@
             </a>
         </span>
 
-        <!-- 次へ -->
         <a th:if="${currentPage < totalPages - 1}"
            th:href="@{/top(page=${currentPage + 1})}">
             次へ
@@ -63,7 +62,8 @@
 
 </main>
 
-<div th:insert="layout/layout :: footer"></div>
+<!-- ▼ フッター -->
+<div th:replace="layout/footer :: footer"></div>
 
 </body>
 </html>
