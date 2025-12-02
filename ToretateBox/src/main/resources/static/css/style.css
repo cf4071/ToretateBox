@@ -269,6 +269,29 @@ input[type="password"]:focus {
     text-align: center;
 }
 
+.pagination {
+    display: flex;
+    justify-content: center;  /* 中央寄せ */
+    align-items: center;
+    gap: 12px;                /* ページ番号の間隔 */
+    margin-top: 20px;
+}
+
+.pagination a {
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.pagination a.active {
+    background-color: #4CAF50;
+    color: #fff;
+    border-color: #4CAF50;
+}
+
+
 /*********************************
    フッター
 *********************************/
