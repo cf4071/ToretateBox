@@ -28,30 +28,19 @@
 
             <!-- ▼ ログインユーザー用メニュー -->
             <ul sec:authorize="isAuthenticated()" class="login-menu">
-
-                <!-- 食材一覧 -->
                 <li><a th:href="@{/products}">食材一覧</a></li>
-
-                <!-- カート -->
                 <li><a th:href="@{/cart}">カート</a></li>
 
                 <!-- ▼ マイページ ハンバーガーメニュー -->
                 <li class="hamburger-wrapper">
-
-                    <!-- ハンバーガーアイコン -->
                     <button class="hamburger-btn" onclick="toggleMenu()">☰</button>
-
-                    <!-- ▼ 展開メニュー -->
                     <ul id="hamburger-menu" class="hamburger-menu hidden">
-
                         <li><a th:href="@{/mypage}">ユーザー情報確認</a></li>
                         <li><a th:href="@{/user/edit}">ユーザー情報編集</a></li>
                         <li><a th:href="@{/orders}">購入履歴</a></li>
                         <li><a th:href="@{/logout}">ログアウト</a></li>
-
                     </ul>
                 </li>
-
             </ul>
 
         </nav>

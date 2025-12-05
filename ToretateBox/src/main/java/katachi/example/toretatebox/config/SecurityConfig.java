@@ -17,8 +17,11 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
 
             .authorizeHttpRequests(auth -> auth
-                // ▼ ゲストで見れるページ
-                .requestMatchers("/", "/top", "/css/**", "/search/**", "/images/**", "/product/**").permitAll()
+                // ▼ ゲストでもアクセス可能なページ
+                .requestMatchers(
+                    "/", "/top", "/products", "/products/**", // ← 追加
+                    "/css/**", "/search/**", "/images/**", "/product/**"
+                ).permitAll()
 
                 // ▼ ログインページは誰でもアクセスOK
                 .requestMatchers("/login").permitAll()
@@ -31,9 +34,9 @@ public class SecurityConfig {
             .formLogin(form -> form
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
-                .usernameParameter("email")      // ← form の name と一致させる
-                .passwordParameter("password")   // ← ここも一致
-                .defaultSuccessUrl("/top", true) // ← ログイン後に /top へ
+                .usernameParameter("email")      // ← form の name と一致
+                .passwordParameter("password")   // ← form の name と一致
+                .defaultSuccessUrl("/top", true) // ← ログイン後 /top へ
                 .permitAll()
             )
 
