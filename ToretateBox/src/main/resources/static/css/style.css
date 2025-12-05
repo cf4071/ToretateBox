@@ -121,11 +121,11 @@ input[type="password"]:focus {
 }
 
 /*-------------------------------------
-  ヘッダー全体：横並び（左ロゴ + 右2段）
+  ヘッダー全体：横並び
 -------------------------------------*/
 .site-header {
     display: flex;
-    align-items: flex-start;  /* ロゴと上段を揃える */
+    align-items: flex-start;
     justify-content: space-between;
     padding: 12px 20px;
     background-color: #ffffff;
@@ -133,7 +133,7 @@ input[type="password"]:focus {
 }
 
 /*-------------------------------------
-  左：ロゴ BOX（PDF風）
+  左：ロゴ
 -------------------------------------*/
 .logo-box {
     padding: 8px 20px;
@@ -150,19 +150,16 @@ input[type="password"]:focus {
 }
 
 /*-------------------------------------
-  右：メニュー＋検索の2段構造
+  右：メニュー＋検索
 -------------------------------------*/
 .header-right {
     display: flex;
-    flex-direction: column;   /* 縦に積み重ねる */
-    gap: 8px;                 /* 上段と下段の距離 */
+    flex-direction: column;
+    gap: 8px;
     margin: 0 auto;
     align-items: center;
 }
 
-/*-------------------------------------
-  上段：メニュー横並び
--------------------------------------*/
 .header-menu ul {
     display: flex;
     gap: 40px;
@@ -172,8 +169,8 @@ input[type="password"]:focus {
 }
 
 .header-menu {
-    margin-left: 250px;         /* ロゴとの距離を調整 */
-    transform: translateX(20px); /* メニューだけ右へずらす */
+    margin-left: 250px;
+    transform: translateX(20px);
 }
 
 .header-menu a {
@@ -187,7 +184,7 @@ input[type="password"]:focus {
 }
 
 /*-------------------------------------
-  下段：検索欄（ボタンと横並び）
+  検索欄
 -------------------------------------*/
 .header-search {
     display: flex;
@@ -211,7 +208,6 @@ input[type="password"]:focus {
     cursor: pointer;
 }
 
-
 /*********************************
    トップページ
 *********************************/
@@ -227,8 +223,16 @@ input[type="password"]:focus {
     margin: 0;
 }
 
+/* ★追加：季節ラベル */
+.season-label {
+    margin-top: 6px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #ff9933;
+}
+
 .grid {
-    width: 95%; 
+    width: 95%;
     margin: 40px auto;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -269,11 +273,14 @@ input[type="password"]:focus {
     text-align: center;
 }
 
+/*********************************
+   ページネーション
+*********************************/
 .pagination {
     display: flex;
-    justify-content: center;  /* 中央寄せ */
+    justify-content: center;
     align-items: center;
-    gap: 12px;                /* ページ番号の間隔 */
+    gap: 12px;
     margin-top: 20px;
 }
 
@@ -290,7 +297,6 @@ input[type="password"]:focus {
     color: #fff;
     border-color: #4CAF50;
 }
-
 
 /*********************************
    フッター

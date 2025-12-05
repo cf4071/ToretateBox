@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>食材一覧 | とれたてBOX</title>
+</head>
+
+<body>
+
+<!-- ▼ layout.html を適用 -->
+<div th:replace="~{layout/layout :: layout(~{::title}, ~{::content})}">
+
+    <!-- ▼ ページ本体（ここが layout 内に差し込まれる） -->
+    <th:block th:fragment="content">
+
+        <div class="top-title">
+            <h2>食材一覧</h2>
+        </div>
+
+        <form th:action="@{/products}" method="get"
+              class="header-search"
+              style="justify-content:center; margin-bottom:30px;">
+
+            <select name="category">
+                <option value="">カテゴリを選択</option>
+                <option value="vegetable">野菜</option>
+                <option value="fruit">果物</option>
+            </select>
+
+            <select name="season">
+                <option value="">旬の季節</option>
+                <option value="spring">春</option>
+                <option value="summer">夏</option>
+                <option value="autumn">秋</option>
+                <option value="winter">冬</option>
+                <option value="all">通年</option>
+            </select>
+
+            <button type="submit">検索</button>
+        </form>
+
+        <div class="grid">
+
+            <div class="card" th:each="p : ${products}">
+                <div class="image-box">
+                    <img th:src="${p.imagePath}" alt="商品画像">
+                </div>
+                <div class="name" th:text="${p.name}">トマト</div>
+                <div class="price" th:text="${p.price + '円'}">200円</div>
+                <a th:href="@{/products/{id}(id=${p.id})}"
+                   style="display:block; margin-top:10px;">
+                   詳細を見る
+                </a>
+            </div>
+
+        </div>
+
+    </th:block>
+
+</div>
+
+</body>
+</html>
