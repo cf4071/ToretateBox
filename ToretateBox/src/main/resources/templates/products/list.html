@@ -11,63 +11,156 @@
 <!-- ▼ ヘッダー -->
 <div th:replace="layout/header :: header"></div>
 
-<main>
-    <div class="grid">
+<main class="list-layout">
+
+    <!-- =========================
+         左：検索サイドバー（PDF C-1 準拠）
+    ========================== -->
+    <aside class="search-sidebar">
+
+        <form th:action="@{/products}" method="get" class="search-form">
+
+            <h3 class="search-title">絞り込み検索</h3>
+
+            <!-- ▼ カテゴリ（※「すべて」なし / categoryId 使用） -->
+            <div class="search-block">
+                <p class="search-label">カテゴリ</p>
+
+                <!-- 野菜 = 1、果物 = 2（DBに合わせて変更OK） -->
+                <label>
+                    <input type="radio" name="categoryId" value="1"
+                           th:checked="${categoryId == 1}">
+                    野菜
+                </label>
+
+                <label>
+                    <input type="radio" name="categoryId" value="2"
+                           th:checked="${categoryId == 2}">
+                    果物
+                </label>
+            </div>
+
+            <!-- ▼ 旬の季節（※「すべて」なし） -->
+            <div class="search-block">
+                <p class="search-label">旬の季節</p>
+
+                <label>
+                    <input type="radio" name="season" value="春"
+                           th:checked="${season == '春'}">
+                    春
+                </label>
+
+                <label>
+                    <input type="radio" name="season" value="夏"
+                           th:checked="${season == '夏'}">
+                    夏
+                </label>
+
+                <label>
+                    <input type="radio" name="season" value="秋"
+                           th:checked="${season == '秋'}">
+                    秋
+                </label>
+
+                <label>
+                    <input type="radio" name="season" value="冬"
+                           th:checked="${season == '冬'}">
+                    冬
+                </label>
+
+                <label>
+                    <input type="radio" name="season" value="通年"
+                           th:checked="${season == '通年'}">
+                    通年
+                </label>
+            </div>
+
+            <!-- ▼ 検索ボタン -->
+            <button type="submit" class="btn-search">検索</button>
+
+            <!-- ▼ 検索ボタン直下：旬の食材一覧へ -->
+            <a th:href="@{/top}" class="btn-top-link">旬の食材一覧へ</a>
+
+        </form>
+
+    </aside>
+
+    <!-- =========================
+         右：商品一覧エリア
+    ========================== -->
+    <section class="list-main">
 
         <div class="top-title">
             <h2>食材一覧</h2>
         </div>
 
-        <!-- ▼ 商品カード -->
-        <div th:if="${products != null}" th:each="p : ${products}" class="card">
+        <div class="grid">
 
-            <div class="image-box">
-                <!-- ✅ 画像クリックで detail.html へ遷移 -->
-                <a th:href="@{'/products/' + ${p.id}}">
-                    <img th:src="${p.imageUrl != null} ? ${p.imageUrl} : @{/images/no-image.png}"
-                         alt="商品画像">
-                </a>
+            <!-- ▼ 商品カード -->
+            <div th:if="${products != null}"
+                 th:each="p : ${products}"
+                 class="card">
+
+                <div class="image-box">
+                    <!-- ✅ 画像クリックで詳細へ -->
+                    <a th:href="@{'/products/' + ${p.id}}">
+                        <img th:src="${p.imageUrl != null} ? ${p.imageUrl} : @{/images/no-image.png}"
+                             alt="商品画像">
+                    </a>
+                </div>
+
+                <div class="name" th:text="${p.name}">商品名</div>
+                <div class="price" th:text="${p.price + '円'}">0円</div>
+
+                <!-- ▼ 旬バッジ -->
+                <div th:if="${p.season != null}"
+                     class="season-badge"
+                     th:text="'旬：' + ${p.season}">
+                </div>
             </div>
 
-            <div class="name" th:text="${p.name}">商品名</div>
-            <div class="price" th:text="${p.price + '円'}">0円</div>
-
-            <!-- ▼ 旬バッジ -->
-            <div th:if="${p.season != null}"
-                 class="season-badge"
-                 th:text="'旬：' + ${p.season}">
+            <!-- ▼ 商品がない場合 -->
+            <div th:if="${products == null or #lists.isEmpty(products)}">
+                <p>商品がありません</p>
             </div>
 
         </div>
 
-        <!-- ▼ 商品がない場合 -->
-        <div th:if="${products == null or #lists.isEmpty(products)}">
-            <p>商品がありません</p>
-        </div>
+        <!-- ▼ ページネーション -->
+        <div class="pagination">
 
-    </div>
-
-    <!-- ▼ ページネーション -->
-    <div class="pagination">
-
-        <a th:if="${currentPage > 0}"
-           th:href="@{/products(page=${currentPage - 1})}">
-            前へ
-        </a>
-
-        <span th:each="i : ${#numbers.sequence(0, totalPages - 1)}">
-            <a th:href="@{/products(page=${i})}"
-               th:text="${i + 1}"
-               th:classappend="${i == currentPage} ? 'active' : ''">
+            <a th:if="${currentPage > 0}"
+               th:href="@{/products(
+                    page=${currentPage - 1},
+                    categoryId=${categoryId},
+                    season=${season}
+               )}">
+                前へ
             </a>
-        </span>
 
-        <a th:if="${currentPage < totalPages - 1}"
-           th:href="@{/products(page=${currentPage + 1})}">
-            次へ
-        </a>
+            <span th:each="i : ${#numbers.sequence(0, totalPages - 1)}">
+                <a th:href="@{/products(
+                        page=${i},
+                        categoryId=${categoryId},
+                        season=${season}
+                   )}"
+                   th:text="${i + 1}"
+                   th:classappend="${i == currentPage} ? 'active' : ''">
+                </a>
+            </span>
 
-    </div>
+            <a th:if="${currentPage < totalPages - 1}"
+               th:href="@{/products(
+                    page=${currentPage + 1},
+                    categoryId=${categoryId},
+                    season=${season}
+               )}">
+                次へ
+            </a>
+
+        </div>
+
+    </section>
 
 </main>
 
@@ -76,3 +169,4 @@
 
 </body>
 </html>
+

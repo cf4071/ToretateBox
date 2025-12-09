@@ -12,16 +12,18 @@ import katachi.example.toretatebox.domain.model.Product;
 @Repository
 public interface ProductsRepository extends JpaRepository<Product, Integer> {
 
-    // ✅ 商品をすべて取得（※ JpaRepository に元からあるので実は省略可）
-    List<Product> findAll();
-
-    // ✅ 商品名で「あいまい検索」
-    // 例：「りん」→「りんご」「青りんご」
+    // ✅ 商品名あいまい検索
     List<Product> findByNameContaining(String keyword);
 
-    // ✅ 季節（旬）で検索 ＋ ページング対応
+    // ✅ 季節（旬）
     Page<Product> findBySeason(String season, Pageable pageable);
 
-    // ✅（必要なら）季節 ＋ 有効商品のみ検索
-    // Page<Product> findBySeasonAndIsActive(String season, Boolean isActive, Pageable pageable);
+    // ✅ カテゴリID
+    Page<Product> findByCategoryId(Integer categoryId, Pageable pageable);
+
+    // ✅ カテゴリID＋季節
+    Page<Product> findByCategoryIdAndSeason(
+            Integer categoryId,
+            String season,
+            Pageable pageable);
 }

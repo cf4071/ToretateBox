@@ -23,19 +23,18 @@ public class ProductsController {
 
     private final ProductsService productsService;
 
+    // ============================
     // ✅ A-1：TOPページ（今が旬）
+    // ============================
     @GetMapping("/top")
     public String showTopPage(
             @RequestParam(defaultValue = "0") int page,
             Model model) {
 
-        // ▼ 今の季節を自動判定
         String season = getCurrentSeason();
 
-        // ▼ ページング（1ページ6件）
         Pageable pageable = PageRequest.of(page, 6);
 
-        // ▼ 季節で商品取得（ページ対応）
         Page<Product> productPage =
                 productsService.searchBySeason(season, pageable);
 
@@ -44,63 +43,70 @@ public class ProductsController {
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", productPage.getTotalPages());
 
-        return "top/top"; // templates/top.html
+        return "top/top";
     }
 
-    // ✅ B-1：食材一覧ページ（検索あり）
-    @GetMapping("/products")
-    public String showProductsList(
-            @RequestParam(required = false) String keyword,
-            @RequestParam(defaultValue = "0") int page,
-            Model model) {
+ // ==================================
+ // ✅ B-1：食材一覧（カテゴリID＋旬＋検索）【修正版】
+ // ==================================
+ @GetMapping("/products")
+ public String showProductsList(
+         @RequestParam(required = false) String keyword,
+         @RequestParam(required = false) Integer categoryId, // ✅ String → Integer に変更
+         @RequestParam(required = false) String season,
+         @RequestParam(defaultValue = "0") int page,
+         Model model) {
 
-        // ▼ キーワード検索（ページングなし）
-        if (keyword != null && !keyword.isBlank()) {
-            List<Product> products =
-                    productsService.searchProducts(keyword);
+     Pageable pageable = PageRequest.of(page, 10);
+     Page<Product> productPage;
 
-            model.addAttribute("products", products);
-            model.addAttribute("keyword", keyword);
+     // ✅ キーワード検索（最優先）
+     if (keyword != null && !keyword.isBlank()) {
 
-            return "products/list";
-        }
+         List<Product> products =
+                 productsService.searchProducts(keyword);
 
-        // ▼ 通常一覧（ページングあり）
-        Pageable pageable = PageRequest.of(page, 9);
-        List<Product> products = productsService.getAllProducts();
+         model.addAttribute("products", products);
+         model.addAttribute("keyword", keyword);
+         model.addAttribute("currentPage", 0);
+         model.addAttribute("totalPages", 1);
 
-        model.addAttribute("products", products);
-        model.addAttribute("currentPage", page);
-        model.addAttribute("totalPages", 1); // 全件表示なので1固定
+         return "products/list";
+     }
 
-        return "products/list"; // templates/products/list.html
-    }
+     // ✅ カテゴリID＋旬 両方あり
+     if (categoryId != null && isNotBlank(season)) {
+         productPage = productsService
+                 .searchByCategoryAndSeason(categoryId, season, pageable);
 
-    // ✅ C-2：食材詳細ページ
-    @GetMapping("/products/{id}")
-    public String showProductDetail(
-            @PathVariable Integer id,
-            Model model) {
+     // ✅ カテゴリIDのみ
+     } else if (categoryId != null) {
+         productPage = productsService
+                 .searchByCategory(categoryId, pageable);
 
-        Product product = productsService.getProductById(id)
-                .orElseThrow(() ->
-                        new IllegalArgumentException("商品が見つかりません"));
+     // ✅ 旬のみ
+     } else if (isNotBlank(season)) {
+         productPage = productsService
+                 .searchBySeason(season, pageable);
 
-        model.addAttribute("product", product);
+     // ✅ すべて
+     } else {
+         productPage = productsService.findAllPage(pageable);
+     }
 
-        return "products/detail"; // templates/products/detail.html
-    }
+     model.addAttribute("products", productPage.getContent());
+     model.addAttribute("categoryId", categoryId); // ✅ category → categoryId
+     model.addAttribute("season", season);
+     model.addAttribute("currentPage", page);
+     model.addAttribute("totalPages", productPage.getTotalPages());
 
-    // ✅ 商品登録画面（管理用）
-    @GetMapping("/products/new")
-    public String showCreateForm(Model model) {
+     return "products/list";
+ }
 
-        model.addAttribute("product", new Product());
 
-        return "products/form";
-    }
-
+    // ============================
     // ✅ 商品保存（新規・更新）
+    // ============================
     @PostMapping("/products/save")
     public String saveProduct(Product product) {
 
@@ -109,7 +115,9 @@ public class ProductsController {
         return "redirect:/products";
     }
 
+    // ============================
     // ✅ 商品削除（管理用）
+    // ============================
     @PostMapping("/products/delete/{id}")
     public String deleteProduct(@PathVariable Integer id) {
 
@@ -118,7 +126,9 @@ public class ProductsController {
         return "redirect:/products";
     }
 
-    // ✅ 今の季節を自動判定するメソッド
+    // ============================
+    // ✅ 今の季節を自動判定
+    // ============================
     private String getCurrentSeason() {
 
         int month = LocalDate.now().getMonthValue();
@@ -132,5 +142,10 @@ public class ProductsController {
         } else {
             return "冬";
         }
+    }
+
+    // ✅ nullや空文字チェック用
+    private boolean isNotBlank(String value) {
+        return value != null && !value.isBlank();
     }
 }

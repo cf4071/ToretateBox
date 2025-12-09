@@ -209,7 +209,7 @@ input[type="password"]:focus {
 }
 
 /*********************************
-   トップページ
+   トップ・一覧共通
 *********************************/
 .top-title {
     grid-column: 1 / -1;
@@ -244,6 +244,10 @@ input[type="password"]:focus {
     padding: 25px;
     border-radius: 8px;
     background-color: white;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .image-box {
@@ -271,6 +275,114 @@ input[type="password"]:focus {
     font-size: 16px;
     margin-top: 5px;
     text-align: center;
+}
+
+/* =========================
+   食材一覧：左右2カラムレイアウト
+========================= */
+.list-layout {
+  display: flex;
+  gap: 32px;
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+  align-items: flex-start;
+}
+
+/* 左：検索エリア */
+.search-sidebar {
+  width: 260px;
+  background: #f4f9f1;
+  border-radius: 12px;
+  padding: 20px;
+  position: sticky;
+  top: 110px;
+  min-height: 480px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.08);
+}
+
+/* 検索フォームは縦並び */
+.search-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* 右：一覧エリア */
+.list-main {
+  flex: 1;
+}
+
+/* 検索タイトル */
+.search-title {
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+/* 各検索ブロック */
+.search-block {
+  margin-bottom: 20px;
+}
+
+.search-label {
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+/* ラジオボタンの整列 */
+.search-sidebar label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+/* 検索ボタン */
+.btn-search {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.btn-search:hover {
+  background-color: #3f9a43;
+}
+
+/* 「旬の食材一覧へ」リンクは必ず下に表示 */
+.btn-top-link {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 6px;
+  padding: 8px;
+  border-radius: 6px;
+  color: #4CAF50;
+  font-weight: bold;
+  text-decoration: none;
+  border: 2px solid #4CAF50;
+}
+
+.btn-top-link:hover {
+  background-color: #4CAF50;
+  color: #fff;
+}
+
+/* 旬バッジ */
+.season-badge {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 13px;
+  padding: 4px 8px;
+  border-radius: 12px;
+  background-color: #ffefc1;
+  color: #cc8400;
+  font-weight: bold;
 }
 
 /*********************************
