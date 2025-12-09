@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${product.name} + ' - 商品詳細'">商品詳細</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<!-- ▼ ヘッダー -->
+<div th:replace="layout/header :: header"></div>
+
+<main>
+
+    <div class="detail-container">
+
+        <!-- ▼ 商品画像 -->
+        <div class="detail-image-box">
+            <img th:src="${product.imageUrl != null} ? ${product.imageUrl} : @{/images/no-image.png}"
+                 alt="商品画像">
+        </div>
+
+        <!-- ▼ 商品情報 -->
+        <div class="detail-info">
+
+            <h2 class="detail-name" th:text="${product.name}">商品名</h2>
+
+            <p class="detail-price">
+                価格：
+                <span th:text="${product.price}">0</span> 円
+            </p>
+
+            <!-- ▼ 旬の表示（ある場合のみ） -->
+            <p class="detail-season" th:if="${product.season != null}">
+                旬：
+                <span th:text="${product.season}">春</span>
+            </p>
+
+            <!-- ▼ 商品説明（あれば） -->
+            <div class="detail-description" th:if="${product.description != null}">
+                <h3>商品説明</h3>
+                <p th:text="${product.description}">説明文が入ります</p>
+            </div>
+
+            <!-- ▼ ボタンエリア -->
+            <div class="detail-buttons">
+
+                <!-- 一覧へ戻る -->
+                <a th:href="@{/products}" class="btn-back">
+                    一覧へ戻る
+                </a>
+
+                <!-- 削除ボタン（管理用） -->
+                <form th:action="@{'/products/delete/' + ${product.id}}"
+                      method="post"
+                      onsubmit="return confirm('本当に削除しますか？');">
+
+                    <button type="submit" class="btn-delete">
+                        削除
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+<!-- ▼ フッター -->
+<div th:replace="layout/footer :: footer"></div>
+
+</body>
+</html>

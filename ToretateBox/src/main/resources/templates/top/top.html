@@ -21,12 +21,14 @@
             <p class="season-label" th:text="'今の旬：' + ${season}"></p>
         </div>
 
-        <!-- 商品カード -->
+        <!-- ▼ 商品カード -->
         <div th:if="${products != null}" th:each="p : ${products}" class="card">
 
             <div class="image-box">
-                <a th:href="@{'/product/' + ${p.id}}">
-                    <img th:src="${p.imageUrl != null} ? ${p.imageUrl} : '@{/images/no-image.png}'" alt="商品画像">
+                <!-- ✅ 画像クリックで detail.html へ遷移 -->
+                <a th:href="@{'/products/' + ${p.id}}">
+                    <img th:src="${p.imageUrl != null} ? ${p.imageUrl} : @{/images/no-image.png}"
+                         alt="商品画像">
                 </a>
             </div>
 
@@ -35,7 +37,8 @@
 
         </div>
 
-        <div th:if="${products == null}">
+        <!-- ▼ 商品がない場合 -->
+        <div th:if="${products == null || #lists.isEmpty(products)}">
             <p>商品がありません</p>
         </div>
 

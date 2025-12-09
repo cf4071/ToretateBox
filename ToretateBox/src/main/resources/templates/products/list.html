@@ -18,23 +18,29 @@
             <h2>食材一覧</h2>
         </div>
 
-        <!-- 商品カード -->
+        <!-- ▼ 商品カード -->
         <div th:if="${products != null}" th:each="p : ${products}" class="card">
 
             <div class="image-box">
-                <a th:href="@{'/product/' + ${p.id}}">
-                    <img th:src="${p.imageUrl != null} ? ${p.imageUrl} : '@{/images/no-image.png}'" alt="商品画像">
+                <!-- ✅ 画像クリックで detail.html へ遷移 -->
+                <a th:href="@{'/products/' + ${p.id}}">
+                    <img th:src="${p.imageUrl != null} ? ${p.imageUrl} : @{/images/no-image.png}"
+                         alt="商品画像">
                 </a>
             </div>
 
             <div class="name" th:text="${p.name}">商品名</div>
             <div class="price" th:text="${p.price + '円'}">0円</div>
 
-            <!-- 旬バッジ -->
-            <div th:if="${p.season != null}" class="season-badge" th:text="'旬：' + ${p.season}"></div>
+            <!-- ▼ 旬バッジ -->
+            <div th:if="${p.season != null}"
+                 class="season-badge"
+                 th:text="'旬：' + ${p.season}">
+            </div>
 
         </div>
 
+        <!-- ▼ 商品がない場合 -->
         <div th:if="${products == null or #lists.isEmpty(products)}">
             <p>商品がありません</p>
         </div>

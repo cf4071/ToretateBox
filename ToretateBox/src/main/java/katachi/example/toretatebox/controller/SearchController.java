@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import katachi.example.toretatebox.domain.model.Product;
-import katachi.example.toretatebox.service.ProductService;
+import katachi.example.toretatebox.service.ProductsService;
 
 @Controller
 public class SearchController {
 
     @Autowired
-    private ProductService productService;
+    private ProductsService productService;
 
     @GetMapping("/search")
     public String search(@RequestParam(required = false) String keyword, Model model) {
