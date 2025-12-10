@@ -14,7 +14,7 @@
 <main class="list-layout">
 
     <!-- =========================
-         左：検索サイドバー（PDF C-1 準拠）
+         左：検索サイドバー
     ========================== -->
     <aside class="search-sidebar">
 
@@ -22,11 +22,10 @@
 
             <h3 class="search-title">絞り込み検索</h3>
 
-            <!-- ▼ カテゴリ（※「すべて」なし / categoryId 使用） -->
+            <!-- ▼ カテゴリ -->
             <div class="search-block">
                 <p class="search-label">カテゴリ</p>
 
-                <!-- 野菜 = 1、果物 = 2（DBに合わせて変更OK） -->
                 <label>
                     <input type="radio" name="categoryId" value="1"
                            th:checked="${categoryId == 1}">
@@ -40,7 +39,7 @@
                 </label>
             </div>
 
-            <!-- ▼ 旬の季節（※「すべて」なし） -->
+            <!-- ▼ 旬の季節 -->
             <div class="search-block">
                 <p class="search-label">旬の季節</p>
 
@@ -78,7 +77,6 @@
             <!-- ▼ 検索ボタン -->
             <button type="submit" class="btn-search">検索</button>
 
-            <!-- ▼ 検索ボタン直下：旬の食材一覧へ -->
             <a th:href="@{/top}" class="btn-top-link">旬の食材一覧へ</a>
 
         </form>
@@ -102,7 +100,7 @@
                  class="card">
 
                 <div class="image-box">
-                    <!-- ✅ 画像クリックで詳細へ -->
+                    <!-- 画像クリックで詳細へ -->
                     <a th:href="@{'/products/' + ${p.id}}">
                         <img th:src="${p.imageUrl != null} ? ${p.imageUrl} : @{/images/no-image.png}"
                              alt="商品画像">
@@ -112,11 +110,17 @@
                 <div class="name" th:text="${p.name}">商品名</div>
                 <div class="price" th:text="${p.price + '円'}">0円</div>
 
-                <!-- ▼ 旬バッジ -->
+                <!-- ▼ 旬バッジ（季節別色分け） -->
                 <div th:if="${p.season != null}"
                      class="season-badge"
+                     th:classappend="' ' + ${#strings.equals(p.season, '春') ? 'spring' :
+                                          #strings.equals(p.season, '夏') ? 'summer' :
+                                          #strings.equals(p.season, '秋') ? 'autumn' :
+                                          #strings.equals(p.season, '冬') ? 'winter' :
+                                          'allseason'}"
                      th:text="'旬：' + ${p.season}">
                 </div>
+
             </div>
 
             <!-- ▼ 商品がない場合 -->
@@ -169,4 +173,3 @@
 
 </body>
 </html>
-

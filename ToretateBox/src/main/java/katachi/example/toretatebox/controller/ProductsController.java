@@ -33,7 +33,7 @@ public class ProductsController {
 
         String season = getCurrentSeason();
 
-        Pageable pageable = PageRequest.of(page, 6);
+        Pageable pageable = PageRequest.of(page, 6); // ← TOPは6件のまま
 
         Page<Product> productPage =
                 productsService.searchBySeason(season, pageable);
@@ -46,63 +46,64 @@ public class ProductsController {
         return "top/top";
     }
 
- // ==================================
- // ✅ B-1：食材一覧（カテゴリID＋旬＋検索）【修正版】
- // ==================================
- @GetMapping("/products")
- public String showProductsList(
-         @RequestParam(required = false) String keyword,
-         @RequestParam(required = false) Integer categoryId, // ✅ String → Integer に変更
-         @RequestParam(required = false) String season,
-         @RequestParam(defaultValue = "0") int page,
-         Model model) {
+    // ==================================
+    // ✅ B-1：食材一覧（カテゴリID＋旬＋検索）
+    // ==================================
+    @GetMapping("/products")
+    public String showProductsList(
+            @RequestParam(required = false) String keyword,
+            @RequestParam(required = false) Integer categoryId,
+            @RequestParam(required = false) String season,
+            @RequestParam(defaultValue = "0") int page,
+            Model model) {
 
-     Pageable pageable = PageRequest.of(page, 10);
-     Page<Product> productPage;
+        // ★ 1ページあたり 8 件に変更！
+        Pageable pageable = PageRequest.of(page, 8);
 
-     // ✅ キーワード検索（最優先）
-     if (keyword != null && !keyword.isBlank()) {
+        Page<Product> productPage;
 
-         List<Product> products =
-                 productsService.searchProducts(keyword);
+        // ✅ キーワード検索（最優先）
+        if (keyword != null && !keyword.isBlank()) {
 
-         model.addAttribute("products", products);
-         model.addAttribute("keyword", keyword);
-         model.addAttribute("currentPage", 0);
-         model.addAttribute("totalPages", 1);
+            List<Product> products =
+                    productsService.searchProducts(keyword);
 
-         return "products/list";
-     }
+            model.addAttribute("products", products);
+            model.addAttribute("keyword", keyword);
+            model.addAttribute("currentPage", 0);
+            model.addAttribute("totalPages", 1);
 
-     // ✅ カテゴリID＋旬 両方あり
-     if (categoryId != null && isNotBlank(season)) {
-         productPage = productsService
-                 .searchByCategoryAndSeason(categoryId, season, pageable);
+            return "products/list";
+        }
 
-     // ✅ カテゴリIDのみ
-     } else if (categoryId != null) {
-         productPage = productsService
-                 .searchByCategory(categoryId, pageable);
+        // ✅ カテゴリID＋旬
+        if (categoryId != null && isNotBlank(season)) {
+            productPage = productsService
+                    .searchByCategoryAndSeason(categoryId, season, pageable);
 
-     // ✅ 旬のみ
-     } else if (isNotBlank(season)) {
-         productPage = productsService
-                 .searchBySeason(season, pageable);
+        // ✅ カテゴリIDのみ
+        } else if (categoryId != null) {
+            productPage = productsService
+                    .searchByCategory(categoryId, pageable);
 
-     // ✅ すべて
-     } else {
-         productPage = productsService.findAllPage(pageable);
-     }
+        // ✅ 旬のみ
+        } else if (isNotBlank(season)) {
+            productPage = productsService
+                    .searchBySeason(season, pageable);
 
-     model.addAttribute("products", productPage.getContent());
-     model.addAttribute("categoryId", categoryId); // ✅ category → categoryId
-     model.addAttribute("season", season);
-     model.addAttribute("currentPage", page);
-     model.addAttribute("totalPages", productPage.getTotalPages());
+        // ✅ すべて
+        } else {
+            productPage = productsService.findAllPage(pageable);
+        }
 
-     return "products/list";
- }
+        model.addAttribute("products", productPage.getContent());
+        model.addAttribute("categoryId", categoryId);
+        model.addAttribute("season", season);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", productPage.getTotalPages());
 
+        return "products/list";
+    }
 
     // ============================
     // ✅ 商品保存（新規・更新）
@@ -144,7 +145,7 @@ public class ProductsController {
         }
     }
 
-    // ✅ nullや空文字チェック用
+    // nullや空文字チェック
     private boolean isNotBlank(String value) {
         return value != null && !value.isBlank();
     }

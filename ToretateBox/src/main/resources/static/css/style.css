@@ -4,7 +4,7 @@
 body {
     margin: 0;
     font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
-    background-color: #f3f8f0; /* 柔らかい緑背景 */
+    background-color: #f3f8f0;
 }
 
 /*********************************
@@ -120,9 +120,9 @@ input[type="password"]:focus {
     background-color: #b3b3b3;
 }
 
-/*-------------------------------------
-  ヘッダー全体：横並び
--------------------------------------*/
+/*********************************
+   ヘッダー
+*********************************/
 .site-header {
     display: flex;
     align-items: flex-start;
@@ -132,9 +132,7 @@ input[type="password"]:focus {
     border-bottom: 2px solid #e0e0e0;
 }
 
-/*-------------------------------------
-  左：ロゴ
--------------------------------------*/
+/* 左：ロゴ */
 .logo-box {
     padding: 8px 20px;
     border: 3px solid #4CAF50;
@@ -149,9 +147,7 @@ input[type="password"]:focus {
     font-weight: bold;
 }
 
-/*-------------------------------------
-  右：メニュー＋検索
--------------------------------------*/
+/* 右：メニュー＋検索 */
 .header-right {
     display: flex;
     flex-direction: column;
@@ -183,9 +179,9 @@ input[type="password"]:focus {
     color: #4CAF50;
 }
 
-/*-------------------------------------
-  検索欄
--------------------------------------*/
+/*********************************
+   ヘッダー：検索欄
+*********************************/
 .header-search {
     display: flex;
     gap: 0;
@@ -223,7 +219,7 @@ input[type="password"]:focus {
     margin: 0;
 }
 
-/* ★追加：季節ラベル */
+/* 季節ラベル */
 .season-label {
     margin-top: 6px;
     font-size: 20px;
@@ -231,6 +227,9 @@ input[type="password"]:focus {
     color: #ff9933;
 }
 
+/*********************************
+   グリッド（一覧の商品表示）
+*********************************/
 .grid {
     width: 95%;
     margin: 40px auto;
@@ -277,112 +276,134 @@ input[type="password"]:focus {
     text-align: center;
 }
 
-/* =========================
-   食材一覧：左右2カラムレイアウト
-========================= */
+/*********************************
+   食材一覧：左右2カラム
+*********************************/
 .list-layout {
-  display: flex;
-  gap: 32px;
-  padding: 24px;
-  max-width: 1400px;
-  margin: 0 auto;
-  align-items: flex-start;
+    display: flex;
+    gap: 32px;
+    padding: 24px;
+    max-width: 1400px;
+    margin: 0 auto;
+    align-items: flex-start;
 }
 
 /* 左：検索エリア */
 .search-sidebar {
-  width: 260px;
-  background: #f4f9f1;
-  border-radius: 12px;
-  padding: 20px;
-  position: sticky;
-  top: 110px;
-  min-height: 480px;
-  box-shadow: 0 0 8px rgba(0,0,0,0.08);
+    width: 260px;
+    background: #f4f9f1;
+    border-radius: 12px;
+    padding: 20px;
+    position: sticky;
+    top: 110px;
+    min-height: 480px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.08);
 }
 
 /* 検索フォームは縦並び */
 .search-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 /* 右：一覧エリア */
 .list-main {
-  flex: 1;
+    flex: 1;
 }
 
-/* 検索タイトル */
+/* 検索ブロック */
 .search-title {
-  font-weight: bold;
-  margin-bottom: 16px;
+    font-weight: bold;
+    margin-bottom: 16px;
 }
 
-/* 各検索ブロック */
 .search-block {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .search-label {
-  font-size: 15px;
-  margin-bottom: 8px;
+    font-size: 15px;
+    margin-bottom: 8px;
 }
 
-/* ラジオボタンの整列 */
+/* ラジオボタン整列 */
 .search-sidebar label {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 6px;
-  font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 6px;
+    font-size: 14px;
 }
 
-/* 検索ボタン */
+/*********************************
+   検索ボタン
+*********************************/
 .btn-search {
-  width: 100%;
-  padding: 10px;
-  border-radius: 8px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  margin-top: 10px;
-  cursor: pointer;
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    margin-top: 10px;
+    cursor: pointer;
 }
 
 .btn-search:hover {
-  background-color: #3f9a43;
+    background-color: #3f9a43;
 }
 
-/* 「旬の食材一覧へ」リンクは必ず下に表示 */
 .btn-top-link {
-  display: block;
-  width: 100%;
-  text-align: center;
-  margin-top: 6px;
-  padding: 8px;
-  border-radius: 6px;
-  color: #4CAF50;
-  font-weight: bold;
-  text-decoration: none;
-  border: 2px solid #4CAF50;
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 6px;
+    padding: 8px;
+    border-radius: 6px;
+    color: #4CAF50;
+    font-weight: bold;
+    text-decoration: none;
+    border: 2px solid #4CAF50;
 }
 
 .btn-top-link:hover {
-  background-color: #4CAF50;
-  color: #fff;
+    background-color: #4CAF50;
+    color: #fff;
 }
 
-/* 旬バッジ */
+/*********************************
+   旬バッジ（色分け対応）
+*********************************/
 .season-badge {
-  margin-top: 8px;
-  text-align: center;
-  font-size: 13px;
-  padding: 4px 8px;
-  border-radius: 12px;
-  background-color: #ffefc1;
-  color: #cc8400;
-  font-weight: bold;
+    margin-top: 8px;
+    text-align: center;
+    font-size: 13px;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* 季節ごとに色分け */
+.season-badge.spring {
+    background-color: #ff7fbf; /* ピンク */
+}
+
+.season-badge.summer {
+    background-color: orangered; /* 青 */
+}
+
+.season-badge.autumn {
+    background-color: saddlebrown; /* オレンジ */
+}
+
+.season-badge.winter {
+    background-color: #80d4ff; /* 水色 */
+}
+
+.season-badge.allseason {
+    background-color: #4CAF50; /* 緑 */
 }
 
 /*********************************
