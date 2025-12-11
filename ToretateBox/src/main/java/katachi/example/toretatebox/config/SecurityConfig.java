@@ -20,7 +20,7 @@ public class SecurityConfig {
                 // ▼ ゲストでもアクセス可能なページ
                 .requestMatchers(
                     "/", "/top", "/products", "/products/**", // ← 追加
-                    "/css/**", "/search/**", "/images/**", "/product/**"
+                    "/css/**", "/search/**", "/images/**"
                 ).permitAll()
 
                 // ▼ ログインページは誰でもアクセスOK

@@ -24,7 +24,7 @@ public class ProductsController {
     private final ProductsService productsService;
 
     // ============================
-    // ✅ A-1：TOPページ（今が旬）
+    // ✅ TOPページ（今が旬）
     // ============================
     @GetMapping("/top")
     public String showTopPage(
@@ -33,7 +33,7 @@ public class ProductsController {
 
         String season = getCurrentSeason();
 
-        Pageable pageable = PageRequest.of(page, 6); // ← TOPは6件のまま
+        Pageable pageable = PageRequest.of(page, 6);
 
         Page<Product> productPage =
                 productsService.searchBySeason(season, pageable);
@@ -47,7 +47,7 @@ public class ProductsController {
     }
 
     // ==================================
-    // ✅ B-1：食材一覧（カテゴリID＋旬＋検索）
+    // ✅ 食材一覧（カテゴリID＋旬＋検索）
     // ==================================
     @GetMapping("/products")
     public String showProductsList(
@@ -57,12 +57,10 @@ public class ProductsController {
             @RequestParam(defaultValue = "0") int page,
             Model model) {
 
-        // ★ 1ページあたり 8 件に変更！
         Pageable pageable = PageRequest.of(page, 8);
-
         Page<Product> productPage;
 
-        // ✅ キーワード検索（最優先）
+        // キーワード検索
         if (keyword != null && !keyword.isBlank()) {
 
             List<Product> products =
@@ -76,22 +74,22 @@ public class ProductsController {
             return "products/list";
         }
 
-        // ✅ カテゴリID＋旬
+        // カテゴリ＋旬
         if (categoryId != null && isNotBlank(season)) {
             productPage = productsService
                     .searchByCategoryAndSeason(categoryId, season, pageable);
 
-        // ✅ カテゴリIDのみ
+        // カテゴリのみ
         } else if (categoryId != null) {
             productPage = productsService
                     .searchByCategory(categoryId, pageable);
 
-        // ✅ 旬のみ
+        // 旬のみ
         } else if (isNotBlank(season)) {
             productPage = productsService
                     .searchBySeason(season, pageable);
 
-        // ✅ すべて
+        // 全て
         } else {
             productPage = productsService.findAllPage(pageable);
         }
@@ -106,24 +104,39 @@ public class ProductsController {
     }
 
     // ============================
-    // ✅ 商品保存（新規・更新）
+    // ✅ 商品詳細ページ
+    // ============================
+    @GetMapping("/products/{id}")
+    public String showProductDetail(
+            @PathVariable Integer id,
+            Model model) {
+
+        Product product = productsService.findById(id);
+
+        if (product == null) {
+            return "error/404";  // 任意：商品が存在しないとき
+        }
+
+        model.addAttribute("product", product);
+
+        return "products/detail"; // detail.html
+    }
+
+    // ============================
+    // ✅ 商品保存
     // ============================
     @PostMapping("/products/save")
     public String saveProduct(Product product) {
-
         productsService.save(product);
-
         return "redirect:/products";
     }
 
     // ============================
-    // ✅ 商品削除（管理用）
+    // ✅ 商品削除
     // ============================
     @PostMapping("/products/delete/{id}")
     public String deleteProduct(@PathVariable Integer id) {
-
         productsService.deleteById(id);
-
         return "redirect:/products";
     }
 
@@ -134,18 +147,13 @@ public class ProductsController {
 
         int month = LocalDate.now().getMonthValue();
 
-        if (month >= 3 && month <= 5) {
-            return "春";
-        } else if (month >= 6 && month <= 8) {
-            return "夏";
-        } else if (month >= 9 && month <= 11) {
-            return "秋";
-        } else {
-            return "冬";
-        }
+        if (month >= 3 && month <= 5) return "春";
+        if (month >= 6 && month <= 8) return "夏";
+        if (month >= 9 && month <= 11) return "秋";
+        return "冬";
     }
 
-    // nullや空文字チェック
+    // null or 空文字チェック
     private boolean isNotBlank(String value) {
         return value != null && !value.isBlank();
     }
