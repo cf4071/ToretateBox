@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>カート</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div th:replace="layout/header :: header"></div>
+
+<main>
+    <div class="cart-container">
+        <h2>カート</h2>
+
+        <div th:if="${cart == null or #lists.isEmpty(cart)}">
+            <p>カートに商品はありません。</p>
+        </div>
+
+        <table th:if="${cart != null and !#lists.isEmpty(cart)}" class="cart-table">
+            <thead>
+                <tr>
+                    <th>商品名</th>
+                    <th>価格</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="item : ${cart}">
+                    <td th:text="${item.name}">商品名</td>
+                    <td th:text="${item.price} + ' 円'">0 円</td>
+                    <td>
+                        <form th:action="@{/cart/remove}" method="post" style="display:inline">
+                            <input type="hidden" name="productId" th:value="${item.id}">
+                            <button type="submit">削除</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <form th:action="@{/cart/clear}" method="post">
+            <button type="submit">カートを空にする</button>
+        </form>
+
+        <a th:href="@{/products}">商品一覧へ戻る</a>
+    </div>
+</main>
+
+<div th:replace="layout/footer :: footer"></div>
+
+</body>
+</html>

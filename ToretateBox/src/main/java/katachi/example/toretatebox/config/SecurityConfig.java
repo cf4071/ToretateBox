@@ -19,8 +19,9 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 // ▼ ゲストでもアクセス可能なページ
                 .requestMatchers(
-                    "/", "/top", "/products", "/products/**", // ← 追加
-                    "/css/**", "/search/**", "/images/**"
+                    "/", "/top", "/products", "/products/**",
+                    "/css/**", "/search/**", "/images/**",
+                    "/cart", "/cart/**"   // ← ここを追加
                 ).permitAll()
 
                 // ▼ ログインページは誰でもアクセスOK
