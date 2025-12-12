@@ -113,7 +113,6 @@ input[type="password"]:focus {
     border-radius: 8px;
     cursor: pointer;
     font-size: 14px;
-    transition: background-color 0.3s;
 }
 
 .back-button:hover {
@@ -132,7 +131,6 @@ input[type="password"]:focus {
     border-bottom: 2px solid #e0e0e0;
 }
 
-/* 左：ロゴ */
 .logo-box {
     padding: 8px 20px;
     border: 3px solid #4CAF50;
@@ -147,7 +145,6 @@ input[type="password"]:focus {
     font-weight: bold;
 }
 
-/* 右：メニュー＋検索 */
 .header-right {
     display: flex;
     flex-direction: column;
@@ -219,7 +216,6 @@ input[type="password"]:focus {
     margin: 0;
 }
 
-/* 季節ラベル */
 .season-label {
     margin-top: 6px;
     font-size: 20px;
@@ -288,7 +284,6 @@ input[type="password"]:focus {
     align-items: flex-start;
 }
 
-/* 左：検索エリア */
 .search-sidebar {
     width: 260px;
     background: #f4f9f1;
@@ -300,19 +295,16 @@ input[type="password"]:focus {
     box-shadow: 0 0 8px rgba(0,0,0,0.08);
 }
 
-/* 検索フォームは縦並び */
 .search-form {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-/* 右：一覧エリア */
 .list-main {
     flex: 1;
 }
 
-/* 検索ブロック */
 .search-title {
     font-weight: bold;
     margin-bottom: 16px;
@@ -327,7 +319,6 @@ input[type="password"]:focus {
     margin-bottom: 8px;
 }
 
-/* ラジオボタン整列 */
 .search-sidebar label {
     display: flex;
     align-items: center;
@@ -373,7 +364,7 @@ input[type="password"]:focus {
 }
 
 /*********************************
-   旬バッジ（色分け対応）
+   旬バッジ
 *********************************/
 .season-badge {
     margin-top: 8px;
@@ -385,26 +376,11 @@ input[type="password"]:focus {
     color: #fff;
 }
 
-/* 季節ごとに色分け */
-.season-badge.spring {
-    background-color: #ff7fbf; /* ピンク */
-}
-
-.season-badge.summer {
-    background-color: orangered; /* 青 */
-}
-
-.season-badge.autumn {
-    background-color: saddlebrown; /* オレンジ */
-}
-
-.season-badge.winter {
-    background-color: #80d4ff; /* 水色 */
-}
-
-.season-badge.allseason {
-    background-color: #4CAF50; /* 緑 */
-}
+.season-badge.spring { background-color: #ff7fbf; }
+.season-badge.summer { background-color: orangered; }
+.season-badge.autumn { background-color: saddlebrown; }
+.season-badge.winter { background-color: #80d4ff; }
+.season-badge.allseason { background-color: #4CAF50; }
 
 /*********************************
    ページネーション
@@ -440,4 +416,116 @@ footer {
     color: #777;
     margin-top: 60px;
     font-size: 14px;
+}
+
+/*********************************
+   ▼ ここから PDF 準拠の「食材詳細ページ」デザイン
+*********************************/
+
+/* コンテナ：左右2カラム */
+.detail-container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 40px auto;
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+/* 左：大きい食材画像 */
+.detail-image-box {
+    flex: 1;
+    max-width: 380px;
+    background: white;
+    border: 2px solid #bbb;
+    height: 380px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.detail-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* 右：説明エリア */
+.detail-info {
+    flex: 2;
+}
+
+.detail-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+.detail-name {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.detail-price {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.detail-season {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.detail-description p {
+    line-height: 1.8;
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+/* ボタンレイアウト */
+.detail-buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.btn-cart,
+.btn-back,
+.btn-delete {
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+}
+
+/* カートへ */
+.btn-cart {
+    background-color: #ff9933;
+    color: white;
+}
+.btn-cart:hover {
+    background-color: #ff7f00;
+}
+
+/* 戻る */
+.btn-back {
+    background-color: #5bc0de;
+    color: white;
+}
+.btn-back:hover {
+    background-color: #46b8da;
+}
+
+/* 削除 */
+.btn-delete {
+    background-color: #d9534f;
+    color: white;
+}
+.btn-delete:hover {
+    background-color: #c9302c;
 }

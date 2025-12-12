@@ -27,9 +27,11 @@
             <div class="image-box">
                 <!-- ✅ 画像クリックで detail.html へ遷移 -->
                 <a th:href="@{'/products/' + ${p.id}}">
-                    <img th:src="${p.imageUrl != null} ? ${p.imageUrl} : @{/images/no-image.png}"
-                         alt="商品画像">
-                </a>
+                        <img th:src="${p.imageUrl != null} ?
+             				@{/images/{file}(file=${p.imageUrl})} :
+             				@{/images/no-image.png}"
+    							 alt="商品画像">
+                 </a>
             </div>
 
             <div class="name" th:text="${p.name}">商品名</div>

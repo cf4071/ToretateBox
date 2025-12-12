@@ -102,8 +102,10 @@
                 <div class="image-box">
                     <!-- 画像クリックで詳細へ -->
                     <a th:href="@{'/products/' + ${p.id}}">
-                        <img th:src="${p.imageUrl != null} ? ${p.imageUrl} : @{/images/no-image.png}"
-                             alt="商品画像">
+                        <img th:src="${p.imageUrl != null} ?
+             				@{/images/{file}(file=${p.imageUrl})} :
+             				@{/images/no-image.png}"
+    							 alt="商品画像">
                     </a>
                 </div>
 
