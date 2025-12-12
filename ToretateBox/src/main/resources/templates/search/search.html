@@ -20,9 +20,12 @@
 
         <div th:each="p : ${products}" class="card">
             <div class="image-box">
-                <a th:href="@{'/product/' + ${p.id}}">
-                    <img th:src="${p.imageUrl}" alt="">
-                </a>
+               <a th:href="@{'/products/' + ${p.id}}">
+                  <img th:src="${p.imageUrl != null} ?
+             		@{/images/{file}(file=${p.imageUrl})} :
+             		@{/images/no-image.png}"
+    				   alt="商品画像">
+               </a>
             </div>
             <div class="name" th:text="${p.name}"></div>
             <div class="price" th:text="${p.price + '円'}"></div>
