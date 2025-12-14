@@ -17,9 +17,6 @@ body {
     min-height: 100vh;
 }
 
-/*********************************
-   ログイン画面
-*********************************/
 .login-wrapper {
     width: 100%;
     max-width: 800px;
@@ -177,7 +174,7 @@ input[type="password"]:focus {
 }
 
 /*********************************
-   ヘッダー：検索欄
+   検索欄
 *********************************/
 .header-search {
     display: flex;
@@ -202,29 +199,7 @@ input[type="password"]:focus {
 }
 
 /*********************************
-   トップ・一覧共通
-*********************************/
-.top-title {
-    grid-column: 1 / -1;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.top-title h2 {
-    font-size: 28px;
-    color: #ff7777;
-    margin: 0;
-}
-
-.season-label {
-    margin-top: 6px;
-    font-size: 20px;
-    font-weight: bold;
-    color: #ff9933;
-}
-
-/*********************************
-   グリッド（一覧の商品表示）
+   一覧画面（グリッド）
 *********************************/
 .grid {
     width: 95%;
@@ -262,183 +237,47 @@ input[type="password"]:focus {
 
 .name {
     font-size: 18px;
-    margin-top: 10px;
     text-align: center;
 }
 
 .price {
     font-size: 16px;
-    margin-top: 5px;
     text-align: center;
 }
 
 /*********************************
-   食材一覧：左右2カラム
+   ▼ 食材詳細ページ（ここ重要）
 *********************************/
-.list-layout {
-    display: flex;
-    gap: 32px;
-    padding: 24px;
-    max-width: 1400px;
-    margin: 0 auto;
-    align-items: flex-start;
-}
 
-.search-sidebar {
-    width: 260px;
-    background: #f4f9f1;
-    border-radius: 12px;
-    padding: 20px;
-    position: sticky;
-    top: 110px;
-    min-height: 480px;
-    box-shadow: 0 0 8px rgba(0,0,0,0.08);
-}
-
-.search-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.list-main {
-    flex: 1;
-}
-
-.search-title {
-    font-weight: bold;
-    margin-bottom: 16px;
-}
-
-.search-block {
-    margin-bottom: 20px;
-}
-
-.search-label {
-    font-size: 15px;
-    margin-bottom: 8px;
-}
-
-.search-sidebar label {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-bottom: 6px;
-    font-size: 14px;
-}
-
-/*********************************
-   検索ボタン
-*********************************/
-.btn-search {
-    width: 100%;
-    padding: 10px;
-    border-radius: 8px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    margin-top: 10px;
-    cursor: pointer;
-}
-
-.btn-search:hover {
-    background-color: #3f9a43;
-}
-
-.btn-top-link {
-    display: block;
-    width: 100%;
+/* ▼ 中央タイトル */
+.detail-page-title {
     text-align: center;
-    margin-top: 6px;
-    padding: 8px;
-    border-radius: 6px;
-    color: #4CAF50;
-    font-weight: bold;
-    text-decoration: none;
-    border: 2px solid #4CAF50;
-}
-
-.btn-top-link:hover {
-    background-color: #4CAF50;
-    color: #fff;
-}
-
-/*********************************
-   旬バッジ
-*********************************/
-.season-badge {
-    margin-top: 8px;
-    text-align: center;
-    font-size: 13px;
-    padding: 4px 8px;
-    border-radius: 12px;
-    font-weight: bold;
-    color: #fff;
-}
-
-.season-badge.spring { background-color: #ff7fbf; }
-.season-badge.summer { background-color: orangered; }
-.season-badge.autumn { background-color: saddlebrown; }
-.season-badge.winter { background-color: #80d4ff; }
-.season-badge.allseason { background-color: #4CAF50; }
-
-/*********************************
-   ページネーション
-*********************************/
-.pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    margin-top: 20px;
-}
-
-.pagination a {
-    text-decoration: none;
-    padding: 6px 10px;
-    border-radius: 4px;
+    font-size: 28px;
+    margin-top: 30px;
+    margin-bottom: 30px;
     color: #333;
-    border: 1px solid #ccc;
 }
 
-.pagination a.active {
-    background-color: #4CAF50;
-    color: #fff;
-    border-color: #4CAF50;
-}
-
-/*********************************
-   フッター
-*********************************/
-footer {
-    text-align: center;
-    padding: 15px;
-    color: #777;
-    margin-top: 60px;
-    font-size: 14px;
-}
-
-/*********************************
-   ▼ ここから PDF 準拠の「食材詳細ページ」デザイン
-*********************************/
-
-/* コンテナ：左右2カラム */
-.detail-container {
+/* ▼ 横並びコンテナ */
+.detail-container-2col {
     width: 90%;
     max-width: 1100px;
-    margin: 40px auto;
+    margin: 0 auto 60px auto;
     display: flex;
     gap: 40px;
     align-items: flex-start;
 }
 
-/* 左：大きい食材画像 */
-.detail-image-box {
+/* ▼ 左（画像） */
+.detail-left {
     flex: 1;
-    max-width: 380px;
+}
+
+.detail-image-box {
+    width: 100%;
+    height: 400px;
     background: white;
     border: 2px solid #bbb;
-    height: 380px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -450,15 +289,9 @@ footer {
     object-fit: contain;
 }
 
-/* 右：説明エリア */
-.detail-info {
-    flex: 2;
-}
-
-.detail-title {
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 16px;
+/* ▼ 右（商品説明） */
+.detail-right {
+    flex: 1.5;
 }
 
 .detail-name {
@@ -467,25 +300,23 @@ footer {
     margin-bottom: 20px;
 }
 
-.detail-price {
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-
-.detail-season {
-    font-size: 18px;
-    margin-bottom: 20px;
+.detail-category,
+.detail-season,
+.detail-price,
+.detail-qty {
+    font-size: 20px;
+    margin-bottom: 12px;
 }
 
 .detail-description p {
-    line-height: 1.8;
+    margin-top: 20px;
     font-size: 16px;
-    margin-bottom: 25px;
+    line-height: 1.8;
 }
 
-/* ボタンレイアウト */
+/* ▼ ボタン */
 .detail-buttons {
-    margin-top: 20px;
+    margin-top: 25px;
     display: flex;
     gap: 20px;
 }
@@ -493,7 +324,7 @@ footer {
 .btn-cart,
 .btn-back,
 .btn-delete {
-    padding: 10px 20px;
+    padding: 12px 24px;
     border-radius: 6px;
     border: none;
     cursor: pointer;
@@ -528,4 +359,15 @@ footer {
 }
 .btn-delete:hover {
     background-color: #c9302c;
+}
+
+/*********************************
+   フッター
+*********************************/
+footer {
+    text-align: center;
+    padding: 15px;
+    color: #777;
+    margin-top: 60px;
+    font-size: 14px;
 }

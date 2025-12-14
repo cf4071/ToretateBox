@@ -13,39 +13,42 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        http
-            .csrf(csrf -> csrf.disable())
+        http.csrf(csrf -> csrf.disable());
 
-            .authorizeHttpRequests(auth -> auth
-                // ▼ ゲストでもアクセス可能なページ
-                .requestMatchers(
-                    "/", "/top", "/products", "/products/**",
-                    "/css/**", "/search/**", "/images/**",
-                    "/cart", "/cart/**"   // ← ここを追加
-                ).permitAll()
+        http.authorizeHttpRequests(auth -> auth
 
-                // ▼ ログインページは誰でもアクセスOK
-                .requestMatchers("/login").permitAll()
+            // ▼ ゲストがアクセスできる場所（すべて許可）
+            .requestMatchers(
+                    "/", "/top",
+                    "/products", "/products/**",   // ← 商品一覧・詳細を完全許可
+                    "/css/**", "/js/**", "/images/**",
+                    "/search/**",
+                    "/cart", "/cart/**"
+            ).permitAll()
 
-                // ▼ それ以外はログイン必須
-                .anyRequest().authenticated()
-            )
+            // ▼ ログインページ許可
+            .requestMatchers("/login").permitAll()
 
-            // ▼ 自作ログインページの指定
-            .formLogin(form -> form
+            // ▼ その他はログイン必須
+            .anyRequest().authenticated()
+        );
+
+        // ▼ ログイン設定
+        http.formLogin(form -> form
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
-                .usernameParameter("email")      // ← form の name と一致
-                .passwordParameter("password")   // ← form の name と一致
-                .defaultSuccessUrl("/top", true) // ← ログイン後 /top へ
+                .usernameParameter("email")
+                .passwordParameter("password")
+                .defaultSuccessUrl("/top", true)
                 .permitAll()
-            )
+        );
 
-            .logout(logout -> logout
+        // ▼ ログアウト設定
+        http.logout(logout -> logout
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/top")
                 .permitAll()
-            );
+        );
 
         return http.build();
     }
@@ -55,3 +58,4 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 }
+
