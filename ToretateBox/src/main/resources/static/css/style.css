@@ -174,7 +174,7 @@ input[type="password"]:focus {
 }
 
 /*********************************
-   検索欄
+   ヘッダー：検索欄
 *********************************/
 .header-search {
     display: flex;
@@ -199,7 +199,29 @@ input[type="password"]:focus {
 }
 
 /*********************************
-   一覧画面（グリッド）
+   トップ・一覧共通
+*********************************/
+.top-title {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.top-title h2 {
+    font-size: 28px;
+    color: #ff7777;
+    margin: 0;
+}
+
+.season-label {
+    margin-top: 6px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #ff9933;
+}
+
+/*********************************
+   グリッド（一覧の商品表示）
 *********************************/
 .grid {
     width: 95%;
@@ -237,47 +259,187 @@ input[type="password"]:focus {
 
 .name {
     font-size: 18px;
+    margin-top: 10px;
     text-align: center;
 }
 
 .price {
     font-size: 16px;
+    margin-top: 5px;
     text-align: center;
 }
 
 /*********************************
-   ▼ 食材詳細ページ（ここ重要）
+   食材一覧：左右2カラム
 *********************************/
-
-/* ▼ 中央タイトル */
-.detail-page-title {
-    text-align: center;
-    font-size: 28px;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    color: #333;
+.list-layout {
+    display: flex;
+    gap: 32px;
+    padding: 24px;
+    max-width: 1400px;
+    margin: 0 auto;
+    align-items: flex-start;
 }
 
-/* ▼ 横並びコンテナ */
+.search-sidebar {
+    width: 260px;
+    background: #f4f9f1;
+    border-radius: 12px;
+    padding: 20px;
+    position: sticky;
+    top: 110px;
+    min-height: 480px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.08);
+}
+
+.search-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.list-main {
+    flex: 1;
+}
+
+.search-title {
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+.search-block {
+    margin-bottom: 20px;
+}
+
+.search-label {
+    font-size: 15px;
+    margin-bottom: 8px;
+}
+
+.search-sidebar label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+/*********************************
+   検索ボタン
+*********************************/
+.btn-search {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.btn-search:hover {
+    background-color: #3f9a43;
+}
+
+.btn-top-link {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 6px;
+    padding: 8px;
+    border-radius: 6px;
+    color: #4CAF50;
+    font-weight: bold;
+    text-decoration: none;
+    border: 2px solid #4CAF50;
+}
+
+.btn-top-link:hover {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+/*********************************
+   旬バッジ
+*********************************/
+.season-badge {
+    margin-top: 8px;
+    text-align: center;
+    font-size: 13px;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.season-badge.spring { background-color: #ff7fbf; }
+.season-badge.summer { background-color: orangered; }
+.season-badge.autumn { background-color: saddlebrown; }
+.season-badge.winter { background-color: #80d4ff; }
+.season-badge.allseason { background-color: #4CAF50; }
+
+/*********************************
+   ページネーション
+*********************************/
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.pagination a {
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.pagination a.active {
+    background-color: #4CAF50;
+    color: #fff;
+    border-color: #4CAF50;
+}
+
+/*********************************
+   フッター
+*********************************/
+footer {
+    text-align: center;
+    padding: 15px;
+    color: #777;
+    margin-top: 60px;
+    font-size: 14px;
+}
+
+/*********************************
+   食材詳細ページ（左右2カラム）
+*********************************/
+.detail-title {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    margin: 30px 0;
+}
+
 .detail-container-2col {
     width: 90%;
     max-width: 1100px;
-    margin: 0 auto 60px auto;
+    margin: 40px auto;
     display: flex;
     gap: 40px;
     align-items: flex-start;
 }
 
-/* ▼ 左（画像） */
 .detail-left {
     flex: 1;
-}
-
-.detail-image-box {
-    width: 100%;
-    height: 400px;
+    max-width: 400px;
     background: white;
     border: 2px solid #bbb;
+    height: 400px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -289,9 +451,10 @@ input[type="password"]:focus {
     object-fit: contain;
 }
 
-/* ▼ 右（商品説明） */
 .detail-right {
-    flex: 1.5;
+    flex: 2;
+    display: flex;
+    flex-direction: column;
 }
 
 .detail-name {
@@ -304,37 +467,22 @@ input[type="password"]:focus {
 .detail-season,
 .detail-price,
 .detail-qty {
-    font-size: 20px;
+    font-size: 18px;
     margin-bottom: 12px;
 }
 
 .detail-description p {
-    margin-top: 20px;
-    font-size: 16px;
     line-height: 1.8;
+    font-size: 16px;
+    margin-bottom: 25px;
 }
 
-/* ▼ ボタン */
 .detail-buttons {
-    margin-top: 25px;
+    margin-top: 20px;
     display: flex;
     gap: 20px;
 }
 
-.btn-cart,
-.btn-back,
-.btn-delete {
-    padding: 12px 24px;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: bold;
-    text-decoration: none;
-    display: inline-block;
-}
-
-/* カートへ */
 .btn-cart {
     background-color: #ff9933;
     color: white;
@@ -343,7 +491,6 @@ input[type="password"]:focus {
     background-color: #ff7f00;
 }
 
-/* 戻る */
 .btn-back {
     background-color: #5bc0de;
     color: white;
@@ -352,22 +499,10 @@ input[type="password"]:focus {
     background-color: #46b8da;
 }
 
-/* 削除 */
 .btn-delete {
     background-color: #d9534f;
     color: white;
 }
 .btn-delete:hover {
     background-color: #c9302c;
-}
-
-/*********************************
-   フッター
-*********************************/
-footer {
-    text-align: center;
-    padding: 15px;
-    color: #777;
-    margin-top: 60px;
-    font-size: 14px;
 }

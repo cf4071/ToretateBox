@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
@@ -59,14 +61,25 @@ public class Product {
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updateAt;
 
+    // ==============================
+    // ▼ Category リレーション
+    // ==============================
+    @ManyToOne
+    @JoinColumn(name = "category_id", insertable = false, updatable = false)
+    private Category category;
+
+    // ==============================
     // 新規保存時の自動セット
+    // ==============================
     @PrePersist
     public void onCreate() {
         this.createdAt = LocalDateTime.now();
         this.updateAt = LocalDateTime.now();
     }
 
+    // ==============================
     // 更新時の自動セット
+    // ==============================
     @PreUpdate
     public void onUpdate() {
         this.updateAt = LocalDateTime.now();
