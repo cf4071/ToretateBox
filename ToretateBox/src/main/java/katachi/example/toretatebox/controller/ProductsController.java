@@ -126,15 +126,6 @@ public class ProductsController {
     }
 
     // ============================
-    // 商品削除
-    // ============================
-    @PostMapping("/products/delete/{id}")
-    public String deleteProduct(@PathVariable Integer id) {
-        productsService.deleteById(id);
-        return "redirect:/products";
-    }
-
-    // ============================
     // 今の季節を自動判定
     // ============================
     private String getCurrentSeason() {

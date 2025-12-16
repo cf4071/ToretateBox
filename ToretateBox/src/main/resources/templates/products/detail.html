@@ -116,11 +116,6 @@
 
                 <a th:href="@{/products}" class="btn-back">一覧へ戻る</a>
 
-                <form th:action="@{'/products/delete/' + ${product.id}}"
-                      method="post"
-                      onsubmit="return confirm('本当に削除しますか？');">
-                    <button type="submit" class="btn-delete">削除</button>
-                </form>
             </div>
 
         </div>
