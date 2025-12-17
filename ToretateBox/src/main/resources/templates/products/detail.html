@@ -4,51 +4,6 @@
     <meta charset="UTF-8">
     <title th:text="${product.name} + ' - 商品詳細'">商品詳細</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
-    <style>
-        /* 左右2カラムのスタイル */
-        .detail-container-2col {
-            display: flex;
-            gap: 20px;
-            align-items: flex-start;
-        }
-
-        .detail-left {
-            flex: 1;
-        }
-
-        .detail-right {
-            flex: 2;
-        }
-
-        .detail-image {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-        }
-
-        .detail-name {
-            margin: 0 0 10px 0;
-        }
-
-        .detail-category, .detail-season, .detail-price, .detail-qty {
-            margin: 5px 0;
-        }
-
-        .detail-description {
-            margin: 10px 0;
-        }
-
-        .detail-buttons {
-            margin-top: 15px;
-            display: flex;
-            gap: 10px;
-        }
-
-        .btn-cart, .btn-back, .btn-delete {
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-    </style>
 </head>
 
 <body>
