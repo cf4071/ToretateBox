@@ -36,7 +36,12 @@
         <div class="detail-right">
 
             <h2 class="detail-name" th:text="${product.name}">食材名</h2>
-
+			
+			<!-- 食材説明 -->
+            <div class="detail-description" th:if="${product.description != null}">
+                <p th:text="${product.description}"></p>
+            </div>
+			
             <p class="detail-category">
                 カテゴリ：<span th:text="${product.category.name}"></span>
             </p>
@@ -56,11 +61,6 @@
                             th:value="${i}" th:text="${i}"></option>
                 </select>
             </p>
-
-            <!-- 食材説明 -->
-            <div class="detail-description" th:if="${product.description != null}">
-                <p th:text="${product.description}"></p>
-            </div>
 
             <!-- ▼ ボタン３つ -->
             <div class="detail-buttons">

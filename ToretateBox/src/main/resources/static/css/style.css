@@ -492,13 +492,13 @@ footer {
 .btn-cart {
     background-color: #ff9933;
     color: white;
-    padding: 16px 32px;
-    font-size: 18px;
+    padding: 14px 28px;
+    font-size: 16px;
     font-weight: bold;
     border-radius: 10px;
+    border: none;
+    cursor: pointer;
     min-width: 200px;
-    text-align: center;
-    height: 64px;
     box-shadow: 0 4px 0 #e67e22; /* 立体感 */
 }
 
@@ -512,10 +512,14 @@ footer {
 }
 
 .btn-back {
-    background-color: #5bc0de;
+    display: inline-block;
+    background-color: gray;
     color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
 }
 .btn-back:hover {
     background-color: #46b8da;
 }
-
