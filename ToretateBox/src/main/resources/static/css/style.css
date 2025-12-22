@@ -523,3 +523,93 @@ footer {
 .btn-back:hover {
     background-color: #46b8da;
 }
+
+/*********************************
+   カート画面
+*********************************/
+/*********************************
+   カート画面（カード型）
+*********************************/
+.cart-wrapper {
+    max-width: 1000px;
+    margin: 60px auto;
+    background: #fff;
+    padding: 40px;
+    border-radius: 12px;
+}
+
+.cart-title {
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 20px;
+    color: #4CAF50;
+}
+
+/* 合計 */
+.cart-summary {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+/* 商品カード */
+.cart-item {
+    display: flex;
+    gap: 24px;
+    padding: 20px 0;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+/* 画像 */
+.cart-item-image {
+    width: 120px;
+    height: 120px;
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cart-item-image img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* 情報 */
+.cart-item-info {
+    flex: 1;
+}
+
+.cart-item-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.cart-item-info p {
+    margin: 6px 0;
+}
+
+/* 削除ボタン */
+.btn-delete {
+    margin-top: 10px;
+    background-color: #e57373;
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-delete:hover {
+    background-color: #ef5350;
+}
+
+/* 下部操作 */
+.cart-actions {
+    margin-top: 30px;
+    text-align: center;
+}
+

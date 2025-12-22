@@ -24,9 +24,9 @@
         <!-- ▼ 左：画像 -->
         <div class="detail-left">
             <div class="detail-image-box">
-                <img th:src="${product.imageUrl != null} ? 
-                            @{/images/{f}(f=${product.imageUrl})} :
-                            @{/images/no-image.png}"
+                <img th:src="${product.imageUrl != null}
+                            ? @{/images/{f}(f=${product.imageUrl})}
+                            : @{/images/no-image.png}"
                      th:alt="${product.name}"
                      class="detail-image">
             </div>
@@ -36,42 +36,57 @@
         <div class="detail-right">
 
             <h2 class="detail-name" th:text="${product.name}">食材名</h2>
-			
-			<!-- 食材説明 -->
-            <div class="detail-description" th:if="${product.description != null}">
+
+            <!-- 食材説明 -->
+            <div class="detail-description"
+                 th:if="${product.description != null}">
                 <p th:text="${product.description}"></p>
             </div>
-			
+
             <p class="detail-category">
-                カテゴリ：<span th:text="${product.category.name}"></span>
+                カテゴリ：
+                <span th:text="${product.category.name}"></span>
             </p>
 
-            <p class="detail-season" th:if="${product.season != null}">
-                旬：<span th:text="${product.season}"></span>
+            <p class="detail-season"
+               th:if="${product.season != null}">
+                旬：
+                <span th:text="${product.season}"></span>
             </p>
 
             <p class="detail-price">
-                価格：<span th:text="${product.price}"></span> 円
+                価格：
+                <span th:text="${product.price}"></span> 円
             </p>
 
-            <p class="detail-qty">
-                数量：
-                <select name="qty">
-                    <option th:each="i : ${#numbers.sequence(1, 10)}"
-                            th:value="${i}" th:text="${i}"></option>
-                </select>
-            </p>
+            <!-- ▼ 数量 + カートへ（同じ form） -->
+            <form th:action="@{/cart/add}" method="post">
 
-            <!-- ▼ ボタン３つ -->
-            <div class="detail-buttons">
-                <form th:action="@{/cart/add}" method="post">
-                    <input type="hidden" name="productId" th:value="${product.id}">
-                    <button type="submit" class="btn-cart">カートへ</button>
-                </form>
+                <input type="hidden"
+                       name="productId"
+                       th:value="${product.id}">
 
-                <a th:href="@{/products}" class="btn-back">一覧へ戻る</a>
+                <p class="detail-qty">
+                    数量：
+                    <select name="quantity">
+                        <option th:each="i : ${#numbers.sequence(1, 10)}"
+                                th:value="${i}"
+                                th:text="${i}">
+                        </option>
+                    </select>
+                </p>
 
-            </div>
+                <div class="detail-buttons">
+                    <button type="submit" class="btn-cart">
+                        カートへ
+                    </button>
+
+                    <a th:href="@{/products}" class="btn-back">
+                        一覧へ戻る
+                    </a>
+                </div>
+
+            </form>
 
         </div>
     </div>

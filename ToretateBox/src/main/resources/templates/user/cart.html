@@ -10,40 +10,80 @@
 <div th:replace="layout/header :: header"></div>
 
 <main>
-    <div class="cart-container">
-        <h2>カート</h2>
+    <div class="cart-wrapper">
 
-        <div th:if="${cart == null or #lists.isEmpty(cart)}">
-            <p>カートに商品はありません。</p>
+        <h2 class="cart-title">ショッピングカート</h2>
+
+        <!-- 合計表示（上部） -->
+        <div class="cart-summary"
+             th:if="${cart != null and !#lists.isEmpty(cart)}">
+
+            <span>
+                食材合計
+                <strong th:text="${#lists.size(cart)}">0</strong> 点
+            </span>
+
+            <span>
+                合計
+                <strong th:text="${totalAmount}">0</strong> 円
+            </span>
         </div>
 
-        <table th:if="${cart != null and !#lists.isEmpty(cart)}" class="cart-table">
-            <thead>
-                <tr>
-                    <th>商品名</th>
-                    <th>価格</th>
-                    <th>操作</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="item : ${cart}">
-                    <td th:text="${item.name}">商品名</td>
-                    <td th:text="${item.price} + ' 円'">0 円</td>
-                    <td>
-                        <form th:action="@{/cart/remove}" method="post" style="display:inline">
-                            <input type="hidden" name="productId" th:value="${item.id}">
-                            <button type="submit">削除</button>
-                        </form>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <!-- カートが空 -->
+        <div th:if="${cart == null or #lists.isEmpty(cart)}"
+             class="cart-empty">
+            <p>カートに商品はありません。</p>
+            <a th:href="@{/products}" class="btn-back">
+                商品一覧へ戻る
+            </a>
+        </div>
 
-        <form th:action="@{/cart/clear}" method="post">
-            <button type="submit">カートを空にする</button>
-        </form>
+        <!-- 商品一覧 -->
+        <div th:each="item : ${cart}" class="cart-item">
 
-        <a th:href="@{/products}">商品一覧へ戻る</a>
+            <!-- 商品画像 -->
+            <div class="cart-item-image">
+    			<img th:src="${item.imageUrl != null}
+            	? @{/images/{f}(f=${item.imageUrl})}
+            	:@{/images/no-image.png}"
+         			alt="商品画像">
+			</div>
+
+            <!-- 商品情報 -->
+            <div class="cart-item-info">
+
+                <p class="cart-item-name"
+                   th:text="${item.name}">
+                    野菜果物の名前
+                </p>
+
+                <p>
+                    値段：
+                    <span th:text="${item.price}">0</span> 円
+                </p>
+
+                <p>
+                    個数：
+                    <span th:text="${item.quantity}">1</span>
+                </p>
+
+                <p>
+                    小計：
+                    <span th:text="${item.subtotal}">0</span> 円
+                </p>
+
+                <form th:action="@{/cart/remove}" method="post">
+                    <input type="hidden"
+                           name="productId"
+                           th:value="${item.productId}">
+                    <button type="submit" class="btn-delete">
+                        削除
+                    </button>
+                </form>
+
+            </div>
+        </div>
+
     </div>
 </main>
 
