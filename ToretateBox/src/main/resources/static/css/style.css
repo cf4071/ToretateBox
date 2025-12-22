@@ -613,3 +613,48 @@ footer {
     text-align: center;
 }
 
+/*********************************
+   カート：購入ボタンエリア
+*********************************/
+.cart-checkout {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: flex-end; /* 右寄せ（PDFっぽく） */
+}
+
+/* レジへ進む（メイン） */
+.btn-checkout {
+    background-color: #f5c542;
+    color: #333;
+    padding: 14px 28px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 6px;
+    text-decoration: none;
+    box-shadow: 0 3px 0 #d4a937;
+    text-align: center;
+    min-width: 220px;
+}
+
+.btn-checkout:hover {
+    background-color: #f0b400;
+}
+
+/* ゲスト情報登録（サブ） */
+.btn-guest {
+    background-color: #e6f0ff;
+    color: #333;
+    padding: 12px 28px;
+    font-size: 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    text-align: center;
+    min-width: 220px;
+    border: 1px solid #aac6ff;
+}
+
+.btn-guest:hover {
+    background-color: #d9e7ff;
+}

@@ -29,19 +29,9 @@ public class CartController {
     @GetMapping
     public String showCart(HttpSession session, Model model) {
 
-        @SuppressWarnings("unchecked")
-        List<CartItem> cart =
-            (List<CartItem>) session.getAttribute("cart");
+        List<CartItem> cart = getCart(session);
 
-        if (cart == null) {
-            cart = new ArrayList<>();
-        }
-
-        // ▼ 合計金額を計算
-        int totalAmount = 0;
-        for (CartItem item : cart) {
-            totalAmount += item.getSubtotal();
-        }
+        int totalAmount = calculateTotal(cart);
 
         model.addAttribute("cart", cart);
         model.addAttribute("totalAmount", totalAmount);
@@ -63,18 +53,11 @@ public class CartController {
             return "redirect:/products";
         }
 
-        @SuppressWarnings("unchecked")
-        List<CartItem> cart =
-            (List<CartItem>) session.getAttribute("cart");
-
-        if (cart == null) {
-            cart = new ArrayList<>();
-        }
+        List<CartItem> cart = getCart(session);
 
         // ▼ すでに同じ商品があるかチェック
         for (CartItem item : cart) {
             if (item.getProductId().equals(productId)) {
-                // あれば数量を足す
                 item.setQuantity(item.getQuantity() + quantity);
                 session.setAttribute("cart", cart);
                 return "redirect:/cart";
@@ -87,9 +70,7 @@ public class CartController {
         newItem.setName(product.getName());
         newItem.setPrice(product.getPrice());
         newItem.setQuantity(quantity);
-
-        // ★ 商品画像をセット
-        newItem.setImageUrl(product.getImageUrl());
+        newItem.setImageUrl(product.getImageUrl()); // 商品画像
 
         cart.add(newItem);
         session.setAttribute("cart", cart);
@@ -105,17 +86,13 @@ public class CartController {
             @RequestParam Integer productId,
             HttpSession session) {
 
-        @SuppressWarnings("unchecked")
-        List<CartItem> cart =
-            (List<CartItem>) session.getAttribute("cart");
+        List<CartItem> cart = getCart(session);
 
-        if (cart != null) {
-            cart.removeIf(
-                item -> item.getProductId().equals(productId)
-            );
-            session.setAttribute("cart", cart);
-        }
+        cart.removeIf(
+            item -> item.getProductId().equals(productId)
+        );
 
+        session.setAttribute("cart", cart);
         return "redirect:/cart";
     }
 
@@ -126,5 +103,34 @@ public class CartController {
     public String clearCart(HttpSession session) {
         session.removeAttribute("cart");
         return "redirect:/cart";
+    }
+
+    // =========================
+    // 共通メソッド
+    // =========================
+
+    /**
+     * セッションからカートを取得
+     */
+    @SuppressWarnings("unchecked")
+    private List<CartItem> getCart(HttpSession session) {
+        List<CartItem> cart =
+            (List<CartItem>) session.getAttribute("cart");
+
+        if (cart == null) {
+            cart = new ArrayList<>();
+        }
+        return cart;
+    }
+
+    /**
+     * 合計金額を計算
+     */
+    private int calculateTotal(List<CartItem> cart) {
+        int total = 0;
+        for (CartItem item : cart) {
+            total += item.getSubtotal();
+        }
+        return total;
     }
 }

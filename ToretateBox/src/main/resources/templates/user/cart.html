@@ -28,6 +28,26 @@
                 <strong th:text="${totalAmount}">0</strong> 円
             </span>
         </div>
+        
+        <!-- 購入アクション -->
+		<div class="cart-checkout">
+
+    		<!-- レジへ進む（ログイン済み想定） -->
+    		<a sec:authorize="isAuthenticated()"
+       			th:href="@{/checkout}"
+       			class="btn-checkout">
+        		レジへ進む
+    		</a>
+
+   		 	<!-- ▼ ゲスト（未ログイン）だけ見える -->
+		    <a sec:authorize="isAnonymous()"
+		       th:href="@{/guest/register}"
+		       class="btn-guest">
+		        ゲスト情報登録へ
+		    </a>
+
+		</div>
+
 
         <!-- カートが空 -->
         <div th:if="${cart == null or #lists.isEmpty(cart)}"
