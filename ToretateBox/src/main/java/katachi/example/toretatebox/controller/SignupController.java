@@ -37,24 +37,24 @@ public class SignupController {
             Model model) {
 
         if (bindingResult.hasErrors()) {
-            return "signup/signup";
+            return "user/signup";
         }
 
-        // メール重複チェック
-        if (userService.existsByEmail(form.getEmail())) {
-            model.addAttribute("errorMessage", "このメールアドレスは既に登録されています。");
-            return "signup/signup";
+        if (!form.getPassword().equals(form.getPasswordConfirm())) {
+            model.addAttribute("errorMessage", "パスワードが一致しません。");
+            return "user/signup";
         }
 
-        // User エンティティに詰め替え
         User user = new User();
         user.setName(form.getName());
+        user.setNameKana(form.getNameKana());
+        user.setPhoneNumber(form.getPhoneNumber());
         user.setEmail(form.getEmail());
-        user.setPassword(form.getPassword()); // ← 平文でOK（Serviceでハッシュ化）
+        user.setPassword(form.getPassword());
 
         userService.register(user);
 
-        // 登録後はログイン画面へ
         return "redirect:/login";
     }
+
 }
