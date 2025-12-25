@@ -3,8 +3,11 @@ package katachi.example.toretatebox.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import katachi.example.toretatebox.domain.model.Address;
 import katachi.example.toretatebox.domain.model.User;
+import katachi.example.toretatebox.repository.AddressRepository;
 import katachi.example.toretatebox.repository.UserRepository;
 
 @Service
@@ -14,10 +17,13 @@ public class UserService {
     private UserRepository userRepository;
 
     @Autowired
+    private AddressRepository addressRepository;
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
     /**
-     * 新規ユーザー登録
+     * 新規ユーザー登録（ユーザーのみ）
      * ・メール重複チェック
      * ・パスワードを BCrypt でハッシュ化
      * ・初期フラグを設定して保存
@@ -32,8 +38,7 @@ public class UserService {
         }
 
         // ▼ パスワードを BCrypt でハッシュ化
-        String hashedPassword = passwordEncoder.encode(user.getPassword());
-        user.setPassword(hashedPassword);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         // ▼ 初期値設定
         user.setAdmin(false);     // 管理者ではない
@@ -41,6 +46,38 @@ public class UserService {
 
         // ▼ 保存
         return userRepository.save(user);
+    }
+
+    /**
+     * 新規ユーザー登録（ユーザー + 住所）
+     * ・users / addresses を同時に保存
+     * ・途中で失敗したらロールバック
+     */
+    @Transactional
+    public void registerWithAddress(User user, Address address) {
+
+        // ▼ メール重複チェック
+        if (userRepository.existsByEmail(user.getEmail())) {
+            throw new IllegalArgumentException(
+                "このメールアドレスは既に使用されています。"
+            );
+        }
+
+        // ▼ パスワードを BCrypt でハッシュ化
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        // ▼ 初期値設定
+        user.setAdmin(false);
+        user.setDeleted(false);
+
+        // ▼ ユーザー保存
+        User savedUser = userRepository.save(user);
+
+        // ▼ 住所に user_id を設定
+        address.setUserId(savedUser.getId());
+
+        // ▼ 住所保存
+        addressRepository.save(address);
     }
 
     /**

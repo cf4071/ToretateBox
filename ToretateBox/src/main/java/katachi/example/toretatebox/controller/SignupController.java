@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import jakarta.validation.Valid;
+import katachi.example.toretatebox.domain.model.Address;
 import katachi.example.toretatebox.domain.model.User;
 import katachi.example.toretatebox.form.SignupForm;
 import katachi.example.toretatebox.service.UserService;
@@ -29,6 +30,7 @@ public class SignupController {
 
     /**
      * ユーザー登録処理
+     * users + addresses を同時に保存
      */
     @PostMapping("/signup")
     public String signup(
@@ -36,25 +38,46 @@ public class SignupController {
             BindingResult bindingResult,
             Model model) {
 
+        // 入力チェックエラー
         if (bindingResult.hasErrors()) {
             return "user/signup";
         }
 
+        // パスワード確認
         if (!form.getPassword().equals(form.getPasswordConfirm())) {
             model.addAttribute("errorMessage", "パスワードが一致しません。");
             return "user/signup";
         }
 
-        User user = new User();
-        user.setName(form.getName());
-        user.setNameKana(form.getNameKana());
-        user.setPhoneNumber(form.getPhoneNumber());
-        user.setEmail(form.getEmail());
-        user.setPassword(form.getPassword());
+        try {
+            // ▼ User 作成
+            User user = new User();
+            user.setName(form.getName());
+            user.setNameKana(form.getNameKana());
+            user.setPhoneNumber(form.getPhoneNumber());
+            user.setEmail(form.getEmail());
+            user.setPassword(form.getPassword());
 
-        userService.register(user);
+            // ▼ Address 作成
+            Address address = new Address();
+            address.setRecipient(form.getName());
+            address.setPhoneNumber(form.getPhoneNumber());
+            address.setPostalCode(form.getPostalCode());
+            address.setPrefecture(form.getPrefecture());
+            address.setCity(form.getCity());
+            address.setAddressLine1(form.getAddress());
+            address.setAddressLine2(form.getBuilding());
 
+            // ▼ ユーザー + 住所 同時登録
+            userService.registerWithAddress(user, address);
+
+        } catch (IllegalArgumentException e) {
+            // メール重複など
+            model.addAttribute("errorMessage", e.getMessage());
+            return "user/signup";
+        }
+
+        // 登録成功 → ログイン画面へ
         return "redirect:/login";
     }
-
 }
