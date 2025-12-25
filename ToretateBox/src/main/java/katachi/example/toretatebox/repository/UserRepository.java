@@ -9,14 +9,14 @@ import katachi.example.toretatebox.domain.model.User;
 public interface UserRepository extends JpaRepository<User, Integer> {
 
     /**
-     * メールアドレスからユーザーを検索
-     * → ログイン時によく使う
+     * メールアドレスからユーザーを取得
+     * ・ログイン処理で使用
      */
     User findByEmail(String email);
 
     /**
-     * メールアドレスが存在するか確認
-     * → 新規登録時の重複チェックに使用
+     * メールアドレスの存在チェック
+     * ・ユーザー登録時の重複チェック用
      */
     boolean existsByEmail(String email);
 }

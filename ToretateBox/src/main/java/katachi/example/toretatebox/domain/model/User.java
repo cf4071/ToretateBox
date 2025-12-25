@@ -25,10 +25,10 @@ public class User {
     private String name;
 
     @Column(name = "name_kana", nullable = false, length = 20)
-    private String name_kana;
+    private String nameKana;
 
     @Column(name = "phone_number", nullable = false, length = 20)
-    private String phone_number;
+    private String phoneNumber;
 
     @Column(name = "email", nullable = false, unique = true, length = 254)
     private String email;
@@ -36,26 +36,28 @@ public class User {
     @Column(name = "password", nullable = false, length = 256)
     private String password;
 
+    // ▼ 管理者フラグ
     @Column(name = "is_admin", nullable = false)
-    private boolean is_admin = false;
+    private boolean isAdmin = false;
 
+    // ▼ 論理削除フラグ
     @Column(name = "is_deleted", nullable = false)
-    private boolean is_deleted = false;
+    private boolean isDeleted = false;
 
     @Column(name = "created_at", nullable = false, updatable = false)
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
 
     @Column(name = "updated_at", nullable = false)
-    private LocalDateTime updated_at;
+    private LocalDateTime updatedAt;
 
     @PrePersist
     public void onCreate() {
-        this.created_at = LocalDateTime.now();
-        this.updated_at = LocalDateTime.now();
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
     }
 
     @PreUpdate
     public void onUpdate() {
-        this.updated_at = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
     }
 }

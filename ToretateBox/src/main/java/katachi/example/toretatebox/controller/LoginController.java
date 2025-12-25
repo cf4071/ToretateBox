@@ -53,7 +53,7 @@ public class LoginController {
         }
 
         // 削除済みユーザー
-        if (user.is_deleted()) {
+        if (user.isDeleted()) {
             model.addAttribute("errorMessage", "このアカウントは無効です。");
             return "login/login";
         }

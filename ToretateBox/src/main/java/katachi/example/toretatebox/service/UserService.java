@@ -18,34 +18,51 @@ public class UserService {
 
     /**
      * 新規ユーザー登録
-     * パスワードをハッシュ化して保存する
+     * ・メール重複チェック
+     * ・パスワードを BCrypt でハッシュ化
+     * ・初期フラグを設定して保存
      */
-    public User registerUser(User user) {
+    public User register(User user) {
 
-        // メールアドレス重複チェック
+        // ▼ メールアドレス重複チェック
         if (userRepository.existsByEmail(user.getEmail())) {
-            throw new IllegalArgumentException("このメールアドレスは既に使用されています。");
+            throw new IllegalArgumentException(
+                "このメールアドレスは既に使用されています。"
+            );
         }
 
-        // パスワードをハッシュ化
+        // ▼ パスワードを BCrypt でハッシュ化
         String hashedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(hashedPassword);
 
-        // 保存
+        // ▼ 初期値設定
+        user.setAdmin(false);     // 管理者ではない
+        user.setDeleted(false);   // 有効ユーザー
+
+        // ▼ 保存
         return userRepository.save(user);
     }
 
     /**
-     * ログイン用：メールアドレスからユーザーを取得する
+     * ログイン用
+     * メールアドレスからユーザーを取得
      */
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 
     /**
-     * パスワードの一致判定
+     * パスワード一致チェック
+     * raw（入力）と encoded（DB）を比較
      */
     public boolean checkPassword(String rawPassword, String encodedPassword) {
         return passwordEncoder.matches(rawPassword, encodedPassword);
+    }
+
+    /**
+     * メールアドレスの存在チェック（登録画面用）
+     */
+    public boolean existsByEmail(String email) {
+        return userRepository.existsByEmail(email);
     }
 }

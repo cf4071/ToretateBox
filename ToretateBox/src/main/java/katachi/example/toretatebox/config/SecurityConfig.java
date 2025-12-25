@@ -19,14 +19,15 @@ public class SecurityConfig {
 
             // 認可設定
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers(
-                    "/", "/top",
-                    "/products", "/products/**",
-                    "/css/**", "/js/**", "/images/**",
-                    "/search/**",
-                    "/cart", "/cart/**",
-                    "/login"        // ← ログイン画面許可
-                ).permitAll()
+            		.requestMatchers(
+            			    "/", "/top",
+            			    "/products", "/products/**",
+            			    "/css/**", "/js/**", "/images/**",
+            			    "/search/**",
+            			    "/cart", "/cart/**",
+            			    "/login",
+            			    "/signup"        // ← ★これを追加
+            			).permitAll()
                 .anyRequest().authenticated()
             )
 
