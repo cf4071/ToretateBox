@@ -658,3 +658,117 @@ footer {
 .btn-guest:hover {
     background-color: #d9e7ff;
 }
+
+/* ================================
+   ユーザー登録画面
+================================ */
+
+/* 全体中央寄せ */
+.login-wrapper {
+    max-width: 720px;
+    margin: 40px auto;
+    padding: 40px 50px;
+}
+
+/* タイトル */
+.login-title {
+    text-align: center;
+    color: #4a9e4c;
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+/* フォーム1項目 */
+.form-group {
+    margin-bottom: 28px;
+}
+
+/* ラベル */
+.form-group label {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+/* 入力欄 */
+.form-group input {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 15px;
+    border-radius: 8px;
+    border: 1px solid #cfdcc7;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+
+/* 入力時 */
+.form-group input:focus {
+    outline: none;
+    border-color: #4a9e4c;
+    box-shadow: 0 0 0 2px rgba(74, 158, 76, 0.2);
+}
+
+/* ボタンエリア */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+/* 登録ボタン */
+.login-btn {
+    background-color: #ff5a00;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px 36px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* 戻るボタン */
+.back-button {
+    background-color: #b8dce8;
+    color: #333;
+    font-size: 16px;
+    padding: 12px 36px;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* エラーメッセージ */
+.error-message {
+    background-color: #ffe5e5;
+    color: #c40000;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* ================================
+   入力エラー表示
+================================ */
+
+/* エラー時の入力欄 */
+.input-error {
+    border: 2px solid #e60000 !important;
+    background-color: #fff5f5;
+}
+
+/* エラーメッセージ */
+.field-error {
+    margin-top: 6px;
+    font-size: 13px;
+    color: #e60000;
+}
+
+

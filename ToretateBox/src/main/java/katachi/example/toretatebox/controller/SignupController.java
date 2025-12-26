@@ -38,19 +38,23 @@ public class SignupController {
             BindingResult bindingResult,
             Model model) {
 
-        // 入力チェックエラー
+        /* ===== 入力チェック（アノテーション） ===== */
         if (bindingResult.hasErrors()) {
             return "user/signup";
         }
 
-        // パスワード確認
+        /* ===== パスワード一致チェック ===== */
         if (!form.getPassword().equals(form.getPasswordConfirm())) {
-            model.addAttribute("errorMessage", "パスワードが一致しません。");
+            bindingResult.rejectValue(
+                "passwordConfirm",
+                "password.mismatch",
+                "パスワードが一致しません。"
+            );
             return "user/signup";
         }
 
         try {
-            // ▼ User 作成
+            /* ===== User 作成 ===== */
             User user = new User();
             user.setName(form.getName());
             user.setNameKana(form.getNameKana());
@@ -58,7 +62,7 @@ public class SignupController {
             user.setEmail(form.getEmail());
             user.setPassword(form.getPassword());
 
-            // ▼ Address 作成
+            /* ===== Address 作成 ===== */
             Address address = new Address();
             address.setRecipient(form.getName());
             address.setPhoneNumber(form.getPhoneNumber());
@@ -68,16 +72,16 @@ public class SignupController {
             address.setAddressLine1(form.getAddress());
             address.setAddressLine2(form.getBuilding());
 
-            // ▼ ユーザー + 住所 同時登録
+            /* ===== 同時登録 ===== */
             userService.registerWithAddress(user, address);
 
         } catch (IllegalArgumentException e) {
-            // メール重複など
+            // メール重複など（全体エラー）
             model.addAttribute("errorMessage", e.getMessage());
             return "user/signup";
         }
 
-        // 登録成功 → ログイン画面へ
+        /* ===== 登録成功 ===== */
         return "redirect:/login";
     }
 }
