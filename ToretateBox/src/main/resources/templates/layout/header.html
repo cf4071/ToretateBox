@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
 <body>
 
 <header th:fragment="header" class="site-header">
@@ -12,28 +11,18 @@
         <a th:href="@{/}" class="logo-text">とれたてBOX</a>
     </div>
 
-    <!-- 右側：メニュー + 検索 -->
+    <!-- 右：メニュー + 検索 -->
     <div class="header-right">
 
-        <!-- ▼ 上段：ヘッダーメニュー -->
         <nav class="header-menu">
 
-            <!-- ▼ ゲスト用メニュー -->
-            <ul sec:authorize="isAnonymous()">
-                <li><a th:href="@{/products}">食材一覧</a></li>
-                <li><a th:href="@{/cart}">カート</a></li>
-                <li><a th:href="@{/signup}">ユーザー登録</a></li>
-                <li><a th:href="@{/login}">ログイン</a></li>
-            </ul>
-
-            <!-- ▼ ログインユーザー用メニュー -->
-            <ul sec:authorize="isAuthenticated()" class="login-menu">
+            <!-- ログインユーザー -->
+            <ul class="menu-list" sec:authorize="isAuthenticated()">
                 <li><a th:href="@{/products}">食材一覧</a></li>
                 <li><a th:href="@{/cart}">カート</a></li>
 
-                <!-- ▼ マイページ ハンバーガーメニュー -->
                 <li class="hamburger-wrapper">
-                    <button class="hamburger-btn" onclick="toggleMenu()">☰</button>
+                    <button type="button" class="hamburger-btn" onclick="toggleMenu()">☰</button>
                     <ul id="hamburger-menu" class="hamburger-menu hidden">
                         <li><a th:href="@{/mypage}">ユーザー情報確認</a></li>
                         <li><a th:href="@{/user/edit}">ユーザー情報編集</a></li>
@@ -45,7 +34,6 @@
 
         </nav>
 
-        <!-- ▼ 下段：検索フォーム -->
         <form class="header-search" th:action="@{/search}" method="get">
             <input type="text" name="keyword" placeholder="キーワードを入力">
             <button type="submit">検索</button>
@@ -53,14 +41,17 @@
 
     </div>
 
+    <!-- ★ ここが超重要 -->
+    <script>
+        function toggleMenu() {
+            document.getElementById("hamburger-menu")
+                    .classList.toggle("hidden");
+        }
+    </script>
+
 </header>
 
-<!-- ▼ ハンバーガーメニュー制御JS -->
-<script>
-    function toggleMenu() {
-        document.getElementById("hamburger-menu").classList.toggle("hidden");
-    }
-</script>
+
 
 </body>
 </html>

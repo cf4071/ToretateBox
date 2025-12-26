@@ -17,12 +17,6 @@ body {
     min-height: 100vh;
 }
 
-.login-wrapper {
-    width: 100%;
-    max-width: 800px;
-    padding: 20px;
-    text-align: center;
-}
 
 .login-title {
     text-align: center;
@@ -126,6 +120,8 @@ input[type="password"]:focus {
     padding: 12px 20px;
     background-color: #ffffff;
     border-bottom: 2px solid #e0e0e0;
+    position: relative; /* ★追加 */
+    z-index: 1000; 
 }
 
 .logo-box {
@@ -150,13 +146,16 @@ input[type="password"]:focus {
     align-items: center;
 }
 
-.header-menu ul {
+/* 通常メニュー（横並び） */
+.menu-list {
     display: flex;
-    gap: 40px;
+    gap: 32px;
     list-style: none;
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    align-items: center;
 }
+
 
 .header-menu {
     margin-left: 250px;
@@ -172,6 +171,96 @@ input[type="password"]:focus {
 .header-menu a:hover {
     color: #4CAF50;
 }
+
+/* メニュー */
+.header-menu {
+    display: flex;
+}
+
+.menu-list {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
+
+.menu-list a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.menu-list a:hover {
+    color: #4CAF50;
+}
+
+/* ハンバーガー */
+.hamburger-wrapper {
+    position: relative;
+}
+
+.hamburger-btn {
+    font-size: 20px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+/* ===== ハンバーガーメニュー ===== */
+.hamburger-wrapper {
+    position: relative; /* 基準点 */
+}
+
+.hamburger-btn {
+    font-size: 22px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* メニュー本体 */
+.hamburger-menu {
+    position: absolute;
+    top: 40px;          /* ☰ の下 */
+    right: 0;           /* 右揃え */
+    width: 220px;       /* ★ 固定幅（重要） */
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    list-style: none;
+    padding: 8px 0;
+    margin: 0;
+    z-index: 9999;
+}
+
+/* メニュー項目 */
+.hamburger-menu li {
+    padding: 10px 16px;
+    white-space: nowrap; /* ★ 文字折れ防止 */
+}
+
+/* リンク */
+.hamburger-menu li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    display: block;
+}
+
+/* ホバー */
+.hamburger-menu li:hover {
+    background-color: #f3f3f3;
+}
+
+
+
+/* 非表示 */
+.hidden {
+    display: none;
+}
+
 
 /*********************************
    ヘッダー：検索欄
