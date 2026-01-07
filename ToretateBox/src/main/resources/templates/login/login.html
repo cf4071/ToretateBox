@@ -2,8 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>とれたてBOX ログイン</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>ログイン | とれたてBOX</title>
+
+    <!-- 共通 -->
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+
+    <!-- ログイン画面専用 -->
+    <link rel="stylesheet" th:href="@{/css/login.css}">
 </head>
 
 <body class="login-body">
@@ -14,13 +19,14 @@
         <h2>ログイン</h2>
     </div>
 
-    <!-- ▼ ログイン失敗メッセージ（Spring Security用） -->
+    <!-- ログイン失敗メッセージ -->
     <div th:if="${param.error}" class="error-message">
         <p>メールアドレスまたはパスワードが違います。</p>
     </div>
 
-    <!-- ▼ ログインフォーム -->
     <form th:action="@{/login}" method="post">
+
+
 
         <div class="form-group">
             <label for="email">メールアドレス</label>

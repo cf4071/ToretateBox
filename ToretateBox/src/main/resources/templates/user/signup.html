@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>ユーザー登録 | とれたてBOX</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    <!-- 共通 -->
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+
+    <link rel="stylesheet" th:href="@{/css/signup.css}">
 </head>
 
 <body>
 
-<div th:replace="layout/header :: header"></div>
+<main class="signup-wrapper">
 
-<main class="login-wrapper">
-
-    <h2 class="login-title">新規ユーザー登録</h2>
+    <h2 class="signup-title">新規ユーザー登録</h2>
 
     <!-- エラーメッセージ -->
     <div th:if="${errorMessage}" class="error-message">
@@ -78,7 +80,7 @@
 
         <div class="button-group">
             <button type="submit" class="login-btn">登録</button>
-            <a th:href="@{/login}" class="back-button">戻る</a>
+            <a th:href="@{/top}" class="back-button">戻る</a>
         </div>
 
     </form>

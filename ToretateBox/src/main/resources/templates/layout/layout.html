@@ -1,25 +1,36 @@
 <!-- /templates/layout/layout.html -->
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      th:fragment="layout(title, content)">
 
 <head>
     <meta charset="UTF-8">
-    <title>とれたてBOX</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title th:replace="${title}">とれたてBOX</title>
+
+    <!-- 共通 -->
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+
+    <!-- 共通パーツ -->
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+
+    <!-- 画面系（必要なら全部読んでOK） -->
+    <link rel="stylesheet" th:href="@{/css/products.css}">
+    <link rel="stylesheet" th:href="@{/css/detail.css}">
+    <link rel="stylesheet" th:href="@{/css/cart.css}">
 </head>
 
 <body>
 
-<!-- ▼ ヘッダー -->
-<div th:replace="layout/header :: header"></div>
+<div th:replace="~{layout/header :: header}"></div>
 
-<!-- ▼ ページ固有の内容 -->
 <main>
-    <div th:insert="~{::body}"></div>
+    <div th:replace="${content}"></div>
 </main>
 
-<!-- ▼ フッター -->
-<div th:replace="layout/footer :: footer"></div>
+<div th:replace="~{layout/footer :: footer}"></div>
+
+<script th:src="@{/js/header.js}"></script>
 
 </body>
 </html>

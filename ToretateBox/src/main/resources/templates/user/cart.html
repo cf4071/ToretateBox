@@ -1,113 +1,123 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>カート</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>カート | とれたてBOX</title>
 </head>
+
 <body>
 
-<div th:replace="layout/header :: header"></div>
+<!-- ▼ layout.html を適用 -->
+<div th:replace="~{layout/layout :: layout(~{::title}, ~{::content})}">
 
-<main>
-    <div class="cart-wrapper">
+    <main th:fragment="content">
+        <div class="cart-wrapper">
 
-        <h2 class="cart-title">ショッピングカート</h2>
+            <h2 class="cart-title">ショッピングカート</h2>
 
-        <!-- 合計表示（上部） -->
-        <div class="cart-summary"
-             th:if="${cart != null and !#lists.isEmpty(cart)}">
+            <!-- 合計表示 -->
+            <div class="cart-summary"
+                 th:if="${cart != null and !#lists.isEmpty(cart)}">
 
-            <span>
-                食材合計
-                <strong th:text="${#lists.size(cart)}">0</strong> 点
-            </span>
+                <span>
+                    食材合計
+                    <strong th:text="${#lists.size(cart)}">0</strong> 点
+                </span>
 
-            <span>
-                合計
-                <strong th:text="${totalAmount}">0</strong> 円
-            </span>
-        </div>
-        
-        <!-- 購入アクション -->
-		<div class="cart-checkout">
+                <span>
+                    合計
+                    <strong th:text="${totalAmount}">0</strong> 円
+                </span>
+            </div>
 
-    		<!-- レジへ進む（ログイン済み想定） -->
-    		<a sec:authorize="isAuthenticated()"
-       			th:href="@{/checkout}"
-       			class="btn-checkout">
-        		レジへ進む
-    		</a>
+            <!-- 購入アクション -->
+            <div class="cart-checkout">
 
-   		 	<!-- ▼ ゲスト（未ログイン）だけ見える -->
-		    <a sec:authorize="isAnonymous()"
-		       th:href="@{/guest/register}"
-		       class="btn-guest">
-		        ゲスト情報登録へ
-		    </a>
+                <!-- ログイン済み -->
+                <a sec:authorize="isAuthenticated()"
+                   th:href="@{/checkout}"
+                   class="btn-checkout">
+                    レジへ進む
+                </a>
 
-		</div>
-
-
-        <!-- カートが空 -->
-        <div th:if="${cart == null or #lists.isEmpty(cart)}"
-             class="cart-empty">
-            <p>カートに商品はありません。</p>
-            <a th:href="@{/products}" class="btn-back">
-                商品一覧へ戻る
-            </a>
-        </div>
-
-        <!-- 商品一覧 -->
-        <div th:each="item : ${cart}" class="cart-item">
-
-            <!-- 商品画像 -->
-            <div class="cart-item-image">
-    			<img th:src="${item.imageUrl != null}
-            	? @{/images/{f}(f=${item.imageUrl})}
-            	:@{/images/no-image.png}"
-         			alt="商品画像">
-			</div>
-
-            <!-- 商品情報 -->
-            <div class="cart-item-info">
-
-                <p class="cart-item-name"
-                   th:text="${item.name}">
-                    野菜果物の名前
-                </p>
-
-                <p>
-                    値段：
-                    <span th:text="${item.price}">0</span> 円
-                </p>
-
-                <p>
-                    個数：
-                    <span th:text="${item.quantity}">1</span>
-                </p>
-
-                <p>
-                    小計：
-                    <span th:text="${item.subtotal}">0</span> 円
-                </p>
-
-                <form th:action="@{/cart/remove}" method="post">
-                    <input type="hidden"
-                           name="productId"
-                           th:value="${item.productId}">
-                    <button type="submit" class="btn-delete">
-                        削除
-                    </button>
-                </form>
+                <!-- 未ログイン -->
+                <a sec:authorize="isAnonymous()"
+                   th:href="@{/guest/register}"
+                   class="btn-guest">
+                    ゲスト情報登録へ
+                </a>
 
             </div>
+
+            <!-- カートが空 -->
+            <div th:if="${cart == null or #lists.isEmpty(cart)}"
+                 class="cart-empty">
+                <p>カートに商品はありません。</p>
+                <a th:href="@{/products}" class="btn-back">
+                    商品一覧へ戻る
+                </a>
+            </div>
+
+            <!-- 商品一覧 -->
+            <div th:each="item : ${cart}" class="cart-item">
+
+                <!-- 商品画像 -->
+                <div class="cart-item-image">
+                    <img th:src="${item.imageUrl != null}
+                        ? @{/images/{f}(f=${item.imageUrl})}
+                        : @{/images/no-image.png}"
+                         alt="商品画像">
+                </div>
+
+                <!-- 商品情報 -->
+                <div class="cart-item-info">
+
+                    <p class="cart-item-name"
+                       th:text="${item.name}">
+                        商品名
+                    </p>
+
+                    <p>
+                        値段：
+                        <span th:text="${item.price}">0</span> 円
+                    </p>
+
+                    <p>
+                        個数：
+                        <span th:text="${item.quantity}">1</span>
+                    </p>
+
+                    <p>
+                        小計：
+                        <span th:text="${item.subtotal}">0</span> 円
+                    </p>
+
+                    <!-- 削除 -->
+                    <form th:action="@{/cart/remove}" method="post">
+
+                        <!-- CSRF（存在する時だけ出力） -->
+                        <input type="hidden"
+                               th:if="${_csrf != null}"
+                               th:name="${_csrf.parameterName}"
+                               th:value="${_csrf.token}">
+
+                        <input type="hidden"
+                               name="productId"
+                               th:value="${item.productId}">
+
+                        <button type="submit" class="btn-delete">
+                            削除
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+
         </div>
+    </main>
 
-    </div>
-</main>
-
-<div th:replace="layout/footer :: footer"></div>
+</div>
 
 </body>
 </html>

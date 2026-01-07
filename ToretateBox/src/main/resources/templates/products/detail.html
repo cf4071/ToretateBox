@@ -1,17 +1,14 @@
+<!-- /templates/products/detail.html -->
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/layout :: layout(~{::title}, ~{this :: content})}">
+
 <head>
-    <meta charset="UTF-8">
     <title th:text="${product.name} + ' - 商品詳細'">商品詳細</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
 <body>
-
-<!-- ▼ ヘッダー -->
-<div th:replace="layout/header :: header"></div>
-
-<main>
+<div th:fragment="content">
 
     <!-- ▼ 中央タイトル -->
     <div class="detail-title">
@@ -37,34 +34,24 @@
 
             <h2 class="detail-name" th:text="${product.name}">食材名</h2>
 
-            <!-- 食材説明 -->
-            <div class="detail-description"
-                 th:if="${product.description != null}">
+            <div class="detail-description" th:if="${product.description != null}">
                 <p th:text="${product.description}"></p>
             </div>
 
             <p class="detail-category">
-                カテゴリ：
-                <span th:text="${product.category.name}"></span>
+                カテゴリ：<span th:text="${product.category.name}"></span>
             </p>
 
-            <p class="detail-season"
-               th:if="${product.season != null}">
-                旬：
-                <span th:text="${product.season}"></span>
+            <p class="detail-season" th:if="${product.season != null}">
+                旬：<span th:text="${product.season}"></span>
             </p>
 
             <p class="detail-price">
-                価格：
-                <span th:text="${product.price}"></span> 円
+                価格：<span th:text="${product.price}"></span> 円
             </p>
 
-            <!-- ▼ 数量 + カートへ（同じ form） -->
             <form th:action="@{/cart/add}" method="post">
-
-                <input type="hidden"
-                       name="productId"
-                       th:value="${product.id}">
+                <input type="hidden" name="productId" th:value="${product.id}">
 
                 <p class="detail-qty">
                     数量：
@@ -77,24 +64,14 @@
                 </p>
 
                 <div class="detail-buttons">
-                    <button type="submit" class="btn-cart">
-                        カートへ
-                    </button>
-
-                    <a th:href="@{/products}" class="btn-back">
-                        一覧へ戻る
-                    </a>
+                    <button type="submit" class="btn-cart">カートへ</button>
+                    <a th:href="@{/products}" class="btn-back">一覧へ戻る</a>
                 </div>
-
             </form>
 
         </div>
     </div>
 
-</main>
-
-<!-- ▼ フッター -->
-<div th:replace="layout/footer :: footer"></div>
-
+</div>
 </body>
 </html>

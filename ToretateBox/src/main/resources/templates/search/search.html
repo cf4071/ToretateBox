@@ -1,39 +1,42 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	  th:replace="~{layout/layout :: layout(~{::title}, ~{this :: content})}">
 <head>
     <meta charset="UTF-8">
-    <title>検索結果</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>検索結果 | とれたてBOX</title>
 </head>
 
 <body>
 
-<div th:replace="layout/header :: header"></div>
-
-<main>
-    <h2 th:text="'検索結果：' + ${keyword}"></h2>
-
-    <div class="grid">
-        <div th:if="${#lists.isEmpty(products)}">
-            <p>該当する商品がありません。</p>
+<div th:fragment="content">
+	<div class="grid">
+		
+        <div class="top-title">
+            <h2 th:text="'検索結果：' + ${keyword}">検索結果</h2>
         </div>
 
+        <!-- 該当なし -->
+        <div th:if="${products == null or #lists.isEmpty(products)}">
+           <p>該当する商品がありません。</p>
+        </div>
+
+        <!-- 商品カード -->
         <div th:each="p : ${products}" class="card">
-            <div class="image-box">
-               <a th:href="@{'/products/' + ${p.id}}">
-                  <img th:src="${p.imageUrl != null} ?
-             		@{/images/{file}(file=${p.imageUrl})} :
-             		@{/images/no-image.png}"
-    				   alt="商品画像">
-               </a>
-            </div>
-            <div class="name" th:text="${p.name}"></div>
-            <div class="price" th:text="${p.price + '円'}"></div>
-        </div>
-    </div>
-</main>
+           <div class="image-box">
+              <a th:href="@{'/products/' + ${p.id}}">
+                 <img th:src="${p.imageUrl != null}
+                        ? @{/images/{file}(file=${p.imageUrl})}
+                        : @{/images/no-image.png}"
+                       alt="商品画像">
+                 </a>
+           </div>
 
-<div th:replace="layout/footer :: footer"></div>
+           <div class="name" th:text="${p.name}">商品名</div>
+           <div class="price" th:text="${p.price + '円'}">0円</div>
+        </div>
+
+     </div>
+</div>
 
 </body>
 </html>

@@ -1,0 +1,137 @@
+@charset "UTF-8";
+
+/*********************************
+   ヘッダー
+*********************************/
+.site-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 12px 20px;
+    background-color: #ffffff;
+    border-bottom: 2px solid #e0e0e0;
+    position: relative;
+    z-index: 1000;
+}
+
+/* ロゴ */
+.logo-box {
+    padding: 8px 20px;
+    border: 3px solid #4CAF50;
+    border-radius: 8px;
+    white-space: nowrap;
+}
+
+.logo-text {
+    color: #388E3C;
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* 右側 */
+.header-right {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 0 auto;
+    align-items: center;
+}
+
+/* メニュー */
+.header-menu {
+    display: flex;
+    margin-left: 250px;
+    transform: translateX(20px);
+}
+
+.menu-list {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
+
+.menu-list a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.menu-list a:hover {
+    color: #4CAF50;
+}
+
+/* ハンバーガー */
+.hamburger-wrapper {
+    position: relative;
+}
+
+.hamburger-btn {
+    font-size: 22px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* ハンバーガーメニュー */
+.hamburger-menu {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    width: 220px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    list-style: none;
+    padding: 8px 0;
+    margin: 0;
+    z-index: 9999;
+}
+
+.hamburger-menu li {
+    padding: 10px 16px;
+    white-space: nowrap;
+}
+
+.hamburger-menu li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    display: block;
+}
+
+.hamburger-menu li:hover {
+    background-color: #f3f3f3;
+}
+
+/* 非表示 */
+.hidden {
+    display: none;
+}
+
+/*********************************
+   ヘッダー：検索欄
+*********************************/
+.header-search {
+    display: flex;
+}
+
+.header-search input {
+    width: 300px;
+    padding: 8px 10px;
+    border: 2px solid #4CAF50;
+    border-right: none;
+    border-radius: 5px 0 0 5px;
+}
+
+.header-search button {
+    padding: 8px 15px;
+    border: 2px solid #4CAF50;
+    background-color: #4CAF50;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
