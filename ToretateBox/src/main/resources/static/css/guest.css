@@ -1,22 +1,24 @@
 @charset "UTF-8";
 
+@charset "UTF-8";
+
 /*********************************
    ユーザー登録
 *********************************/
-.signup-body {
+.guest-body {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
 }
 
-.signup-wrapper {
+.guest-wrapper {
     max-width: 720px;
     margin: 40px auto;
     padding: 40px 50px;
 }
 
-.signup-title {
+.guest-title {
     text-align: center;
     margin-bottom: 40px;
     color: #4a9e4c;
@@ -53,7 +55,7 @@
     margin-top: 40px;
 }
 
-.login-btn {
+.register-btn {
     background-color: #ff5a00;
     color: #fff;
     font-size: 16px;

@@ -34,7 +34,9 @@ public class SecurityConfig {
                     "/search/**",
                     "/cart", "/cart/**",
                     "/login",
-                    "/signup"
+                    "/signup",
+                    "/register",
+                    "/guest", "guest/**"
                 ).permitAll()
                 .anyRequest().authenticated()
             )

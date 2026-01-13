@@ -36,14 +36,14 @@
 
                 <!-- ログイン済み -->
                 <a sec:authorize="isAuthenticated()"
-                   th:href="@{/checkout}"
-                   class="btn-checkout">
+                   th:href="@{/register}"
+                   class="btn-register">
                     レジへ進む
                 </a>
 
                 <!-- 未ログイン -->
                 <a sec:authorize="isAnonymous()"
-                   th:href="@{/guest/register}"
+                   th:href="@{/guest}"
                    class="btn-guest">
                     ゲスト情報登録へ
                 </a>

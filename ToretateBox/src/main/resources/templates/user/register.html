@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>レジ</title>
+</head>
+<body>
+  <h2>レジ画面</h2>
+  
+  <div th:if="${address != null}">
+  <p th:text="${address.recipient}"></p>
+  <p th:text="${address.postalCode}"></p>
+  <p th:text="${address.prefecture + address.city + address.addressLine1 + address.addressLine2}"></p>
+</div>
+
+<div th:if="${address == null}">
+  <p>住所が登録されていません。</p>
+</div>
+
+</body>
+</html>

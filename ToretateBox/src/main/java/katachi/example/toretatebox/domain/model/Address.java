@@ -21,8 +21,8 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "user_id", nullable = false)
-    private int userId;
+    @Column(name = "user_id")
+    private Integer userId;
 
     @Column(name = "recipient", nullable = false, length = 20)
     private String recipient;

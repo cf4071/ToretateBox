@@ -1,42 +1,28 @@
 package katachi.example.toretatebox.form;
 
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class SignupForm {
+public class GuestForm {
 
     @NotBlank
     private String name;
 
     @NotBlank
-    private String nameKana;
-
-    @NotBlank
     private String phoneNumber;
-
-    @Email
-    @NotBlank
-    private String email;
-
-    @NotBlank
-    private String password;
-
-    @NotBlank
-    private String passwordConfirm;
 
     @NotBlank
     private String postalCode;
-    
+
     @NotBlank
     private String prefecture;
-    
+
     @NotBlank
     private String city;
-    
+
     @NotBlank
     private String address;
-    
+
     private String building;
 }
