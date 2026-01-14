@@ -4,116 +4,116 @@
 <head>
     <meta charset="UTF-8">
     <title>カート | とれたてBOX</title>
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/cart.css}">
 </head>
 
 <body>
 
-<!-- ▼ layout.html を適用 -->
 <div th:replace="~{layout/layout :: layout(~{::title}, ~{::content})}">
 
     <main th:fragment="content">
-        <div class="cart-wrapper">
+        <div class="cart-page">
 
             <h2 class="cart-title">ショッピングカート</h2>
+			
+			<!-- エラーメッセージ必用なら
+            <p class="cart-note">
+                ※ログイン済みの方は「レジへ進む」、未ログインの方は「ゲスト情報登録へ」から進んでください
+            </p>
+			-->
+            <div class="cart-grid">
 
-            <!-- 合計表示 -->
-            <div class="cart-summary"
-                 th:if="${cart != null and !#lists.isEmpty(cart)}">
+                <!-- =========================
+                     左：商品リスト
+                ========================= -->
+                <section class="cart-left">
 
-                <span>
-                    食材合計
-                    <strong th:text="${#lists.size(cart)}">0</strong> 点
-                </span>
+                    <!-- カートが空 -->
+                    <div th:if="${cart == null or #lists.isEmpty(cart)}"
+                         class="cart-empty">
+                        <p>カートに商品はありません。</p>
+                        <a th:href="@{/products}" class="btn-back">
+                            商品一覧へ戻る
+                        </a>
+                    </div>
 
-                <span>
-                    合計
-                    <strong th:text="${totalAmount}">0</strong> 円
-                </span>
+                    <!-- 商品一覧 -->
+                    <div th:if="${cart != null and !#lists.isEmpty(cart)}">
+                        <div th:each="item : ${cart}" class="cart-item">
+
+                            <div class="cart-item-image">
+                                <img th:src="${item.imageUrl != null}
+                                    ? @{/images/{f}(f=${item.imageUrl})}
+                                    : @{/images/no-image.png}"
+                                     alt="商品画像">
+                            </div>
+
+                            <div class="cart-item-info">
+
+                                <p class="cart-item-name" th:text="${item.name}">商品名</p>
+
+                                <div class="cart-item-meta">
+                                    <p>値段：<span th:text="${item.price}">0</span> 円</p>
+                                    <p>個数：<span th:text="${item.quantity}">1</span></p>
+                                    <p>小計：<span th:text="${item.subtotal}">0</span> 円</p>
+                                </div>
+
+                                <form th:action="@{/cart/remove}" method="post" class="cart-remove">
+                                    <input type="hidden"
+                                           th:if="${_csrf != null}"
+                                           th:name="${_csrf.parameterName}"
+                                           th:value="${_csrf.token}">
+                                    <input type="hidden" name="productId" th:value="${item.productId}">
+                                    <button type="submit" class="btn-delete">削除</button>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+
+                <!-- =========================
+                     右：合計＋ボタン（PDFの右枠）
+                ========================= -->
+                <aside class="cart-right"
+                       th:if="${cart != null and !#lists.isEmpty(cart)}">
+
+                    <div class="cart-total-box">
+                        <div class="total-row">
+                            <span>食材合計</span>
+                            <strong><span th:text="${#lists.size(cart)}">0</span>点</strong>
+                        </div>
+                        <div class="total-row">
+                            <span>合計</span>
+                            <strong><span th:text="${totalAmount}">0</span>円</strong>
+                        </div>
+                    </div>
+
+                    <div class="cart-actions">
+                        <!-- ログイン済み -->
+                        <a sec:authorize="isAuthenticated()"
+                           th:href="@{/register}"
+                           class="btn-register">
+                            レジへ進む
+                        </a>
+
+                        <!-- 未ログイン -->
+                        <a sec:authorize="isAnonymous()"
+                           th:href="@{/guest}"
+                           class="btn-guest">
+                            ゲスト情報登録へ
+                        </a>
+
+                        <a th:href="@{/products}" class="cart-link-back">
+                            ショッピングを続ける
+                        </a>
+                    </div>
+
+                </aside>
+
             </div>
-
-            <!-- 購入アクション -->
-            <div class="cart-checkout">
-
-                <!-- ログイン済み -->
-                <a sec:authorize="isAuthenticated()"
-                   th:href="@{/register}"
-                   class="btn-register">
-                    レジへ進む
-                </a>
-
-                <!-- 未ログイン -->
-                <a sec:authorize="isAnonymous()"
-                   th:href="@{/guest}"
-                   class="btn-guest">
-                    ゲスト情報登録へ
-                </a>
-
-            </div>
-
-            <!-- カートが空 -->
-            <div th:if="${cart == null or #lists.isEmpty(cart)}"
-                 class="cart-empty">
-                <p>カートに商品はありません。</p>
-                <a th:href="@{/products}" class="btn-back">
-                    商品一覧へ戻る
-                </a>
-            </div>
-
-            <!-- 商品一覧 -->
-            <div th:each="item : ${cart}" class="cart-item">
-
-                <!-- 商品画像 -->
-                <div class="cart-item-image">
-                    <img th:src="${item.imageUrl != null}
-                        ? @{/images/{f}(f=${item.imageUrl})}
-                        : @{/images/no-image.png}"
-                         alt="商品画像">
-                </div>
-
-                <!-- 商品情報 -->
-                <div class="cart-item-info">
-
-                    <p class="cart-item-name"
-                       th:text="${item.name}">
-                        商品名
-                    </p>
-
-                    <p>
-                        値段：
-                        <span th:text="${item.price}">0</span> 円
-                    </p>
-
-                    <p>
-                        個数：
-                        <span th:text="${item.quantity}">1</span>
-                    </p>
-
-                    <p>
-                        小計：
-                        <span th:text="${item.subtotal}">0</span> 円
-                    </p>
-
-                    <!-- 削除 -->
-                    <form th:action="@{/cart/remove}" method="post">
-
-                        <!-- CSRF（存在する時だけ出力） -->
-                        <input type="hidden"
-                               th:if="${_csrf != null}"
-                               th:name="${_csrf.parameterName}"
-                               th:value="${_csrf.token}">
-
-                        <input type="hidden"
-                               name="productId"
-                               th:value="${item.productId}">
-
-                        <button type="submit" class="btn-delete">
-                            削除
-                        </button>
-                    </form>
-
-                </div>
-            </div>
-
         </div>
     </main>
 

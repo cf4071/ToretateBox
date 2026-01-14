@@ -1,21 +1,96 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>レジ</title>
-</head>
-<body>
-  <h2>レジ画面</h2>
-  
-  <div th:if="${address != null}">
-  <p th:text="${address.recipient}"></p>
-  <p th:text="${address.postalCode}"></p>
-  <p th:text="${address.prefecture + address.city + address.addressLine1 + address.addressLine2}"></p>
-</div>
+    <meta charset="UTF-8">
+    <title>レジ | とれたてBOX</title>
 
-<div th:if="${address == null}">
-  <p>住所が登録されていません。</p>
-</div>
+    <!-- 共通 -->
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/register.css}">
+</head>
+
+<body>
+
+<main class="register-wrapper">
+
+    <h2 class="register-title">レジ</h2>
+
+    <!-- ▼ PDF風：左右2カラム -->
+    <div class="register-grid">
+
+        <!-- =========================
+             左：お届け先情報（大きい枠）
+        ========================= -->
+        <section class="register-card register-card-large">
+            <h3 class="card-title">お届け先</h3>
+
+            <div class="info-grid" th:if="${address != null}">
+
+                <div class="info-row">
+                    <span class="label">氏名</span>
+                    <span class="value" th:text="${address.recipient}">山田 太郎</span>
+                </div>
+
+                <div class="info-row">
+                    <span class="label">郵便番号</span>
+                    <span class="value" th:text="${address.postalCode}">1234567</span>
+                </div>
+
+                <div class="info-row">
+                    <span class="label">住所</span>
+                    <span class="value">
+                        <span th:text="${address.prefecture}">東京都</span>
+                        <span th:text="${address.city}">渋谷区</span><br>
+                        <span th:text="${address.addressLine1}">神南1-2-3</span><br>
+                        <span th:text="${address.addressLine2}">〇〇マンション101</span>
+                    </span>
+                </div>
+
+                <div class="info-row">
+                    <span class="label">電話番号</span>
+                    <span class="value" th:text="${address.phoneNumber}">09012345678</span>
+                </div>
+
+            </div>
+
+            <p th:if="${address == null}" class="empty-text">
+                住所情報がありません。ゲスト情報登録へ戻って入力してください。
+            </p>
+        </section>
+
+        <!-- =========================
+             右：お支払い + ボタン（小さい枠）
+        ========================= -->
+        <section class="register-right">
+
+            <div class="total-box"
+            			th:if="${cart != null and !#lists.isEmpty(cart)}">
+                <div class="total-row">
+                    <span class="total-label">お支払い合計額</span>
+                    <strong class="total-value">
+                        <span th:text="${totalAmount}">0</span>円
+                    </strong>
+                </div>
+
+                <div class="total-row">
+                    <span class="total-label">食材合計数</span>
+                    <strong class="total-value">
+                        <span th:text="${totalCount}">0</span>点
+                    </strong>
+                </div>
+            </div>
+
+            <form th:action="@{/order/complete}" method="post" class="complete-form">
+                <button type="submit" class="confirm-btn">ご注文を確定する</button>
+            </form>
+
+            <a th:href="@{/cart}" class="back-link">ショッピングカートに戻る</a>
+
+        </section>
+
+    </div>
+
+</main>
 
 </body>
 </html>

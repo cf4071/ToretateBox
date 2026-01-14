@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>注文完了 | とれたてBOX</title>
+
+    <!-- 共通 -->
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <!-- 任意：完了画面専用CSS（なくてもOK） -->
+    <!-- <link rel="stylesheet" th:href="@{/css/complete.css}"> -->
+</head>
+
+<body>
+
+<main class="register-wrapper">
+
+    <h2 class="register-title">ご注文ありがとうございました</h2>
+
+    <p style="text-align:center; margin-top:40px; font-size:18px;">
+        お客様の注文番号は
+        「<strong th:text="${orderId}">0000000000</strong>」
+        です
+    </p>
+
+    <div style="text-align:center; margin-top:50px;">
+        <a th:href="@{/products}" class="confirm-btn" style="display:inline-block; text-decoration:none;">
+            食材一覧へ
+        </a>
+    </div>
+
+</main>
+
+</body>
+</html>
