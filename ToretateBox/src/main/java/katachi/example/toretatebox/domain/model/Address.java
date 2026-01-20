@@ -17,9 +17,9 @@ import lombok.Data;
 @Table(name = "addresses")
 public class Address {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 
     @Column(name = "user_id")
     private Integer userId;

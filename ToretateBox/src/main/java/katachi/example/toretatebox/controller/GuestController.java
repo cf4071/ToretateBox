@@ -1,16 +1,21 @@
 package katachi.example.toretatebox.controller;
 
+import java.security.Principal;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import katachi.example.toretatebox.domain.model.Address;
+import katachi.example.toretatebox.domain.model.User;
 import katachi.example.toretatebox.form.GuestForm;
+import katachi.example.toretatebox.repository.UserRepository;
 import katachi.example.toretatebox.service.AddressService;
 import lombok.RequiredArgsConstructor;
 
@@ -19,6 +24,7 @@ import lombok.RequiredArgsConstructor;
 public class GuestController {
 
     private final AddressService addressService;
+    private final UserRepository userRepository;
 
     @GetMapping("/guest")
     public String showGuest(Model model, HttpSession session) {
@@ -34,7 +40,9 @@ public class GuestController {
     public String submitGuest(
             @Valid @ModelAttribute("guestForm") GuestForm form,
             BindingResult bindingResult,
-            HttpSession session) {
+            HttpSession session,
+            Principal principal,
+            RedirectAttributes ra) {
 
         if (bindingResult.hasErrors()) {
             return "user/guest";
@@ -43,8 +51,17 @@ public class GuestController {
         // 入力保持（戻ってきた時のため）
         session.setAttribute("guestForm", form);
 
-        // ▼ GuestForm → Address(Entity)
+        // GuestForm → Address(Entity)
         Address address = new Address();
+
+        // ✅ ログインしていれば user_id を入れる / 未ログインなら null のまま（ゲスト）
+        if (principal != null) {
+            User user = userRepository.findByEmail(principal.getName());
+            if (user != null) {
+                address.setUserId(user.getId());
+            }
+        }
+
         address.setRecipient(form.getName());
         address.setPhoneNumber(form.getPhoneNumber());
         address.setPostalCode(form.getPostalCode());
@@ -53,12 +70,13 @@ public class GuestController {
         address.setAddressLine1(form.getAddress());
         address.setAddressLine2(form.getBuilding());
 
-        // ▼ DB保存
+        // DB保存（ここで id が付く）
         Address saved = addressService.save(address);
 
-        // ▼ 次のレジ画面で使う（どの住所か）
+        // ✅ 次のレジで使うため、住所IDをセッションに入れる（重要）
         session.setAttribute("guestAddressId", saved.getId());
 
-        return "redirect:/register";
+        // レジ画面へ
+        return "redirect:/order/register";
     }
 }

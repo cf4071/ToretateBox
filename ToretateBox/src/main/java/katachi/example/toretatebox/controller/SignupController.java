@@ -82,6 +82,6 @@ public class SignupController {
         }
 
         /* ===== 登録成功 ===== */
-        return "redirect:/login";
+        return "redirect:/top";
     }
 }
