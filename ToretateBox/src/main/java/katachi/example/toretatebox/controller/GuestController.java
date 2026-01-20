@@ -67,8 +67,8 @@ public class GuestController {
         address.setPostalCode(form.getPostalCode());
         address.setPrefecture(form.getPrefecture());
         address.setCity(form.getCity());
-        address.setAddressLine1(form.getAddress());
-        address.setAddressLine2(form.getBuilding());
+        address.setAddressLine1(form.getAddressLine1());
+        address.setAddressLine2(form.getAddressLine2());
 
         // DB保存（ここで id が付く）
         Address saved = addressService.save(address);

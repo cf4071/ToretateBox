@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>注文完了 | とれたてBOX</title>
   <link rel="stylesheet" th:href="@{/css/base.css}">
+  <link rel="stylesheet" th:href="@{/css/complete.css}">
 </head>
 
 <body>
@@ -11,14 +12,14 @@
 
   <h2 class="register-title">ご注文ありがとうございました</h2>
 
-  <p style="text-align:center; margin-top:40px; font-size:18px;">
+  <p>
     お客様の注文番号は
     「<strong th:text="${orderId}">000</strong>」
     です
   </p>
 
-  <div style="text-align:center; margin-top:50px;">
-    <a th:href="@{/products}" class="confirm-btn" style="display:inline-block; text-decoration:none;">
+  <div>
+    <a th:href="@{/products}" class="confirm-btn">
       食材一覧へ
     </a>
   </div>

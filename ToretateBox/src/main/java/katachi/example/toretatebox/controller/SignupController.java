@@ -69,8 +69,8 @@ public class SignupController {
             address.setPostalCode(form.getPostalCode());
             address.setPrefecture(form.getPrefecture());
             address.setCity(form.getCity());
-            address.setAddressLine1(form.getAddress());
-            address.setAddressLine2(form.getBuilding());
+            address.setAddressLine1(form.getAddressLine1());
+            address.setAddressLine2(form.getAddressLine2());
 
             /* ===== 同時登録 ===== */
             userService.registerWithAddress(user, address);

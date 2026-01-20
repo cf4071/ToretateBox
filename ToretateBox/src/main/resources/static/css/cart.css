@@ -76,6 +76,7 @@
   background: #fff;
   cursor: pointer;
   border-radius: 4px;
+  background-color: tomato;
 }
 
 /* 右：合計枠＋ボタン（PDFの右側） */

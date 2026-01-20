@@ -36,7 +36,7 @@ public class SignupForm {
     private String city;
     
     @NotBlank
-    private String address;
-    
-    private String building;
+    private String addressLine1;
+
+    private String addressLine2;
 }
