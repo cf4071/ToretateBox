@@ -1,57 +1,63 @@
 <!-- /templates/top/top.html -->
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{layout/layout :: layout(~{::title}, ~{this :: content})}">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>今が旬 - TOPページ</title>
+  <meta charset="UTF-8">
+  <title>今が旬 - TOPページ</title>
+
+  <!-- TOP画面で使うCSSだけ（共通はlayout.html側） -->
+  <link rel="stylesheet" th:href="@{/css/products.css}">
 </head>
 
 <body>
-<div th:fragment="content">
 
-    <!-- ここから下がページの中身 -->
-    <div class="grid">
+<div th:replace="~{layout/layout :: layout(~{::title}, ~{::content})}">
+<main th:fragment="content">
 
-        <div class="top-title">
-            <h2>今が旬</h2>
-            <p class="season-label" th:text="'今の旬：' + ${season}"></p>
-        </div>
+  <!-- ここから下がページの中身 -->
+  <div class="grid">
 
-        <div th:if="${products != null}" th:each="p : ${products}" class="card">
-            <div class="image-box">
-                <a th:href="@{'/products/' + ${p.id}}">
-                    <img th:src="${p.imageUrl != null} ?
-                        @{/images/{file}(file=${p.imageUrl})} :
-                        @{/images/no-image.png}"
-                         alt="商品画像">
-                </a>
-            </div>
-
-            <div class="name" th:text="${p.name}">商品名</div>
-            <div class="price" th:text="${p.price + '円'}">0円</div>
-        </div>
-
-        <div th:if="${products == null or #lists.isEmpty(products)}">
-            <p>商品がありません</p>
-        </div>
+    <div class="top-title">
+      <h2>今が旬</h2>
+      <p class="season-label" th:text="'今の旬：' + ${season}"></p>
     </div>
-	
-	 <div class="pagination">
-		<a th:if="${currentPage > 0}"
-		   th:href="@{/top(page=${currentPage - 1})}">前へ</a>
-		
-		<span th:each="i : ${#numbers.sequence(0, totalPages - 1)}">
-		  <a th:href="@{/top(page=${i})}"
-		      th:text="${i + 1}"
-		      th:classappend="${i == currentPage} ? 'active' : ''"></a>
-		</span>
-		
-		  <a th:if="${currentPage < totalPages - 1}"
-		    th:href="@{/top(page=${currentPage + 1})}">次へ</a>
-	</div>
+
+    <div th:if="${products != null}" th:each="p : ${products}" class="card">
+      <div class="image-box">
+        <a th:href="@{'/products/' + ${p.id}}">
+          <img th:src="${p.imageUrl != null} ?
+                @{/images/{file}(file=${p.imageUrl})} :
+                @{/images/no-image.png}"
+               alt="商品画像">
+        </a>
+      </div>
+
+      <div class="name" th:text="${p.name}">商品名</div>
+      <div class="price" th:text="${p.price + '円'}">0円</div>
+    </div>
+
+    <div th:if="${products == null or #lists.isEmpty(products)}">
+      <p>商品がありません</p>
+    </div>
+  </div>
+
+  <div class="pagination">
+    <a th:if="${currentPage > 0}"
+       th:href="@{/top(page=${currentPage - 1})}">前へ</a>
+
+    <span th:each="i : ${#numbers.sequence(0, totalPages - 1)}">
+      <a th:href="@{/top(page=${i})}"
+         th:text="${i + 1}"
+         th:classappend="${i == currentPage} ? 'active' : ''"></a>
+    </span>
+
+    <a th:if="${currentPage < totalPages - 1}"
+       th:href="@{/top(page=${currentPage + 1})}">次へ</a>
+  </div>
+
+</main>
 </div>
+
 </body>
 </html>
-
-

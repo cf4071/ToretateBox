@@ -72,11 +72,10 @@
 
 .btn-delete{
   padding: 6px 10px;
-  border: 1px solid #999;
-  background: #fff;
+  border: 1px solid #120108;
   cursor: pointer;
   border-radius: 4px;
-  background-color: tomato;
+  background-color: #ed4d2d;
 }
 
 /* 右：合計枠＋ボタン（PDFの右側） */

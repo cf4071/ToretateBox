@@ -1,10 +1,4 @@
 <!-- /templates/layout/header.html -->
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<body>
-
-<!-- /templates/layout/header.html -->
 <header th:fragment="header" class="site-header">
 
     <!-- 左：ロゴ -->
@@ -19,7 +13,7 @@
 
             <!-- ログイン中のみ -->
             <ul class="menu-list" sec:authorize="isAuthenticated()">
-				<li><a th:href="@{/products}">食材一覧</a></li>
+                <li><a th:href="@{/products}">食材一覧</a></li>
                 <li><a th:href="@{/cart}">カート</a></li>
 
                 <li class="hamburger-wrapper">
@@ -27,7 +21,7 @@
                     <ul class="hamburger-menu hidden">
                         <li><a th:href="@{/user/mypage}">ユーザー情報確認</a></li>
                         <li><a th:href="@{/user/edit}">ユーザー情報編集</a></li>
-                        <li><a th:href="@{/orders}">購入履歴</a></li>
+                        <li><a th:href="@{/Purchase_history}">購入履歴</a></li>
                         <li><a th:href="@{/logout}">ログアウト</a></li>
                     </ul>
                 </li>
@@ -35,7 +29,7 @@
 
             <!-- 未ログインのみ -->
             <ul class="menu-list" sec:authorize="isAnonymous()">
-				<li><a th:href="@{/products}">食材一覧</a></li>
+                <li><a th:href="@{/products}">食材一覧</a></li>
                 <li><a th:href="@{/login}">ログイン</a></li>
                 <li><a th:href="@{/signup}">新規登録</a></li>
             </ul>
@@ -51,8 +45,3 @@
     </div>
 
 </header>
-
-
-
-</body>
-</html>

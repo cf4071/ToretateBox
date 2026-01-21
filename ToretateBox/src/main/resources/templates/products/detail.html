@@ -1,77 +1,86 @@
 <!-- /templates/products/detail.html -->
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{layout/layout :: layout(~{::title}, ~{this :: content})}">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title th:text="${product.name} + ' - 商品詳細'">商品詳細</title>
+  <meta charset="UTF-8">
+  <title th:text="${product.name} + ' - 商品詳細'">商品詳細</title>
+
+  <!-- 画面専用CSS（layout.htmlで detail.css を読んでいないなら必要） -->
+  <link rel="stylesheet" th:href="@{/css/detail.css}">
 </head>
 
 <body>
-<div th:fragment="content">
+	
+<div th:replace="~{layout/layout :: layout(~{::title}, ~{::content})}">
 
-    <!-- ▼ 中央タイトル -->
-    <div class="detail-title">
-        <h2>食材詳細</h2>
+<main th:fragment="content">
+
+  <!-- ▼ 中央タイトル -->
+  <div class="detail-title">
+    <h2>食材詳細</h2>
+  </div>
+
+  <!-- ▼ 左右2カラムレイアウト -->
+  <div class="detail-container-2col">
+
+    <!-- ▼ 左：画像 -->
+    <div class="detail-left">
+      <div class="detail-image-box">
+        <img th:src="${product.imageUrl != null}
+                    ? @{/images/{f}(f=${product.imageUrl})}
+                    : @{/images/no-image.png}"
+             th:alt="${product.name}"
+             class="detail-image">
+      </div>
     </div>
 
-    <!-- ▼ 左右2カラムレイアウト -->
-    <div class="detail-container-2col">
+    <!-- ▼ 右：食材情報 -->
+    <div class="detail-right">
 
-        <!-- ▼ 左：画像 -->
-        <div class="detail-left">
-            <div class="detail-image-box">
-                <img th:src="${product.imageUrl != null}
-                            ? @{/images/{f}(f=${product.imageUrl})}
-                            : @{/images/no-image.png}"
-                     th:alt="${product.name}"
-                     class="detail-image">
-            </div>
+      <h2 class="detail-name" th:text="${product.name}">食材名</h2>
+
+      <div class="detail-description" th:if="${product.description != null}">
+        <p th:text="${product.description}"></p>
+      </div>
+
+      <p class="detail-category">
+        カテゴリ：<span th:text="${product.category.name}"></span>
+      </p>
+
+      <p class="detail-season" th:if="${product.season != null}">
+        旬：<span th:text="${product.season}"></span>
+      </p>
+
+      <p class="detail-price">
+        価格：<span th:text="${product.price}"></span> 円
+      </p>
+
+      <form th:action="@{/cart/add}" method="post">
+        <input type="hidden" name="productId" th:value="${product.id}">
+
+        <p class="detail-qty">
+          数量：
+          <select name="quantity">
+            <option th:each="i : ${#numbers.sequence(1, 10)}"
+                    th:value="${i}"
+                    th:text="${i}">
+            </option>
+          </select>
+        </p>
+
+        <div class="detail-buttons">
+          <button type="submit" class="btn-cart">カートへ</button>
+          <a th:href="@{/products}" class="btn-back">一覧へ戻る</a>
         </div>
+      </form>
 
-        <!-- ▼ 右：食材情報 -->
-        <div class="detail-right">
-
-            <h2 class="detail-name" th:text="${product.name}">食材名</h2>
-
-            <div class="detail-description" th:if="${product.description != null}">
-                <p th:text="${product.description}"></p>
-            </div>
-
-            <p class="detail-category">
-                カテゴリ：<span th:text="${product.category.name}"></span>
-            </p>
-
-            <p class="detail-season" th:if="${product.season != null}">
-                旬：<span th:text="${product.season}"></span>
-            </p>
-
-            <p class="detail-price">
-                価格：<span th:text="${product.price}"></span> 円
-            </p>
-
-            <form th:action="@{/cart/add}" method="post">
-                <input type="hidden" name="productId" th:value="${product.id}">
-
-                <p class="detail-qty">
-                    数量：
-                    <select name="quantity">
-                        <option th:each="i : ${#numbers.sequence(1, 10)}"
-                                th:value="${i}"
-                                th:text="${i}">
-                        </option>
-                    </select>
-                </p>
-
-                <div class="detail-buttons">
-                    <button type="submit" class="btn-cart">カートへ</button>
-                    <a th:href="@{/products}" class="btn-back">一覧へ戻る</a>
-                </div>
-            </form>
-
-        </div>
     </div>
+  </div>
+
+</main>
 
 </div>
+
 </body>
 </html>

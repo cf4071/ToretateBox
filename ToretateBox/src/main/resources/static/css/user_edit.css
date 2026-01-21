@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+.edit_body {
+	background-color: #b9d6ff;
+}
+
 .edit-wrapper{
   width: 100%;
   max-width: 800px;
