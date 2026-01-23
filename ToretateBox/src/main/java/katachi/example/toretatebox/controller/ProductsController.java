@@ -32,7 +32,7 @@ public class ProductsController {
             Model model) {
 
         String season = getCurrentSeason();
-        Pageable pageable = PageRequest.of(page, 6);
+        Pageable pageable = PageRequest.of(page, 8);
 
         Page<Product> productPage = productsService.searchBySeason(season, pageable);
 

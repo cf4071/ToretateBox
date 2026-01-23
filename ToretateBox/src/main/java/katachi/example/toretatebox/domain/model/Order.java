@@ -14,10 +14,11 @@ import lombok.Data;
 @Table(name="orders")
 @Data
 public class Order {
+	
   @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
-  @Column(name="user_id", nullable=false)
+  @Column(name="user_id", nullable=true) // ← false → true にする
   private Integer userId;
 
   @Column(name="address_id", nullable=false)

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>購入履歴 | とれたてBOX</title>
+
+  <!-- ✅ ページ固有CSSだけ書く（共通はlayout.html側） -->
+  <link rel="stylesheet" th:href="@{/css/purchase_history.css}">
+</head>
+
+<body>
+
+<div th:replace="~{layout/layout :: layout(~{::title}, ~{::content})}">
+  <main th:fragment="content" class="ph-wrapper">
+
+    <h2 class="ph-title">購入履歴</h2>
+
+    <p class="ph-empty" th:if="${#lists.isEmpty(orders)}">
+      購入履歴はまだありません。
+    </p>
+
+    <section class="ph-list" th:if="${!#lists.isEmpty(orders)}">
+      <article class="ph-card" th:each="o : ${orders}">
+        <div class="ph-card-head">
+          <div class="ph-head-col">
+            <div class="ph-label">注文日</div>
+            <div class="ph-value"
+                 th:text="${o.createdAt != null ? #temporals.format(o.createdAt,'yyyy/MM/dd') : ''}">
+            </div>
+          </div>
+
+          <div class="ph-head-col ph-head-col-center">
+            <div class="ph-label">合計金額</div>
+            <div class="ph-value">
+              <span class="ph-money" th:text="${o.totalAmount}">0</span>
+              <span class="ph-yen">円</span>
+            </div>
+          </div>
+
+          <div class="ph-head-col ph-head-col-right">
+            <div class="ph-label">注文番号</div>
+            <div class="ph-value" th:text="${o.id}">0</div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <div class="ph-actions">
+      <a class="ph-back" th:href="@{/top}">戻る</a>
+    </div>
+
+  </main>
+</div>
+
+</body>
+</html>

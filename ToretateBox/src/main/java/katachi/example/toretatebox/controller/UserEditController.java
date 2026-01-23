@@ -26,7 +26,7 @@ public class UserEditController {
     private final PasswordEncoder passwordEncoder;
 
     // ▼ 編集画面表示
-    @GetMapping("/user/edit")
+    @GetMapping("/edit")
     public String showEdit(Authentication auth, Model model) {
 
         User user = userRepository.findByEmail(auth.getName());
@@ -59,7 +59,7 @@ public class UserEditController {
     }
 
     // ▼ 更新
-    @PostMapping("/user/edit")
+    @PostMapping("/edit")
     public String update(
             Authentication auth,
             @Valid @ModelAttribute("userEditForm") UserEditForm form,

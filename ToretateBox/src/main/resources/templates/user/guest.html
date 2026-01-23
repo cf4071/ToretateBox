@@ -11,8 +11,8 @@
 </head>
 
 <body>
-
-<main class="guest-wrapper">
+<div th:replace="~{layout/layout :: layout(~{::title}, ~{::content})}">
+<main th:fragment="content" class="guest-wrapper">
 
     <h2 class="guest-title">ゲスト情報登録</h2>
 
@@ -66,6 +66,6 @@
     </form>
 
 </main>
-
+</div>
 </body>
 </html>

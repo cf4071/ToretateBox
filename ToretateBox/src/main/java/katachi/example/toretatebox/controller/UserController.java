@@ -18,7 +18,7 @@ public class UserController {
     private final UserRepository userRepository;
     private final AddressRepository addressRepository;
 
-    @GetMapping("/user/mypage")
+    @GetMapping("/mypage")
     public String mypage(Authentication auth, Model model) {
 
         // ログインユーザー(emailで取得)
