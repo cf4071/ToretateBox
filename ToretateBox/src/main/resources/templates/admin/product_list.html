@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+  <meta charset="UTF-8">
+  <title>食材管理 | とれたてBOX</title>
+
+  <!-- 管理画面用CSS（共通CSSはlayout.html側で読み込む想定） -->
+  <link rel="stylesheet" th:href="@{/css/admin.css}">
+</head>
+
+<body>
+
+<!-- ▼ layout.html を適用（top.html と同じやり方） -->
+<div th:replace="~{layout/layout :: layout(~{::title}, ~{::content})}">
+
+  <main th:fragment="content" class="admin-wrapper">
+
+    <div class="admin-header">
+      <h2 class="admin-title">食材管理</h2>
+      <a class="admin-btn" th:href="@{/admin/products/new}">＋ 新規登録</a>
+    </div>
+
+    <div class="admin-empty" th:if="${products == null or #lists.isEmpty(products)}">
+      食材データがありません。
+    </div>
+
+    <div class="admin-table-wrap" th:if="${products != null and !#lists.isEmpty(products)}">
+      <table class="admin-table">
+        <thead>
+        <tr>
+          <th style="width: 70px;">食材ID</th>
+          <th>食材名</th>
+          <th style="width: 140px;">カテゴリ</th>
+          <th style="width: 90px;">価格</th>
+          <th style="width: 120px;">旬</th>
+          <th style="width: 110px;">表示</th>
+          <th style="width: 120px;">操作</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="p : ${products}">
+          <td th:text="${p.id}">1</td>
+
+          <td>
+            <div class="admin-name" th:text="${p.name}">にんじん</div>
+            <div class="admin-desc"
+                 th:if="${p.description != null and !#strings.isEmpty(p.description)}"
+                 th:text="${p.description}">
+              説明
+            </div>
+          </td>
+
+          <td th:text="${p.category != null ? p.category.name : p.categoryId}">野菜</td>
+
+          <td>
+            <span th:text="${#numbers.formatInteger(p.price, 0, 'COMMA')}">100</span> 円
+          </td>
+
+          <td th:text="${p.season}">春</td>
+
+          <td>
+            <span th:if="${p.isActive}" class="badge badge-on">表示中</span>
+            <span th:if="${!p.isActive}" class="badge badge-off">非表示</span>
+          </td>
+
+          <td class="admin-actions">
+            <a class="admin-link"
+               th:href="@{/admin/product_edit/{id}(id=${p.id})}">
+              編集
+            </a>
+
+            <a class="admin-link danger"
+               th:href="@{/admin/product_delete/{id}(id=${p.id})}"
+               onclick="return confirm('削除しますか？');">
+              削除
+            </a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+
+</div>
+
+</body>
+</html>

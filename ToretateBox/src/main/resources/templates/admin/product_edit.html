@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>食材編集 | とれたてBOX</title>
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+</head>
+
+<body>
+
+<div th:replace="layout/header :: header"></div>
+
+<main class="admin-wrapper">
+
+    <h2 class="admin-title">食材編集</h2>
+
+    <!-- 商品編集フォーム -->
+    <form th:action="@{/admin/product_update}" th:object="${product}" method="post" class="admin-form">
+
+        <!-- 食材ID（hidden） -->
+        <input type="hidden" th:field="*{id}">
+
+        <div class="form-row">
+            <label>食材名</label>
+            <input type="text" th:field="*{name}" required>
+        </div>
+
+        <div class="form-row">
+            <label>説明</label>
+            <textarea th:field="*{description}" rows="3"></textarea>
+        </div>
+
+        <div class="form-row">
+            <label>価格</label>
+            <input type="number" th:field="*{price}" required>
+        </div>
+
+        <div class="form-row">
+            <label>カテゴリID</label>
+            <input type="number" th:field="*{categoryId}" required>
+        </div>
+
+        <div class="form-row">
+            <label>旬</label>
+            <input type="text" th:field="*{season}">
+        </div>
+
+        <div class="form-row">
+            <label>画像ファイル名</label>
+            <input type="text" th:field="*{imageUrl}">
+        </div>
+
+        <div class="form-row">
+            <label>表示する？</label>
+            <select th:field="*{isActive}">
+                <option th:value="true">表示する</option>
+                <option th:value="false">非表示にする</option>
+            </select>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="admin-btn">更新する</button>
+            <a th:href="@{/admin/products}" class="admin-link">一覧へ戻る</a>
+        </div>
+
+    </form>
+
+</main>
+
+</body>
+</html>

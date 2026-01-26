@@ -23,6 +23,10 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
 
             .authorizeHttpRequests(auth -> auth
+
+                // ✅ 管理画面は管理者だけ
+                .requestMatchers("/admin/**").hasRole("ADMIN")
+
                 .requestMatchers(
                     "/", "/top",
                     "/products", "/products/**",
@@ -35,9 +39,10 @@ public class SecurityConfig {
                     // ✅ ゲスト情報入力
                     "/guest", "/guest/**",
 
-                    // ✅ レジ〜完了（今回追加）
+                    // ✅ レジ〜完了
                     "/order/**"
                 ).permitAll()
+
                 .anyRequest().authenticated()
             )
 
@@ -46,7 +51,19 @@ public class SecurityConfig {
                 .loginProcessingUrl("/login")
                 .usernameParameter("email")
                 .passwordParameter("password")
-                .defaultSuccessUrl("/top", true)
+
+                // ✅ ログイン成功後：管理者なら管理画面、それ以外は /top
+                .successHandler((request, response, authentication) -> {
+                    boolean isAdmin = authentication.getAuthorities().stream()
+                            .anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"));
+
+                    if (isAdmin) {
+                        response.sendRedirect("/admin/products");
+                    } else {
+                        response.sendRedirect("/top");
+                    }
+                })
+
                 .failureUrl("/login?error")
                 .permitAll()
             )

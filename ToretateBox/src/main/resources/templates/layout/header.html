@@ -6,13 +6,24 @@
         <a th:href="@{/top}" class="logo-text">とれたてBOX</a>
     </div>
 
-    <!-- 右：メニュー + 検索 -->
+    <!-- 右：メニュー>
     <div class="header-right">
 
         <nav class="header-menu">
+			
+			<!-- ========================= -->
+            <!-- 👑 管理者専用メニュー -->
+            <!-- ========================= -->
+            <ul class="menu-list" sec:authorize="hasRole('ADMIN')">
+                <li><a th:href="@{/admin/products}">食材管理</a></li>
+                <li><a th:href="@{/admin/products/new}">食材登録</a></li>
+                <li><a th:href="@{/admin/orders}">注文管理</a></li>
+                <li><a th:href="@{/admin/users}">顧客管理</a></li>
+                <li><a th:href="@{/logout}">ログアウト</a></li>
+            </ul>
 
             <!-- ログイン中のみ -->
-            <ul class="menu-list" sec:authorize="isAuthenticated()">
+            <ul class="menu-list" sec:authorize="isAuthenticated()  and !hasRole('ADMIN')">
                 <li><a th:href="@{/products}">食材一覧</a></li>
                 <li><a th:href="@{/cart}">カート</a></li>
 
@@ -37,7 +48,8 @@
         </nav>
 
         <!-- 検索 -->
-        <form class="header-search" th:action="@{/search}" method="get">
+        <form class="header-search" th:action="@{/search}" 
+        			method="get" sec:authorize="!hasRole('ADMIN')">
             <input type="text" name="keyword" placeholder="キーワードを入力">
             <button type="submit">検索</button>
         </form>
