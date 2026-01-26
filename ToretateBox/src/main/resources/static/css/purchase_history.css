@@ -127,6 +127,24 @@
   text-decoration: underline;
 }
 
+.ph-pagination{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:14px;
+  margin: 26px 0 18px;
+}
+.ph-page{
+  text-decoration:none;
+  font-weight:700;
+  color:#111;
+  padding: 4px 8px;
+}
+.ph-page.is-active{
+  text-decoration: underline;
+}
+
+
 /* 戻るボタン（PDFのボタン風） */
 .ph-actions{
   display: flex;

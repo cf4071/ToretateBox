@@ -31,7 +31,6 @@ public class OrderItem {
     @Column(name = "unit_price", nullable = false)
     private Integer unitPrice;
 
-    // DBのDEFAULTを使うので insertable/updatable は false
     @Column(name = "created_at", insertable = false, updatable = false)
     private LocalDateTime createdAt;
 
