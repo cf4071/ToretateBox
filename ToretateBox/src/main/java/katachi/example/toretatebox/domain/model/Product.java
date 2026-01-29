@@ -51,7 +51,7 @@ public class Product {
 
     // 8. 表示フラグ（TRUE / FALSE）
     @Column(name = "is_active", nullable = false)
-    private Boolean isActive;
+    private boolean isActive;
 
     // 9. 登録日時
     @Column(name = "created_at", nullable = false, updatable = false)

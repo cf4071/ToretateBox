@@ -1,0 +1,186 @@
+@charset "UTF-8";
+
+/* =========================================
+   管理：食材一覧（PDF風デザイン）
+   ========================================= */
+
+/* 画面全体 */
+.admin-wrapper{
+  width: 92%;
+  max-width: 1100px;
+  margin: 28px auto 50px;
+}
+
+/* タイトル */
+.admin-title{
+  text-align: center;
+  font-size: 26px;
+  font-weight: 800;
+  margin: 10px 0 18px;
+}
+
+/* テーブル枠 */
+.admin-table-wrap{
+  background: #fff;
+  border: 1px solid #cfe0cf;
+  overflow-x: auto; /* 画面が狭いときは横スクロール */
+  -webkit-overflow-scrolling: touch; /* スマホでなめらかスクロール */
+}
+
+/* テーブル本体 */
+.admin-table{
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  min-width: 980px; /* 小画面でもレイアウト崩れ防止 */
+}
+
+/* ----------------------------
+   列幅
+---------------------------- */
+.col-id{ width: 70px; }
+.col-image{ width: 90px; }
+.col-name{ width: 160px; }
+.col-desc{ width: auto; }
+.col-price{ width: 110px; }
+.col-date{ width: 140px; }
+.col-actions{ width: 160px; }
+
+/* ヘッダー */
+.admin-table thead th{
+  background: #2f6f2f;
+  color: #fff;
+  padding: 12px 8px;
+  font-size: 14px;
+  text-align: center;
+  border-right: 1px solid rgba(255,255,255,0.25);
+}
+.admin-table thead th:last-child{
+  border-right: none;
+}
+
+/* 本文セル */
+.admin-table tbody td{
+  padding: 14px 8px;
+  border-top: 1px solid #d9e6d9;
+  text-align: center;
+  vertical-align: middle;
+  word-break: break-word;
+}
+
+/* しま模様 */
+.admin-table tbody tr:nth-child(even){
+  background: #dcefdc;
+}
+.admin-table tbody tr:nth-child(odd){
+  background: #ffffff;
+}
+
+/* 画像セル */
+.admin-image-cell{
+  text-align: center;
+}
+
+/* サムネ画像 */
+.admin-thumb{
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* 説明セル */
+.admin-desc-cell{
+  text-align: left;
+  padding-left: 10px;
+}
+
+/* 操作列 */
+.admin-actions{
+  white-space: nowrap;
+}
+
+/* 編集ボタン */
+.admin-link{
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 700;
+  background: #bcd9ff;
+  color: #0b3d91;
+  border: 1px solid #98c3ff;
+}
+.admin-link:hover{
+  filter: brightness(0.98);
+}
+
+/* 削除ボタン */
+.admin-link.danger{
+  background: #ffe0e0;
+  color: #b00020;
+  border: 1px solid #ffb3b3;
+  margin-left: 8px;
+}
+
+/* 空表示 */
+.admin-empty{
+  text-align: center;
+  padding: 22px;
+  margin-top: 14px;
+  background: #fff;
+  border: 1px solid #d7e6d7;
+}
+
+/* ページ番号 */
+.admin-paging{
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  margin-top: 18px;
+  font-weight: 800;
+}
+.admin-paging a{
+  text-decoration: none;
+  color: #333;
+}
+.admin-paging a.active{
+  color: #2f6f2f;
+}
+
+/* =========================================
+   レスポンシブ対応（画面が小さいとき）
+   ========================================= */
+@media (max-width: 768px){
+
+  .admin-wrapper{
+    width: 96%;
+    margin: 16px auto 40px;
+  }
+
+  .admin-title{
+    font-size: 22px;
+  }
+
+  .admin-table thead th,
+  .admin-table tbody td{
+    padding: 10px 6px;
+    font-size: 13px;
+  }
+
+  .admin-thumb{
+    width: 56px;
+    height: 56px;
+  }
+
+  .admin-link{
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .col-actions{
+    width: 140px;
+  }
+}

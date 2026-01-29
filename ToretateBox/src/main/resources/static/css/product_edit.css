@@ -1,0 +1,109 @@
+@charset "UTF-8";
+
+/* 画面全体（余白たっぷり・中央寄せ） */
+.admin-wrapper{
+  max-width: 780px;
+  margin: 40px auto 80px;
+  padding: 0 16px;
+}
+
+/* タイトル（中央） */
+.admin-title{
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  margin: 10px 0 18px;
+}
+
+/* 入力エリア（罫線箱） */
+.admin-form{
+  border: 2px solid #d7b8a3;      /* 罫線っぽい色 */
+  border-radius: 6px;
+  background: #fff7ef;            /* 薄いベージュ */
+  overflow: hidden;               /* 行の罫線をきれいに */
+}
+
+/* 1行を「左：項目名 / 右：入力欄」にする */
+.form-row{
+  display: grid;
+  grid-template-columns: 180px 1fr; /* 左列幅は好みで調整OK */
+  border-top: 1px solid #e4c9b7;
+}
+
+.form-row:first-of-type{
+  border-top: none;
+}
+
+/* 左：項目名（薄いオレンジ背景） */
+.form-row > label{
+  background: #f6d6bf;
+  padding: 12px 12px;
+  font-weight: 700;
+  border-right: 1px solid #e4c9b7;
+  display: flex;
+  align-items: center;
+}
+
+/* 右：入力欄（余白） */
+.form-row > input,
+.form-row > textarea,
+.form-row > select{
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #cdb5a7;
+  border-radius: 4px;
+  padding: 10px 10px;
+  margin: 10px 12px;
+  background: #fff;
+  font-size: 14px;
+}
+
+/* textareaの見た目 */
+.form-row > textarea{
+  resize: vertical;
+  min-height: 72px;
+}
+
+/* selectを少し整える */
+.form-row > select{
+  height: 40px;
+}
+
+/* ボタンエリア（PDFみたいに下で左右に並べる） */
+.form-actions{
+  display: flex;
+  justify-content: center;
+  gap: 90px;              /* 2つのボタン間隔 */
+  padding: 22px 0 26px;
+  background: transparent;
+}
+
+/* 共通ボタンっぽい形 */
+.admin-btn,
+.admin-link{
+  display: inline-block;
+  min-width: 120px;
+  text-align: center;
+  padding: 10px 18px;
+  border-radius: 6px;
+  border: 1px solid #9aa3ad;
+  text-decoration: none;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* 更新（ピンク） */
+.admin-btn{
+  background: #f2b7b7;
+  color: #333;
+}
+
+/* 戻る（水色） */
+.admin-link{
+  background: #cfe0f7;
+  color: #333;
+}
+
+/* ホバー（少し濃く） */
+.admin-btn:hover{ filter: brightness(0.97); }
+.admin-link:hover{ filter: brightness(0.97); }

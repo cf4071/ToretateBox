@@ -6,14 +6,11 @@
         <a th:href="@{/top}" class="logo-text">とれたてBOX</a>
     </div>
 
-    <!-- 右：メニュー>
+
     <div class="header-right">
 
         <nav class="header-menu">
-			
-			<!-- ========================= -->
-            <!-- 👑 管理者専用メニュー -->
-            <!-- ========================= -->
+
             <ul class="menu-list" sec:authorize="hasRole('ADMIN')">
                 <li><a th:href="@{/admin/products}">食材管理</a></li>
                 <li><a th:href="@{/admin/products/new}">食材登録</a></li>
