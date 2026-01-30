@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>食材登録 | とれたてBOX</title>
+  <link rel="stylesheet" th:href="@{/css/product_edit.css}">
+</head>
+
+<body>
+
+<div th:replace="~{layout/layout :: layout(~{::title}, ~{::main})}">
+
+  <main class="admin-wrapper">
+
+    <h2 class="admin-title">食材登録</h2>
+
+    <form th:action="@{/admin/products/new}"
+          th:object="${productForm}"
+          method="post"
+          enctype="multipart/form-data"
+          class="admin-form">
+
+      <!-- CSRFがある時だけ出す（無くても落ちない） -->
+      <input type="hidden"
+             th:if="${_csrf != null}"
+             th:name="${_csrf.parameterName}"
+             th:value="${_csrf.token}" />
+
+      <div class="form-row">
+        <label>食材名</label>
+        <input type="text" th:field="*{name}" required />
+        <p class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+      </div>
+
+      <div class="form-row">
+        <label>説明</label>
+        <textarea th:field="*{description}" rows="3"></textarea>
+        <p class="error" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
+      </div>
+
+      <div class="form-row">
+        <label>価格</label>
+        <input type="number" th:field="*{price}" required />
+        <p class="error" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></p>
+      </div>
+
+      <div class="form-row">
+        <label>カテゴリID</label>
+        <input type="number" th:field="*{categoryId}" required />
+        <p class="error" th:if="${#fields.hasErrors('categoryId')}" th:errors="*{categoryId}"></p>
+      </div>
+
+      <div class="form-row">
+        <label>旬</label>
+        <input type="text" th:field="*{season}" />
+        <p class="error" th:if="${#fields.hasErrors('season')}" th:errors="*{season}"></p>
+      </div>
+
+      <div class="form-row">
+        <label>画像</label>
+        <div>
+          <input type="hidden" th:field="*{imageUrl}" />
+          <input type="file" th:field="*{imageFile}" accept="image/*" style="margin:10px 12px;" />
+          <p class="error" th:if="${#fields.hasErrors('imageFile')}" th:errors="*{imageFile}"></p>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="admin-btn">登録する</button>
+        <a th:href="@{/admin/products}" class="admin-link">一覧へ戻る</a>
+      </div>
+
+    </form>
+
+  </main>
+
+</div>
+
+</body>
+</html>
