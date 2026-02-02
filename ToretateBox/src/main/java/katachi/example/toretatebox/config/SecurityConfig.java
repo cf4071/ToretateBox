@@ -19,29 +19,33 @@ public class SecurityConfig {
     ) throws Exception {
 
         http
-            // ✅ CSRF は今回は無効（hidden _csrf はテンプレ側で th:if などにする）
+            // ✅ CSRF は今回は無効（テンプレ側の _csrf は th:if 付きならOK）
             .csrf(csrf -> csrf.disable())
 
             .authorizeHttpRequests(auth -> auth
 
-                // ✅ 管理画面は管理者だけ
-                .requestMatchers("/admin/**").hasRole("ADMIN")
+                // ✅ 静的リソース（画像アップロード含む）は先に許可
+                .requestMatchers(
+                    "/css/**",
+                    "/js/**",
+                    "/images/**",
+                    "/uploads/**"   // ★追加：アップロード画像を誰でも見れるようにする
+                ).permitAll()
 
+                // ✅ 公開ページ（ログイン不要）
                 .requestMatchers(
                     "/", "/top",
                     "/products", "/products/**",
-                    "/css/**", "/js/**", "/images/**",
                     "/search/**",
                     "/cart", "/cart/**",
                     "/login",
                     "/signup",
-
-                    // ✅ ゲスト情報入力
                     "/guest", "/guest/**",
-
-                    // ✅ レジ〜完了
                     "/order/**"
                 ).permitAll()
+
+                // ✅ 管理画面は管理者だけ（uploadsは上でpermitAll済みなので影響なし）
+                .requestMatchers("/admin/**").hasRole("ADMIN")
 
                 .anyRequest().authenticated()
             )

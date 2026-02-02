@@ -13,11 +13,10 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
-        // 実行時のカレントに依存するので、絶対パスにしてからURI化（Windowsでも安全）
+        // 画像保存先（ログに出てた uploads と一致させる）
         Path uploadDir = Paths.get("uploads").toAbsolutePath().normalize();
-        String location = uploadDir.toUri().toString();   // 例: file:/C:/.../uploads/
 
         registry.addResourceHandler("/uploads/**")
-                .addResourceLocations(location);
+                .addResourceLocations("file:" + uploadDir.toString() + "/");
     }
 }

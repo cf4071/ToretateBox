@@ -26,10 +26,9 @@
     <div th:if="${products != null}" th:each="p : ${products}" class="card">
       <div class="image-box">
         <a th:href="@{'/products/' + ${p.id}}">
-          <img th:src="${p.imageUrl != null} ?
-                @{/images/{file}(file=${p.imageUrl})} :
-                @{/images/no-image.png}"
-               alt="商品画像">
+          <img th:if="${p.imageUrl != null and p.imageUrl != ''}"
+		     th:src="@{${p.imageUrl}}"
+		     alt="商品画像">
         </a>
       </div>
 

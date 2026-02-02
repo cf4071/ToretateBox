@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>注文管理</title>
+
+  <link rel="stylesheet" th:href="@{/css/admin_orders.css}">
+</head>
+<body>
+
+<div th:replace="~{layout/layout :: layout(~{::title}, ~{::main})}">
+
+  <main class="admin-wrapper">
+
+    <h2 class="admin-title">注文管理</h2>
+
+    <div class="table-wrap">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>注文ID</th>
+            <th>注文者ID</th>
+            <th>メール</th>
+            <th>注文日時</th>
+            <th>合計金額</th>
+            <th>詳細</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr th:each="order : ${orders}">
+            <td th:text="${order.id}">1</td>
+            <td th:text="${order.userId}">10</td>
+            <td th:text="${order.email != null ? order.email : ''}"></td>
+            <td th:text="${#temporals.format(order.createdAt, 'yyyy/MM/dd HH:mm')}">2026/02/02 11:00</td>
+            <td th:text="${order.totalAmount} + '円'">3000円</td>
+            <td>
+              <a class="detail-btn" th:href="@{'/admin/orders/' + ${order.id}}">詳細</a>
+            </td>
+          </tr>
+
+          <!-- データが0件のとき -->
+          <tr th:if="${#lists.isEmpty(orders)}">
+            <td class="empty" colspan="6">注文データがありません</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ページネーション -->
+    <div class="pager" th:if="${page != null and page.totalPages > 1}">
+      <a class="pager-nav"
+         th:if="${!page.first}"
+         th:href="@{/admin/orders(page=${page.number - 1})}">‹</a>
+
+      <a class="pager-num"
+         th:each="i : ${#numbers.sequence(0, page.totalPages - 1)}"
+         th:href="@{/admin/orders(page=${i})}"
+         th:text="${i + 1}"
+         th:classappend="${i == page.number} ? ' active' : ''">1</a>
+
+      <a class="pager-nav"
+         th:if="${!page.last}"
+         th:href="@{/admin/orders(page=${page.number + 1})}">›</a>
+    </div>
+
+  </main>
+
+</div>
+
+</body>
+</html>

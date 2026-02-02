@@ -1,0 +1,156 @@
+@charset "UTF-8";
+
+/* 画面全体の余白 */
+.admin-wrapper {
+  width: 90%;
+  max-width: 980px;
+  margin: 30px auto 60px;
+}
+
+/* タイトル（中央） */
+.admin-title {
+  text-align: center;
+  font-size: 22px;
+  margin: 10px 0 18px;
+  font-weight: 700;
+}
+
+/* テーブル枠 */
+.table-wrap {
+  border: 1px solid #cfd8c3;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* テーブル基本 */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 14px;
+}
+
+/* ヘッダー（緑） */
+.admin-table thead th {
+  background: #7fb24d;          /* PDFっぽい緑 */
+  color: #fff;
+  padding: 10px 8px;
+  border-right: 1px solid rgba(255,255,255,0.35);
+  text-align: center;
+  font-weight: 700;
+}
+
+.admin-table thead th:last-child {
+  border-right: none;
+}
+
+/* 本体セル */
+.admin-table tbody td {
+  padding: 10px 8px;
+  border-top: 1px solid #dfe7d6;
+  text-align: center;
+  background: #fff;
+}
+
+/* しま模様（薄い緑） */
+.admin-table tbody tr:nth-child(odd) td {
+  background: #f2f7ec;
+}
+
+/* 空表示 */
+.admin-table .empty {
+  padding: 16px 8px;
+  text-align: center;
+  color: #666;
+}
+
+/* 詳細ボタン（青） */
+.detail-btn {
+  display: inline-block;
+  padding: 6px 12px;
+  background: #1f66c1;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 3px;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.detail-btn:hover {
+  filter: brightness(0.95);
+}
+
+/* ページング（中央に 1 2） */
+.pager {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin: 18px 0 10px;
+}
+
+.pager-num {
+  width: 22px;
+  height: 22px;
+  line-height: 22px;
+  text-align: center;
+  text-decoration: none;
+  color: #333;
+  border-radius: 50%;
+}
+
+.pager-num.active {
+  font-weight: 800;
+  border: 1px solid #999;
+}
+
+/* 戻るボタン（中央の淡い青） */
+.back-area {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.back-btn {
+  display: inline-block;
+  padding: 10px 26px;
+  background: #d9e7f7;
+  color: #2b2b2b;
+  text-decoration: none;
+  border: 1px solid #b8cbe3;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+.back-btn:hover {
+  filter: brightness(0.98);
+}
+
+.pager {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 18px 0 10px;
+}
+
+.pager-num, .pager-nav {
+  display: inline-block;
+  min-width: 24px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  text-decoration: none;
+  color: #333;
+  border-radius: 50%;
+}
+
+.pager-num.active {
+  font-weight: 800;
+  border: 1px solid #999;
+}
+
+.pager-nav {
+  border-radius: 4px; /* 矢印だけ角丸に */
+  padding: 0 6px;
+}
+

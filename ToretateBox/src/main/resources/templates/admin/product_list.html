@@ -43,27 +43,18 @@
             <td th:text="${p.id}">1</td>
 
             <!-- ▼ 画像：空 / パス付き(/uploads/...) / ファイル名だけ の3分岐 -->
-            <td class="admin-image-cell">
+			<td class="admin-image-cell"
+			    th:with="
+			      imgSrc=
+			        ${ (p.imageUrl == null or p.imageUrl == '') ? '/images/no-image.png'
+			          : (#strings.startsWith(p.imageUrl, '/') ? p.imageUrl
+			            : '/images/' + p.imageUrl) }">
+			
+			  <img class="admin-thumb"
+			       th:src="@{${imgSrc}}"
+			       th:alt="${p.name} + 'の画像'">
+			</td>
 
-              <!-- 1) imageUrl が空なら no-image -->
-              <img class="admin-thumb"
-                   th:if="${p.imageUrl == null or p.imageUrl == ''}"
-                   th:src="@{/images/no-image.png}"
-                   th:alt="${p.name} + 'の画像'">
-
-              <!-- 2) /uploads/... や /images/... のように「/」で始まるならそのまま -->
-              <img class="admin-thumb"
-                   th:if="${p.imageUrl != null and p.imageUrl != '' and #strings.startsWith(p.imageUrl, '/')}"
-                   th:src="@{${p.imageUrl}}"
-                   th:alt="${p.name} + 'の画像'">
-
-              <!-- 3) ファイル名だけ（例：kuri.png）なら /images/ を付ける -->
-              <img class="admin-thumb"
-                   th:if="${p.imageUrl != null and p.imageUrl != '' and !#strings.startsWith(p.imageUrl, '/')}"
-                   th:src="@{/images/{file}(file=${p.imageUrl})}"
-                   th:alt="${p.name} + 'の画像'">
-
-            </td>
 
             <td th:text="${p.name}">紅玉(りんご)</td>
 
@@ -131,3 +122,4 @@
 
 </body>
 </html>
+

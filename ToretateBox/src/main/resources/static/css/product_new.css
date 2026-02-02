@@ -1,0 +1,117 @@
+@charset "UTF-8";
+
+/* ===============================
+   管理画面 共通ラッパー
+=============================== */
+.admin-wrapper {
+  max-width: 720px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.admin-title {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+
+/* ===============================
+   フォームカード風デザイン
+=============================== */
+.admin-form {
+  background: #ffffff;
+  border: 2px solid #666;
+  border-radius: 12px;
+  padding: 30px 35px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* ===============================
+   フォーム行
+=============================== */
+.form-row {
+  margin-bottom: 20px;
+}
+
+.form-row label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+/* 入力系共通 */
+.form-row input[type="text"],
+.form-row input[type="number"],
+.form-row textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #aaa;
+  border-radius: 8px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+/* テキストエリアだけ少し高さ調整 */
+.form-row textarea {
+  resize: vertical;
+}
+
+/* ===============================
+   画像アップロード
+=============================== */
+.image-input {
+  margin: 10px 0;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fafafa;
+  cursor: pointer;
+}
+
+.image-input:hover {
+  background-color: #f0f0f0;
+}
+
+/* ===============================
+   エラーメッセージ
+=============================== */
+.error {
+  color: #d33;
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+/* ===============================
+   ボタンエリア
+=============================== */
+.form-actions {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-btn {
+  background-color: #ff7777;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.admin-btn:hover {
+  background-color: #ff5555;
+}
+
+.admin-link {
+  text-decoration: none;
+  color: #555;
+  font-size: 14px;
+}
+
+.admin-link:hover {
+  text-decoration: underline;
+}

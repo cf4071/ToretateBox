@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>食材登録 | とれたてBOX</title>
-  <link rel="stylesheet" th:href="@{/css/product_edit.css}">
+  <link rel="stylesheet" th:href="@{/css/product_new.css}">
 </head>
 
 <body>
@@ -61,7 +61,7 @@
         <label>画像</label>
         <div>
           <input type="hidden" th:field="*{imageUrl}" />
-          <input type="file" th:field="*{imageFile}" accept="image/*" style="margin:10px 12px;" />
+          <input type="file" th:field="*{imageFile}" accept="image/*" class="image-input" />
           <p class="error" th:if="${#fields.hasErrors('imageFile')}" th:errors="*{imageFile}"></p>
         </div>
       </div>
