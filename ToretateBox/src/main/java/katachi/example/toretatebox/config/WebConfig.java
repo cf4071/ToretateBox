@@ -13,7 +13,6 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
-        // 画像保存先（ログに出てた uploads と一致させる）
         Path uploadDir = Paths.get("uploads").toAbsolutePath().normalize();
 
         registry.addResourceHandler("/uploads/**")

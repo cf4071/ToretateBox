@@ -1,17 +1,15 @@
 package katachi.example.toretatebox.repository;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import katachi.example.toretatebox.domain.model.Address;
 
-@Repository
 public interface AddressRepository extends JpaRepository<Address, Integer> {
 
-    // user_id で住所を取る
-    Address findByUserId(Integer userId);
+    List<Address> findByUserId(Integer userId);
 
-	Optional<Address> findTopByUserIdOrderByIdDesc(Integer userId);
+    // ★ これを追加
+    Address findTopByUserIdOrderByIdDesc(Integer userId);
 }

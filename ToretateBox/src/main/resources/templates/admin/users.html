@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>ユーザー管理 | とれたてBOX</title>
+  <link rel="stylesheet" th:href="@{/css/admin_users.css}">
+</head>
+<body>
+
+<div th:replace="~{layout/layout :: layout(~{::title}, ~{::main})}">
+
+  <main class="admin-wrapper">
+
+    <h2 class="admin-title">ユーザー管理</h2>
+
+    <div class="table-wrap">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>メールアドレス</th>
+            <th>名前</th>
+            <th>電話番号</th>
+            <th>郵便番号</th>
+            <th>住所</th>
+            <th>登録日</th>
+            <th>詳細</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr th:each="row : ${rows}">
+            <td th:text="${row.id}">1</td>
+            <td th:text="${row.email}">sample@example.com</td>
+            <td th:text="${row.name}">山田太郎</td>
+            <td th:text="${row.phoneNumber}">090-0000-0000</td>
+            <td th:text="${row.postalCode}">123-4567</td>
+            <td th:text="${row.address}">東京都○○区…</td>
+            <td th:text="${#temporals.format(row.createdAt, 'yyyy/MM/dd')}">2026/02/06</td>
+            <td>
+              <a th:href="@{/admin/users/{id}(id=${row.id})}" class="btn-detail">詳細</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <div class="pagination">
+
+	  <!-- 前のページ -->
+	  <a th:if="${currentPage > 0}"
+	     th:href="@{/admin/users(page=${currentPage - 1})}">
+	     ← 前へ
+	  </a>
+	
+	  <!-- ページ番号 -->
+	  <span>
+	    <span th:text="${currentPage + 1}"></span>
+	    /
+	    <span th:text="${totalPages}"></span>
+	  </span>
+	
+	  <!-- 次のページ -->
+	  <a th:if="${currentPage + 1 < totalPages}"
+	     th:href="@{/admin/users(page=${currentPage + 1})}">
+	     次へ →
+	  </a>
+
+</div>
+    </div>
+
+  </main>
+</div>
+
+</body>
+</html>

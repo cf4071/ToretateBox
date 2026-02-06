@@ -16,11 +16,6 @@
 
             <h2 class="cart-title">ショッピングカート</h2>
 			
-			<!-- エラーメッセージ必用なら
-            <p class="cart-note">
-                ※ログイン済みの方は「レジへ進む」、未ログインの方は「ゲスト情報登録へ」から進んでください
-            </p>
-			-->
             <div class="cart-grid">
 
                 <!-- =========================
@@ -42,10 +37,10 @@
                         <div th:each="item : ${cart}" class="cart-item">
 
                             <div class="cart-item-image">
-                                <img th:src="${item.imageUrl != null}
-                                    ? @{/images/{f}(f=${item.imageUrl})}
-                                    : @{/images/no-image.png}"
-                                     alt="商品画像">
+								<img th:src="${#strings.isEmpty(item.imageUrl)}
+								            ? @{/images/no-image.png}
+								            : @{${item.imageUrl}}"
+								     alt="商品画像">
                             </div>
 
                             <div class="cart-item-info">

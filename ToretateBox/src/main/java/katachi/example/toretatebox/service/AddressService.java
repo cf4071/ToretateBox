@@ -17,12 +17,13 @@ public class AddressService {
         return addressRepository.save(address);
     }
 
-    // idで住所を取得（register画面表示で使う）
+    // idで住所を取得
     public Address findById(Integer id) {
         return addressRepository.findById(id).orElse(null);
     }
-    
+
+    // ユーザーIDで最新の住所を取得
     public Address findLatestByUserId(Integer userId) {
-        return addressRepository.findTopByUserIdOrderByIdDesc(userId).orElse(null);
+        return addressRepository.findTopByUserIdOrderByIdDesc(userId);
     }
 }

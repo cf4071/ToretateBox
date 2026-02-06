@@ -19,24 +19,21 @@ public class SecurityConfig {
     ) throws Exception {
 
         http
-            // ✅ CSRF は今回は無効（テンプレ側の _csrf は th:if 付きならOK）
             .csrf(csrf -> csrf.disable())
 
             .authorizeHttpRequests(auth -> auth
 
-                // ✅ 静的リソース（画像アップロード含む）は先に許可
                 .requestMatchers(
                     "/css/**",
                     "/js/**",
                     "/images/**",
-                    "/uploads/**"   // ★追加：アップロード画像を誰でも見れるようにする
+                    "/uploads/**"
                 ).permitAll()
 
-                // ✅ 公開ページ（ログイン不要）
                 .requestMatchers(
                     "/", "/top",
                     "/products", "/products/**",
-                    "/search/**",
+                    "/search", "/search/**",   // ★ /search も許可（フォームが /search に飛ぶため）
                     "/cart", "/cart/**",
                     "/login",
                     "/signup",
@@ -44,9 +41,9 @@ public class SecurityConfig {
                     "/order/**"
                 ).permitAll()
 
-                // ✅ 管理画面は管理者だけ（uploadsは上でpermitAll済みなので影響なし）
                 .requestMatchers("/admin/**").hasRole("ADMIN")
 
+                // ✅ 上記以外はログイン必須
                 .anyRequest().authenticated()
             )
 

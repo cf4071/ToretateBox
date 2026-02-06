@@ -23,9 +23,6 @@ public class ProductsController {
 
     private final ProductsService productsService;
 
-    // ============================
-    // TOPページ（今が旬）
-    // ============================
     @GetMapping("/top")
     public String showTopPage(
             @RequestParam(defaultValue = "0") int page,
@@ -44,9 +41,6 @@ public class ProductsController {
         return "top/top";
     }
 
-    // ============================
-    // 食材一覧（カテゴリID＋旬＋検索）
-    // ============================
     @GetMapping("/products")
     public String showProductsList(
             @RequestParam(required = false) String keyword,
@@ -58,7 +52,6 @@ public class ProductsController {
         Pageable pageable = PageRequest.of(page, 8);
         Page<Product> productPage;
 
-        // キーワード検索
         if (keyword != null && !keyword.isBlank()) {
             List<Product> products = productsService.searchProducts(keyword);
 
@@ -70,19 +63,15 @@ public class ProductsController {
             return "products/list";
         }
 
-        // カテゴリ＋旬
         if (categoryId != null && isNotBlank(season)) {
             productPage = productsService.searchByCategoryAndSeason(categoryId, season, pageable);
 
-        // カテゴリのみ
         } else if (categoryId != null) {
             productPage = productsService.searchByCategory(categoryId, pageable);
 
-        // 旬のみ
         } else if (isNotBlank(season)) {
             productPage = productsService.searchBySeason(season, pageable);
 
-        // 全て
         } else {
             productPage = productsService.findAllPage(pageable);
         }
@@ -96,9 +85,6 @@ public class ProductsController {
         return "products/list";
     }
 
-    // ============================
-    // 商品詳細ページ
-    // ============================
     @GetMapping("/products/{id}")
     public String showProductDetail(
             @PathVariable Integer id,
@@ -110,24 +96,17 @@ public class ProductsController {
             return "error/404";
         }
 
-        // Product から category.name を直接参照可能
         model.addAttribute("product", product);
 
         return "products/detail";
     }
 
-    // ============================
-    // 商品保存
-    // ============================
     @PostMapping("/products/save")
     public String saveProduct(Product product) {
         productsService.save(product);
         return "redirect:/products";
     }
 
-    // ============================
-    // 今の季節を自動判定
-    // ============================
     private String getCurrentSeason() {
         int month = LocalDate.now().getMonthValue();
 
@@ -137,7 +116,6 @@ public class ProductsController {
         return "冬";
     }
 
-    // null or 空文字チェック
     private boolean isNotBlank(String value) {
         return value != null && !value.isBlank();
     }

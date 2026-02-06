@@ -39,9 +39,7 @@ public class CartController {
         return "user/cart";
     }
 
-    // =========================
-    // カートに追加（数量つき）
-    // =========================
+
     @PostMapping("/add")
     public String addToCart(
             @RequestParam Integer productId,
@@ -55,7 +53,6 @@ public class CartController {
 
         List<CartItem> cart = getCart(session);
 
-        // ▼ すでに同じ商品があるかチェック
         for (CartItem item : cart) {
             if (item.getProductId().equals(productId)) {
                 item.setQuantity(item.getQuantity() + quantity);
@@ -64,13 +61,12 @@ public class CartController {
             }
         }
 
-        // ▼ なければ新規追加
         CartItem newItem = new CartItem();
         newItem.setProductId(product.getId());
         newItem.setName(product.getName());
         newItem.setPrice(product.getPrice());
         newItem.setQuantity(quantity);
-        newItem.setImageUrl(product.getImageUrl()); // 商品画像
+        newItem.setImageUrl(product.getImageUrl()); 
 
         cart.add(newItem);
         session.setAttribute("cart", cart);
@@ -78,9 +74,7 @@ public class CartController {
         return "redirect:/cart";
     }
 
-    // =========================
-    // カートから削除
-    // =========================
+
     @PostMapping("/remove")
     public String removeFromCart(
             @RequestParam Integer productId,
@@ -96,22 +90,13 @@ public class CartController {
         return "redirect:/cart";
     }
 
-    // =========================
-    // カートを空にする
-    // =========================
+
     @PostMapping("/clear")
     public String clearCart(HttpSession session) {
         session.removeAttribute("cart");
         return "redirect:/cart";
     }
 
-    // =========================
-    // 共通メソッド
-    // =========================
-
-    /**
-     * セッションからカートを取得
-     */
     @SuppressWarnings("unchecked")
     private List<CartItem> getCart(HttpSession session) {
         List<CartItem> cart =
@@ -123,9 +108,6 @@ public class CartController {
         return cart;
     }
 
-    /**
-     * 合計金額を計算
-     */
     private int calculateTotal(List<CartItem> cart) {
         int total = 0;
         for (CartItem item : cart) {

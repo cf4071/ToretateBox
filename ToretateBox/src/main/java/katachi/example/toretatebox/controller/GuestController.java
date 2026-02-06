@@ -48,13 +48,10 @@ public class GuestController {
             return "user/guest";
         }
 
-        // 入力保持（戻ってきた時のため）
         session.setAttribute("guestForm", form);
 
-        // GuestForm → Address(Entity)
         Address address = new Address();
 
-        // ✅ ログインしていれば user_id を入れる / 未ログインなら null のまま（ゲスト）
         if (principal != null) {
             User user = userRepository.findByEmail(principal.getName());
             if (user != null) {
@@ -70,13 +67,10 @@ public class GuestController {
         address.setAddressLine1(form.getAddressLine1());
         address.setAddressLine2(form.getAddressLine2());
 
-        // DB保存（ここで id が付く）
         Address saved = addressService.save(address);
 
-        // ✅ 次のレジで使うため、住所IDをセッションに入れる（重要）
         session.setAttribute("guestAddressId", saved.getId());
 
-        // レジ画面へ
         return "redirect:/order/register";
     }
 }

@@ -19,31 +19,22 @@ public class SignupController {
     @Autowired
     private UserService userService;
 
-    /**
-     * ユーザー登録画面表示
-     */
     @GetMapping("/signup")
     public String showSignupForm(Model model) {
         model.addAttribute("signupForm", new SignupForm());
         return "user/signup";
     }
 
-    /**
-     * ユーザー登録処理
-     * users + addresses を同時に保存
-     */
     @PostMapping("/signup")
     public String signup(
             @Valid SignupForm form,
             BindingResult bindingResult,
             Model model) {
 
-        /* ===== 入力チェック（アノテーション） ===== */
         if (bindingResult.hasErrors()) {
             return "user/signup";
         }
 
-        /* ===== パスワード一致チェック ===== */
         if (!form.getPassword().equals(form.getPasswordConfirm())) {
             bindingResult.rejectValue(
                 "passwordConfirm",
@@ -54,7 +45,6 @@ public class SignupController {
         }
 
         try {
-            /* ===== User 作成 ===== */
             User user = new User();
             user.setName(form.getName());
             user.setNameKana(form.getNameKana());
@@ -62,7 +52,6 @@ public class SignupController {
             user.setEmail(form.getEmail());
             user.setPassword(form.getPassword());
 
-            /* ===== Address 作成 ===== */
             Address address = new Address();
             address.setRecipient(form.getName());
             address.setPhoneNumber(form.getPhoneNumber());
@@ -72,16 +61,13 @@ public class SignupController {
             address.setAddressLine1(form.getAddressLine1());
             address.setAddressLine2(form.getAddressLine2());
 
-            /* ===== 同時登録 ===== */
             userService.registerWithAddress(user, address);
 
         } catch (IllegalArgumentException e) {
-            // メール重複など（全体エラー）
             model.addAttribute("errorMessage", e.getMessage());
             return "user/signup";
         }
 
-        /* ===== 登録成功 ===== */
         return "redirect:/top";
     }
 }

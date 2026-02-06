@@ -19,18 +19,14 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
-    /**
-     * ログイン画面表示
-     */
+
     @GetMapping("/login")
     public String showLoginForm(Model model) {
         model.addAttribute("loginForm", new LoginForm());
         return "login/login";
     }
 
-    /**
-     * ログイン処理
-     */
+
     @PostMapping("/login")
     public String login(
             @Valid LoginForm form,
@@ -38,30 +34,24 @@ public class LoginController {
             Model model,
             HttpSession session) {
 
-        // 入力チェックエラー
         if (bindingResult.hasErrors()) {
             return "login/login";
         }
 
-        // メールアドレスでユーザー取得
         User user = userService.findByEmail(form.getEmail());
 
-        // ユーザーがいない or パスワード不一致
         if (user == null || !userService.checkPassword(form.getPassword(), user.getPassword())) {
             model.addAttribute("errorMessage", "メールアドレスまたはパスワードが違います。");
             return "login/login";
         }
 
-        // 削除済みユーザー
         if (user.isDeleted()) {
             model.addAttribute("errorMessage", "このアカウントは無効です。");
             return "login/login";
         }
 
-        // ★ ログイン成功 → セッションに保存
         session.setAttribute("loginUser", user);
 
-        // ホーム画面へ
         return "redirect:/top";
     }
 }

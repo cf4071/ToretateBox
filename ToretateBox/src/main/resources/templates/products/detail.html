@@ -27,11 +27,12 @@
     <!-- ▼ 左：画像 -->
     <div class="detail-left">
       <div class="detail-image-box">
-        <img th:src="${product.imageUrl != null}
-                    ? @{/images/{f}(f=${product.imageUrl})}
-                    : @{/images/no-image.png}"
-             th:alt="${product.name}"
-             class="detail-image">
+		<img th:src="${#strings.isEmpty(product.imageUrl)}
+		            ? @{/images/no-image.png}
+		            : @{${product.imageUrl}}"
+		     th:alt="${product.name}"
+		     class="detail-image">
+
       </div>
     </div>
 

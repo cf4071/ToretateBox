@@ -21,7 +21,6 @@ public class UserController {
     @GetMapping("/mypage")
     public String mypage(Authentication auth, Model model) {
 
-        // ログインユーザー(emailで取得)
         String email = auth.getName();
         User user = userRepository.findByEmail(email);
 
@@ -29,13 +28,11 @@ public class UserController {
             return "redirect:/login";
         }
 
-        // 住所情報を取得（addressesテーブル）
-        Address address = addressRepository.findByUserId(user.getId());
+        Address address = addressRepository.findTopByUserIdOrderByIdDesc(user.getId());
 
         model.addAttribute("user", user);
         model.addAttribute("address", address);
 
-        // パスワードはマスク表示
         model.addAttribute("maskedPassword", "●●●●●●●●");
 
         return "user/mypage";

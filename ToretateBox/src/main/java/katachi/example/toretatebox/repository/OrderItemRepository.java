@@ -10,6 +10,7 @@ import katachi.example.toretatebox.domain.model.OrderItem;
 @Repository
 public interface OrderItemRepository extends JpaRepository<OrderItem, Integer> {
 
-    // ✅ 注文の明細を取る（履歴詳細で使う）
+	List<OrderItem> findByOrderId(Integer orderId);
+
 	List<OrderItem> findByOrderIdIn(List<Integer> orderIds);
 }

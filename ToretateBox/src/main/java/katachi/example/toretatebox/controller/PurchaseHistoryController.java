@@ -36,10 +36,7 @@ public class PurchaseHistoryController {
     private final ProductsRepository productRepository;
     private final UserRepository userRepository;
 
-    /**
-     * 購入履歴（8件ずつページング）
-     * /Purchase_history?page=0 (0始まり)
-     */
+
     @GetMapping("/Purchase_history")
     public String history(
             Model model,
@@ -54,34 +51,27 @@ public class PurchaseHistoryController {
         String email = principal.getName();
         User user = userRepository.findByEmail(email);
 
-        // ✅ 1ページ8件、購入日時(createdAt)の新しい順
         PageRequest pageable = PageRequest.of(page, 8, Sort.by("createdAt").descending());
         Page<Order> orderPage = orderRepository.findByUserIdOrderByCreatedAtDesc(user.getId(), pageable);
 
-        // 画面で使う
         model.addAttribute("orders", orderPage.getContent());
         model.addAttribute("orderPage", orderPage);
 
-        // ✅ 履歴が空なら明細は作らない
         if (orderPage.isEmpty()) {
             return "user/purchase_history";
         }
 
-        // ① このページの注文ID一覧
         List<Integer> orderIds = orderPage.getContent().stream()
                 .map(Order::getId)
                 .collect(Collectors.toList());
 
-        // ② 明細をまとめて取得（OrderItemRepositoryに findByOrderIdIn が必要）
         List<OrderItem> items = orderItemRepository.findByOrderIdIn(orderIds);
 
-        // 明細が空ならここで返す
         if (items == null || items.isEmpty()) {
             model.addAttribute("orderItemsMap", new HashMap<Integer, List<OrderItemView>>());
             return "user/purchase_history";
         }
 
-        // ③ 商品ID一覧 → 商品名Map
         Set<Integer> productIds = items.stream()
                 .map(OrderItem::getProductId)
                 .collect(Collectors.toSet());
@@ -89,7 +79,6 @@ public class PurchaseHistoryController {
         Map<Integer, String> productNameMap = productRepository.findAllById(productIds).stream()
                 .collect(Collectors.toMap(Product::getId, Product::getName));
 
-        // ④ orderId → 表示用リスト のMap
         Map<Integer, List<OrderItemView>> orderItemsMap = new HashMap<>();
         for (OrderItem it : items) {
             String name = productNameMap.getOrDefault(it.getProductId(), "（商品が見つかりません）");

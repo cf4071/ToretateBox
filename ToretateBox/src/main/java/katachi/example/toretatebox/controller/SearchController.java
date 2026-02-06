@@ -26,6 +26,6 @@ public class SearchController {
         model.addAttribute("keyword", keyword);
         model.addAttribute("products", results);
 
-        return "search/search"; // search.html を表示
+        return "search/search"; 
     }
 }

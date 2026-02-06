@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>注文詳細</title>
+  <link rel="stylesheet" th:href="@{/css/admin_order_detail.css}">
+</head>
+<body>
+
+<div th:replace="~{layout/layout :: layout(~{::title}, ~{::main})}">
+
+  <main class="admin-wrapper">
+
+    <h2 class="admin-title">注文詳細</h2>
+
+    <!-- 基本情報 -->
+	<div class="card">
+	  <div class="row">
+	    <div class="label">注文ID</div>
+	    <div class="value" th:text="${order.orderId}"></div>
+	  </div>
+	  <div class="row">
+	    <div class="label">注文日時</div>
+	    <div class="value"
+	         th:text="${#temporals.format(order.createdAt, 'yyyy/MM/dd HH:mm')}"></div>
+	  </div>
+	</div>
+
+
+    <!-- 顧客情報 -->
+    <div class="card">
+      <h3 class="card-title">顧客情報</h3>
+      <p th:text="${order.customerName}">山田 太郎</p>
+      <p th:text="${order.phone}">090-xxxx-xxxx</p>
+      <p th:text="${order.email}">xxx@example.com</p>
+    </div>
+
+    <!-- お届け先 -->
+    <div class="card">
+      <h3 class="card-title">お届け先</h3>
+      <p>
+        〒<span th:text="${order.postalCode}">000-0000</span>
+      </p>
+      <p th:text="${order.prefecture + order.city + order.addressLine}">東京都...</p>
+      <p th:if="${order.building != null and !#strings.isEmpty(order.building)}"
+         th:text="${order.building}">建物名</p>
+    </div>
+
+    <!-- 注文商品 -->
+    <div class="card">
+      <h3 class="card-title">注文商品</h3>
+
+      <div class="table-wrap">
+        <table class="admin-table">
+          <thead>
+          <tr>
+            <th>食材名</th>
+            <th>数量</th>
+            <th>小計</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="item : ${order.items}">
+            <td th:text="${item.productName}">りんご</td>
+            <td th:text="${item.quantity}">2</td>
+            <td th:text="${item.subtotal} + '円'">600円</td>
+          </tr>
+
+          <tr th:if="${#lists.isEmpty(order.items)}">
+            <td class="empty" colspan="3">明細がありません</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="total">
+        合計金額：
+        <strong th:text="${order.totalAmount} + '円'">3000円</strong>
+      </div>
+    </div>
+
+    <div class="actions">
+      <a class="back-btn" th:href="@{/admin/orders}">戻る</a>
+    </div>
+
+  </main>
+
+</div>
+
+</body>
+</html>
