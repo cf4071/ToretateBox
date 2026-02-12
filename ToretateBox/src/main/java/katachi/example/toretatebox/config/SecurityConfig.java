@@ -33,7 +33,7 @@ public class SecurityConfig {
                 .requestMatchers(
                     "/", "/top",
                     "/products", "/products/**",
-                    "/search", "/search/**",   // ★ /search も許可（フォームが /search に飛ぶため）
+                    "/search", "/search/**",   
                     "/cart", "/cart/**",
                     "/login",
                     "/signup",
@@ -43,7 +43,6 @@ public class SecurityConfig {
 
                 .requestMatchers("/admin/**").hasRole("ADMIN")
 
-                // ✅ 上記以外はログイン必須
                 .anyRequest().authenticated()
             )
 
@@ -53,7 +52,6 @@ public class SecurityConfig {
                 .usernameParameter("email")
                 .passwordParameter("password")
 
-                // ✅ ログイン成功後：管理者なら管理画面、それ以外は /top
                 .successHandler((request, response, authentication) -> {
                     boolean isAdmin = authentication.getAuthorities().stream()
                             .anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"));

@@ -1,6 +1,5 @@
 @charset "UTF-8";
 
-/* 全体 */
 .ph-wrapper{
   width: 95%;
   max-width: 980px;
@@ -21,13 +20,11 @@
   font-size: 16px;
 }
 
-/* リスト */
 .ph-list{
   display: grid;
   gap: 18px;
 }
 
-/* PDFの枠っぽいカード */
 .ph-card{
   background: #fff;
   border: 2px solid #444;
@@ -35,7 +32,6 @@
   padding: 18px 20px;
 }
 
-/* 上段：注文日 / 合計金額 / 注文番号 */
 .ph-card-head{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -76,7 +72,6 @@
   font-weight: 700;
 }
 
-/* （将来の詳細表示用）明細テーブル */
 .ph-items{
   margin-top: 14px;
   border-top: 1px solid #bbb;
@@ -104,7 +99,6 @@
   text-align: right;
 }
 
-/* ページネーション（PDFの 1 2 っぽく） */
 .ph-pagination{
   display: flex;
   justify-content: center;
@@ -145,7 +139,6 @@
 }
 
 
-/* 戻るボタン（PDFのボタン風） */
 .ph-actions{
   display: flex;
   justify-content: center;
@@ -166,7 +159,6 @@
   font-weight: 700;
 }
 
-/* スマホ対応 */
 @media (max-width: 720px){
   .ph-card-head{
     grid-template-columns: 1fr;

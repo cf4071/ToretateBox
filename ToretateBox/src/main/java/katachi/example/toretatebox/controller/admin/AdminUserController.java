@@ -1,6 +1,7 @@
 package katachi.example.toretatebox.controller.admin;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Page;
@@ -9,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -26,6 +28,7 @@ public class AdminUserController {
 
     private final UserRepository userRepository;
     private final AddressRepository addressRepository;
+
 
     @GetMapping("/users")
     public String list(
@@ -54,11 +57,33 @@ public class AdminUserController {
         }).collect(Collectors.toList());
 
         model.addAttribute("rows", rows);
-
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", userPage.getTotalPages());
 
         return "admin/users";
+    }
+
+
+    @GetMapping("/users/{id}")
+    public String detail(
+            @PathVariable Integer id,
+            Model model) {
+
+        Optional<User> opt = userRepository.findById(id);
+        if (opt.isEmpty()) {
+            return "redirect:/admin/users";
+        }
+
+        User user = opt.get();
+
+        Address addr = addressRepository.findTopByUserIdOrderByIdDesc(user.getId());
+
+        model.addAttribute("user", user);
+        model.addAttribute("addr", addr);
+        model.addAttribute("postalCode", addr != null ? addr.getPostalCode() : "");
+        model.addAttribute("addressText", addr != null ? buildAddress(addr) : "");
+
+        return "admin/user_detail";
     }
 
     private String buildAddress(Address a) {

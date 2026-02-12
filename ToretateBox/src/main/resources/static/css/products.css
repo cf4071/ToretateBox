@@ -4,8 +4,8 @@
    トップ・一覧
 *********************************/
 .top-title {
-    grid-column: 1 / -1;     /* グリッド全体を使う */
-    text-align: center;      /* 文字を中央寄せ */
+    grid-column: 1 / -1;    
+    text-align: center;      
     margin-bottom: 30px;
 }
 
@@ -85,7 +85,7 @@
 }
 
 /*********************************
-   絞り込み検索（サイドバー）※デザイン改善
+   絞り込み検索（サイドバー）
 *********************************/
 .search-sidebar {
     width: 280px;
@@ -104,7 +104,6 @@
     gap: 18px;
 }
 
-/* タイトル */
 .search-title {
     margin: 0;
     font-size: 18px;
@@ -114,7 +113,6 @@
     border-bottom: 2px solid #e7efe4;
 }
 
-/* ブロック（カテゴリ / 季節） */
 .search-block {
     background: #f7fbf5;
     border: 1px solid #e0eadc;
@@ -129,7 +127,6 @@
     color: #3a3a3a;
 }
 
-/* ラジオを見やすく（縦並び） */
 .search-sidebar label {
     display: flex;
     align-items: center;
@@ -139,12 +136,11 @@
     color: #333;
 }
 
-/* ラジオを少し大きく */
 .search-sidebar input[type="radio"] {
     transform: scale(1.15);
 }
 
-/* 検索ボタン */
+
 .btn-search {
     width: 100%;
     padding: 12px 0;
@@ -167,7 +163,6 @@
     box-shadow: 0 2px 0 #3f9a43;
 }
 
-/* 旬の食材一覧へ（リンクをボタンっぽく） */
 .btn-top-link {
     display: block;
     width: 100%;
@@ -192,10 +187,10 @@
 *********************************/
 .pagination {
     display: flex;
-    justify-content: center;   /* 横方向の中央 */
+    justify-content: center;  
     align-items: center;
     gap: 12px;
-    margin: 40px auto 20px;    /* 上下の余白＋中央配置 */
+    margin: 40px auto 20px;   
 }
 
 .pagination a {
@@ -214,7 +209,6 @@
     border-color: #4CAF50;
 }
 
-/* 現在のページ */
 .pagination a.active {
     background-color: #4CAF50;
     color: #fff;

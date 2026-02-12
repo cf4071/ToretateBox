@@ -1,6 +1,5 @@
 @charset "UTF-8";
 
-/* 全体 */
 .cart-page{
   max-width: 980px;
   margin: 0 auto;
@@ -26,7 +25,6 @@
   font-weight: 700;
 }
 
-/* PDF風：左右2カラム */
 .cart-grid{
   display: grid;
   grid-template-columns: 1fr 360px;
@@ -34,7 +32,6 @@
   align-items: start;
 }
 
-/* 左：商品カード */
 .cart-item{
   display: grid;
   grid-template-columns: 180px 1fr;
@@ -78,7 +75,6 @@
   background-color: #ed4d2d;
 }
 
-/* 右：合計枠＋ボタン（PDFの右側） */
 .cart-right{
   display: flex;
   flex-direction: column;
@@ -115,7 +111,7 @@
   padding: 10px 12px;
   border-radius: 6px;
   border: 2px solid #c88a00;
-  background: #f2b705; /* PDFの黄色 */
+  background: #f2b705;
   font-weight: 800;
   text-decoration: none;
   color: #111;
@@ -127,7 +123,7 @@
   padding: 10px 12px;
   border-radius: 6px;
   border: 2px solid #6e9bd1;
-  background: #cfe0f5; /* PDFの水色 */
+  background: #cfe0f5; 
   font-weight: 800;
   text-decoration: none;
   color: #111;
@@ -139,7 +135,6 @@
   text-decoration: underline;
 }
 
-/* 空のとき */
 .cart-empty{
   border: 2px dashed #bbb;
   border-radius: 10px;
@@ -147,7 +142,6 @@
   background: #fff;
 }
 
-/* スマホ：縦並び */
 @media (max-width: 900px){
   .cart-grid{
     grid-template-columns: 1fr;

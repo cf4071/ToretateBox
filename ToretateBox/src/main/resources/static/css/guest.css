@@ -1,8 +1,6 @@
 @charset "UTF-8";
 
-/*********************************
-   ユーザー登録
-*********************************/
+
 .guest-body {
     display: flex;
     justify-content: center;
@@ -45,7 +43,6 @@
     background-color: #fff;
 }
 
-/* ボタン */
 .button-group {
     display: flex;
     justify-content: center;
@@ -73,7 +70,6 @@
     text-decoration: none;
 }
 
-/* エラー */
 .error {
     color: #d9534f;
     font-size: 13px;

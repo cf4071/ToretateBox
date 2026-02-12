@@ -1,8 +1,5 @@
 @charset "UTF-8";
 
-/* ===============================
-   管理画面 共通ラッパー
-=============================== */
 .admin-wrapper {
   max-width: 720px;
   margin: 40px auto;
@@ -15,9 +12,6 @@
   font-size: 24px;
 }
 
-/* ===============================
-   フォームカード風デザイン
-=============================== */
 .admin-form {
   background: #ffffff;
   border: 2px solid #666;
@@ -26,9 +20,6 @@
   box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
-/* ===============================
-   フォーム行
-=============================== */
 .form-row {
   margin-bottom: 20px;
 }
@@ -39,7 +30,6 @@
   margin-bottom: 8px;
 }
 
-/* 入力系共通 */
 .form-row input[type="text"],
 .form-row input[type="number"],
 .form-row textarea {
@@ -51,14 +41,10 @@
   box-sizing: border-box;
 }
 
-/* テキストエリアだけ少し高さ調整 */
 .form-row textarea {
   resize: vertical;
 }
 
-/* ===============================
-   画像アップロード
-=============================== */
 .image-input {
   margin: 10px 0;
   padding: 6px;
@@ -72,18 +58,12 @@
   background-color: #f0f0f0;
 }
 
-/* ===============================
-   エラーメッセージ
-=============================== */
 .error {
   color: #d33;
   font-size: 13px;
   margin-top: 6px;
 }
 
-/* ===============================
-   ボタンエリア
-=============================== */
 .form-actions {
   margin-top: 30px;
   display: flex;

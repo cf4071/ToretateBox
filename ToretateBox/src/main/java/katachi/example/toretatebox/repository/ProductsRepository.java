@@ -12,16 +12,16 @@ import katachi.example.toretatebox.domain.model.Product;
 @Repository
 public interface ProductsRepository extends JpaRepository<Product, Integer> {
 
-    // ✅ 商品名あいまい検索
+    //商品名あいまい検索
     List<Product> findByNameContaining(String keyword);
 
-    // ✅ 季節（旬）
+    //季節（旬）
     Page<Product> findBySeason(String season, Pageable pageable);
 
-    // ✅ カテゴリID
+    //カテゴリID
     Page<Product> findByCategoryId(Integer categoryId, Pageable pageable);
 
-    // ✅ カテゴリID＋季節
+    //カテゴリID＋季節
     Page<Product> findByCategoryIdAndSeason(
             Integer categoryId,
             String season,

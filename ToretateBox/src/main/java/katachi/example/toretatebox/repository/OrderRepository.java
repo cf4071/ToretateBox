@@ -14,16 +14,11 @@ import katachi.example.toretatebox.domain.model.Order;
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Integer> {
 
-    // ユーザーの注文履歴（新しい順）
     List<Order> findByUserIdOrderByCreatedAtDesc(Integer userId);
 
-    // ユーザーの注文履歴（ページング + 新しい順）
     Page<Order> findByUserIdOrderByCreatedAtDesc(Integer userId, Pageable pageable);
 
-    /**
-     * 管理者：注文一覧用（DTOで軽く取得）
-     * Order.user（ManyToOne）を使って JOIN するのが安全
-     */
+
     @Query("""
         SELECT new katachi.example.toretatebox.domain.dto.AdminOrderRow(
             o.id,

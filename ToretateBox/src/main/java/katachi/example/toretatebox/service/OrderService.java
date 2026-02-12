@@ -31,7 +31,7 @@ public class OrderService {
 
         // ② orders 保存
         Order order = new Order();
-        order.setUserId(userId);                 // ✅ 必須（ログイン必須にしたのでnullにならない）
+        order.setUserId(userId);          
         order.setAddressId(address.getId());
         order.setTotalAmount(totalAmount);
 

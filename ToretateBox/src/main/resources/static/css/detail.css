@@ -1,6 +1,5 @@
-/*********************************
-   食材詳細ページ（左右2カラム）
-*********************************/
+@charset "UTF-8";
+
 .detail-title {
     text-align: center;
     font-size: 22px;
@@ -27,7 +26,7 @@
     display: flex;
     align-items: center;
     display: flex;
-    justify-content: center; /* 横方向の中央 */
+    justify-content: center; 
     align-items: center;
 }
 
@@ -67,9 +66,9 @@
 .detail-buttons {
     margin-top: 30px;
     display: flex;
-    flex-direction: column;   /* ← 縦並びにする */
+    flex-direction: column;  
     gap: 16px;
-    align-items: flex-start;  /* 左寄せ */
+    align-items: flex-start;  
 }
 
 .btn-cart {
@@ -82,7 +81,7 @@
     border: none;
     cursor: pointer;
     min-width: 200px;
-    box-shadow: 0 4px 0 #e67e22; /* 立体感 */
+    box-shadow: 0 4px 0 #e67e22; 
 }
 
 .btn-cart:active {

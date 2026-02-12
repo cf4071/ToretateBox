@@ -1,6 +1,5 @@
 @charset "UTF-8";
 
-/* ===== 全体を紙っぽく ===== */
 body {
     background: #e5e5e5;
     font-family: "Yu Gothic", "Meiryo", sans-serif;
@@ -14,7 +13,6 @@ body {
     box-shadow: 0 0 10px rgba(0,0,0,0.15);
 }
 
-/* タイトル */
 .admin-title {
     text-align: center;
     font-size: 26px;
@@ -22,14 +20,12 @@ body {
     letter-spacing: 4px;
 }
 
-/* 各セクションを紙の枠っぽく */
 .card {
     border: 1px solid #aaa;
     padding: 15px 20px;
     margin-bottom: 25px;
 }
 
-/* ラベル＋値の行 */
 .row {
     display: flex;
     border-bottom: 1px dotted #bbb;
@@ -46,7 +42,6 @@ body {
     flex: 1;
 }
 
-/* セクションタイトル */
 .card-title {
     font-size: 16px;
     margin-bottom: 10px;
@@ -54,7 +49,7 @@ body {
     padding-left: 8px;
 }
 
-/* 商品テーブル */
+
 .admin-table {
     width: 100%;
     border-collapse: collapse;
@@ -73,7 +68,6 @@ body {
     font-weight: bold;
 }
 
-/* 合計金額 */
 .total {
     text-align: right;
     margin-top: 15px;
@@ -81,7 +75,6 @@ body {
     font-weight: bold;
 }
 
-/* 戻るボタン */
 .actions {
     text-align: center;
     margin-top: 30px;

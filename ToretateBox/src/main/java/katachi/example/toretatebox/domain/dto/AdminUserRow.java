@@ -14,7 +14,7 @@ public class AdminUserRow {
     private String phoneNumber;
 
     private String postalCode;
-    private String address; // 都道府県＋市＋番地などを1つにした文字
+    private String address; 
 
     private LocalDateTime createdAt;
 }

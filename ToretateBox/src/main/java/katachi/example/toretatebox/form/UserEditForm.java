@@ -7,7 +7,6 @@ import lombok.Data;
 @Data
 public class UserEditForm {
 
-    // ▼ usersテーブル
     @NotBlank
     private String name;
 
@@ -27,7 +26,6 @@ public class UserEditForm {
     @NotBlank
     private String passwordConfirm;
 
-    // ▼ addressesテーブル（GuestFormと同じ）
     @NotBlank
     private String postalCode;
 

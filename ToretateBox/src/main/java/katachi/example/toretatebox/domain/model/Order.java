@@ -20,7 +20,7 @@ public class Order {
   @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
-  @Column(name="user_id", nullable=true) // ← false → true にする
+  @Column(name="user_id", nullable=true) 
   private Integer userId;
 
   @Column(name="address_id", nullable=false)

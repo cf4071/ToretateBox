@@ -1,13 +1,11 @@
 @charset "UTF-8";
 
-/* 画面全体（余白たっぷり・中央寄せ） */
 .admin-wrapper{
   max-width: 780px;
   margin: 40px auto 80px;
   padding: 0 16px;
 }
 
-/* タイトル（中央） */
 .admin-title{
   text-align: center;
   font-size: 22px;
@@ -15,18 +13,16 @@
   margin: 10px 0 18px;
 }
 
-/* 入力エリア（罫線箱） */
 .admin-form{
-  border: 2px solid #d7b8a3;      /* 罫線っぽい色 */
+  border: 2px solid #d7b8a3;   
   border-radius: 6px;
-  background: #fff7ef;            /* 薄いベージュ */
-  overflow: hidden;               /* 行の罫線をきれいに */
+  background: #fff7ef;        
+  overflow: hidden;              
 }
 
-/* 1行を「左：項目名 / 右：入力欄」にする */
 .form-row{
   display: grid;
-  grid-template-columns: 180px 1fr; /* 左列幅は好みで調整OK */
+  grid-template-columns: 180px 1fr; 
   border-top: 1px solid #e4c9b7;
 }
 
@@ -34,7 +30,6 @@
   border-top: none;
 }
 
-/* 左：項目名（薄いオレンジ背景） */
 .form-row > label{
   background: #f6d6bf;
   padding: 12px 12px;
@@ -44,7 +39,6 @@
   align-items: center;
 }
 
-/* 右：入力欄（余白） */
 .form-row > input,
 .form-row > textarea,
 .form-row > select{
@@ -58,27 +52,23 @@
   font-size: 14px;
 }
 
-/* textareaの見た目 */
 .form-row > textarea{
   resize: vertical;
   min-height: 72px;
 }
 
-/* selectを少し整える */
 .form-row > select{
   height: 40px;
 }
 
-/* ボタンエリア（PDFみたいに下で左右に並べる） */
 .form-actions{
   display: flex;
   justify-content: center;
-  gap: 90px;              /* 2つのボタン間隔 */
+  gap: 90px;              
   padding: 22px 0 26px;
   background: transparent;
 }
 
-/* 共通ボタンっぽい形 */
 .admin-btn,
 .admin-link{
   display: inline-block;
@@ -92,13 +82,11 @@
   cursor: pointer;
 }
 
-/* 更新（ピンク） */
 .admin-btn{
   background: #f2b7b7;
   color: #333;
 }
 
-/* 戻る（水色） */
 .admin-link{
   background: #cfe0f7;
   color: #333;

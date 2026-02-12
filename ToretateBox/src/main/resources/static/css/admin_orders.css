@@ -1,13 +1,13 @@
 @charset "UTF-8";
 
-/* 画面全体の余白 */
+
 .admin-wrapper {
   width: 90%;
   max-width: 980px;
   margin: 30px auto 60px;
 }
 
-/* タイトル（中央） */
+
 .admin-title {
   text-align: center;
   font-size: 22px;
@@ -15,14 +15,14 @@
   font-weight: 700;
 }
 
-/* テーブル枠 */
+
 .table-wrap {
   border: 1px solid #cfd8c3;
   border-radius: 4px;
   overflow: hidden;
 }
 
-/* テーブル基本 */
+
 .admin-table {
   width: 100%;
   border-collapse: collapse;
@@ -30,9 +30,9 @@
   font-size: 14px;
 }
 
-/* ヘッダー（緑） */
+
 .admin-table thead th {
-  background: #7fb24d;          /* PDFっぽい緑 */
+  background: #7fb24d;          
   color: #fff;
   padding: 10px 8px;
   border-right: 1px solid rgba(255,255,255,0.35);
@@ -44,7 +44,7 @@
   border-right: none;
 }
 
-/* 本体セル */
+
 .admin-table tbody td {
   padding: 10px 8px;
   border-top: 1px solid #dfe7d6;
@@ -52,19 +52,19 @@
   background: #fff;
 }
 
-/* しま模様（薄い緑） */
+
 .admin-table tbody tr:nth-child(odd) td {
   background: #f2f7ec;
 }
 
-/* 空表示 */
+
 .admin-table .empty {
   padding: 16px 8px;
   text-align: center;
   color: #666;
 }
 
-/* 詳細ボタン（青） */
+
 .detail-btn {
   display: inline-block;
   padding: 6px 12px;
@@ -80,7 +80,7 @@
   filter: brightness(0.95);
 }
 
-/* ページング（中央に 1 2） */
+
 .pager {
   display: flex;
   justify-content: center;
@@ -103,7 +103,7 @@
   border: 1px solid #999;
 }
 
-/* 戻るボタン（中央の淡い青） */
+
 .back-area {
   display: flex;
   justify-content: center;
@@ -150,7 +150,7 @@
 }
 
 .pager-nav {
-  border-radius: 4px; /* 矢印だけ角丸に */
+  border-radius: 4px; 
   padding: 0 6px;
 }
 

@@ -10,19 +10,16 @@
 
 <body>
 
-<!-- ▼ layout.html を適用（top.html と同じ方式） -->
 <div th:replace="~{layout/layout :: layout(~{::title}, ~{::content})}">
 
   <main th:fragment="content" class="admin-wrapper">
 
     <h2 class="admin-title">食材管理</h2>
 
-    <!-- 一覧が空のとき -->
     <div class="admin-empty" th:if="${products == null or #lists.isEmpty(products)}">
       食材データがありません。
     </div>
 
-    <!-- 一覧テーブル -->
     <div class="admin-table-wrap" th:if="${products != null and !#lists.isEmpty(products)}">
       <table class="admin-table">
 
@@ -42,7 +39,6 @@
           <tr th:each="p : ${products}">
             <td th:text="${p.id}">1</td>
 
-            <!-- ▼ 画像：空 / パス付き(/uploads/...) / ファイル名だけ の3分岐 -->
 			<td class="admin-image-cell"
 			    th:with="
 			      imgSrc=
@@ -67,7 +63,6 @@
               <span th:text="${#numbers.formatInteger(p.price, 0, 'COMMA')}">1,000</span> 円
             </td>
 
-            <!-- 登録日（null安全） -->
             <td th:text="${p.createdAt != null ? #temporals.format(p.createdAt, 'yyyy/MM/dd') : ''}">
               2026/01/27
             </td>
@@ -90,17 +85,14 @@
       </table>
     </div>
 
-    <!-- ▼ ページング（本物） -->
     <div class="admin-paging"
          th:if="${productPage != null and productPage.totalPages > 1}">
 
-      <!-- 前へ -->
       <a th:if="${productPage.hasPrevious()}"
          th:href="@{/admin/products(page=${productPage.number - 1})}">
         前へ
       </a>
 
-      <!-- ページ番号 -->
       <span th:each="i : ${#numbers.sequence(0, productPage.totalPages - 1)}">
         <a th:href="@{/admin/products(page=${i})}"
            th:text="${i + 1}"
@@ -108,7 +100,6 @@
         </a>
       </span>
 
-      <!-- 次へ -->
       <a th:if="${productPage.hasNext()}"
          th:href="@{/admin/products(page=${productPage.number + 1})}">
         次へ

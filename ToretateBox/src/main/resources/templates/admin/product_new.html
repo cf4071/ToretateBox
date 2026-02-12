@@ -21,7 +21,6 @@
           enctype="multipart/form-data"
           class="admin-form">
 
-      <!-- CSRFがある時だけ出す（無くても落ちない） -->
       <input type="hidden"
              th:if="${_csrf != null}"
              th:name="${_csrf.parameterName}"

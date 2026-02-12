@@ -1,17 +1,12 @@
 @charset "UTF-8";
 
-/* =========================================
-   管理：食材一覧（PDF風デザイン）
-   ========================================= */
 
-/* 画面全体 */
 .admin-wrapper{
   width: 92%;
   max-width: 1100px;
   margin: 28px auto 50px;
 }
 
-/* タイトル */
 .admin-title{
   text-align: center;
   font-size: 26px;
@@ -19,25 +14,21 @@
   margin: 10px 0 18px;
 }
 
-/* テーブル枠 */
 .admin-table-wrap{
   background: #fff;
   border: 1px solid #cfe0cf;
-  overflow-x: auto; /* 画面が狭いときは横スクロール */
-  -webkit-overflow-scrolling: touch; /* スマホでなめらかスクロール */
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; 
 }
 
-/* テーブル本体 */
 .admin-table{
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
-  min-width: 980px; /* 小画面でもレイアウト崩れ防止 */
+  min-width: 980px; 
 }
 
-/* ----------------------------
-   列幅
----------------------------- */
+
 .col-id{ width: 70px; }
 .col-image{ width: 90px; }
 .col-name{ width: 160px; }
@@ -46,7 +37,6 @@
 .col-date{ width: 140px; }
 .col-actions{ width: 160px; }
 
-/* ヘッダー */
 .admin-table thead th{
   background: #2f6f2f;
   color: #fff;
@@ -59,7 +49,6 @@
   border-right: none;
 }
 
-/* 本文セル */
 .admin-table tbody td{
   padding: 14px 8px;
   border-top: 1px solid #d9e6d9;
@@ -68,7 +57,6 @@
   word-break: break-word;
 }
 
-/* しま模様 */
 .admin-table tbody tr:nth-child(even){
   background: #dcefdc;
 }
@@ -76,12 +64,10 @@
   background: #ffffff;
 }
 
-/* 画像セル */
 .admin-image-cell{
   text-align: center;
 }
 
-/* サムネ画像 */
 .admin-thumb{
   width: 70px;
   height: 70px;
@@ -91,18 +77,15 @@
   border-radius: 4px;
 }
 
-/* 説明セル */
 .admin-desc-cell{
   text-align: left;
   padding-left: 10px;
 }
 
-/* 操作列 */
 .admin-actions{
   white-space: nowrap;
 }
 
-/* 編集ボタン */
 .admin-link{
   display: inline-block;
   padding: 8px 14px;
@@ -117,7 +100,6 @@
   filter: brightness(0.98);
 }
 
-/* 削除ボタン */
 .admin-link.danger{
   background: #ffe0e0;
   color: #b00020;
@@ -125,7 +107,6 @@
   margin-left: 8px;
 }
 
-/* 空表示 */
 .admin-empty{
   text-align: center;
   padding: 22px;
@@ -134,7 +115,6 @@
   border: 1px solid #d7e6d7;
 }
 
-/* ページ番号 */
 .admin-paging{
   display: flex;
   justify-content: center;
@@ -150,9 +130,9 @@
   color: #2f6f2f;
 }
 
-/* =========================================
-   レスポンシブ対応（画面が小さいとき）
-   ========================================= */
+/* =================
+   レスポンシブ対応
+   ================= */
 @media (max-width: 768px){
 
   .admin-wrapper{

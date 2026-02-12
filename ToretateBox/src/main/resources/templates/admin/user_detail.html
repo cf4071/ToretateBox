@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>ユーザー詳細 | とれたてBOX</title>
+  <link rel="stylesheet" th:href="@{/css/admin_user_detail.css}">
+</head>
+<body>
+
+<div th:replace="~{layout/layout :: layout(~{::title}, ~{::main})}">
+
+  <main class="page">
+
+
+    <h1 class="page-title">ユーザー詳細</h1>
+
+
+    <!-- PDFの薄緑の表 -->
+    <table class="detail">
+      <tr>
+        <th>メールアドレス(ID)</th>
+        <td th:text="${user.email}">xxx_example.com</td>
+      </tr>
+
+      <tr>
+        <th>ユーザー名</th>
+        <td th:text="${user.name}">田中太郎</td>
+      </tr>
+
+      <tr>
+        <th>フリガナ</th>
+        <td th:text="${user.nameKana}">タナカタロウ</td>
+      </tr>
+
+      <tr>
+        <th>電話番号</th>
+        <td th:text="${user.phoneNumber}">09016738794</td>
+      </tr>
+
+      <tr>
+        <th>郵便番号</th>
+        <td th:text="${postalCode}">987-4567</td>
+      </tr>
+
+      <tr>
+        <th>都道府県</th>
+        <td th:text="${addr != null ? addr.prefecture : ''}">兵庫県</td>
+      </tr>
+
+      <tr>
+        <th>市区町村</th>
+        <td th:text="${addr != null ? addr.city : ''}">西宮市</td>
+      </tr>
+
+      <tr>
+        <th>町名・番地</th>
+        <td th:text="${addr != null ? addr.addressLine1 : ''}">大和町2</td>
+      </tr>
+
+      <tr>
+        <th>建物名・部屋番号</th>
+        <td th:text="${addr != null ? addr.addressLine2 : ''}">未来マンション 304</td>
+      </tr>
+
+      <tr>
+        <th>登録日</th>
+        <td th:text="${#temporals.format(user.createdAt, 'yyyy/MM/dd')}">2025/05/15</td>
+      </tr>
+    </table>
+
+    <div class="actions">
+      <!-- 削除機能がまだなら、このformはコメントアウトでOK -->
+      <!--
+      <form th:action="@{/admin/users/{id}/delete(id=${user.id})}" method="post">
+        <button type="submit" class="btn btn-danger"
+                onclick="return confirm('削除してよろしいですか？');">削除</button>
+      </form>
+      -->
+      <a th:href="@{/admin/users}" class="btn btn-back">戻る</a>
+    </div>
+
+  </main>
+</div>
+
+</body>
+</html>

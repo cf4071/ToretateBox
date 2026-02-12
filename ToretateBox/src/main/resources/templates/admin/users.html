@@ -46,20 +46,17 @@
       
       <div class="pagination">
 
-	  <!-- 前のページ -->
 	  <a th:if="${currentPage > 0}"
 	     th:href="@{/admin/users(page=${currentPage - 1})}">
 	     ← 前へ
 	  </a>
 	
-	  <!-- ページ番号 -->
 	  <span>
 	    <span th:text="${currentPage + 1}"></span>
 	    /
 	    <span th:text="${totalPages}"></span>
 	  </span>
 	
-	  <!-- 次のページ -->
 	  <a th:if="${currentPage + 1 < totalPages}"
 	     th:href="@{/admin/users(page=${currentPage + 1})}">
 	     次へ →

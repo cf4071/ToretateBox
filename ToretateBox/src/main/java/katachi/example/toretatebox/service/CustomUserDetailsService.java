@@ -45,7 +45,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         // Spring Security が使う UserDetails を返す
         return new org.springframework.security.core.userdetails.User(
                 user.getEmail(),
-                user.getPassword(),   // DBに BCrypt のハッシュが入っている前提
+                user.getPassword(),   
                 authorities
         );
     }

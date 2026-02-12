@@ -36,11 +36,9 @@ public class User {
     @Column(name = "password", nullable = false, length = 256)
     private String password;
 
-    // ▼ 管理者フラグ
     @Column(name = "is_admin", nullable = false)
     private boolean isAdmin = false;
 
-    // ▼ 論理削除フラグ
     @Column(name = "is_deleted", nullable = false)
     private boolean isDeleted = false;
 

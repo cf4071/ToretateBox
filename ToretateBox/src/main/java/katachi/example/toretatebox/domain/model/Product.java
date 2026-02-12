@@ -19,37 +19,31 @@ import lombok.Data;
 @Data
 public class Product {
 
-    // 1. 食材ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    // 2. 食材名
     @Column(name = "name", nullable = false, length = 50)
     private String name;
 
-    // 3. 食材説明
+    // 食材説明
     @Column(name = "description", length = 255)
     private String description;
 
-    // 4. 値段
     @Column(name = "price", nullable = false)
     private Integer price;
 
-    // 5. カテゴリID（外部キー）
+    // カテゴリID（外部キー）
     @Column(name = "category_id", nullable = false)
     private Integer categoryId;
 
-    // 6. 旬の季節
     @Column(name = "season", length = 20)
     private String season;
 
-    // 7. 画像URL
     @Column(name = "image_url", length = 255)
     private String imageUrl;
 
-    // 8. 表示フラグ（TRUE / FALSE）
     @Column(name = "is_active", nullable = false)
     private boolean isActive;
 

@@ -1,8 +1,5 @@
 @charset "UTF-8";
 
-/* =========================
-  完了画面（complete.html）専用
-========================= */
 
 .register-wrapper {
   width: 100%;
@@ -18,7 +15,6 @@
   margin: 0 0 24px 0;
 }
 
-/* 本文（注文番号の文章） */
 .register-wrapper p {
   margin: 0 auto 28px auto;
   font-size: 18px;
@@ -30,7 +26,6 @@
   box-shadow: 0 6px 16px rgba(0,0,0,0.05);
 }
 
-/* 注文番号（強調表示） */
 .register-wrapper p strong {
   display: inline-block;
   margin: 0 6px;
@@ -42,12 +37,10 @@
   letter-spacing: 1px;
 }
 
-/* ボタン置き場 */
 .register-wrapper > div {
   margin-top: 18px;
 }
 
-/* 「食材一覧へ」ボタン */
 .confirm-btn {
   display: inline-block;
   min-width: 240px;

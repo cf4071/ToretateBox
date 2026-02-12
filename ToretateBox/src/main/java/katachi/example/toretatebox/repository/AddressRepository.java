@@ -10,6 +10,5 @@ public interface AddressRepository extends JpaRepository<Address, Integer> {
 
     List<Address> findByUserId(Integer userId);
 
-    // ★ これを追加
     Address findTopByUserIdOrderByIdDesc(Integer userId);
 }
