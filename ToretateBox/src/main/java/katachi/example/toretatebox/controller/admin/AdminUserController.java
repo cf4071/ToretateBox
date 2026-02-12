@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -93,4 +94,15 @@ public class AdminUserController {
 
         return a.getPrefecture() + a.getCity() + " " + a.getAddressLine1() + line2;
     }
+    
+    @PostMapping("/users/{id}/delete")
+    public String deleteUser(@PathVariable Integer id) {
+
+        // 物理削除：DBから削除する
+        userRepository.deleteById(id);
+
+        return "redirect:/admin/users";
+    }
+
+
 }

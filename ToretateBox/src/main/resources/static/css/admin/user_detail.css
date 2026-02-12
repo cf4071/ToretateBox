@@ -69,7 +69,32 @@
   color: #222;
 }
 
-.btn-danger {
-  background: #f4b6b6;
-  color: #222;
+.actions {
+  margin-top: 30px;
+  display: flex;
+  gap: 15px;
 }
+
+.btn {
+  padding: 8px 18px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-danger {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #c0392b;
+}
+
+.btn-back {
+  background-color: #777;
+  color: white;
+}
+
