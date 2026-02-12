@@ -1,13 +1,10 @@
-<!-- /templates/top/top.html -->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="UTF-8">
   <title>今が旬 - TOPページ</title>
-
-  <!-- TOP画面で使うCSSだけ（共通はlayout.html側） -->
-  <link rel="stylesheet" th:href="@{/css/products.css}">
+  <link rel="stylesheet" th:href="@{/css/products/list.css}">
 </head>
 
 <body>
@@ -15,7 +12,6 @@
 <div th:replace="~{layout/layout :: layout(~{::title}, ~{::content})}">
 <main th:fragment="content">
 
-  <!-- ここから下がページの中身 -->
   <div class="grid">
 
     <div class="top-title">

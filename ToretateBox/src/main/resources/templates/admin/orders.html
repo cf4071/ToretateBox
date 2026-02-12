@@ -29,11 +29,11 @@
 
         <tbody>
           <tr th:each="order : ${orders}">
-            <td th:text="${order.id}">1</td>
-            <td th:text="${order.userId}">10</td>
+            <td th:text="${order.id}"></td>
+            <td th:text="${order.userId}"></td>
             <td th:text="${order.email != null ? order.email : ''}"></td>
-            <td th:text="${#temporals.format(order.createdAt, 'yyyy/MM/dd HH:mm')}">2026/02/02 11:00</td>
-            <td th:text="${order.totalAmount} + '円'">3000円</td>
+            <td th:text="${#temporals.format(order.createdAt, 'yyyy/MM/dd HH:mm')}"></td>
+            <td th:text="${order.totalAmount} + '円'"></td>
             <td>
               <a class="detail-btn" th:href="@{'/admin/orders/' + ${order.id}}">詳細</a>
             </td>
@@ -46,7 +46,6 @@
       </table>
     </div>
 
-    <!-- ページネーション -->
     <div class="pager" th:if="${page != null and page.totalPages > 1}">
       <a class="pager-nav"
          th:if="${!page.first}"

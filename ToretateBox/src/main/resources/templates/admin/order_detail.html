@@ -30,18 +30,18 @@
     <!-- 顧客情報 -->
     <div class="card">
       <h3 class="card-title">顧客情報</h3>
-      <p th:text="${order.customerName}">山田 太郎</p>
-      <p th:text="${order.phone}">090-xxxx-xxxx</p>
-      <p th:text="${order.email}">xxx@example.com</p>
+      <p th:text="${order.customerName}"></p>
+      <p th:text="${order.phone}"></p>
+      <p th:text="${order.email}">m</p>
     </div>
 
     <!-- お届け先 -->
     <div class="card">
       <h3 class="card-title">お届け先</h3>
       <p>
-        〒<span th:text="${order.postalCode}">000-0000</span>
+        〒<span th:text="${order.postalCode}"></span>
       </p>
-      <p th:text="${order.prefecture + order.city + order.addressLine}">東京都...</p>
+      <p th:text="${order.prefecture + order.city + order.addressLine}"></p>
       <p th:if="${order.building != null and !#strings.isEmpty(order.building)}"
          th:text="${order.building}">建物名</p>
     </div>
@@ -61,9 +61,9 @@
           </thead>
           <tbody>
           <tr th:each="item : ${order.items}">
-            <td th:text="${item.productName}">りんご</td>
+            <td th:text="${item.productName}"></td>
             <td th:text="${item.quantity}">2</td>
-            <td th:text="${item.subtotal} + '円'">600円</td>
+            <td th:text="${item.subtotal} + '円'"></td>
           </tr>
 
           <tr th:if="${#lists.isEmpty(order.items)}">
@@ -75,7 +75,7 @@
 
       <div class="total">
         合計金額：
-        <strong th:text="${order.totalAmount} + '円'">3000円</strong>
+        <strong th:text="${order.totalAmount} + '円'"></strong>
       </div>
     </div>
 

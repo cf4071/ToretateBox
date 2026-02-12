@@ -5,8 +5,7 @@
   <meta charset="UTF-8">
   <title>購入履歴 | とれたてBOX</title>
 
-  <!-- ✅ ページ固有CSSだけ書く（共通はlayout.html側） -->
-  <link rel="stylesheet" th:href="@{/css/purchase_history.css}">
+  <link rel="stylesheet" th:href="@{/css/user/purchase_history.css}">
 </head>
 
 <body>
@@ -70,16 +69,14 @@
       </article>
     </section>
     
-    <!-- ✅ ページネーション（8件を超えたら表示） -->
 	<nav class="ph-pagination" th:if="${orderPage != null and orderPage.totalPages > 1}">
-	  <!-- 前へ -->
+		
 	  <a class="ph-page"
 	     th:if="${orderPage.hasPrevious()}"
 	     th:href="@{/Purchase_history(page=${orderPage.number - 1})}">
 	    前へ
 	  </a>
 	
-	  <!-- ページ番号 -->
 	  <span th:each="i : ${#numbers.sequence(0, orderPage.totalPages - 1)}">
 	    <a class="ph-page"
 	       th:href="@{/Purchase_history(page=${i})}"
@@ -88,7 +85,6 @@
 	    </a>
 	  </span>
 	
-	  <!-- 次へ -->
 	  <a class="ph-page"
 	     th:if="${orderPage.hasNext()}"
 	     th:href="@{/Purchase_history(page=${orderPage.number + 1})}">

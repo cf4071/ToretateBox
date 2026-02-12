@@ -1,4 +1,3 @@
-<!-- /templates/layout/layout.html -->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       th:fragment="layout(title, content)">
@@ -7,18 +6,12 @@
     <meta charset="UTF-8">
     <title th:replace="${title}">とれたてBOX</title>
 
-    <!-- 共通 -->
-    <link rel="stylesheet" th:href="@{/css/common.css}">
-    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/layout/common.css}">
+    <link rel="stylesheet" th:href="@{/css/layout/base.css}">
 
-    <!-- 共通パーツ -->
-    <link rel="stylesheet" th:href="@{/css/header.css}">
-    <link rel="stylesheet" th:href="@{/css/footer.css}">
+    <link rel="stylesheet" th:href="@{/css/layout/header.css}">
+    <link rel="stylesheet" th:href="@{/css/layout/footer.css}">
 
-    <!-- 画面系（必要なら全部読んでOK） -->
-    <link rel="stylesheet" th:href="@{/css/products.css}">
-    <link rel="stylesheet" th:href="@{/css/detail.css}">
-    <link rel="stylesheet" th:href="@{/css/cart.css}">
 </head>
 
 <body>

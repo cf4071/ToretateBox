@@ -4,13 +4,11 @@
   <meta charset="UTF-8">
   <title>ユーザー情報 | とれたてBOX</title>
 
-  <!-- ページ固有CSSだけでOK（共通はlayout.html側） -->
-  <link rel="stylesheet" th:href="@{/css/mypage.css}">
+  <link rel="stylesheet" th:href="@{/css/user/mypage.css}">
 </head>
 
 <body>
 
-<!-- ▼ layout.html を適用 -->
 <div th:replace="~{layout/layout :: layout(~{::title}, ~{::content})}">
 
   <main th:fragment="content" class="mypage-wrapper">

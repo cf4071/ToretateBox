@@ -30,13 +30,13 @@
 
         <tbody>
           <tr th:each="row : ${rows}">
-            <td th:text="${row.id}">1</td>
-            <td th:text="${row.email}">sample@example.com</td>
-            <td th:text="${row.name}">山田太郎</td>
-            <td th:text="${row.phoneNumber}">090-0000-0000</td>
-            <td th:text="${row.postalCode}">123-4567</td>
-            <td th:text="${row.address}">東京都○○区…</td>
-            <td th:text="${#temporals.format(row.createdAt, 'yyyy/MM/dd')}">2026/02/06</td>
+            <td th:text="${row.id}"></td>
+            <td th:text="${row.email}"></td>
+            <td th:text="${row.name}"></td>
+            <td th:text="${row.phoneNumber}"></td>
+            <td th:text="${row.postalCode}"></td>
+            <td th:text="${row.address}"></td>
+            <td th:text="${#temporals.format(row.createdAt, 'yyyy/MM/dd')}"></td>
             <td>
               <a th:href="@{/admin/users/{id}(id=${row.id})}" class="btn-detail">詳細</a>
             </td>

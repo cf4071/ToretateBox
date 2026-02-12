@@ -1,4 +1,3 @@
-<!-- /templates/products/detail.html -->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
@@ -6,8 +5,7 @@
   <meta charset="UTF-8">
   <title th:text="${product.name} + ' - 商品詳細'">商品詳細</title>
 
-  <!-- 画面専用CSS（layout.htmlで detail.css を読んでいないなら必要） -->
-  <link rel="stylesheet" th:href="@{/css/detail.css}">
+  <link rel="stylesheet" th:href="@{/css/products/detail.css}">
 </head>
 
 <body>
@@ -16,15 +14,12 @@
 
 <main th:fragment="content">
 
-  <!-- ▼ 中央タイトル -->
   <div class="detail-title">
     <h2>食材詳細</h2>
   </div>
 
-  <!-- ▼ 左右2カラムレイアウト -->
   <div class="detail-container-2col">
 
-    <!-- ▼ 左：画像 -->
     <div class="detail-left">
       <div class="detail-image-box">
 		<img th:src="${#strings.isEmpty(product.imageUrl)}
@@ -36,7 +31,6 @@
       </div>
     </div>
 
-    <!-- ▼ 右：食材情報 -->
     <div class="detail-right">
 
       <h2 class="detail-name" th:text="${product.name}">食材名</h2>

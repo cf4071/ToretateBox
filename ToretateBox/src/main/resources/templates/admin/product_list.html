@@ -52,7 +52,7 @@
 			</td>
 
 
-            <td th:text="${p.name}">紅玉(りんご)</td>
+            <td th:text="${p.name}"></td>
 
             <td class="admin-desc-cell"
                 th:text="${p.description}">
@@ -60,7 +60,7 @@
             </td>
 
             <td>
-              <span th:text="${#numbers.formatInteger(p.price, 0, 'COMMA')}">1,000</span> 円
+              <span th:text="${#numbers.formatInteger(p.price, 0, 'COMMA')}"></span> 円
             </td>
 
             <td th:text="${p.createdAt != null ? #temporals.format(p.createdAt, 'yyyy/MM/dd') : ''}">

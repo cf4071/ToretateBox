@@ -1,4 +1,3 @@
-<!-- /templates/search/search.html（ファイル名はあなたの構成に合わせてOK） -->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
@@ -6,8 +5,7 @@
   <meta charset="UTF-8">
   <title>検索結果 | とれたてBOX</title>
 
-  <!-- 画面専用CSS（検索結果でproducts.cssのカードを使うなら） -->
-  <link rel="stylesheet" th:href="@{/css/products.css}">
+  <link rel="stylesheet" th:href="@{/css/products/list.css}">
 </head>
 
 <body>
@@ -22,7 +20,6 @@
       <h2 th:text="'検索結果：' + ${keyword}">検索結果</h2>
     </div>
 
-    <!-- 該当なし -->
     <div th:if="${products == null or #lists.isEmpty(products)}">
       <p>該当する商品がありません。</p>
     </div>

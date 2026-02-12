@@ -1,13 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>ユーザー登録 | とれたてBOX</title>
-
-    <!-- 共通 -->
-    <link rel="stylesheet" th:href="@{/css/base.css}">
-
-    <link rel="stylesheet" th:href="@{/css/signup.css}">
+<meta charset="UTF-8">
+<title>ユーザー登録 | とれたてBOX</title>
+<link rel="stylesheet" th:href="@{/css/user/signup.css}">
 </head>
 
 <body>
@@ -16,7 +12,6 @@
 
     <h2 class="signup-title">新規ユーザー登録</h2>
 
-    <!-- エラーメッセージ -->
     <div th:if="${errorMessage}" class="error-message">
         <p th:text="${errorMessage}"></p>
     </div>

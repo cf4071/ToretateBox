@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>ユーザー情報編集 | とれたてBOX</title>
+<meta charset="UTF-8">
+<title>ユーザー情報編集 | とれたてBOX</title>
 
-  <!-- 画面用CSSだけ読み込めばOK（共通はlayout.html側で読み込まれる） -->
-  <link rel="stylesheet" th:href="@{/css/user_edit.css}">
+<link rel="stylesheet" th:href="@{/css/user/user_edit.css}">
 </head>
 
 <body>
 
-<!-- ▼ layout.html を適用 -->
 <div th:replace="~{layout/layout :: layout(~{::title}, ~{::content})}">
 
   <main th:fragment="content" class="edit-wrapper">
@@ -91,7 +89,7 @@
 
       <div class="btns">
         <button type="submit" class="btn update">更新</button>
-        <a th:href="@{/user/mypage}" class="btn back">戻る</a>
+        <a th:href="@{/top}" class="btn back">戻る</a>
       </div>
 
     </form>

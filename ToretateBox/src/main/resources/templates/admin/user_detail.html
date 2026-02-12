@@ -15,56 +15,55 @@
     <h1 class="page-title">ユーザー詳細</h1>
 
 
-    <!-- PDFの薄緑の表 -->
     <table class="detail">
       <tr>
         <th>メールアドレス(ID)</th>
-        <td th:text="${user.email}">xxx_example.com</td>
+        <td th:text="${user.email}"></td>
       </tr>
 
       <tr>
         <th>ユーザー名</th>
-        <td th:text="${user.name}">田中太郎</td>
+        <td th:text="${user.name}"></td>
       </tr>
 
       <tr>
         <th>フリガナ</th>
-        <td th:text="${user.nameKana}">タナカタロウ</td>
+        <td th:text="${user.nameKana}"></td>
       </tr>
 
       <tr>
         <th>電話番号</th>
-        <td th:text="${user.phoneNumber}">09016738794</td>
+        <td th:text="${user.phoneNumber}"></td>
       </tr>
 
       <tr>
         <th>郵便番号</th>
-        <td th:text="${postalCode}">987-4567</td>
+        <td th:text="${postalCode}"></td>
       </tr>
 
       <tr>
         <th>都道府県</th>
-        <td th:text="${addr != null ? addr.prefecture : ''}">兵庫県</td>
+        <td th:text="${addr != null ? addr.prefecture : ''}"></td>
       </tr>
 
       <tr>
         <th>市区町村</th>
-        <td th:text="${addr != null ? addr.city : ''}">西宮市</td>
+        <td th:text="${addr != null ? addr.city : ''}"></td>
       </tr>
 
       <tr>
         <th>町名・番地</th>
-        <td th:text="${addr != null ? addr.addressLine1 : ''}">大和町2</td>
+        <td th:text="${addr != null ? addr.addressLine1 : ''}"></td>
       </tr>
 
       <tr>
         <th>建物名・部屋番号</th>
-        <td th:text="${addr != null ? addr.addressLine2 : ''}">未来マンション 304</td>
+        <td th:text="${addr != null ? addr.addressLine2 : ''}"></td>
       </tr>
 
       <tr>
         <th>登録日</th>
-        <td th:text="${#temporals.format(user.createdAt, 'yyyy/MM/dd')}">2025/05/15</td>
+        <td th:text="${#temporals.format(user.createdAt, 'yyyy/MM/dd')}"></td>
       </tr>
     </table>
 

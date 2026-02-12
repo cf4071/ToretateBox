@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>カート | とれたてBOX</title>
-    <link rel="stylesheet" th:href="@{/css/cart.css}">
+    <link rel="stylesheet" th:href="@{/css/user/cart.css}">
 </head>
 
 <body>
@@ -68,9 +68,6 @@
 
                 </section>
 
-                <!-- =========================
-                     右：合計＋ボタン（PDFの右枠）
-                ========================= -->
                 <aside class="cart-right"
                        th:if="${cart != null and !#lists.isEmpty(cart)}">
 
