@@ -1,7 +1,6 @@
 package katachi.example.toretatebox.controller;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -52,13 +51,15 @@ public class ProductsController {
         Pageable pageable = PageRequest.of(page, 8);
         Page<Product> productPage;
 
-        if (keyword != null && !keyword.isBlank()) {
-            List<Product> products = productsService.searchProducts(keyword);
+        if (isNotBlank(keyword)) {
+            productPage = productsService.searchProducts(keyword, pageable);
 
-            model.addAttribute("products", products);
+            model.addAttribute("products", productPage.getContent());
             model.addAttribute("keyword", keyword);
-            model.addAttribute("currentPage", 0);
-            model.addAttribute("totalPages", 1);
+            model.addAttribute("categoryId", categoryId);
+            model.addAttribute("season", season);
+            model.addAttribute("currentPage", page);
+            model.addAttribute("totalPages", productPage.getTotalPages());
 
             return "products/list";
         }

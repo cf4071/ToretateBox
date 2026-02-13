@@ -18,7 +18,7 @@ public class ProductsService {
     private final ProductsRepository productsRepository;
 
     // =============================
-    // すべて取得
+    // すべて取得（ページング無し）
     // =============================
     public List<Product> getAllProducts() {
         return productsRepository.findAll();
@@ -32,10 +32,14 @@ public class ProductsService {
     }
 
     // =============================
-    // ★ 商品IDで1件取得（Controller と整合）
+    // 商品IDで1件取得
     // =============================
     public Product findById(Integer id) {
         return productsRepository.findById(id).orElse(null);
+    }
+
+    public Optional<Product> getProductById(Integer id) {
+        return productsRepository.findById(id);
     }
 
     // =============================
@@ -53,13 +57,16 @@ public class ProductsService {
     }
 
     // =============================
-    // キーワード検索
+    // キーワード検索（ページングあり）
     // =============================
-    public List<Product> searchProducts(String keyword) {
+    public Page<Product> searchProducts(String keyword, Pageable pageable) {
+
+        // keywordが空なら「空のページ」を返す（仕様：空なら検索結果0件）
         if (keyword == null || keyword.isBlank()) {
-            return List.of();
+            return Page.empty(pageable);
         }
-        return productsRepository.findByNameContaining(keyword);
+
+        return productsRepository.findByNameContaining(keyword, pageable);
     }
 
     // =============================
@@ -86,9 +93,4 @@ public class ProductsService {
 
         return productsRepository.findByCategoryIdAndSeason(categoryId, season, pageable);
     }
-    
-
-    public Optional<Product> getProductById(Integer id) {
-    	return productsRepository.findById(id);
-}
 }
