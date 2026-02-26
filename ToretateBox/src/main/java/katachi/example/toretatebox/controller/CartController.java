@@ -23,9 +23,7 @@ public class CartController {
 
     private final ProductsService productsService;
 
-    // =========================
-    // カート表示
-    // =========================
+
     @GetMapping
     public String showCart(HttpSession session, Model model) {
 
