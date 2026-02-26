@@ -23,18 +23,15 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        // emailでユーザーを取得
         User user = userRepository.findByEmail(email);
         if (user == null) {
             throw new UsernameNotFoundException("ユーザーが見つかりません: " + email);
         }
 
-        // 論理削除されているユーザーはログイン不可
         if (user.isDeleted()) {
             throw new UsernameNotFoundException("このユーザーは削除済みです: " + email);
         }
 
-        // 権限を作る（管理者なら ROLE_ADMIN、一般なら ROLE_USER）
         List<GrantedAuthority> authorities = new ArrayList<>();
         if (user.isAdmin()) {
             authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
@@ -42,7 +39,6 @@ public class CustomUserDetailsService implements UserDetailsService {
             authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
         }
 
-        // Spring Security が使う UserDetails を返す
         return new org.springframework.security.core.userdetails.User(
                 user.getEmail(),
                 user.getPassword(),   
