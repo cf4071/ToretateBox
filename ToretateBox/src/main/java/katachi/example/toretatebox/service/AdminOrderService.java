@@ -31,17 +31,13 @@ public class AdminOrderService {
     private final OrderItemRepository orderItemRepository;
     private final ProductsRepository productsRepository;
 
-    /**
-     * 管理者：注文一覧（DTO）
-     */
+
     @Transactional(readOnly = true)
     public Page<AdminOrderRow> findAdminOrderRows(Pageable pageable) {
         return orderRepository.findAdminOrderRows(pageable);
     }
 
-    /**
-     * 管理者：注文詳細
-     */
+
     @Transactional(readOnly = true)
     public AdminOrderDetailDto getOrderDetail(Integer orderId) {
 
