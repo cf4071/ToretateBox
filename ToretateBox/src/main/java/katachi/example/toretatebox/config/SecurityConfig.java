@@ -31,15 +31,17 @@ public class SecurityConfig {
                 ).permitAll()
 
                 .requestMatchers(
-                    "/", "/top",
-                    "/products", "/products/**",
-                    "/search", "/search/**",   
-                    "/cart", "/cart/**",
-                    "/login",
-                    "/signup",
-                    "/guest", "/guest/**",
-                    "/order/**"
-                ).permitAll()
+                	    "/", "/top",
+                	    "/products", "/products/**",
+                	    "/search", "/search/**",
+                	    "/cart", "/cart/**",
+                	    "/login",
+                	    "/signup",
+                	    "/guest", "/guest/**",
+                	    "/register", "/register/**",
+                	    "/order", "/order/**",
+                	    "/error"
+                	).permitAll()
 
                 .requestMatchers("/admin/**").hasRole("ADMIN")
 

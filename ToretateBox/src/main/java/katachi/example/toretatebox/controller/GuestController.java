@@ -57,6 +57,9 @@ public class GuestController {
             if (user != null) {
                 address.setUserId(user.getId());
             }
+        } else {
+            // ゲスト固定ユーザーID
+            address.setUserId(1);
         }
 
         address.setRecipient(form.getName());
@@ -71,6 +74,6 @@ public class GuestController {
 
         session.setAttribute("guestAddressId", saved.getId());
 
-        return "redirect:/order/register";
+        return "redirect:/register";
     }
 }

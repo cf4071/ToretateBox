@@ -4,7 +4,6 @@ import java.security.Principal;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -26,37 +25,6 @@ public class OrderController {
     private final AddressService addressService;
     private final UserRepository userRepository;
 
-
-    @GetMapping("/order/register")
-    public String showRegister(
-            HttpSession session,
-            Model model,
-            RedirectAttributes ra,
-            Principal principal
-    ) {
-        @SuppressWarnings("unchecked")
-        List<CartItem> cart = (List<CartItem>) session.getAttribute("cart");
-        if (cart == null || cart.isEmpty()) {
-            ra.addFlashAttribute("error", "カートが空です。");
-            return "redirect:/cart";
-        }
-
-        Address address = resolveAddress(session, ra, principal);
-        if (address == null) {
-            return "redirect:/guest";
-        }
-
-        int totalAmount = calcTotalAmount(cart);
-        int totalCount  = calcTotalCount(cart);
-
-        model.addAttribute("cart", cart);
-        model.addAttribute("address", address);
-        model.addAttribute("totalAmount", totalAmount);
-        model.addAttribute("totalCount", totalCount);
-
-        return "user/register";
-    }
-
     @PostMapping("/order/confirm")
     public String confirmOrder(
             HttpSession session,
@@ -65,6 +33,7 @@ public class OrderController {
     ) {
         @SuppressWarnings("unchecked")
         List<CartItem> cart = (List<CartItem>) session.getAttribute("cart");
+
         if (cart == null || cart.isEmpty()) {
             ra.addFlashAttribute("error", "カートが空です。");
             return "redirect:/cart";
@@ -80,8 +49,10 @@ public class OrderController {
         Integer orderId = orderService.createOrder(cart, address, userId);
 
         session.removeAttribute("cart");
-        if (userId == null) {
+
+        if (principal == null) {
             session.removeAttribute("guestAddressId");
+            session.removeAttribute("guestForm");
         }
 
         ra.addFlashAttribute("orderId", orderId);
@@ -94,14 +65,15 @@ public class OrderController {
     }
 
     private Address resolveAddress(HttpSession session, RedirectAttributes ra, Principal principal) {
-
-        Integer userId = resolveUserId(principal);
-        if (userId != null) {
+        if (principal != null) {
+            Integer userId = resolveUserId(principal);
             Address address = addressService.findLatestByUserId(userId);
+
             if (address == null) {
                 ra.addFlashAttribute("error", "住所情報がありません。住所を登録してください。");
                 return null;
             }
+
             return address;
         }
 
@@ -121,28 +93,17 @@ public class OrderController {
     }
 
     private Integer resolveUserId(Principal principal) {
-        if (principal == null) return null;
+        if (principal == null) {
+            return 1;
+        }
 
         String email = principal.getName();
         User user = userRepository.findByEmail(email);
-        if (user == null) return null;
+
+        if (user == null) {
+            return 1;
+        }
 
         return user.getId();
-    }
-
-    private int calcTotalAmount(List<CartItem> cart) {
-        int total = 0;
-        for (CartItem item : cart) {
-            total += item.getPrice() * item.getQuantity();
-        }
-        return total;
-    }
-
-    private int calcTotalCount(List<CartItem> cart) {
-        int count = 0;
-        for (CartItem item : cart) {
-            count += item.getQuantity();
-        }
-        return count;
     }
 }
