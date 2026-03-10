@@ -1,4 +1,4 @@
-package katachi.example.toretatebox.controller;
+package katachi.example.toretatebox.controller.product;
 
 import java.time.LocalDate;
 

@@ -1,4 +1,4 @@
-package katachi.example.toretatebox.controller;
+package katachi.example.toretatebox.auth.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

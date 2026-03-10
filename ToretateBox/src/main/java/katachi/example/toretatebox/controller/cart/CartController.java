@@ -1,4 +1,4 @@
-package katachi.example.toretatebox.controller;
+package katachi.example.toretatebox.controller.cart;
 
 import java.util.ArrayList;
 import java.util.List;

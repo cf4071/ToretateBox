@@ -1,4 +1,4 @@
-package katachi.example.toretatebox.controller;
+package katachi.example.toretatebox.controller.cart;
 
 import java.util.List;
 
@@ -18,13 +18,13 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-public class RegisterController {
+public class CheckoutController {
 
     private final AddressService addressService;
     private final UserRepository userRepository;
 
-    @GetMapping("/register")
-    public String showRegister(Authentication auth, HttpSession session, Model model) {
+    @GetMapping("/checkout")
+    public String showCheckout(Authentication auth, HttpSession session, Model model) {
 
         List<CartItem> cart = getCart(session);
 

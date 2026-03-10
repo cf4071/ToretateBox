@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <title>ログイン | とれたてBOX</title>
 
-    <link rel="stylesheet" th:href="@{/css/layout/base.css}">
-
-    <link rel="stylesheet" th:href="@{/css/login/login.css}">
+    <link rel="stylesheet" th:href="@{/css/common/reset.css}">
+    <link rel="stylesheet" th:href="@{/css/common/base.css}">
+    <link rel="stylesheet" th:href="@{/css/common/common.css}">
+    <link rel="stylesheet" th:href="@{/css/auth/login.css}">
 </head>
 
 <body class="login-body">
@@ -22,8 +23,6 @@
     </div>
 
     <form th:action="@{/login}" method="post">
-
-
 
         <div class="form-group">
             <label for="email">メールアドレス</label>

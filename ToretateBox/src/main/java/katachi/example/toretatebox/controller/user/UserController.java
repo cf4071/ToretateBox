@@ -1,4 +1,4 @@
-package katachi.example.toretatebox.controller;
+package katachi.example.toretatebox.controller.user;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;

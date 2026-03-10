@@ -1,4 +1,4 @@
-package katachi.example.toretatebox.controller;
+package katachi.example.toretatebox.controller.user;
 
 import java.security.Principal;
 import java.util.ArrayList;

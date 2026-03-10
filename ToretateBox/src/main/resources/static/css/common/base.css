@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+/*********************************
+   共通設定
+*********************************/
+body {
+  font-family: "Yu Gothic", "Hiragino Sans", sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
