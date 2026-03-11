@@ -1,136 +1,192 @@
 @charset "UTF-8";
 
 /*********************************
-   ヘッダー
+   ヘッダー全体
 *********************************/
 .site-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    padding: 12px 20px;
-    background-color: #ffffff;
-    border-bottom: 2px solid #e0e0e0;
+    background-color: #f3f3f3;
+    padding: 16px 24px 20px;
+    border-bottom: 1px solid #dddddd;
     position: relative;
     z-index: 1000;
+    box-sizing: border-box;
 }
 
-/* ロゴ */
+/*********************************
+   上段：ロゴ + メニュー
+*********************************/
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 16px;
+}
+
+/*********************************
+   ロゴ
+*********************************/
 .logo-box {
-    padding: 8px 20px;
-    border: 3px solid #4CAF50;
-    border-radius: 8px;
+    flex-shrink: 0;
     white-space: nowrap;
+    padding: 6px 18px;
+    border: 2px solid #6faa72;
+    border-radius: 6px;
+    background-color: #e4f0df;
 }
 
 .logo-text {
-    color: #388E3C;
+    display: inline-block;
+    color: #2f6b35;
     text-decoration: none;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: bold;
+    line-height: 1.2;
 }
 
-/* 右側 */
+.logo-text:hover {
+    color: #2f6b35;
+    text-decoration: none;
+}
+
+/*********************************
+   右側
+*********************************/
 .header-right {
+    flex: 1;
     display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin: 0 auto;
-    align-items: center;
+    justify-content: flex-end;
 }
 
-/* メニュー */
+/*********************************
+   メニュー
+*********************************/
 .header-menu {
     display: flex;
-    margin-left: 250px;
-    transform: translateX(20px);
+    justify-content: flex-end;
+    width: 100%;
 }
 
 .menu-list {
     display: flex;
-    gap: 25px;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 24px;
     list-style: none;
     margin: 0;
     padding: 0;
-    align-items: center;
+}
+
+.menu-list li {
+    margin: 0;
+    padding: 0;
 }
 
 .menu-list a {
     text-decoration: none;
-    color: #333;
+    color: #333333;
+    font-size: 15px;
     font-weight: bold;
+    white-space: nowrap;
 }
 
 .menu-list a:hover {
     color: #4CAF50;
 }
 
-/* ハンバーガー */
-.hamburger-wrapper {
-    position: relative;
-}
-
-.hamburger-btn {
-    font-size: 22px;
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-/* ハンバーガーメニュー */
-.hamburger-menu {
-    position: absolute;
-    top: 40px;
-    right: 0;
-    width: 220px;
-    background-color: #ffffff;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    list-style: none;
-    padding: 8px 0;
-    margin: 0;
-    z-index: 9999;
-}
-
-.hamburger-menu li {
-    padding: 10px 16px;
-    white-space: nowrap;
-}
-
-.hamburger-menu li a {
-    text-decoration: none;
-    color: #333;
-    font-size: 14px;
-    display: block;
-}
-
-.hamburger-menu li:hover {
-    background-color: #f3f3f3;
-}
-
-.hidden {
-    display: none;
-}
-
 /*********************************
-   ヘッダー：検索欄
+   検索欄
 *********************************/
+.header-search-wrap {
+    width: 100%;
+}
+
 .header-search {
     display: flex;
+    align-items: stretch;
+    width: 100%;
+    gap: 8px;
 }
 
 .header-search input {
-    width: 300px;
-    padding: 8px 10px;
-    border: 2px solid #4CAF50;
-    border-right: none;
-    border-radius: 5px 0 0 5px;
+    flex: 1;
+    height: 48px;
+    padding: 0 14px;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    background-color: #ffffff;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+.header-search input:focus {
+    outline: none;
+    border-color: #7ab97e;
 }
 
 .header-search button {
-    padding: 8px 15px;
-    border: 2px solid #4CAF50;
+    min-width: 72px;
+    height: 48px;
+    padding: 0 16px;
+    border: none;
+    border-radius: 6px;
     background-color: #4CAF50;
-    color: #fff;
-    border-radius: 0 5px 5px 0;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
     cursor: pointer;
+}
+
+.header-search button:hover {
+    background-color: #43a047;
+}
+
+/*********************************
+   レスポンシブ
+*********************************/
+@media (max-width: 768px) {
+    .site-header {
+        padding: 14px 16px 18px;
+    }
+
+    .header-top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .header-right {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .header-menu {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .menu-list {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 14px 18px;
+    }
+
+    .header-search {
+        gap: 6px;
+    }
+
+    .header-search input {
+        height: 44px;
+        font-size: 14px;
+    }
+
+    .header-search button {
+        min-width: 64px;
+        height: 44px;
+        font-size: 13px;
+    }
+
+    .logo-text {
+        font-size: 18px;
+    }
 }
