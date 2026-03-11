@@ -22,7 +22,7 @@ public class SignupController {
     @GetMapping("/signup")
     public String showSignupForm(Model model) {
         model.addAttribute("signupForm", new SignupForm());
-        return "user/signup";
+        return "auth/signup";
     }
 
     @PostMapping("/signup")
@@ -32,7 +32,7 @@ public class SignupController {
             Model model) {
 
         if (bindingResult.hasErrors()) {
-            return "user/signup";
+            return "auth/signup";
         }
 
         if (!form.getPassword().equals(form.getPasswordConfirm())) {
@@ -41,7 +41,7 @@ public class SignupController {
                 "password.mismatch",
                 "パスワードが一致しません。"
             );
-            return "user/signup";
+            return "auth/signup";
         }
 
         try {
@@ -65,7 +65,7 @@ public class SignupController {
 
         } catch (IllegalArgumentException e) {
             model.addAttribute("errorMessage", e.getMessage());
-            return "user/signup";
+            return "auth/signup";
         }
 
         return "redirect:/top";

@@ -1,4 +1,4 @@
-package katachi.example.toretatebox.auth.controller;
+package katachi.example.toretatebox.controller.auth;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,13 +19,11 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
-
     @GetMapping("/login")
     public String showLoginForm(Model model) {
         model.addAttribute("loginForm", new LoginForm());
-        return "login/login";
+        return "auth/login";
     }
-
 
     @PostMapping("/login")
     public String login(
@@ -35,19 +33,19 @@ public class LoginController {
             HttpSession session) {
 
         if (bindingResult.hasErrors()) {
-            return "login/login";
+            return "auth/login";
         }
 
         User user = userService.findByEmail(form.getEmail());
 
         if (user == null || !userService.checkPassword(form.getPassword(), user.getPassword())) {
             model.addAttribute("errorMessage", "メールアドレスまたはパスワードが違います。");
-            return "login/login";
+            return "auth/login";
         }
 
         if (user.isDeleted()) {
             model.addAttribute("errorMessage", "このアカウントは無効です。");
-            return "login/login";
+            return "auth/login";
         }
 
         session.setAttribute("loginUser", user);
