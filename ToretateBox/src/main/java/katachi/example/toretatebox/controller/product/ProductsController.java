@@ -48,7 +48,7 @@ public class ProductsController {
             @RequestParam(defaultValue = "0") int page,
             Model model) {
 
-        Pageable pageable = PageRequest.of(page, 8);
+        Pageable pageable = PageRequest.of(page, 10);
         Page<Product> productPage;
 
         if (isNotBlank(keyword)) {
@@ -61,7 +61,7 @@ public class ProductsController {
             model.addAttribute("currentPage", page);
             model.addAttribute("totalPages", productPage.getTotalPages());
 
-            return "products/list";
+            return "product/list";
         }
 
         if (categoryId != null && isNotBlank(season)) {
@@ -83,10 +83,10 @@ public class ProductsController {
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", productPage.getTotalPages());
 
-        return "products/list";
+        return "product/list";
     }
 
-    @GetMapping("/products/{id}")
+    @GetMapping("/product/{id}")
     public String showProductDetail(
             @PathVariable Integer id,
             Model model) {
@@ -99,7 +99,7 @@ public class ProductsController {
 
         model.addAttribute("product", product);
 
-        return "products/detail";
+        return "product/detail";
     }
 
     @PostMapping("/products/save")

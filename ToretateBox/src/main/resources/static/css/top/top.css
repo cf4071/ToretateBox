@@ -1,0 +1,106 @@
+@charset "UTF-8";
+
+/* ===============================
+   TOPページ背景
+================================ */
+body.top-page {
+    background-color: #f3f9f1;
+}
+
+/* ===============================
+   タイトル
+================================ */
+.top-title h2 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #FF9BAD;
+    margin-bottom: 12px;
+}
+
+
+/* ===============================
+   商品カード
+================================ */
+.product-card {
+    height: 100%;
+}
+
+/* ===============================
+   画像枠
+================================ */
+.image-box {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border: 1px solid #cfcfcf;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.image-link {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+/* ===============================
+   商品画像
+================================ */
+.product-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* ===============================
+   商品情報
+================================ */
+.product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+
+.name {
+    font-size: 18px;
+    color: #333333;
+    line-height: 1.4;
+    min-height: 2.8em;
+}
+
+
+.price {
+    font-size: 16px;
+    color: #333333;
+}
+
+/* ===============================
+   商品がないとき
+================================ */
+.empty-message {
+    font-size: 18px;
+    color: #666666;
+    margin: 40px 0;
+}
+
+/* ===============================
+   ページネーション
+================================ */
+.page-link-custom {
+    display: inline-block;
+    margin: 0 8px;
+    color: #333333;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.page-link-custom.active {
+    font-weight: bold;
+    text-decoration: underline;
+}

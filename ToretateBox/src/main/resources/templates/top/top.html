@@ -3,55 +3,65 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>今が旬 - TOPページ</title>
-  <link rel="stylesheet" th:href="@{/css/products/list.css}">
+  <title>今が旬 | とれたてBOX</title>
+  <link rel="stylesheet" th:href="@{/css/top/top.css}">
 </head>
 
-<body>
+<body class="top-page">
 
 <div th:replace="~{layout/layout :: layout(~{::title}, ~{::content})}">
-<main th:fragment="content">
+  <main th:fragment="content" class="container py-5">
 
-  <div class="grid">
-
-    <div class="top-title">
+    <div class="top-title text-center mb-5">
       <h2>今が旬</h2>
-      <p class="season-label" th:text="'今の旬：' + ${season}"></p>
     </div>
 
-    <div th:if="${products != null}" th:each="p : ${products}" class="card">
-      <div class="image-box">
-        <a th:href="@{'/products/' + ${p.id}}">
-          <img th:if="${p.imageUrl != null and p.imageUrl != ''}"
-		     th:src="@{${p.imageUrl}}"
-		     alt="商品画像">
-        </a>
+    <div th:if="${products != null and !#lists.isEmpty(products)}" class="row gx-4 gy-5 justify-content-center">
+
+      <div th:each="p : ${products}" class="col-lg-3 col-md-4 col-sm-6 col-6">
+        <div class="product-card h-100 text-center d-flex flex-column">
+
+          <div class="image-box">
+            <a th:href="@{'/products/' + ${p.id}}" class="image-link">
+              <img th:if="${p.imageUrl != null and p.imageUrl != ''}"
+                   th:src="@{${p.imageUrl}}"
+                   th:alt="${p.name}"
+                   class="img-fluid product-image">
+            </a>
+          </div>
+
+          <div class="product-info mt-2">
+            <div class="name" th:text="${p.name}">商品名</div>
+            <div class="price" th:text="${p.price + '円'}">0円</div>
+          </div>
+
+        </div>
       </div>
 
-      <div class="name" th:text="${p.name}">商品名</div>
-      <div class="price" th:text="${p.price + '円'}">0円</div>
     </div>
 
-    <div th:if="${products == null or #lists.isEmpty(products)}">
+    <div th:if="${products == null or #lists.isEmpty(products)}" class="text-center empty-message">
       <p>商品がありません</p>
     </div>
-  </div>
 
-  <div class="pagination">
-    <a th:if="${currentPage > 0}"
-       th:href="@{/top(page=${currentPage - 1})}">前へ</a>
+    <div class="pagination-area text-center mt-5" th:if="${totalPages != null and totalPages > 0}">
+      <a th:if="${currentPage > 0}"
+         th:href="@{/top(page=${currentPage - 1})}"
+         class="page-link-custom">前へ</a>
 
-    <span th:each="i : ${#numbers.sequence(0, totalPages - 1)}">
-      <a th:href="@{/top(page=${i})}"
-         th:text="${i + 1}"
-         th:classappend="${i == currentPage} ? 'active' : ''"></a>
-    </span>
+      <span th:each="i : ${#numbers.sequence(0, totalPages - 1)}">
+        <a th:href="@{/top(page=${i})}"
+           th:text="${i + 1}"
+           th:classappend="${i == currentPage} ? ' active' : ''"
+           class="page-link-custom">1</a>
+      </span>
 
-    <a th:if="${currentPage < totalPages - 1}"
-       th:href="@{/top(page=${currentPage + 1})}">次へ</a>
-  </div>
+      <a th:if="${currentPage < totalPages - 1}"
+         th:href="@{/top(page=${currentPage + 1})}"
+         class="page-link-custom">次へ</a>
+    </div>
 
-</main>
+  </main>
 </div>
 
 </body>
