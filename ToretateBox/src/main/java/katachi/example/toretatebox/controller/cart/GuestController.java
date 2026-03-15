@@ -33,7 +33,7 @@ public class GuestController {
         if (form == null) form = new GuestForm();
 
         model.addAttribute("guestForm", form);
-        return "user/guest";
+        return "cart/guest";
     }
 
     @PostMapping("/guest")
@@ -45,7 +45,7 @@ public class GuestController {
             RedirectAttributes ra) {
 
         if (bindingResult.hasErrors()) {
-            return "user/guest";
+            return "cart/guest";
         }
 
         session.setAttribute("guestForm", form);
@@ -74,6 +74,6 @@ public class GuestController {
 
         session.setAttribute("guestAddressId", saved.getId());
 
-        return "redirect:/register";
+        return "redirect:/checkout";
     }
 }

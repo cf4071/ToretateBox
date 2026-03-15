@@ -1,0 +1,127 @@
+@charset "UTF-8";
+
+/* ===============================
+   商品カード共通
+================================ */
+.product-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: transparent;
+    text-align: center;
+}
+
+/* ===============================
+   画像枠
+================================ */
+.image-box {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border: 1px solid #c8c8c8;
+    background-color: #f8f8f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.image-link {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.product-image {
+    max-width: 85%;
+    max-height: 85%;
+    object-fit: contain;
+    display: block;
+}
+
+/* ===============================
+   商品情報
+================================ */
+.product-info {
+    width: 100%;
+    margin-top: 12px;
+    text-align: center;
+}
+
+.name {
+    font-size: 18px;
+    color: #333333;
+    line-height: 1.5;
+    min-height: 3em;
+    margin-bottom: 6px;
+}
+
+.price {
+    font-size: 16px;
+    color: #333333;
+    line-height: 1.4;
+}
+
+/* ===============================
+   商品がないとき
+================================ */
+.empty-message {
+    margin-top: 40px;
+    font-size: 18px;
+    color: #666666;
+}
+
+/* ===============================
+   ページネーション共通
+================================ */
+.pagination {
+    margin-top: 32px;
+    gap: 8px;
+}
+
+.pagination .page-link {
+    color: #333333;
+    border: none;
+    background-color: transparent;
+    font-weight: bold;
+}
+
+.pagination .page-item.active .page-link {
+    color: #000000;
+    text-decoration: underline;
+    background-color: transparent;
+}
+
+.pagination .page-item.disabled .page-link {
+    color: #999999;
+    background-color: transparent;
+}
+
+/* ===============================
+   タブレット以下
+================================ */
+@media (max-width: 991.98px) {
+    .name {
+        font-size: 16px;
+    }
+
+    .price {
+        font-size: 15px;
+    }
+}
+
+/* ===============================
+   スマホ
+================================ */
+@media (max-width: 575.98px) {
+    .name {
+        font-size: 15px;
+    }
+
+    .price {
+        font-size: 14px;
+    }
+}

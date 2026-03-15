@@ -1,107 +1,166 @@
 @charset "UTF-8";
 
+.detail-page {
+    background-color: #f5f5f5;
+}
+
 .detail-title {
-    text-align: center;
-    font-size: 22px;
+    font-size: 30px;
     font-weight: bold;
-    margin: 30px 0;
+    color: #333333;
 }
 
-.detail-container-2col {
-    width: 90%;
-    max-width: 1100px;
-    margin: 40px auto;
+.detail-image-box {
+    width: 100%;
+    min-height: 420px;
+    background-color: #ffffff;
+    border: 1px solid #bfbfbf;
     display: flex;
+    align-items: center;
     justify-content: center;
-    align-items: flex-start;
-    padding-left: 120px;
-}
-
-.detail-left {
-    flex: 1;
-    max-width: 400px;
-    background: white;
-    border: 2px solid #bbb;
-    height: 400px;
-    display: flex;
-    align-items: center;
-    display: flex;
-    justify-content: center; 
-    align-items: center;
+    padding: 24px;
+    box-sizing: border-box;
 }
 
 .detail-image {
     max-width: 100%;
-    max-height: 100%;
+    max-height: 360px;
     object-fit: contain;
+    display: block;
 }
 
-.detail-right {
-    flex: 2;
-    display: flex;
-    flex-direction: column;
-    margin-left: 150px;
+
+.detail-description-area {
+    padding-top: 8px;
 }
 
 .detail-name {
-    font-size: 30px;
+    font-size: 34px;
     font-weight: bold;
-    margin-bottom: 20px;
+    color: #333333;
 }
 
-.detail-category,
-.detail-season,
-.detail-price,
-.detail-qty {
+.detail-description {
     font-size: 18px;
-    margin-bottom: 12px;
+    line-height: 1.9;
+    color: #444444;
+    min-height: 180px;
 }
 
-.detail-description p {
-    line-height: 1.8;
-    font-size: 16px;
-    margin-bottom: 25px;
-}
-
-.detail-buttons {
-    margin-top: 30px;
+.detail-bottom-wrap {
     display: flex;
-    flex-direction: column;  
-    gap: 16px;
-    align-items: flex-start;  
+    align-items: flex-start;
+    margin-top: 20px;
 }
 
-.btn-cart {
-    background-color: #ff9933;
-    color: white;
-    padding: 14px 28px;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
+.detail-meta-box {
+    font-size: 20px;
+    color: #333333;
+    line-height: 1.9;
     min-width: 200px;
-    box-shadow: 0 4px 0 #e67e22; 
 }
 
-.btn-cart:active {
-    transform: translateY(2px);
-    box-shadow: 0 2px 0 #e67e22;
+.detail-label {
+    font-weight: bold;
+    color: #333333;
 }
 
-.btn-cart:hover {
-    background-color: #ff7f00;
+.quantity-select {
+    width: 140px;
+    padding: 6px 10px;
+    font-size: 16px;
+    border: 1px solid #999999;
+    border-radius: 2px;
+    background-color: #ffffff;
 }
 
-.btn-back {
+.detail-buttons-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    align-items: flex-start;
+    margin-top: 0;
+}
+
+.detail-btn-cart {
+    width: 260px;
+    padding: 18px 28px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333333;
+    background-color: #f4b400;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.detail-btn-back {
     display: inline-block;
-    background-color: gray;
-    color: white;
-    padding: 10px 20px;
+    width: 220px;
+    padding: 14px 24px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #1f73f1;
     border-radius: 8px;
     text-decoration: none;
-    font-size: 14px;
+    text-align: center;
 }
-.btn-back:hover {
-    background-color: #46b8da;
+
+.detail-btn-cart:hover {
+    background-color: #e0a800;
+}
+
+.detail-btn-back:hover {
+    background-color: #1762ce;
+}
+
+/* =========================
+   スマホ対応
+========================= */
+@media (max-width: 991.98px) {
+    .detail-image-box {
+        min-height: 300px;
+    }
+
+    .detail-image {
+        max-height: 240px;
+    }
+
+    .detail-name {
+        font-size: 26px;
+    }
+
+    .detail-description {
+        min-height: auto;
+        font-size: 16px;
+    }
+
+    .detail-bottom-wrap {
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .detail-meta-box {
+        font-size: 18px;
+        min-width: auto;
+    }
+
+    .quantity-select {
+        width: 120px;
+        font-size: 15px;
+    }
+
+    .detail-btn-cart {
+        width: 220px;
+        font-size: 20px;
+        padding: 14px 20px;
+    }
+
+    .detail-btn-back {
+        width: 180px;
+        font-size: 18px;
+        padding: 12px 20px;
+    }
 }

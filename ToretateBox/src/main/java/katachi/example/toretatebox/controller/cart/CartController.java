@@ -23,26 +23,26 @@ public class CartController {
 
     private final ProductsService productsService;
 
-
     @GetMapping
     public String showCart(HttpSession session, Model model) {
-
         List<CartItem> cart = getCart(session);
-
         int totalAmount = calculateTotal(cart);
 
         model.addAttribute("cart", cart);
         model.addAttribute("totalAmount", totalAmount);
 
-        return "user/cart";
+        return "cart/cart";
     }
-
 
     @PostMapping("/add")
     public String addToCart(
             @RequestParam Integer productId,
             @RequestParam int quantity,
             HttpSession session) {
+
+        if (quantity < 1) {
+            quantity = 1;
+        }
 
         Product product = productsService.findById(productId);
         if (product == null) {
@@ -64,7 +64,7 @@ public class CartController {
         newItem.setName(product.getName());
         newItem.setPrice(product.getPrice());
         newItem.setQuantity(quantity);
-        newItem.setImageUrl(product.getImageUrl()); 
+        newItem.setImageUrl(product.getImageUrl());
 
         cart.add(newItem);
         session.setAttribute("cart", cart);
@@ -72,6 +72,28 @@ public class CartController {
         return "redirect:/cart";
     }
 
+    @PostMapping("/update")
+    public String updateCartQuantity(
+            @RequestParam Integer productId,
+            @RequestParam(required = false) Integer quantity,
+            HttpSession session) {
+
+        if (quantity == null || quantity < 1) {
+            quantity = 1;
+        }
+
+        List<CartItem> cart = getCart(session);
+
+        for (CartItem item : cart) {
+            if (item.getProductId().equals(productId)) {
+                item.setQuantity(quantity);
+                break;
+            }
+        }
+
+        session.setAttribute("cart", cart);
+        return "redirect:/cart";
+    }
 
     @PostMapping("/remove")
     public String removeFromCart(
@@ -80,14 +102,11 @@ public class CartController {
 
         List<CartItem> cart = getCart(session);
 
-        cart.removeIf(
-            item -> item.getProductId().equals(productId)
-        );
+        cart.removeIf(item -> item.getProductId().equals(productId));
 
         session.setAttribute("cart", cart);
         return "redirect:/cart";
     }
-
 
     @PostMapping("/clear")
     public String clearCart(HttpSession session) {
@@ -98,19 +117,22 @@ public class CartController {
     @SuppressWarnings("unchecked")
     private List<CartItem> getCart(HttpSession session) {
         List<CartItem> cart =
-            (List<CartItem>) session.getAttribute("cart");
+                (List<CartItem>) session.getAttribute("cart");
 
         if (cart == null) {
             cart = new ArrayList<>();
         }
+
         return cart;
     }
 
     private int calculateTotal(List<CartItem> cart) {
         int total = 0;
+
         for (CartItem item : cart) {
             total += item.getSubtotal();
         }
+
         return total;
     }
 }

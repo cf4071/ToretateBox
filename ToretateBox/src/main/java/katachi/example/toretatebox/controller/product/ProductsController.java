@@ -86,7 +86,7 @@ public class ProductsController {
         return "product/list";
     }
 
-    @GetMapping("/product/{id}")
+    @GetMapping("/products/{id}")
     public String showProductDetail(
             @PathVariable Integer id,
             Model model) {
