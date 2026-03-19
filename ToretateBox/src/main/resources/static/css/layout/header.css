@@ -1,274 +1,166 @@
 @charset "UTF-8";
 
-/*********************************
+/* =========================
    ヘッダー全体
-*********************************/
+========================= */
 .site-header {
-    background-color: #f3f3f3;
-    padding: 16px 24px 20px;
-    border-bottom: 1px solid #dddddd;
-    box-sizing: border-box;
+    background-color: #f7f7f7;
+    position: relative;
+    z-index: 5000;
+    overflow: visible;
 }
 
-/*********************************
-   上段：ロゴ + メニュー
-*********************************/
-.header-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 24px;
-    margin-bottom: 16px;
+/* Bootstrap の container より前に出すため */
+.site-header .container {
+    position: relative;
+    z-index: 5001;
+    overflow: visible;
 }
 
-/*********************************
+/* =========================
    ロゴ
-*********************************/
+========================= */
 .logo-box {
+    padding: 8px 22px;
+    border: 2px solid #76a56d;
+    border-radius: 8px;
+    background-color: #e7f0df;
     flex-shrink: 0;
-    white-space: nowrap;
-    padding: 6px 18px;
-    border: 2px solid #6faa72;
-    border-radius: 6px;
-    background-color: #e4f0df;
 }
 
 .logo-text {
-    display: inline-block;
-    color: #2f6b35;
-    text-decoration: none;
     font-size: 20px;
     font-weight: bold;
-    line-height: 1.2;
+    color: #2f6b35;
+    display: inline-block;
 }
 
 .logo-text:hover {
     color: #2f6b35;
+}
+
+/* =========================
+   上段リンク
+========================= */
+.menu-link {
     text-decoration: none;
-}
-
-/*********************************
-   右側
-*********************************/
-.header-right {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
-    min-width: 0;
-    padding-right: 100px;
-}
-
-/*********************************
-   メニュー
-*********************************/
-.header-menu {
-    display: flex;
-    justify-content: flex-end;
-    width: 100%;
-}
-
-.menu-list {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 24px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.menu-list li {
-    margin: 0;
-    padding: 0;
-}
-
-.menu-list a {
-    text-decoration: none;
-    color: #333333;
-    font-size: 15px;
-    font-weight: bold;
+    color: #222;
+    font-size: 16px;
+    font-weight: 600;
     white-space: nowrap;
 }
 
-.menu-list a:hover {
-    color: #4CAF50;
+.menu-link:hover {
+    color: #222;
+    text-decoration: underline;
 }
 
-/*********************************
+/* =========================
+   ハンバーガーまわり
+========================= */
+.dropdown {
+    position: relative;
+    z-index: 6000;
+}
+
+.hamburger-btn {
+    width: 42px;
+    min-width: 42px;
+    height: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    box-shadow: none;
+}
+
+.hamburger-btn:focus,
+.hamburger-btn:active {
+    box-shadow: none;
+    outline: none;
+}
+
+.hamburger-line {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #666;
+    border-radius: 2px;
+}
+
+/* =========================
+   ドロップダウン
+========================= */
+.mypage-dropdown {
+    min-width: 220px;
+    padding: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #d3d3d3;
+    background-color: #ffffff;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    left: auto;
+
+    z-index: 9999;
+}
+
+.mypage-dropdown .dropdown-item {
+    font-size: 15px;
+    padding: 10px 18px;
+    color: #333;
+    white-space: nowrap;
+}
+
+.mypage-dropdown .dropdown-item:hover {
+    background-color: #f5f5f5;
+    color: #222;
+}
+
+/* =========================
    検索欄
-*********************************/
-.header-search-wrap {
+========================= */
+.header-search {
     width: 100%;
 }
 
-.header-search {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
+.search-input {
+    max-width: 420px;
+    height: 48px;
 }
 
-.header-search input {
-    width: 420px;
-    max-width: 100%;
-    height: 40px;
-    padding: 0 12px;
-    border: 1px solid #cccccc;
-    border-radius: 6px;
-    box-sizing: border-box;
-    font-size: 14px;
-    background-color: #ffffff;
+.search-btn {
+    min-width: 90px;
+    height: 48px;
+    background-color: #c7e0ea;
+    border: 1px solid #b1d0dc;
+    color: #222;
 }
 
-.header-search input:focus {
-    outline: none;
-    border-color: #9dc3a3;
+.search-btn:hover {
+    background-color: #b7d4df;
+    color: #222;
 }
 
-.header-search button {
-    min-width: 72px;
-    height: 40px;
-    padding: 0 16px;
-    border: none;
-    outline: none;
-    border-radius: 8px;
-    background-color: #b8dce8;
-    color: #333333;
-    font-size: 14px;
-    cursor: pointer;
-}
-
-.header-search button:hover {
-    background-color: #a8d1df;
-}
-
-.header-search button:focus {
-    outline: none;
-}
-
-/*********************************
-   レスポンシブ対応
-*********************************/
+/* =========================
+   スマホ
+========================= */
 @media (max-width: 768px) {
-    .site-header {
-        padding: 14px 16px 18px;
-    }
-
-    .header-top {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 16px;
-        flex-wrap: nowrap;
-    }
-
-    .logo-box {
-        flex-shrink: 0;
-    }
-
-    .header-right {
-        flex: 1;
-        display: flex;
-        justify-content: flex-end;
-        min-width: 0;
-    }
-
-    .header-menu {
-        width: 100%;
-        display: flex;
-        justify-content: flex-end;
-    }
-
-    .menu-list {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 10px 16px;
-    }
-
-    .menu-list a {
-        font-size: 14px;
-    }
-
     .logo-text {
         font-size: 18px;
     }
 
-    .header-search {
-        gap: 6px;
-    }
-
-    .header-search input {
-        width: 320px;
-        max-width: calc(100% - 80px);
-        height: 38px;
+    .menu-link {
         font-size: 14px;
     }
 
-    .header-search button {
-        min-width: 64px;
-        height: 38px;
-        font-size: 13px;
-        padding: 0 14px;
-    }
-}
-
-/*********************************
-   スマホサイズ
-*********************************/
-@media (max-width: 480px) {
-    .site-header {
-        padding: 12px 12px 16px;
+    .search-input {
+        max-width: 100%;
     }
 
-    .header-top {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 12px;
-    }
-
-    .logo-box {
-        align-self: flex-start;
-        padding: 5px 14px;
-    }
-
-    .header-right {
-        width: 100%;
-        justify-content: flex-end;
-    }
-
-    .header-menu {
-        width: 100%;
-        justify-content: flex-end;
-    }
-
-    .menu-list {
-        justify-content: flex-end;
-        gap: 8px 12px;
-    }
-
-    .menu-list a {
-        font-size: 13px;
-    }
-
-    .logo-text {
-        font-size: 16px;
-    }
-
-    .header-search {
-        justify-content: center;
-    }
-
-    .header-search input {
-        width: 220px;
-        max-width: calc(100% - 74px);
-        height: 38px;
-    }
-
-    .header-search button {
-        min-width: 58px;
-        padding: 0 12px;
-        height: 38px;
+    .mypage-dropdown {
+        min-width: 200px;
     }
 }
