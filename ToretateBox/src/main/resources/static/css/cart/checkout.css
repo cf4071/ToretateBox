@@ -1,0 +1,255 @@
+@charset "UTF-8";
+
+/* =========================
+   ページ全体
+========================= */
+.checkout-page {
+    background-color: #f3f3f3;
+    color: #222;
+}
+
+.checkout-wrapper {
+    max-width: 1180px;
+}
+
+/* =========================
+   タイトル
+========================= */
+.checkout-title {
+    font-size: 48px;
+    letter-spacing: 0.05em;
+    color: #222;
+    margin-bottom: 60px;
+}
+
+/* =========================
+   共通カード
+========================= */
+.checkout-card,
+.payment-summary {
+    background-color: #f7f7f7;
+    border: 1px solid #cfcfcf;
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================
+   左：お届け先
+========================= */
+.address-card {
+    padding: 30px 56px 60px;
+    min-height: 440px;
+}
+
+.card-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #111;
+    margin-bottom: 22px;
+}
+
+/* 情報一覧 */
+.info-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    margin-top: 40px;
+}
+
+.info-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    column-gap: 22px;
+    align-items: start;
+}
+
+.label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #111;
+    line-height: 1.8;
+}
+
+.value {
+    font-size: 18px;
+    color: #222;
+    line-height: 1.8;
+    word-break: break-word;
+}
+
+.info-row-address .value {
+    line-height: 1.9;
+}
+
+.empty-text {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.8;
+}
+
+/* =========================
+   右側全体
+========================= */
+.checkout-side {
+    display: flex;
+    flex-direction: column;
+}
+
+/* =========================
+   お支払い金額ボックス
+========================= */
+.payment-summary {
+    background-color: #eeeeee;   /* グレー */
+    border: 1px solid #cccccc;   /* 枠線 */
+    border-radius: 0;            /* ← これで四角になる！ */
+    padding: 30px 32px;
+    margin-bottom: 60px;
+    box-shadow: none;            /* ← 影を消す（PDFっぽくする） */
+}
+
+.payment-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #111;
+    margin-bottom: 28px;
+}
+
+.payment-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 0;
+}
+
+.payment-label {
+    font-size: 17px;
+    color: #333;
+}
+
+.payment-value {
+    font-size: 19px;
+    font-weight: bold;
+    color: #111;
+    white-space: nowrap;
+}
+
+/* =========================
+   ボタン
+========================= */
+.confirm-form {
+    margin-bottom: 60px;
+}
+
+.confirm-btn {
+    width: 70%;
+    height: 62px;
+    border: none;
+    border-radius: 12px;
+    background-color: #f6bf00;
+    color: #111;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.confirm-btn:hover {
+    opacity: 0.9;
+}
+
+/* =========================
+   戻るリンク
+========================= */
+.back-link-area {
+    text-align: left;
+    padding: 10px;
+}
+
+.back-link {
+    font-size: 15px;
+    color: #333;
+    text-decoration: none;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+/* =========================
+   レスポンシブ
+========================= */
+@media (max-width: 991.98px) {
+    .checkout-title {
+        font-size: 38px;
+        margin-bottom: 36px;
+    }
+
+    .address-card {
+        padding: 32px 24px;
+        min-height: auto;
+    }
+
+    .payment-summary {
+        padding: 28px 24px;
+    }
+
+    .card-title,
+    .payment-title {
+        font-size: 24px;
+        margin-bottom: 28px;
+    }
+
+    .info-row {
+        grid-template-columns: 110px 1fr;
+        column-gap: 14px;
+    }
+
+    .label,
+    .value,
+    .payment-label,
+    .payment-value {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .checkout-wrapper {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .checkout-title {
+        font-size: 30px;
+    }
+
+    .address-card {
+        padding: 24px 18px;
+        border-radius: 16px;
+    }
+
+    .payment-summary {
+        padding: 24px 18px;
+        border-radius: 16px;
+    }
+
+    .card-title,
+    .payment-title {
+        font-size: 22px;
+    }
+
+    .info-row {
+        grid-template-columns: 1fr;
+        row-gap: 6px;
+    }
+
+    .payment-row {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .confirm-btn {
+        height: 56px;
+        font-size: 17px;
+    }
+}

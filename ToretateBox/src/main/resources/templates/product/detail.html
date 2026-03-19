@@ -31,7 +31,7 @@
       <div class="col-lg-5">
         <div class="detail-image-box">
           <img th:if="${product.imageUrl != null and product.imageUrl != ''}"
-               th:src="@{'/' + ${product.imageUrl}}"
+               th:src="${product.imageUrl}"
                th:alt="${product.name}"
                class="detail-image">
 

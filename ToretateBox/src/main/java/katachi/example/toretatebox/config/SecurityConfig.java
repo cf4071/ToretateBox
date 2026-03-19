@@ -38,7 +38,7 @@ public class SecurityConfig {
                 	    "/login",
                 	    "/signup",
                 	    "/guest", "/guest/**",
-                	    "/register", "/register/**",
+                	    "/checkout", "/checkout/**",
                 	    "/order", "/order/**",
                 	    "/error"
                 	).permitAll()
