@@ -29,13 +29,22 @@
             <li><a th:href="@{/admin/product_new}" class="menu-link">食材登録</a></li>
             <li><a th:href="@{/admin/orders}" class="menu-link">注文管理</a></li>
             <li><a th:href="@{/admin/users}" class="menu-link">顧客管理</a></li>
-            <li><a th:href="@{/logout}" class="menu-link">ログアウト</a></li>
+
+            <!-- ログアウト（修正） -->
+            <li>
+              <form th:action="@{/logout}" method="post" style="display:inline;">
+                <button type="submit" class="menu-link btn btn-link p-0">
+                  ログアウト
+                </button>
+              </form>
+            </li>
           </ul>
         </nav>
 
         <!-- 一般ユーザー -->
         <nav sec:authorize="isAuthenticated() and !hasRole('ADMIN')"
              class="d-flex align-items-center gap-4">
+
           <a th:href="@{/products}" class="menu-link">食材一覧</a>
           <a th:href="@{/cart}" class="menu-link">カート</a>
 
@@ -52,10 +61,20 @@
 
             <ul class="dropdown-menu dropdown-menu-end mypage-dropdown"
                 aria-labelledby="mypageMenuButton">
+
               <li><a class="dropdown-item" th:href="@{/mypage}">ユーザー情報確認</a></li>
-              <li><a class="dropdown-item" th:href="@{/mypage/edit}">ユーザー情報編集</a></li>
-              <li><a class="dropdown-item" th:href="@{/orders/history}">購入履歴</a></li>
-              <li><a class="dropdown-item" th:href="@{/logout}">ログアウト</a></li>
+              <li><a class="dropdown-item" th:href="@{/edit}">ユーザー情報編集</a></li>
+              <li><a class="dropdown-item" th:href="@{/purchase_history}">購入履歴</a></li>
+
+              <!-- ログアウト（修正） -->
+              <li>
+                <form th:action="@{/logout}" method="post">
+                  <button type="submit" class="dropdown-item">
+                    ログアウト
+                  </button>
+                </form>
+              </li>
+
             </ul>
           </div>
         </nav>

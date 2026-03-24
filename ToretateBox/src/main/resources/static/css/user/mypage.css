@@ -1,80 +1,128 @@
 @charset "UTF-8";
 
-.mypage-body {
-	background-color: aquamarine;
-}
-
+/* =========================
+   ページ全体
+========================= */
 .mypage-wrapper {
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+    min-height: 100vh;
+    padding-top: 40px;
+    padding-bottom: 80px;
 }
 
+/* =========================
+   タイトル
+========================= */
 .mypage-title {
-  text-align: center;
-  margin: 30px 0 40px;
-  font-size: 24px;
-  font-weight: 600;
-  color:  #4a9e4c;
+    font-size: 42px;
+    font-weight: 700;
+    color: #222;
+    text-align: center;
+    width: 520px;
+    margin: 0 auto 40px auto;
 }
 
+/* =========================
+   フォーム全体
+========================= */
+.mypage-form {
+    width: 520px;
+    margin: 0 auto;
+}
+
+/* =========================
+   1行ずつ
+========================= */
+.form-row {
+    margin-bottom: 22px;
+}
+
+.form-row label {
+    display: block;
+    font-size: 18px;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 8px;
+}
+
+.form-row input {
+    width: 100%;
+    height: 42px;
+    box-sizing: border-box;
+    border: 1px solid #666;
+    background-color: #fff;
+    padding: 8px 12px;
+    font-size: 15px;
+    color: #333;
+}
+
+/* readonlyでも見やすくする */
+.form-row input[readonly] {
+    background-color: #fff;
+    color: #333;
+    opacity: 1;
+    cursor: default;
+}
+
+/* =========================
+   区切り線
+========================= */
 .mypage-separator {
-  margin: 35px 0;
-  border: none;
-  border-top: 2px solid #ddd;
+    border: none;
+    border-top: 1px solid #cfcfcf;
+    margin: 30px 0 24px;
 }
 
+/* =========================
+   小見出し
+========================= */
 .mypage-subtitle {
-  text-align: center;
-  margin-bottom: 25px;
-  font-size: 18px;
-  font-weight: 600;
-  color: #4a9e4c;
+    font-size: 24px;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 24px;
 }
 
-
-.mypage-form .form-row {
-  margin-bottom: 18px;
-}
-
-.mypage-form label {
-  display: block;
-  font-weight: 600;
-  margin-bottom: 6px;
-  color: #444;
-}
-
-.mypage-form input {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #999;
-  border-radius: 6px;
-  background: #fff;
-}
-
+/* =========================
+   ボタン
+========================= */
 .mypage-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 18px;
-  margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    width: 340px;
+    margin: 50px auto 0;
 }
 
-.btn {
-  display: inline-block;
-  padding: 12px 26px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  text-align: center;
+.mypage-buttons .btn {
+    width: 120px;
+    height: 56px;
+    border-radius: 10px;
+    font-size: 22px;
+    font-weight: 700;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
 }
 
-.btn-edit {
-  background: #f6b3b3;
-  color: #222;
+/* 編集 */
+.mypage-buttons .btn-edit {
+    background-color: #f1cfcf;
+    border: 1px solid #c79b9b;
+    color: #222;
 }
 
-.btn-back {
-  background: #b9d6ff;
-  color: #222;
+.btn-edit:hover {
+    background-color: #e8c0c0;
+}
+
+/* 戻る */
+.mypage-buttons .btn-back {
+    background-color: #d9e6f7;
+    border: 1px solid #9eb4d1;
+    color: #222;
+}
+
+.btn-back:hover {
+    background-color: #cadcf4;
 }

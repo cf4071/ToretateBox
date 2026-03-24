@@ -5,6 +5,8 @@
   <meta charset="UTF-8">
   <title>検索結果 | とれたてBOX</title>
 
+  <!-- listと同じCSS -->
+  <link rel="stylesheet" th:href="@{/css/common/product-card.css}">
   <link rel="stylesheet" th:href="@{/css/product/list.css}">
 </head>
 
@@ -12,30 +14,49 @@
 
 <div th:replace="~{layout/layout :: layout(~{::title}, ~{::content})}">
 
-<main th:fragment="content">
+<main th:fragment="content" class="py-4">
 
-  <div class="grid">
+  <div class="container">
 
-    <div class="top-title">
-      <h2 th:text="'検索結果：' + ${keyword}">検索結果</h2>
+    <!-- タイトル -->
+    <div class="text-center mb-5">
+      <h2 class="list-title" th:text="'検索結果：' + ${keyword}">検索結果</h2>
     </div>
 
-    <div th:if="${products == null or #lists.isEmpty(products)}">
+    <!-- 商品なし -->
+    <div th:if="${products == null or #lists.isEmpty(products)}"
+         class="text-center empty-message">
       <p>該当する商品がありません。</p>
     </div>
 
-    <!-- 商品カード -->
-    <div th:each="p : ${products}" class="card">
-      <div class="image-box">
-        <a th:href="@{'/products/' + ${p.id}}">
-             <img th:if="${p.imageUrl != null and p.imageUrl != ''}"
-		     th:src="@{${p.imageUrl}}"
-		     alt="商品画像">
-        </a>
+    <!-- 商品一覧 -->
+    <div th:if="${products != null and !#lists.isEmpty(products)}"
+         class="row gx-4 gy-5 justify-content-center">
+
+      <div th:each="p : ${products}" class="col-lg-3 col-md-4 col-sm-6 col-6">
+
+        <div class="product-card h-100 text-center d-flex flex-column">
+
+          <!-- 画像 -->
+          <div class="image-box">
+            <a th:href="@{'/products/' + ${p.id}}" class="image-link">
+              <img th:if="${p.imageUrl != null and p.imageUrl != ''}"
+                   th:src="@{${p.imageUrl}}"
+                   th:alt="${p.name}"
+                   class="img-fluid product-image">
+            </a>
+          </div>
+
+          <!-- 商品情報 -->
+          <div class="product-info mt-2">
+            <div class="name" th:text="${p.name}">商品名</div>
+            <div class="price" th:text="${p.price + '円'}">0円</div>
+          </div>
+
+        </div>
+
       </div>
 
-      <div class="name" th:text="${p.name}">商品名</div>
-      <div class="price" th:text="${p.price + '円'}">0円</div>
     </div>
 
   </div>

@@ -31,17 +31,18 @@ public class SecurityConfig {
                 ).permitAll()
 
                 .requestMatchers(
-                	    "/", "/top",
-                	    "/products", "/products/**",
-                	    "/search", "/search/**",
-                	    "/cart", "/cart/**",
-                	    "/login",
-                	    "/signup",
-                	    "/guest", "/guest/**",
-                	    "/checkout", "/checkout/**",
-                	    "/order", "/order/**",
-                	    "/error"
-                	).permitAll()
+                    "/", "/top",
+                    "/products", "/products/**",
+                    "/search", "/search/**",
+                    "/cart", "/cart/**",
+                    "/login",
+                    "/signup",
+                    "/guest", "/guest/**",
+                    "/checkout", "/checkout/**",
+                    "/order", "/order/**",
+                    "/error",
+                    "/logout-success"
+                ).permitAll()
 
                 .requestMatchers("/admin/**").hasRole("ADMIN")
 
@@ -71,7 +72,7 @@ public class SecurityConfig {
 
             .logout(logout -> logout
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/top")
+                .logoutSuccessUrl("/logout-success")
                 .permitAll()
             )
 

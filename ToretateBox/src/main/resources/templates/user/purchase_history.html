@@ -70,16 +70,16 @@
     </section>
     
 	<nav class="ph-pagination" th:if="${orderPage != null and orderPage.totalPages > 1}">
-		
+    
 	  <a class="ph-page"
 	     th:if="${orderPage.hasPrevious()}"
-	     th:href="@{/Purchase_history(page=${orderPage.number - 1})}">
+	     th:href="@{/purchase_history(page=${orderPage.number - 1})}">
 	    前へ
 	  </a>
 	
 	  <span th:each="i : ${#numbers.sequence(0, orderPage.totalPages - 1)}">
 	    <a class="ph-page"
-	       th:href="@{/Purchase_history(page=${i})}"
+	       th:href="@{/purchase_history(page=${i})}"
 	       th:text="${i + 1}"
 	       th:classappend="${i == orderPage.number} ? ' is-active' : ''">
 	    </a>
@@ -87,11 +87,10 @@
 	
 	  <a class="ph-page"
 	     th:if="${orderPage.hasNext()}"
-	     th:href="@{/Purchase_history(page=${orderPage.number + 1})}">
+	     th:href="@{/purchase_history(page=${orderPage.number + 1})}">
 	    次へ
 	  </a>
 	</nav>
-
 
     <div class="ph-actions">
       <a class="ph-back" th:href="@{/top}">戻る</a>

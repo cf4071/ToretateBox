@@ -61,8 +61,10 @@ public class UserEditController {
             Model model) {
 
         if (!result.hasErrors()) {
-            if (!form.getPassword().equals(form.getPasswordConfirm())) {
-                result.rejectValue("passwordConfirm", "password.mismatch", "パスワードが一致しません");
+            if (form.getPassword() != null && !form.getPassword().isBlank()) {
+                if (!form.getPassword().equals(form.getPasswordConfirm())) {
+                    result.rejectValue("passwordConfirm", "password.mismatch", "パスワードが一致しません");
+                }
             }
         }
 
@@ -82,8 +84,14 @@ public class UserEditController {
         user.setName(form.getName());
         user.setNameKana(form.getNameKana());
         user.setPhoneNumber(form.getPhoneNumber());
+
+        // メール変更をいったん止めるならコメントアウト
         user.setEmail(form.getEmail());
-        user.setPassword(passwordEncoder.encode(form.getPassword()));
+
+        // パスワードは入力されたときだけ更新
+        if (form.getPassword() != null && !form.getPassword().isBlank()) {
+            user.setPassword(passwordEncoder.encode(form.getPassword()));
+        }
 
         address.setRecipient(form.getName());
         address.setPhoneNumber(form.getPhoneNumber());

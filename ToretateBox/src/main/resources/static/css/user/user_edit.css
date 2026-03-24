@@ -1,73 +1,145 @@
 @charset "UTF-8";
 
-.edit_body {
-	background-color: #b9d6ff;
+/* =========================
+   ページ全体
+========================= */
+.edit-page {
+    min-height: 100vh;
+    padding-top: 40px;
+    padding-bottom: 80px;
 }
 
-.edit-wrapper{
-  width: 100%;
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 20px;
+/* =========================
+   全体幅
+========================= */
+.edit-wrapper {
+    width: 520px;
+    margin: 0 auto;
 }
 
-.edit-title{
-  text-align: center;
-  margin: 20px 0 30px;
-  font-size: 24px;
-  font-weight: 700;
-  color: #0b2545;
+/* =========================
+   タイトル
+========================= */
+.edit-title {
+    font-size: 40px;
+    font-weight: 700;
+    color: #222;
+    margin: 0 0 36px 0;
+    text-align: left;
 }
 
-.row{ margin-bottom: 18px; }
-
-label{
-  display: block;
-  font-weight: 700;
-  margin-bottom: 6px;
-  color: #1f2937;
+/* =========================
+   フォーム
+========================= */
+.edit-form {
+    width: 100%;
 }
 
-input{
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #999;
-  border-radius: 6px;
-  background: #fff;
+/* =========================
+   入力1行
+========================= */
+.form-row {
+    margin-bottom: 22px;
 }
 
-.err{
-  margin: 6px 0 0;
-  color: #d32f2f;
-  font-size: 13px;
+.form-row label {
+    display: block;
+    font-size: 18px;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 8px;
 }
 
-.sep{
-  margin: 28px 0;
-  border: none;
-  border-top: 2px solid #ddd;
+.form-row input {
+    width: 100%;
+    height: 42px;
+    box-sizing: border-box;
+    border: 1px solid #777;
+    background-color: #ffffff;
+    padding: 8px 12px;
+    font-size: 15px;
+    color: #333;
+    outline: none;
 }
 
-.mypage-subtitle {
-	text-align: center;
+.form-row input:focus {
+    border: 1px solid #444;
 }
 
-.btns{
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  margin-top: 26px;
+/* =========================
+   エラー
+========================= */
+.err {
+    margin-top: 6px;
+    margin-bottom: 0;
+    font-size: 13px;
+    font-weight: 700;
+    color: #d85c5c;
+    text-align: center;
 }
 
-.btn{
-  display: inline-block;
-  padding: 10px 22px;
-  border-radius: 8px;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  font-weight: 700;
+/* =========================
+   区切り
+========================= */
+.sep {
+    border: none;
+    border-top: 1px solid #cfcfcf;
+    margin: 30px 0 24px;
 }
 
-.update{ background: #f6b3b3; }
-.back{ background: #b9d6ff; color: #111; }
+/* =========================
+   小見出し
+========================= */
+.edit-subtitle {
+    font-size: 24px;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 24px;
+}
+
+/* =========================
+   ボタンエリア
+========================= */
+.btns {
+    display: flex;
+    justify-content: space-between;
+    width: 340px;
+    margin: 52px auto 0;
+}
+
+/* 共通ボタン */
+.btns .btn {
+    width: 120px;
+    height: 56px;
+    border-radius: 10px;
+    font-size: 22px;
+    font-weight: 700;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+/* 更新 */
+.btns .update-btn {
+    background-color: #f1cfcf;
+    border: 1px solid #c79b9b;
+    color: #222;
+}
+
+.btns .update-btn:hover {
+    background-color: #e8c0c0;
+}
+
+/* 戻る */
+.btns .back-btn {
+    background-color: #d9e6f7;
+    border: 1px solid #9eb4d1;
+    color: #222;
+}
+
+.btns .back-btn:hover {
+    background-color: #cadcf4;
+}

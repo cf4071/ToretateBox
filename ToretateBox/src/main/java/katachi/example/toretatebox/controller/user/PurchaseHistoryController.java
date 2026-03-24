@@ -36,8 +36,7 @@ public class PurchaseHistoryController {
     private final ProductsRepository productRepository;
     private final UserRepository userRepository;
 
-
-    @GetMapping("/Purchase_history")
+    @GetMapping("/purchase_history")
     public String history(
             Model model,
             Principal principal,
@@ -51,7 +50,7 @@ public class PurchaseHistoryController {
         String email = principal.getName();
         User user = userRepository.findByEmail(email);
 
-        PageRequest pageable = PageRequest.of(page, 8, Sort.by("createdAt").descending());
+        PageRequest pageable = PageRequest.of(page, 10, Sort.by("createdAt").descending());
         Page<Order> orderPage = orderRepository.findByUserIdOrderByCreatedAtDesc(user.getId(), pageable);
 
         model.addAttribute("orders", orderPage.getContent());
