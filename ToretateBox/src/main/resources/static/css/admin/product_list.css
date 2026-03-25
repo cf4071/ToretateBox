@@ -1,166 +1,152 @@
 @charset "UTF-8";
 
-
-.admin-wrapper{
-  width: 92%;
-  max-width: 1100px;
-  margin: 28px auto 50px;
+/* =========================
+   ページ全体
+========================= */
+.admin-wrapper {
+    max-width: 980px;
 }
 
-.admin-title{
-  text-align: center;
-  font-size: 26px;
-  font-weight: 800;
-  margin: 10px 0 18px;
+.admin-title {
+    font-size: 2rem;
+    color: #111;
+    letter-spacing: 0.04em;
 }
 
-.admin-table-wrap{
-  background: #fff;
-  border: 1px solid #cfe0cf;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch; 
+.admin-table-wrap {
+    background-color: #fff;
 }
 
-.admin-table{
-  width: 100%;
-  border-collapse: collapse;
-  table-layout: fixed;
-  min-width: 980px; 
+.admin-table {
+    table-layout: fixed;
+    border: 1px solid #bfc8ba;
+    background-color: #ffffff;
 }
 
-
-.col-id{ width: 70px; }
-.col-image{ width: 90px; }
-.col-name{ width: 160px; }
-.col-desc{ width: auto; }
-.col-price{ width: 110px; }
-.col-date{ width: 140px; }
-.col-actions{ width: 160px; }
-
-.admin-table thead th{
-  background: #2f6f2f;
-  color: #fff;
-  padding: 12px 8px;
-  font-size: 14px;
-  text-align: center;
-  border-right: 1px solid rgba(255,255,255,0.25);
-}
-.admin-table thead th:last-child{
-  border-right: none;
+.admin-table thead th {
+    background-color: #1f6f1f;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border: 1px solid #5c8a5c;
+    padding: 14px 10px;
+    vertical-align: middle;
 }
 
-.admin-table tbody td{
-  padding: 14px 8px;
-  border-top: 1px solid #d9e6d9;
-  text-align: center;
-  vertical-align: middle;
-  word-break: break-word;
+.admin-table tbody td {
+    border: 1px solid #c7d0c2;
+    padding: 20px 10px;
+    vertical-align: middle;
+    background-color: #ffffff;
+    font-size: 0.95rem;
 }
 
-.admin-table tbody tr:nth-child(even){
-  background: #dcefdc;
-}
-.admin-table tbody tr:nth-child(odd){
-  background: #ffffff;
+.admin-table tbody tr.admin-row-alt td {
+    background-color: #dcebd8;
 }
 
-.admin-image-cell{
-  text-align: center;
+.col-id {
+    width: 70px;
 }
 
-.admin-thumb{
-  width: 70px;
-  height: 70px;
-  object-fit: contain;
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+.col-image {
+    width: 130px;
 }
 
-.admin-desc-cell{
-  text-align: left;
-  padding-left: 10px;
+.col-name {
+    width: 120px;
 }
 
-.admin-actions{
-  white-space: nowrap;
+.col-desc {
+    width: 220px;
 }
 
-.admin-link{
-  display: inline-block;
-  padding: 8px 14px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: 700;
-  background: #bcd9ff;
-  color: #0b3d91;
-  border: 1px solid #98c3ff;
-}
-.admin-link:hover{
-  filter: brightness(0.98);
+.col-price {
+    width: 110px;
 }
 
-.admin-link.danger{
-  background: #ffe0e0;
-  color: #b00020;
-  border: 1px solid #ffb3b3;
-  margin-left: 8px;
+.col-date {
+    width: 100px;
 }
 
-.admin-empty{
-  text-align: center;
-  padding: 22px;
-  margin-top: 14px;
-  background: #fff;
-  border: 1px solid #d7e6d7;
+.col-actions {
+    width: 120px;
 }
 
-.admin-paging{
-  display: flex;
-  justify-content: center;
-  gap: 22px;
-  margin-top: 18px;
-  font-weight: 800;
-}
-.admin-paging a{
-  text-decoration: none;
-  color: #333;
-}
-.admin-paging a.active{
-  color: #2f6f2f;
+.admin-image-cell {
+    text-align: center;
 }
 
-/* =================
-   レスポンシブ対応
-   ================= */
-@media (max-width: 768px){
+.admin-thumb {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    display: inline-block;
+    background-color: #fff;
+}
 
-  .admin-wrapper{
-    width: 96%;
-    margin: 16px auto 40px;
-  }
+.admin-desc-cell {
+    word-break: break-word;
+    line-height: 1.6;
+}
 
-  .admin-title{
-    font-size: 22px;
-  }
+.admin-edit-btn {
+    background-color: #cfe2f3;
+    border: 1px solid #bdd2e6;
+    color: #222;
+    min-width: 88px;
+    border-radius: 8px;
+    font-weight: 500;
+    padding: 6px 16px;
+}
 
-  .admin-table thead th,
-  .admin-table tbody td{
-    padding: 10px 6px;
-    font-size: 13px;
-  }
+.admin-edit-btn:hover {
+    background-color: #bdd8ef;
+    border-color: #a9c7df;
+    color: #222;
+}
 
-  .admin-thumb{
-    width: 56px;
-    height: 56px;
-  }
+.admin-pagination .page-link {
+    color: #222;
+    border: none;
+    background-color: transparent;
+    font-weight: 600;
+    margin: 0 8px;
+}
 
-  .admin-link{
-    padding: 6px 10px;
-    font-size: 12px;
-  }
+.admin-pagination .page-item.active .page-link {
+    color: #000;
+    background-color: transparent;
+    border: none;
+}
 
-  .col-actions{
-    width: 140px;
-  }
+.admin-pagination .page-link:focus {
+    box-shadow: none;
+}
+
+/* =========================
+   スマホ対応
+========================= */
+@media (max-width: 768px) {
+    .admin-title {
+        font-size: 1.6rem;
+    }
+
+    .admin-table thead th,
+    .admin-table tbody td {
+        font-size: 0.85rem;
+        padding: 14px 8px;
+    }
+
+    .admin-thumb {
+        width: 60px;
+        height: 60px;
+    }
+
+    .admin-edit-btn,
+    .admin-delete-btn {
+        min-width: 70px;
+        padding: 5px 10px;
+        font-size: 0.85rem;
+    }
 }

@@ -1,97 +1,136 @@
 @charset "UTF-8";
 
+/* =========================
+   全体
+========================= */
 .admin-wrapper {
-  max-width: 720px;
-  margin: 40px auto;
-  padding: 0 20px;
+    max-width: 1000px;
 }
 
 .admin-title {
-  text-align: center;
-  margin-bottom: 30px;
-  font-size: 24px;
+    font-size: 2rem;
+    color: #333;
+    letter-spacing: 0.04em;
 }
 
-.admin-form {
-  background: #ffffff;
-  border: 2px solid #666;
-  border-radius: 12px;
-  padding: 30px 35px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+/* =========================
+   フォーム
+========================= */
+.admin-form-card {
+    max-width: 850px;
+    background-color: #ffffff;
+    border: 1px solid #d8c7b8;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
-.form-row {
-  margin-bottom: 20px;
+/* 行 */
+.admin-form-row {
+    border-bottom: 1px solid #ddd2c8;
 }
 
-.form-row label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 8px;
+.admin-form-row:last-of-type {
+    border-bottom: none;
 }
 
-.form-row input[type="text"],
-.form-row input[type="number"],
-.form-row textarea {
-  width: 100%;
-  padding: 10px 12px;
-  border: 1px solid #aaa;
-  border-radius: 8px;
-  font-size: 14px;
-  box-sizing: border-box;
+/* =========================
+   ラベル（左）
+========================= */
+.admin-label-cell {
+    padding: 18px 16px;
+    font-weight: 700;
+    color: #444;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid #ddd2c8;
 }
 
-.form-row textarea {
-  resize: vertical;
+/* =========================
+   入力（右）
+========================= */
+.admin-input-cell {
+    padding: 14px 18px;
 }
 
-.image-input {
-  margin: 10px 0;
-  padding: 6px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  background-color: #fafafa;
-  cursor: pointer;
+/* =========================
+   しましま（左右同じ色）
+========================= */
+
+/* オレンジ */
+.row-orange .admin-label-cell,
+.row-orange .admin-input-cell {
+    background-color: #fff3e0;
 }
 
-.image-input:hover {
-  background-color: #f0f0f0;
+/* 白 */
+.row-white .admin-label-cell,
+.row-white .admin-input-cell {
+    background-color: #ffffff;
 }
 
+/* =========================
+   入力パーツ
+========================= */
+.admin-input-cell .form-control {
+    border: 1px solid #d0c3b6;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-shadow: none;
+}
+
+.admin-input-cell .form-control:focus {
+    border-color: #b89f84;
+    box-shadow: 0 0 0 0.15rem rgba(184, 159, 132, 0.2);
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* =========================
+   エラー
+========================= */
 .error {
-  color: #d33;
-  font-size: 13px;
-  margin-top: 6px;
+    color: #d9534f;
+    font-size: 0.9rem;
+    font-weight: 600;
 }
 
-.form-actions {
-  margin-top: 30px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+/* =========================
+   ボタン
+========================= */
+.admin-form-actions {
+    padding: 28px 20px;
+    background-color: #ffffff;
 }
 
 .admin-btn {
-  background-color: #ff7777;
-  color: white;
-  border: none;
-  padding: 10px 18px;
-  border-radius: 10px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: 0.2s;
+    min-width: 120px;   /* 横幅そろえる */
+    padding: 8px 20px;  /* 高さもそろえる */
+    font-weight: 600;
 }
 
-.admin-btn:hover {
-  background-color: #ff5555;
-}
 
-.admin-link {
-  text-decoration: none;
-  color: #555;
-  font-size: 14px;
-}
 
-.admin-link:hover {
-  text-decoration: underline;
+
+/* =========================
+   スマホ対応
+========================= */
+@media (max-width: 768px) {
+
+    .admin-title {
+        font-size: 1.6rem;
+    }
+
+    .admin-label-cell {
+        border-right: none;
+        border-bottom: 1px solid #ddd2c8;
+    }
+
+    .admin-submit-btn,
+    .admin-back-btn {
+        min-width: 90px;
+        font-size: 0.9rem;
+    }
 }

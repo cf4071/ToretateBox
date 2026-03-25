@@ -38,7 +38,7 @@ public class AdminProductController {
             @RequestParam(name = "page", defaultValue = "0") int page,
             Model model
     ) {
-        int size = 15;
+        int size = 10;
 
         PageRequest pageable = PageRequest.of(page, size, Sort.by("id").descending());
         Page<Product> productPage = productsRepository.findAll(pageable);

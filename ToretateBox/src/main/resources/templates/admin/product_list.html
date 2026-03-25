@@ -12,16 +12,19 @@
 
 <div th:replace="~{layout/layout :: layout(~{::title}, ~{::content})}">
 
-  <main th:fragment="content" class="admin-wrapper">
+  <main th:fragment="content" class="container py-5 admin-wrapper">
 
-    <h2 class="admin-title">食材管理</h2>
+    <h2 class="admin-title text-center fw-bold mb-5">食材管理</h2>
 
-    <div class="admin-empty" th:if="${products == null or #lists.isEmpty(products)}">
+    <div class="alert alert-light text-center border"
+         th:if="${products == null or #lists.isEmpty(products)}">
       食材データがありません。
     </div>
 
-    <div class="admin-table-wrap" th:if="${products != null and !#lists.isEmpty(products)}">
-      <table class="admin-table">
+    <div class="table-responsive admin-table-wrap"
+         th:if="${products != null and !#lists.isEmpty(products)}">
+
+      <table class="table align-middle text-center mb-0 admin-table">
 
         <thead>
           <tr>
@@ -29,54 +32,47 @@
             <th class="col-image">食材画像</th>
             <th class="col-name">食材名</th>
             <th class="col-desc">食材説明</th>
-            <th class="col-price">価格</th>
+            <th class="col-price">値段</th>
             <th class="col-date">登録日</th>
             <th class="col-actions">操作</th>
           </tr>
         </thead>
 
         <tbody>
-          <tr th:each="p : ${products}">
+          <tr th:each="p, stat : ${products}"
+              th:classappend="${stat.index % 2 == 1} ? ' admin-row-alt' : ''">
+
             <td th:text="${p.id}">1</td>
 
-			<td class="admin-image-cell"
-			    th:with="
-			      imgSrc=
-			        ${ (p.imageUrl == null or p.imageUrl == '') ? '/images/no-image.png'
-			          : (#strings.startsWith(p.imageUrl, '/') ? p.imageUrl
-			            : '/images/' + p.imageUrl) }">
-			
-			  <img class="admin-thumb"
-			       th:src="@{${imgSrc}}"
-			       th:alt="${p.name} + 'の画像'">
-			</td>
-
-
-            <td th:text="${p.name}"></td>
-
-            <td class="admin-desc-cell"
-                th:text="${p.description}">
-              説明
+            <td class="admin-image-cell"
+                th:with="imgSrc=${(p.imageUrl == null or p.imageUrl == '') 
+                                  ? '/images/no-image.png' 
+                                  : (#strings.startsWith(p.imageUrl, '/') 
+                                      ? p.imageUrl 
+                                      : '/images/' + p.imageUrl)}">
+              <img class="admin-thumb img-fluid"
+                   th:src="@{${imgSrc}}"
+                   th:alt="${p.name} + 'の画像'"
+                   onerror="this.src='/images/no-image.png';">
             </td>
 
-            <td>
+            <td class="admin-name-cell" th:text="${p.name}">食材名</td>
+
+            <td class="admin-desc-cell" th:text="${p.description}">説明</td>
+
+            <td class="admin-price-cell">
               <span th:text="${#numbers.formatInteger(p.price, 0, 'COMMA')}"></span> 円
             </td>
 
-            <td th:text="${p.createdAt != null ? #temporals.format(p.createdAt, 'yyyy/MM/dd') : ''}">
-              2026/01/27
+            <td class="admin-date-cell"
+                th:text="${p.createdAt != null ? #temporals.format(p.createdAt, 'M/d') : ''}">
+              5/18
             </td>
 
             <td class="admin-actions">
-              <a class="admin-link"
+              <a class="btn btn-primary admin-edit-btn btn-sm"
                  th:href="@{/admin/product_edit/{id}(id=${p.id})}">
                 編集
-              </a>
-
-              <a class="admin-link danger"
-                 th:href="@{/admin/product_delete/{id}(id=${p.id})}"
-                 onclick="return confirm('削除しますか？');">
-                削除
               </a>
             </td>
           </tr>
@@ -85,27 +81,36 @@
       </table>
     </div>
 
-    <div class="admin-paging"
+    <nav class="mt-5"
          th:if="${productPage != null and productPage.totalPages > 1}">
+      <ul class="pagination justify-content-center admin-pagination">
 
-      <a th:if="${productPage.hasPrevious()}"
-         th:href="@{/admin/products(page=${productPage.number - 1})}">
-        前へ
-      </a>
+        <li class="page-item" th:if="${productPage.hasPrevious()}">
+          <a class="page-link"
+             th:href="@{/admin/products(page=${productPage.number - 1})}">
+            前へ
+          </a>
+        </li>
 
-      <span th:each="i : ${#numbers.sequence(0, productPage.totalPages - 1)}">
-        <a th:href="@{/admin/products(page=${i})}"
-           th:text="${i + 1}"
-           th:classappend="${i == productPage.number} ? ' active' : ''">
-        </a>
-      </span>
+        <li class="page-item"
+            th:each="i : ${#numbers.sequence(0, productPage.totalPages - 1)}"
+            th:classappend="${i == productPage.number} ? ' active' : ''">
+          <a class="page-link"
+             th:href="@{/admin/products(page=${i})}"
+             th:text="${i + 1}">
+            1
+          </a>
+        </li>
 
-      <a th:if="${productPage.hasNext()}"
-         th:href="@{/admin/products(page=${productPage.number + 1})}">
-        次へ
-      </a>
+        <li class="page-item" th:if="${productPage.hasNext()}">
+          <a class="page-link"
+             th:href="@{/admin/products(page=${productPage.number + 1})}">
+            次へ
+          </a>
+        </li>
 
-    </div>
+      </ul>
+    </nav>
 
   </main>
 
@@ -113,4 +118,3 @@
 
 </body>
 </html>
-
