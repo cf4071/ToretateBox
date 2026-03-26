@@ -4,66 +4,92 @@
   <meta charset="UTF-8">
   <title>注文管理</title>
 
+  <!-- 自分のCSS -->
   <link rel="stylesheet" th:href="@{/css/admin/orders.css}">
 </head>
-<body>
+<body class="orders-page">
 
-<div th:replace="~{layout/layout :: layout(~{::title}, ~{::main})}">
+<div th:replace="~{layout/layout :: layout(~{::title}, ~{::content})}">
 
-  <main class="admin-wrapper">
+  <main th:fragment="content" class="container py-5">
 
-    <h2 class="admin-title">注文管理</h2>
-
-    <div class="table-wrap">
-      <table class="admin-table">
-        <thead>
-          <tr>
-            <th>注文ID</th>
-            <th>注文者ID</th>
-            <th>メール</th>
-            <th>注文日時</th>
-            <th>合計金額</th>
-            <th>詳細</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr th:each="order : ${orders}">
-            <td th:text="${order.id}"></td>
-            <td th:text="${order.userId}"></td>
-            <td th:text="${order.email != null ? order.email : ''}"></td>
-            <td th:text="${#temporals.format(order.createdAt, 'yyyy/MM/dd HH:mm')}"></td>
-            <td th:text="${order.totalAmount} + '円'"></td>
-            <td>
-              <a class="detail-btn" th:href="@{'/admin/orders/' + ${order.id}}">詳細</a>
-            </td>
-          </tr>
-
-          <tr th:if="${#lists.isEmpty(orders)}">
-            <td class="empty" colspan="6">注文データがありません</td>
-          </tr>
-        </tbody>
-      </table>
+    <!-- タイトル -->
+    <div class="text-center mb-5">
+      <h2 class="orders-title fw-bold">注文管理</h2>
     </div>
 
-    <div class="pager" th:if="${page != null and page.totalPages > 1}">
-      <a class="pager-nav"
-         th:if="${!page.first}"
-         th:href="@{/admin/orders(page=${page.number - 1})}">‹</a>
+    <!-- テーブルカード -->
+    <div class="orders-card mx-auto">
+      <div class="table-responsive">
+        <table class="table orders-table align-middle text-center mb-0">
+          <thead>
+            <tr>
+              <th>注文ID</th>
+              <th>注文者ID</th>
+              <th>メール</th>
+              <th>注文日時</th>
+              <th>合計金額</th>
+              <th>詳細</th>
+            </tr>
+          </thead>
 
-      <a class="pager-num"
-         th:each="i : ${#numbers.sequence(0, page.totalPages - 1)}"
-         th:href="@{/admin/orders(page=${i})}"
-         th:text="${i + 1}"
-         th:classappend="${i == page.number} ? ' active' : ''">1</a>
+          <tbody>
+            <tr th:each="order : ${orders}">
+              <td th:text="${order.id}"></td>
+              <td th:text="${order.userId}"></td>
+              <td th:text="${order.email != null ? order.email : ''}"></td>
+              <td th:text="${#temporals.format(order.createdAt, 'yyyy/MM/dd HH:mm')}"></td>
+              <td th:text="'￥' + ${order.totalAmount}"></td>
+              <td>
+                <a class="btn btn-primary detail-btn"
+                   th:href="@{'/admin/orders/' + ${order.id}}">
+                  詳細
+                </a>
+              </td>
+            </tr>
 
-      <a class="pager-nav"
-         th:if="${!page.last}"
-         th:href="@{/admin/orders(page=${page.number + 1})}">›</a>
+            <tr th:if="${#lists.isEmpty(orders)}">
+              <td colspan="6" class="empty-row">注文データがありません</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ページネーション -->
+    <nav class="mt-4" th:if="${page != null and page.totalPages > 1}">
+      <ul class="pagination justify-content-center custom-pagination">
+
+        <li class="page-item" th:if="${!page.first}">
+          <a class="page-link"
+             th:href="@{/admin/orders(page=${page.number - 1})}">‹</a>
+        </li>
+
+        <li class="page-item"
+            th:each="i : ${#numbers.sequence(0, page.totalPages - 1)}"
+            th:classappend="${i == page.number} ? ' active' : ''">
+          <a class="page-link"
+             th:href="@{/admin/orders(page=${i})}"
+             th:text="${i + 1}">1</a>
+        </li>
+
+        <li class="page-item" th:if="${!page.last}">
+          <a class="page-link"
+             th:href="@{/admin/orders(page=${page.number + 1})}">›</a>
+        </li>
+
+      </ul>
+    </nav>
+
+    <!-- 戻るボタン -->
+    <div class="text-center mt-4">
+      <a th:href="@{/admin/products}"
+         class="btn back-btn px-4">
+        戻る
+      </a>
     </div>
 
   </main>
-
 </div>
 
 </body>

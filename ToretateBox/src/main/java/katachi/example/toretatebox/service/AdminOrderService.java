@@ -72,7 +72,7 @@ public class AdminOrderService {
         dto.setTotalAmount(order.getTotalAmount());
 
         if (user != null) {
-            dto.setCustomerName(user.getName() + " " + user.getName());
+            dto.setCustomerName(user.getName());
             dto.setEmail(user.getEmail());
         } else {
             dto.setCustomerName("");

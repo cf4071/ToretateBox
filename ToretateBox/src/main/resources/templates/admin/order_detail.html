@@ -3,86 +3,111 @@
 <head>
   <meta charset="UTF-8">
   <title>注文詳細</title>
+
+  <!-- 自分のCSS -->
   <link rel="stylesheet" th:href="@{/css/admin/order_detail.css}">
 </head>
-<body>
+<body class="order-detail-page">
 
-<div th:replace="~{layout/layout :: layout(~{::title}, ~{::main})}">
+<div th:replace="~{layout/layout :: layout(~{::title}, ~{::content})}">
 
-  <main class="admin-wrapper">
+  <main th:fragment="content" class="container py-5">
 
-    <h2 class="admin-title">注文詳細</h2>
-
-    <!-- 基本情報 -->
-	<div class="card">
-	  <div class="row">
-	    <div class="label">注文ID</div>
-	    <div class="value" th:text="${order.orderId}"></div>
-	  </div>
-	  <div class="row">
-	    <div class="label">注文日時</div>
-	    <div class="value"
-	         th:text="${#temporals.format(order.createdAt, 'yyyy/MM/dd HH:mm')}"></div>
-	  </div>
-	</div>
-
-
-    <!-- 顧客情報 -->
-    <div class="card">
-      <h3 class="card-title">顧客情報</h3>
-      <p th:text="${order.customerName}"></p>
-      <p th:text="${order.phone}"></p>
-      <p th:text="${order.email}">m</p>
+    <!-- タイトル -->
+    <div class="detail-header text-center">
+      <h2 class="detail-title">注文詳細</h2>
+      <div class="title-line"></div>
     </div>
 
-    <!-- お届け先 -->
-    <div class="card">
-      <h3 class="card-title">お届け先</h3>
-      <p>
-        〒<span th:text="${order.postalCode}"></span>
-      </p>
-      <p th:text="${order.prefecture + order.city + order.addressLine}"></p>
-      <p th:if="${order.building != null and !#strings.isEmpty(order.building)}"
-         th:text="${order.building}">建物名</p>
-    </div>
+    <!-- 中央の細い本文エリア -->
+    <div class="detail-sheet mx-auto">
 
-    <!-- 注文商品 -->
-    <div class="card">
-      <h3 class="card-title">注文商品</h3>
+      <!-- 基本情報 -->
+      <section class="detail-section">
+        <div class="info-row">
+          <div class="info-label">注文ID</div>
+          <div class="info-value" th:text="${order.orderId}"></div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">注文日</div>
+          <div class="info-value"
+               th:text="${#temporals.format(order.createdAt, 'yyyy/MM/dd')}"></div>
+        </div>
+      </section>
 
-      <div class="table-wrap">
-        <table class="admin-table">
-          <thead>
-          <tr>
-            <th>食材名</th>
-            <th>数量</th>
-            <th>小計</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr th:each="item : ${order.items}">
-            <td th:text="${item.productName}"></td>
-            <td th:text="${item.quantity}">2</td>
-            <td th:text="${item.subtotal} + '円'"></td>
-          </tr>
+      <!-- 顧客情報 -->
+      <section class="detail-section">
+        <div class="block-row">
+          <div class="block-label">顧客情報</div>
+          <div class="block-value">
+            <p class="mb-2" th:text="${order.customerName}"></p>
+            <p class="mb-2" th:text="${order.phone}"></p>
+            <p class="mb-0" th:text="${order.email}"></p>
+          </div>
+        </div>
+      </section>
 
-          <tr th:if="${#lists.isEmpty(order.items)}">
-            <td class="empty" colspan="3">明細がありません</td>
-          </tr>
-          </tbody>
-        </table>
+      <!-- お届け先 -->
+      <section class="detail-section">
+        <div class="block-row">
+          <div class="block-label">お届け先</div>
+          <div class="block-value">
+            <p class="mb-2">
+              〒<span th:text="${order.postalCode}"></span>
+            </p>
+            <p class="mb-2" th:text="${order.prefecture + order.city + order.addressLine}"></p>
+            <p class="mb-0"
+               th:if="${order.building != null and !#strings.isEmpty(order.building)}"
+               th:text="${order.building}"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 注文商品 -->
+      <section class="detail-section">
+        <div class="block-row align-items-start">
+          <div class="block-label pt-2">注文食材</div>
+          <div class="block-value">
+            <div class="table-responsive">
+              <table class="table item-table mb-0">
+                <thead>
+                  <tr>
+                    <th>食材名</th>
+                    <th>数量</th>
+                    <th>小計</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr th:each="item : ${order.items}">
+                    <td th:text="${item.productName}"></td>
+                    <td th:text="${item.quantity}"></td>
+                    <td th:text="${item.subtotal} + '円'"></td>
+                  </tr>
+
+                  <tr th:if="${#lists.isEmpty(order.items)}">
+                    <td colspan="3" class="empty-row">明細がありません</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 合計金額 -->
+      <section class="detail-section total-section">
+        <div class="info-row total-row">
+          <div class="info-label">合計金額</div>
+          <div class="info-value fw-bold" th:text="${order.totalAmount} + '円'"></div>
+        </div>
+      </section>
+
+      <!-- 戻る -->
+      <div class="text-center back-area">
+        <a class="btn back-btn" th:href="@{/admin/orders}">戻る</a>
       </div>
 
-      <div class="total">
-        合計金額：
-        <strong th:text="${order.totalAmount} + '円'"></strong>
-      </div>
     </div>
-
-    <div class="actions">
-      <a class="back-btn" th:href="@{/admin/orders}">戻る</a>
-    </div>
-
   </main>
 
 </div>
