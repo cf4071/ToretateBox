@@ -22,7 +22,7 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
     @Query("""
         SELECT new katachi.example.toretatebox.domain.dto.AdminOrderRow(
             o.id,
-            o.userId,
+            u.name,
             u.email,
             o.createdAt,
             o.totalAmount

@@ -25,7 +25,7 @@
           <thead>
             <tr>
               <th>注文ID</th>
-              <th>注文者ID</th>
+              <th>注文者名</th>
               <th>メール</th>
               <th>注文日時</th>
               <th>合計金額</th>
@@ -36,8 +36,8 @@
           <tbody>
             <tr th:each="order : ${orders}">
               <td th:text="${order.id}"></td>
-              <td th:text="${order.userId}"></td>
-              <td th:text="${order.email != null ? order.email : ''}"></td>
+			  <td th:text="${order.name != null ? order.name : ''}"></td>
+			  <td th:text="${order.email != null ? order.email : ''}"></td>
               <td th:text="${#temporals.format(order.createdAt, 'yyyy/MM/dd HH:mm')}"></td>
               <td th:text="'￥' + ${order.totalAmount}"></td>
               <td>

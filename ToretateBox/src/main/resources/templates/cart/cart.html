@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <title>カート | とれたてBOX</title>
 
-
     <!-- cart.css -->
     <link rel="stylesheet" th:href="@{/css/cart/cart.css}">
 </head>
@@ -19,6 +18,11 @@
             <div class="container py-5">
 
                 <h2 class="cart-title text-center mb-5">ショッピングカート</h2>
+
+                <p th:if="${errorMessage}"
+                   class="cart-error-message text-center"
+                   th:text="${errorMessage}">
+                </p>
 
                 <div class="row g-5">
 
@@ -118,14 +122,18 @@
 
                         <div class="cart-actions">
 
-                            <!-- ログイン済み -->
-                            <a sec:authorize="isAuthenticated()"
-                               th:href="@{/checkout}"
-                               class="btn btn-warning cart-action-btn">
-                                レジへ進む
-                            </a>
+                            <!-- レジへ進む（ログイン・未ログインどちらも表示） -->
+                            <form th:action="@{/cart/checkout}" method="post">
+                                <input type="hidden"
+                                       th:if="${_csrf != null}"
+                                       th:name="${_csrf.parameterName}"
+                                       th:value="${_csrf.token}">
+                                <button type="submit" class="btn btn-warning cart-action-btn">
+                                    レジへ進む
+                                </button>
+                            </form>
 
-                            <!-- 未ログイン -->
+                            <!-- 未ログインのときだけ表示 -->
                             <a sec:authorize="isAnonymous()"
                                th:href="@{/guest}"
                                class="btn btn-primary cart-action-btn">

@@ -26,29 +26,24 @@
           <div class="info-grid" th:if="${address != null}">
             <div class="info-row">
               <span class="label">氏名</span>
-              <span class="value" th:text="${address.recipient}">山梨太郎</span>
+              <span class="value" th:text="${address.recipient}"></span>
             </div>
 
             <div class="info-row">
               <span class="label">郵便番号</span>
-              <span class="value" th:text="${address.postalCode}">1198765</span>
+              <span class="value" th:text="${address.postalCode}"></span>
             </div>
 
             <div class="info-row info-row-address">
               <span class="label">住所</span>
               <span class="value">
-                <span th:text="${address.prefecture}">三重県</span>
-                <span th:text="${address.city}">伊賀市</span><br>
-                <span th:text="${address.addressLine1}">忍者町3-11-5</span><br>
-                <span th:text="${address.addressLine2}">鳴門マンション121</span>
+                <span th:text="${address.prefecture}"></span>
+                <span th:text="${address.city}"></span><br>
+                <span th:text="${address.addressLine1}"></span><br>
+                <span th:text="${address.addressLine2}"></span>
               </span>
             </div>
 
-            <div class="info-row">
-              <span class="label">電話番号</span>
-              <span class="value" th:text="${address.phoneNumber}">09023414884</span>
-            </div>
-          </div>
 
           <p th:if="${address == null}" class="empty-text mb-0">
             住所情報がありません。住所登録をしてください。
