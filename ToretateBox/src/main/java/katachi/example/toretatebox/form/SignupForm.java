@@ -23,7 +23,7 @@ public class SignupForm {
     @NotBlank(message = "パスワードを入力してください")
     private String password;
 
-    @NotBlank(message = "パスワード(確認)を入力してください")
+    @NotBlank(message = "パスワード(再確認)を入力してください")
     private String passwordConfirm;
 
     @NotBlank(message = "郵便番号を入力してください")

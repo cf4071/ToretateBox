@@ -14,7 +14,7 @@
 }
 
 /* =========================
-   フォーム
+   フォーム全体
 ========================= */
 .admin-form-card {
     max-width: 850px;
@@ -24,13 +24,30 @@
     overflow: hidden;
 }
 
-/* 行 */
+/* =========================
+   各行
+========================= */
 .admin-form-row {
+    margin: 0;
     border-bottom: 1px solid #ddd2c8;
 }
 
 .admin-form-row:last-of-type {
     border-bottom: none;
+}
+
+/* 行の中のカラム余白をなくす */
+.admin-form-row > div {
+    margin: 0;
+}
+
+/* =========================
+   共通セル設定
+========================= */
+.admin-label-cell,
+.admin-input-cell,
+.admin-error-cell {
+    box-sizing: border-box;
 }
 
 /* =========================
@@ -43,28 +60,50 @@
     display: flex;
     align-items: center;
     border-right: 1px solid #ddd2c8;
+    min-height: 88px;
 }
 
 /* =========================
-   入力（右）
+   入力（中央）
 ========================= */
 .admin-input-cell {
     padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    min-height: 88px;
+    border-right: 1px solid #ddd2c8;
+}
+
+/* 説明欄のように高さが大きいものは上寄せ */
+.admin-input-cell:has(textarea) {
+    align-items: flex-start;
 }
 
 /* =========================
-   しましま（左右同じ色）
+   エラー表示（右）
+========================= */
+.admin-error-cell {
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    min-height: 88px;
+}
+
+/* =========================
+   しましま背景
 ========================= */
 
-/* オレンジ */
+/* オレンジ行 */
 .row-orange .admin-label-cell,
-.row-orange .admin-input-cell {
+.row-orange .admin-input-cell,
+.row-orange .admin-error-cell {
     background-color: #fff3e0;
 }
 
-/* 白 */
+/* 白行 */
 .row-white .admin-label-cell,
-.row-white .admin-input-cell {
+.row-white .admin-input-cell,
+.row-white .admin-error-cell {
     background-color: #ffffff;
 }
 
@@ -72,6 +111,8 @@
    入力パーツ
 ========================= */
 .admin-input-cell .form-control {
+    width: 100%;
+    margin: 0;
     border: 1px solid #d0c3b6;
     border-radius: 4px;
     font-size: 1rem;
@@ -88,13 +129,20 @@ textarea.form-control {
     min-height: 120px;
 }
 
+/* file入力も横幅いっぱい */
+.image-input {
+    width: 100%;
+}
+
 /* =========================
-   エラー
+   エラー文字
 ========================= */
 .error {
     color: #d9534f;
-    font-size: 0.9rem;
-    font-weight: 600;
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.4;
 }
 
 /* =========================
@@ -106,13 +154,10 @@ textarea.form-control {
 }
 
 .admin-btn {
-    min-width: 120px;   /* 横幅そろえる */
-    padding: 8px 20px;  /* 高さもそろえる */
+    min-width: 120px;
+    padding: 8px 20px;
     font-weight: 600;
 }
-
-
-
 
 /* =========================
    スマホ対応
@@ -123,13 +168,23 @@ textarea.form-control {
         font-size: 1.6rem;
     }
 
-    .admin-label-cell {
+    .admin-label-cell,
+    .admin-input-cell,
+    .admin-error-cell {
+        min-height: auto;
         border-right: none;
+    }
+
+    .admin-label-cell {
         border-bottom: 1px solid #ddd2c8;
     }
 
-    .admin-submit-btn,
-    .admin-back-btn {
+    .admin-input-cell,
+    .admin-error-cell {
+        padding: 14px 16px;
+    }
+
+    .admin-btn {
         min-width: 90px;
         font-size: 0.9rem;
     }

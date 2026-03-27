@@ -32,14 +32,12 @@ public class AdminProductController {
 
     private final ProductsRepository productsRepository;
 
-
     @GetMapping("/products")
     public String list(
             @RequestParam(name = "page", defaultValue = "0") int page,
-            Model model
-    ) {
-        int size = 10;
+            Model model) {
 
+        int size = 10;
         PageRequest pageable = PageRequest.of(page, size, Sort.by("id").descending());
         Page<Product> productPage = productsRepository.findAll(pageable);
 
@@ -51,44 +49,43 @@ public class AdminProductController {
         return "admin/product_list";
     }
 
+    @ModelAttribute("productForm")
+    public ProductForm setUpProductForm() {
+        return new ProductForm();
+    }
 
     @GetMapping("/products_new")
-    public String showNew(Model model) {
-        model.addAttribute("productForm", new ProductForm());
+    public String showNew() {
         return "admin/product_new";
     }
-
 
     @GetMapping("/product_new")
-    public String showNewAlias(Model model) {
-        model.addAttribute("productForm", new ProductForm());
+    public String showNewAlias() {
         return "admin/product_new";
     }
-
 
     @PostMapping("/products/new")
     public String create(
             @Validated @ModelAttribute("productForm") ProductForm form,
-            BindingResult result,
-            Model model
-    ) {
+            BindingResult result) {
+
         if (result.hasErrors()) {
             return "admin/product_new";
         }
 
         String imageUrl = null;
         MultipartFile imageFile = form.getImageFile();
+
         if (imageFile != null && !imageFile.isEmpty()) {
             imageUrl = saveImageAndGetUrl(imageFile);
         }
 
-        // form -> entity
         Product product = new Product();
         product.setName(form.getName());
-        product.setDescription(form.getDescription());
-        product.setPrice(form.getPrice());
         product.setCategoryId(form.getCategoryId());
         product.setSeason(form.getSeason());
+        product.setDescription(form.getDescription());
+        product.setPrice(form.getPrice());
         product.setImageUrl(imageUrl);
 
         productsRepository.save(product);
@@ -101,31 +98,34 @@ public class AdminProductController {
         Product product = productsRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid product id: " + id));
 
-        model.addAttribute("product", product);
-
         ProductForm form = new ProductForm();
         form.setId(product.getId());
         form.setName(product.getName());
-        form.setDescription(product.getDescription());
-        form.setPrice(product.getPrice());
         form.setCategoryId(product.getCategoryId());
         form.setSeason(product.getSeason());
+        form.setDescription(product.getDescription());
+        form.setPrice(product.getPrice());
         form.setImageUrl(product.getImageUrl());
+
         model.addAttribute("productForm", form);
 
         return "admin/product_edit";
     }
 
-
     @PostMapping("/product_update")
     public String update(
-            @ModelAttribute Product product,
-            @RequestParam(name = "imageFile", required = false) MultipartFile imageFile
-    ) {
-        Product current = productsRepository.findById(product.getId())
-                .orElseThrow(() -> new IllegalArgumentException("Invalid product id: " + product.getId()));
+            @Validated @ModelAttribute("productForm") ProductForm form,
+            BindingResult result) {
 
-        String imageUrl = current.getImageUrl();
+        if (result.hasErrors()) {
+            return "admin/product_edit";
+        }
+
+        Product product = productsRepository.findById(form.getId())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid product id: " + form.getId()));
+
+        String imageUrl = product.getImageUrl();
+        MultipartFile imageFile = form.getImageFile();
 
         if (imageFile != null && !imageFile.isEmpty()) {
             String newUrl = saveImageAndGetUrl(imageFile);
@@ -134,6 +134,11 @@ public class AdminProductController {
             }
         }
 
+        product.setName(form.getName());
+        product.setCategoryId(form.getCategoryId());
+        product.setSeason(form.getSeason());
+        product.setDescription(form.getDescription());
+        product.setPrice(form.getPrice());
         product.setImageUrl(imageUrl);
 
         productsRepository.save(product);
@@ -141,11 +146,9 @@ public class AdminProductController {
         return "redirect:/admin/products";
     }
 
-
     @GetMapping("/product_delete/{id}")
     public String delete(@PathVariable Integer id) {
         productsRepository.deleteById(id);
-
         return "redirect:/admin/products";
     }
 
@@ -167,8 +170,6 @@ public class AdminProductController {
             Files.createDirectories(uploadDir);
 
             Path savePath = uploadDir.resolve(saveName).normalize();
-
-            System.out.println("[UPLOAD] savePath = " + savePath);
 
             imageFile.transferTo(savePath.toFile());
 

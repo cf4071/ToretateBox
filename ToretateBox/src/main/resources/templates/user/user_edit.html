@@ -14,7 +14,7 @@
 
         <div class="edit-wrapper">
 
-            <h2 class="edit-title">ユーザー情報編集</h2>
+            <h2 class="edit-title text-center">ユーザー情報編集</h2>
 
             <form th:action="@{/edit}" th:object="${userEditForm}" method="post" class="edit-form">
 
@@ -53,10 +53,6 @@
                     <input type="password" th:field="*{passwordConfirm}">
                     <p class="err" th:errors="*{passwordConfirm}"></p>
                 </div>
-
-                <hr class="sep">
-
-                <h3 class="edit-subtitle">住所情報</h3>
 
                 <div class="form-row">
                     <label>郵便番号</label>

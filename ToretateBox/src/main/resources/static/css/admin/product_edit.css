@@ -10,10 +10,11 @@
 .admin-title {
     font-size: 2rem;
     color: #333;
+    letter-spacing: 0.04em;
 }
 
 /* =========================
-   フォーム
+   フォーム全体
 ========================= */
 .admin-form-card {
     max-width: 850px;
@@ -23,49 +24,109 @@
     overflow: hidden;
 }
 
-/* 行 */
+/* =========================
+   各行
+========================= */
 .admin-form-row {
+    margin: 0;
     border-bottom: 1px solid #ddd2c8;
 }
 
-/* 左 */
-.admin-label-cell {
-    padding: 18px;
-    font-weight: bold;
-    border-right: 1px solid #ddd2c8;
-    display: flex;
-    align-items: center;
+.admin-form-row:last-of-type {
+    border-bottom: none;
 }
 
-/* 右 */
-.admin-input-cell {
-    padding: 14px 18px;
+.admin-form-row > div {
+    margin: 0;
 }
 
 /* =========================
-   しましま
+   共通セル
+========================= */
+.admin-label-cell,
+.admin-input-cell,
+.admin-error-cell {
+    box-sizing: border-box;
+}
+
+/* =========================
+   ラベル（左）
+========================= */
+.admin-label-cell {
+    padding: 18px 16px;
+    font-weight: 700;
+    color: #444;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid #ddd2c8;
+    min-height: 88px;
+}
+
+/* =========================
+   入力（中央）
+========================= */
+.admin-input-cell {
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    min-height: 88px;
+    border-right: 1px solid #ddd2c8;
+}
+
+/* textareaがある行は上寄せ */
+.admin-input-cell:has(textarea) {
+    align-items: flex-start;
+}
+
+/* =========================
+   エラー（右）
+========================= */
+.admin-error-cell {
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    min-height: 88px;
+}
+
+/* =========================
+   しましま背景
 ========================= */
 .row-orange .admin-label-cell,
-.row-orange .admin-input-cell {
+.row-orange .admin-input-cell,
+.row-orange .admin-error-cell {
     background-color: #fff3e0;
 }
 
 .row-white .admin-label-cell,
-.row-white .admin-input-cell {
+.row-white .admin-input-cell,
+.row-white .admin-error-cell {
     background-color: #ffffff;
 }
 
 /* =========================
-   入力
+   入力パーツ
 ========================= */
-.form-control {
+.admin-input-cell .form-control {
+    width: 100%;
+    margin: 0;
     border: 1px solid #d0c3b6;
     border-radius: 4px;
+    font-size: 1rem;
+    box-shadow: none;
 }
 
-.form-control:focus {
+.admin-input-cell .form-control:focus {
     border-color: #b89f84;
     box-shadow: 0 0 0 0.15rem rgba(184, 159, 132, 0.2);
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.image-input {
+    width: 100%;
 }
 
 /* =========================
@@ -73,36 +134,63 @@
 ========================= */
 .admin-preview-img {
     max-width: 180px;
+    height: auto;
     border: 1px solid #ccc;
+    border-radius: 4px;
+    display: block;
+}
+
+/* =========================
+   エラー文字
+========================= */
+.error {
+    color: #d9534f;
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.4;
 }
 
 /* =========================
    ボタン
 ========================= */
 .admin-form-actions {
-    padding: 30px;
+    padding: 28px 20px;
+    background-color: #ffffff;
 }
 
-.admin-submit-btn {
+.admin-btn {
     min-width: 120px;
-    background-color: #efc6c6;
-    border: 1px solid #d8a7a7;
-    font-weight: bold;
-}
-
-.admin-back-btn {
-    min-width: 120px;
-    background-color: #cfe0f3;
-    border: 1px solid #b7c9dc;
-    font-weight: bold;
+    padding: 8px 20px;
+    font-weight: 600;
 }
 
 /* =========================
    スマホ
 ========================= */
 @media (max-width: 768px) {
-    .admin-label-cell {
+    .admin-title {
+        font-size: 1.6rem;
+    }
+
+    .admin-label-cell,
+    .admin-input-cell,
+    .admin-error-cell {
+        min-height: auto;
         border-right: none;
+    }
+
+    .admin-label-cell {
         border-bottom: 1px solid #ddd2c8;
+    }
+
+    .admin-input-cell,
+    .admin-error-cell {
+        padding: 14px 16px;
+    }
+
+    .admin-btn {
+        min-width: 90px;
+        font-size: 0.9rem;
     }
 }

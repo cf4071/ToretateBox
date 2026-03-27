@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>エラー | とれたてBOX</title>
+</head>
+
+<body>
+
+<div style="text-align:center; margin-top:100px;">
+
+    <p style="color:red; font-size:18px; font-weight:bold;"
+       th:text="${errorMessage}">
+    </p>
+
+    <div style="margin-top:30px;">
+        <a th:href="@{/products}">
+            <button>戻る</button>
+        </a>
+    </div>
+
+</div>
+
+</body>
+</html>
