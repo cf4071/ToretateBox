@@ -96,10 +96,10 @@
                 </a>
               </div>
 
-              <div class="product-info mt-2">
-                <div class="name" th:text="${p.name}">商品名</div>
-                <div class="price" th:text="${p.price + '円'}">0円</div>
-              </div>
+			  <div class="product-info mt-2">
+				<div class="name" th:text="${p.name}">商品名</div>
+				<div class="price" th:text="${#numbers.formatInteger(p.price, 1, 'COMMA') + '円'}">0円</div>
+			  </div>
             </div>
           </div>
 

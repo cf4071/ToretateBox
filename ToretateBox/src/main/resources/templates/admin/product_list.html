@@ -61,7 +61,7 @@
             <td class="admin-desc-cell" th:text="${p.description}">説明</td>
 
             <td class="admin-price-cell">
-              <span th:text="${#numbers.formatInteger(p.price, 0, 'COMMA')}"></span> 円
+              <span th:text="${#numbers.formatInteger(p.price, 1, 'COMMA')}"></span> 円
             </td>
 
             <td class="admin-date-cell"

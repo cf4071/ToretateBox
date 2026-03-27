@@ -69,7 +69,7 @@
             <div class="payment-row">
               <span class="payment-label">合計金額</span>
               <strong class="payment-value">
-                <span th:text="${totalAmount}">0</span>円
+                <span th:text="${#numbers.formatInteger(totalAmount, 1, 'COMMA')}">0</span>円
               </strong>
             </div>
           </div>

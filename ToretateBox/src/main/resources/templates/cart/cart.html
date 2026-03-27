@@ -56,7 +56,7 @@
                                 <div class="cart-item-main">
                                     <p class="cart-item-name" th:text="${item.name}">商品名</p>
                                     <p class="cart-item-price">
-                                        値段：<span th:text="${item.price}">0</span> 円
+                                        値段：<span th:text="${#numbers.formatInteger(item.price, 1, 'COMMA')}">0</span> 円
                                     </p>
                                 </div>
 
@@ -83,7 +83,7 @@
 
                                     <!-- 小計 -->
                                     <p class="cart-item-subtotal">
-                                        小計：<span th:text="${item.subtotal}">0</span> 円
+                                        小計：<span th:text="${#numbers.formatInteger(item.subtotal, 1, 'COMMA')}">0</span> 円
                                     </p>
 
                                     <!-- 削除 -->
@@ -111,12 +111,12 @@
 
                         <div class="cart-total-box">
                             <div class="total-row total-header">
-                                <span>食材合計</span>
+                                <span>食材合計数</span>
                                 <strong><span th:text="${#lists.size(cart)}">0</span>点</strong>
                             </div>
                             <div class="total-row">
-                                <span>合計</span>
-                                <strong><span th:text="${totalAmount}">0</span>円</strong>
+                                <span>合計金額</span>
+                                <strong><span th:text="${#numbers.formatInteger(totalAmount, 1, 'COMMA')}">0</span>円</strong>
                             </div>
                         </div>
 
