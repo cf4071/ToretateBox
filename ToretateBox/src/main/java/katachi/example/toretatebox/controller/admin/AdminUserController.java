@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,7 +30,6 @@ public class AdminUserController {
 
     private final UserRepository userRepository;
     private final AddressRepository addressRepository;
-
 
     @GetMapping("/users")
     public String list(
@@ -64,7 +64,6 @@ public class AdminUserController {
         return "admin/users";
     }
 
-
     @GetMapping("/users/{id}")
     public String detail(
             @PathVariable Integer id,
@@ -94,15 +93,17 @@ public class AdminUserController {
 
         return a.getPrefecture() + a.getCity() + " " + a.getAddressLine1() + line2;
     }
-    
+
+    @Transactional
     @PostMapping("/users/{id}/delete")
     public String deleteUser(@PathVariable Integer id) {
 
-        // 物理削除：DBから削除する
+        // 先に住所データを削除
+        addressRepository.deleteByUserId(id);
+
+        // そのあとユーザーを削除
         userRepository.deleteById(id);
 
         return "redirect:/admin/users";
     }
-
-
 }
