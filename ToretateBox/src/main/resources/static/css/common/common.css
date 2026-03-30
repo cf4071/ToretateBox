@@ -1,19 +1,239 @@
 @charset "UTF-8";
 
-.container {
+/* =========================
+   全体共通
+========================= */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #f8f8f8;
+  color: #333333;
+  font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", sans-serif;
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* =========================
+   レイアウト
+========================= */
+/* Bootstrap の .container とぶつからないように名前を変更 */
+.page-container {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.page-section {
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
 .page-title {
+  margin-bottom: 24px;
   font-size: 28px;
   font-weight: bold;
-  margin-bottom: 24px;
+  text-align: center;
+  color: #222222;
 }
 
+/* =========================
+   ボタン
+========================= */
 .common-btn {
-  display: inline-block;
-  padding: 10px 20px;
-  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+  height: 44px;
+  padding: 0 20px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1;
+  cursor: pointer;
+  transition: opacity 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.common-btn:hover {
+  opacity: 0.9;
+}
+
+.common-btn:focus {
+  outline: none;
+}
+
+.btn-primary {
+  background-color: rgb(0, 128, 255);
+  border-color: #4caf50;
+  color: #ffffff;
+}
+
+.btn-secondary {
+  background-color: #ffffff;
+  border-color: #cccccc;
+  color: #ffffff;
+}
+
+.btn-danger {
+  background-color: #d9534f;
+  border-color: #d9534f;
+  color: #ffffff;
+}
+
+.btn-warning {
+	background-color: rgb(255, 255, 128);
+	border-color: #cccccc;
+	color: #333333;
+}
+
+.btn-success {
+	background-color: #4caf50;
+	border-color: #cccccc;
+	color: #ffffff;
+}
+
+
+/* =========================
+   リンク
+========================= */
+.common-link {
+  color: #2f6fec;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.common-link:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   カード・枠
+========================= */
+.common-card {
+  padding: 24px;
+  border: 1px solid #dddddd;
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* =========================
+   フォーム
+========================= */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333333;
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  max-width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  background-color: #ffffff;
+  font-size: 14px;
+  color: #333333;
+}
+
+.form-input,
+.form-select {
+  height: 44px;
+}
+
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  outline: none;
+  border-color: #4caf50;
+}
+
+/* =========================
+   エラー表示
+========================= */
+.form-error {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #d9534f;
+}
+
+.common-alert {
+  margin-bottom: 20px;
+  padding: 12px 16px;
+  border: 1px solid #f0c0c0;
+  border-radius: 8px;
+  background-color: #fff3f3;
+  color: #d9534f;
+}
+
+/* =========================
+   ボタン並び
+========================= */
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* =========================
+   スマホ対応
+========================= */
+@media (max-width: 576px) {
+  .page-container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .page-section {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+  .page-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .common-card {
+    padding: 16px;
+  }
+
+  .btn-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .common-btn {
+    width: 100%;
+  }
 }

@@ -3,103 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <title>ゲスト情報登録 | とれたてBOX</title>
-
     <link rel="stylesheet" th:href="@{/css/cart/guest.css}">
 </head>
 
-<body class="bg-light">
+<body>
 
 <div th:replace="~{layout/layout :: layout(~{::title}, ~{::content})}">
-<main th:fragment="content" class="container py-5">
+    <main th:fragment="content">
+        <section class="guest-page">
+            <div class="page-container">
+                <div class="guest-box">
 
-    <div class="row justify-content-center">
-        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <h2 class="page-title">ゲスト情報登録</h2>
 
-            <div class="border-0 rounded-4">
-                <div class="card-body p-4 p-md-5">
-
-                    <h2 class="text-center fw-bold mb-4">ゲスト情報登録</h2>
-
-                    <div th:if="${errorMessage}" class="alert alert-danger text-center" role="alert">
-                        <p class="mb-0" th:text="${errorMessage}"></p>
+                    <div th:if="${errorMessage}" class="common-alert guest-alert">
+                        <p th:text="${errorMessage}">エラーメッセージ</p>
                     </div>
 
-                    <form th:action="@{/guest}" method="post" th:object="${guestForm}">
+                    <form th:action="@{/guest}" method="post" th:object="${guestForm}" class="guest-form">
 
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold">宛名</label>
-                            <input type="text" th:field="*{name}" class="form-control">
-                            <div class="text-danger text-center mt-1"
-                                 th:if="${#fields.hasErrors('name')}"
+                        <div class="form-group">
+                            <label class="form-label">宛名</label>
+                            <input type="text" th:field="*{name}" class="form-input">
+                            <div class="form-error"
+                                 th:if="${param.error != null and #fields.hasErrors('name')}"
                                  th:errors="*{name}"></div>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold">電話番号</label>
-                            <input type="text" th:field="*{phoneNumber}" class="form-control">
-                            <div class="text-danger text-center mt-1"
-                                 th:if="${#fields.hasErrors('phoneNumber')}"
+                        <div class="form-group">
+                            <label class="form-label">電話番号</label>
+                            <input type="text" th:field="*{phoneNumber}" class="form-input">
+                            <div class="form-error"
+                                 th:if="${param.error != null and #fields.hasErrors('phoneNumber')}"
                                  th:errors="*{phoneNumber}"></div>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold">郵便番号</label>
-                            <input type="text" th:field="*{postalCode}" class="form-control">
-                            <div class="text-danger text-center mt-1"
-                                 th:if="${#fields.hasErrors('postalCode')}"
+                        <div class="form-group">
+                            <label class="form-label">郵便番号</label>
+                            <input type="text" th:field="*{postalCode}" class="form-input">
+                            <div class="form-error"
+                                 th:if="${param.error != null and #fields.hasErrors('postalCode')}"
                                  th:errors="*{postalCode}"></div>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold">都道府県</label>
-                            <input type="text" th:field="*{prefecture}" class="form-control">
-                            <div class="text-danger text-center mt-1"
-                                 th:if="${#fields.hasErrors('prefecture')}"
+                        <div class="form-group">
+                            <label class="form-label">都道府県</label>
+                            <input type="text" th:field="*{prefecture}" class="form-input">
+                            <div class="form-error"
+                                 th:if="${param.error != null and #fields.hasErrors('prefecture')}"
                                  th:errors="*{prefecture}"></div>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold">市区町村</label>
-                            <input type="text" th:field="*{city}" class="form-control">
-                            <div class="text-danger text-center mt-1"
-                                 th:if="${#fields.hasErrors('city')}"
+                        <div class="form-group">
+                            <label class="form-label">市区町村</label>
+                            <input type="text" th:field="*{city}" class="form-input">
+                            <div class="form-error"
+                                 th:if="${param.error != null and #fields.hasErrors('city')}"
                                  th:errors="*{city}"></div>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold">町名・番地</label>
-                            <input type="text" th:field="*{addressLine1}" class="form-control">
-                            <div class="text-danger text-center mt-1"
-                                 th:if="${#fields.hasErrors('addressLine1')}"
+                        <div class="form-group">
+                            <label class="form-label">町名・番地</label>
+                            <input type="text" th:field="*{addressLine1}" class="form-input">
+                            <div class="form-error"
+                                 th:if="${param.error != null and #fields.hasErrors('addressLine1')}"
                                  th:errors="*{addressLine1}"></div>
                         </div>
 
-                        <div class="mb-4">
-                            <label class="form-label fw-semibold">建物名・部屋番号（任意）</label>
-                            <input type="text" th:field="*{addressLine2}" class="form-control">
-                            <div class="text-danger text-center mt-1"
-                                 th:if="${#fields.hasErrors('addressLine2')}"
+                        <div class="form-group">
+                            <label class="form-label">建物名・部屋番号（任意）</label>
+                            <input type="text" th:field="*{addressLine2}" class="form-input">
+                            <div class="form-error"
+                                 th:if="${param.error != null and #fields.hasErrors('addressLine2')}"
                                  th:errors="*{addressLine2}"></div>
                         </div>
 
-                        <div class="d-flex justify-content-center gap-5">
-                            <button type="submit" class="btn btn-warning px-4 fw-semibold">
-                                レジへ進む
-                            </button>
-                            <a th:href="@{/cart}" class="btn btn-primary px-4 fw-semibold">
-                                戻る
-                            </a>
+                        <div class="btn-group guest-btn-group gap-5">
+                            <button type="submit" class="common-btn btn-warning">レジへ進む</button>
+                            <a th:href="@{/cart}" class="common-btn btn-primary">戻る</a>
                         </div>
 
                     </form>
 
                 </div>
             </div>
-
-        </div>
-    </div>
-
-</main>
+        </section>
+    </main>
 </div>
 
 </body>
