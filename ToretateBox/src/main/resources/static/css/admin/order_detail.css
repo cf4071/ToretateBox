@@ -1,16 +1,10 @@
 @charset "UTF-8";
 
-/* =========================
-   ページ全体
-========================= */
 .order-detail-page {
     background-color: #f3f3f3;
     color: #222222;
 }
 
-/* =========================
-   タイトル
-========================= */
 .detail-header {
     margin-bottom: 56px;
 }
@@ -27,24 +21,15 @@
     border-bottom: 2px solid #cfcfcf;
 }
 
-/* =========================
-   本文全体
-========================= */
 .detail-sheet {
     max-width: 720px;
 }
 
-/* =========================
-   セクション区切り
-========================= */
 .detail-section {
     border-bottom: 2px solid #d7d7d7;
     padding: 18px 10px;
 }
 
-/* =========================
-   2列レイアウト
-========================= */
 .info-row,
 .block-row {
     display: flex;
@@ -73,9 +58,6 @@
     line-height: 1.7;
 }
 
-/* =========================
-   注文商品テーブル
-========================= */
 .item-table {
     width: 100%;
     margin-bottom: 0;
@@ -106,9 +88,7 @@
     padding-top: 8px !important;
 }
 
-/* =========================
-   合計金額
-========================= */
+
 .total-section {
     padding-top: 26px;
     padding-bottom: 26px;
@@ -119,29 +99,6 @@
     font-size: 24px;
 }
 
-/* =========================
-   戻るボタン
-========================= */
-.back-area {
-    padding-top: 34px;
-}
-
-.back-btn {
-    min-width: 130px;
-    padding: 12px 28px;
-    font-size: 20px;
-    font-weight: 700;
-    color: #222222;
-    border-radius: 12px;
-    border: 1px solid #97abc0;
-    background: linear-gradient(to bottom, #d8e6f3, #bfd2e5);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
-}
-
-.back-btn:hover {
-    color: #222222;
-    background: linear-gradient(to bottom, #d1e0ee, #b3c8de);
-}
 
 /* =========================
    レスポンシブ

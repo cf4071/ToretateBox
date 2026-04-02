@@ -90,21 +90,7 @@
     line-height: 1.6;
 }
 
-.admin-edit-btn {
-    background-color: #cfe2f3;
-    border: 1px solid #bdd2e6;
-    color: #222;
-    min-width: 88px;
-    border-radius: 8px;
-    font-weight: 500;
-    padding: 6px 16px;
-}
 
-.admin-edit-btn:hover {
-    background-color: #bdd8ef;
-    border-color: #a9c7df;
-    color: #222;
-}
 
 .admin-pagination .page-link {
     color: #222;

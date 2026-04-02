@@ -3,96 +3,95 @@
 <head>
   <meta charset="UTF-8">
   <title>レジ | とれたてBOX</title>
-
-  <!-- 自分のCSS -->
   <link rel="stylesheet" th:href="@{/css/cart/checkout.css}">
 </head>
 
-<body class="checkout-page">
+<body>
 
 <div th:replace="~{layout/layout :: layout(~{::title}, ~{::content})}">
+  <main th:fragment="content">
+    <section class="checkout-page">
+      <div class="page-container">
 
-  <main th:fragment="content" class="checkout-wrapper container py-5">
+        <h2 class="page-title checkout-title">レジ</h2>
 
-    <h2 class="checkout-title text-center fw-bold mb-5">レジ</h2>
+        <div class="checkout-layout">
 
-    <div class="row g-4 justify-content-center align-items-start">
+          <!-- 左：お届け先 -->
+          <section class="checkout-card address-card">
 
-      <!-- 左：お届け先 -->
-      <div class="col-12 col-lg-7">
-        <section class="checkout-card address-card h-100">
-          <h3 class="card-title">お届け先</h3>
+            <div class="info-grid" th:if="${address != null}">
+              <div class="info-row">
+                <span class="label">氏名</span>
+                <span class="value" th:text="${address.recipient}">山田太郎</span>
+              </div>
 
-          <div class="info-grid" th:if="${address != null}">
-            <div class="info-row">
-              <span class="label">氏名</span>
-              <span class="value" th:text="${address.recipient}">山田 太郎</span>
+              <div class="info-row">
+                <span class="label">郵便番号</span>
+                <span class="value" th:text="${address.postalCode}">123-4567</span>
+              </div>
+
+              <div class="info-row info-row-address">
+                <span class="label">住所</span>
+                <span class="value">
+                  <span th:text="${address.prefecture}">東京都</span>
+                  <span th:text="${address.city}">墨田区</span><br>
+                  <span th:text="${address.addressLine1}">○○1-2-3</span><br>
+                  <span th:text="${address.addressLine2}">△△マンション101</span>
+                </span>
+              </div>
             </div>
 
-            <div class="info-row">
-              <span class="label">郵便番号</span>
-              <span class="value" th:text="${address.postalCode}">123-4567</span>
+            <p th:if="${address == null}" class="empty-text">
+              住所情報がありません。住所登録をしてください。
+            </p>
+          </section>
+
+          <!-- 右：金額 + ボタン -->
+          <section class="checkout-side">
+
+            <!-- カートに商品があるとき -->
+            <div class="checkout-card payment-summary" th:if="${cart != null and !#lists.isEmpty(cart)}">
+              <h3 class="card-title payment-title">お支払い金額</h3>
+
+              <div class="payment-row single-line">
+                <span class="payment-label">食材合計</span>
+                <span class="payment-value">
+                  <span th:text="${totalCount}">0</span>点
+                </span>
+
+                <span class="payment-label total-label">合計金額</span>
+                <span class="payment-value total-value">
+                  ¥<span th:text="${#numbers.formatInteger(totalAmount, 3, 'COMMA')}">0</span>
+                </span>
+              </div>
             </div>
 
-            <div class="info-row info-row-address">
-              <span class="label">住所</span>
-              <span class="value">
-                <span th:text="${address.prefecture}">東京都</span>
-                <span th:text="${address.city}">墨田区</span><br>
-                <span th:text="${address.addressLine1}">〇〇1-2-3</span><br>
-                <span th:text="${address.addressLine2}">△△マンション101</span>
-              </span>
+            <!-- カートが空のとき -->
+            <div class="checkout-card payment-summary" th:if="${cart == null or #lists.isEmpty(cart)}">
+              <h3 class="card-title payment-title">お支払い金額</h3>
+              <p class="empty-text">カートに商品が入っていません。</p>
             </div>
-          </div>
 
-          <p th:if="${address == null}" class="empty-text mb-0">
-            住所情報がありません。住所登録をしてください。
-          </p>
-        </section>
+            <!-- 注文確定ボタン -->
+            <form th:action="@{/order/confirm}" method="post" class="d-grid">
+              <button type="submit" class="common-btn btn-warning">
+                ご注文を確定する
+              </button>
+            </form>
+
+            <!-- 戻るリンク -->
+            <div class="back-link-area">
+              <a th:href="@{/cart}" class="common-link back-link">ショッピングカートに戻る</a>
+            </div>
+
+          </section>
+
+        </div>
+
       </div>
-
-      <!-- 右：金額 + ボタン -->
-      <div class="col-12 col-lg-5 d-flex justify-content-end">
-        <section class="checkout-side">
-
-          <!-- グレーの金額ボックス -->
-          <div class="payment-summary" th:if="${cart != null and !#lists.isEmpty(cart)}">
-            <h3 class="payment-title">お支払い金額</h3>
-
-            <div class="payment-row-inline">
-              <span class="payment-count">
-                食材合計 <span th:text="${totalCount}">0</span>点
-              </span>
-
-              <span class="payment-total">
-                合計金額 ￥<span th:text="${#numbers.formatInteger(totalAmount, 1, 'COMMA')}">0</span>
-              </span>
-            </div>
-          </div>
-
-          <!-- カートが空のとき -->
-          <div class="payment-summary" th:if="${cart == null or #lists.isEmpty(cart)}">
-            <h3 class="payment-title">お支払い金額</h3>
-            <p class="empty-text mb-0">カートに商品が入っていません。</p>
-          </div>
-
-          <!-- 注文確定ボタン -->
-          <form th:action="@{/order/confirm}" method="post" class="confirm-form">
-            <button type="submit" class="confirm-btn">ご注文を確定する</button>
-          </form>
-
-          <!-- 戻るリンク -->
-          <div class="back-link-area">
-            <a th:href="@{/cart}" class="back-link">ショッピングカートに戻る</a>
-          </div>
-
-        </section>
-      </div>
-
-    </div>
-
+    </section>
   </main>
-
 </div>
 
 </body>

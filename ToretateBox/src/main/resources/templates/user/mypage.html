@@ -67,9 +67,9 @@
         <input type="text" th:value="${address != null ? address.addressLine2 : ''}" readonly>
       </div>
 
-      <div class="mypage-buttons">
-        <a class="btn btn-edit" th:href="@{/edit}">編集</a>
-        <a class="btn btn-back" th:href="@{/top}">戻る</a>
+      <div class="btn-group gap-5">
+        <a class="common-btn btn-danger" th:href="@{/edit}">編集</a>
+        <a class="common-btn btn-primary" th:href="@{/top}">戻る</a>
       </div>
 
     </div>

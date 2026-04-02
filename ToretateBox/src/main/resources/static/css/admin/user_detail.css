@@ -1,15 +1,9 @@
 @charset "UTF-8";
 
-/* =========================
-   ページ全体
-========================= */
 .user-detail-page {
     background-color: #f3f3f3;
 }
 
-/* =========================
-   タイトル
-========================= */
 .page-title {
     font-size: 42px;
     font-weight: 700;
@@ -17,9 +11,6 @@
     letter-spacing: 0.04em;
 }
 
-/* =========================
-   詳細エリア
-========================= */
 .detail-wrap {
     max-width: 760px;
     background-color: transparent;
@@ -36,9 +27,6 @@
     background-color: #f7f7f7;
 }
 
-/* =========================
-   テーブル
-========================= */
 .detail-table {
     border: 1px solid #e3e3e3;
     table-layout: fixed;
@@ -64,7 +52,6 @@
     font-weight: 600;
 }
 
-/* 奇数行 = 明るい緑、偶数行 = 白 */
 .detail-table tbody tr:nth-child(odd) th,
 .detail-table tbody tr:nth-child(odd) td {
     background-color: #dff1e8;
@@ -75,44 +62,6 @@
     background-color: #ffffff;
 }
 
-/* =========================
-   ボタン
-========================= */
-.actions {
-    margin-top: 60px;
-}
-
-.delete-btn {
-    min-width: 110px;
-    padding: 10px 24px;
-    font-size: 16px;
-    font-weight: 700;
-    color: #7a2d2d;
-    border: 1px solid #d7a8a8;
-    border-radius: 10px;
-    background: linear-gradient(to bottom, #f5dede, #eccaca);
-}
-
-.delete-btn:hover {
-    color: #6d2222;
-    background: linear-gradient(to bottom, #f1d6d6, #e8c0c0);
-}
-
-.back-btn {
-    min-width: 110px;
-    padding: 10px 24px;
-    font-size: 16px;
-    font-weight: 700;
-    color: #2b3a4b;
-    border: 1px solid #9eb3c8;
-    border-radius: 10px;
-    background: linear-gradient(to bottom, #dce8f5, #c5d7ea);
-}
-
-.back-btn:hover {
-    color: #223140;
-    background: linear-gradient(to bottom, #d4e2f0, #b8cee4);
-}
 
 /* =========================
    スマホ対応

@@ -26,14 +26,23 @@ public class CartController {
     private final ProductsService productsService;
 
     @GetMapping
-    public String showCart(HttpSession session, Model model) {
+    public String showCart(HttpSession session, Model model, Authentication authentication) {
         List<CartItem> cart = getCart(session);
         int totalAmount = calculateTotal(cart);
-        int totalQuantity = calculateTotalQuantity(cart);
 
-        model.addAttribute("cart", cart);
+        int totalQuantity = 0;
+        for (CartItem item : cart) {
+            totalQuantity += item.getQuantity();
+        }
+
+        boolean isLoggedIn = authentication != null
+                && authentication.isAuthenticated()
+                && !"anonymousUser".equals(authentication.getPrincipal());
+
+        model.addAttribute("cartItems", cart);
         model.addAttribute("totalAmount", totalAmount);
         model.addAttribute("totalQuantity", totalQuantity);
+        model.addAttribute("isLoggedIn", isLoggedIn);
 
         return "cart/cart";
     }
@@ -41,7 +50,7 @@ public class CartController {
     @PostMapping("/add")
     public String addToCart(
             @RequestParam Integer productId,
-            @RequestParam int quantity,
+            @RequestParam(defaultValue = "1") int quantity,
             HttpSession session) {
 
         if (quantity < 1) {
@@ -126,7 +135,7 @@ public class CartController {
 
         List<CartItem> cart = getCart(session);
 
-        if (cart == null || cart.isEmpty()) {
+        if (cart.isEmpty()) {
             redirectAttributes.addFlashAttribute("errorMessage", "カートに商品がありません。");
             return "redirect:/cart";
         }
@@ -145,8 +154,7 @@ public class CartController {
 
     @SuppressWarnings("unchecked")
     private List<CartItem> getCart(HttpSession session) {
-        List<CartItem> cart =
-                (List<CartItem>) session.getAttribute("cart");
+        List<CartItem> cart = (List<CartItem>) session.getAttribute("cart");
 
         if (cart == null) {
             cart = new ArrayList<>();
@@ -163,15 +171,5 @@ public class CartController {
         }
 
         return total;
-    }
-
-    private int calculateTotalQuantity(List<CartItem> cart) {
-        int totalQuantity = 0;
-
-        for (CartItem item : cart) {
-            totalQuantity += item.getQuantity();
-        }
-
-        return totalQuantity;
     }
 }

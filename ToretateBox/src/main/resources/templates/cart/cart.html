@@ -1,154 +1,129 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>カート | とれたてBOX</title>
-
-    <!-- cart.css -->
     <link rel="stylesheet" th:href="@{/css/cart/cart.css}">
 </head>
-
 <body>
 
 <div th:replace="~{layout/layout :: layout(~{::title}, ~{::content})}">
 
     <main th:fragment="content">
-        <div class="cart-page">
-            <div class="container py-5">
+        <section class="cart-page">
+            <div class="page-container">
 
-                <h2 class="cart-title text-center mb-5">ショッピングカート</h2>
+                <h2 class="page-title cart-title">ショッピングカート</h2>
 
-                <p th:if="${errorMessage}"
-                   class="cart-error-message text-center"
-                   th:text="${errorMessage}">
-                </p>
-
-                <div class="row g-5">
-
-                    <!-- =========================
-                         左：カート商品一覧
-                    ========================= -->
-                    <section class="col-lg-8">
-
-                        <!-- カートが空 -->
-                        <div th:if="${cart == null or #lists.isEmpty(cart)}" class="cart-empty text-center">
-                            <p class="cart-empty-text">カートに商品はありません。</p>
-                            <a th:href="@{/products}" class="btn btn-outline-secondary px-4">
-                                商品一覧へ戻る
-                            </a>
-                        </div>
-
-                        <!-- カートに商品がある -->
-                        <div th:if="${cart != null and !#lists.isEmpty(cart)}" class="cart-list">
-
-                            <div th:each="item : ${cart}" class="cart-item">
-
-                                <!-- 商品画像 -->
-                                <div class="cart-item-image">
-                                    <img th:src="${#strings.isEmpty(item.imageUrl)}
-                                                ? @{/images/no-image.png}
-                                                : @{${item.imageUrl}}"
-                                         alt="商品画像">
-                                </div>
-
-                                <!-- 商品情報 -->
-                                <div class="cart-item-main">
-                                    <p class="cart-item-name" th:text="${item.name}">商品名</p>
-                                    <p class="cart-item-price">
-                                        値段：<span th:text="${#numbers.formatInteger(item.price, 1, 'COMMA')}">0</span> 円
-                                    </p>
-                                </div>
-
-                                <!-- 右側：個数・小計・削除 -->
-                                <div class="cart-item-side">
-
-                                    <!-- 個数変更 -->
-                                    <form th:action="@{/cart/update}" method="post" class="cart-quantity-form">
-                                        <input type="hidden"
-                                               th:if="${_csrf != null}"
-                                               th:name="${_csrf.parameterName}"
-                                               th:value="${_csrf.token}">
-                                        <input type="hidden" name="productId" th:value="${item.productId}">
-
-                                        <p class="quantity-title">数量</p>
-
-                                        <input type="number"
-                                               name="quantity"
-                                               min="1"
-                                               th:value="${item.quantity}"
-                                               class="form-control-sm quantity-input"
-                                               onchange="this.form.submit()">
-                                    </form>
-
-                                    <!-- 小計 -->
-                                    <p class="cart-item-subtotal">
-                                        小計：<span th:text="${#numbers.formatInteger(item.subtotal, 1, 'COMMA')}">0</span> 円
-                                    </p>
-
-                                    <!-- 削除 -->
-                                    <form th:action="@{/cart/remove}" method="post" class="cart-remove-form">
-                                        <input type="hidden"
-                                               th:if="${_csrf != null}"
-                                               th:name="${_csrf.parameterName}"
-                                               th:value="${_csrf.token}">
-                                        <input type="hidden" name="productId" th:value="${item.productId}">
-                                        <button type="submit" class="btn btn-danger cart-delete-btn">
-                                            削除
-                                        </button>
-                                    </form>
-                                </div>
-
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- =========================
-                         右：合計・ボタン
-                    ========================= -->
-                    <aside class="col-lg-4"
-                           th:if="${cart != null and !#lists.isEmpty(cart)}">
-
-                        <div class="cart-total-box">
-                            <div class="total-row total-header">
-                                <span class="total-count">
-                                    食材合計<span th:text="${totalQuantity}">0</span>点
-                                </span>
-                                <span class="total-price">
-                                    合計金額￥<span th:text="${#numbers.formatInteger(totalAmount, 1, 'COMMA')}">0</span>
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="cart-actions">
-
-                            <form th:action="@{/cart/checkout}" method="post">
-                                <input type="hidden"
-                                       th:if="${_csrf != null}"
-                                       th:name="${_csrf.parameterName}"
-                                       th:value="${_csrf.token}">
-                                <button type="submit" class="btn btn-warning cart-action-btn">
-                                    レジへ進む
-                                </button>
-                            </form>
-
-                            <!-- 未ログインのときだけ表示 -->
-                            <a sec:authorize="isAnonymous()"
-                               th:href="@{/guest}"
-                               class="btn btn-primary cart-action-btn">
-                                ゲスト情報登録へ
-                            </a>
-
-                            <a th:href="@{/products}" class="cart-link-back">
-                                ショッピングを続ける
-                            </a>
-                        </div>
-
-                    </aside>
-
+                <!-- エラーメッセージ -->
+                <div th:if="${errorMessage}" class="common-alert cart-error-message" th:text="${errorMessage}">
+                    エラーメッセージ
                 </div>
+
+                <!-- カートが空の場合 -->
+                <div th:if="${cartItems == null or #lists.isEmpty(cartItems)}" class="cart-empty">
+                    <p class="cart-empty-text">カートに商品が入っていません。</p>
+                    <a th:href="@{/top}" class="common-link cart-link-back">ショッピングを続ける</a>
+                </div>
+
+                <!-- カートに商品がある場合 -->
+                <div th:if="${cartItems != null and !#lists.isEmpty(cartItems)}">
+                    <div class="row g-4">
+
+                        <!-- 左側：商品一覧 -->
+                        <div class="col-12 col-lg-8">
+                            <div class="cart-list">
+
+                                <div class="cart-item" th:each="item : ${cartItems}">
+                                    <!-- 商品画像 -->
+                                    <div class="cart-item-image">
+                                        <img th:src="@{${item.imageUrl}}" alt="商品画像">
+                                    </div>
+
+                                    <!-- 商品情報 -->
+                                    <div class="cart-item-main">
+                                        <p class="cart-item-name" th:text="${item.name}">商品名</p>
+                                        <p class="cart-item-price">
+                                            値段：
+                                            <span th:text="${#numbers.formatInteger(item.price, 3, 'COMMA')}">0</span>
+                                            円
+                                        </p>
+                                    </div>
+
+                                    <!-- 右側情報 -->
+                                    <div class="cart-item-side">
+
+                                        <!-- 数量変更 -->
+                                        <form th:action="@{/cart/update}" method="post" class="cart-quantity-form">
+                                            <input type="hidden" name="productId" th:value="${item.productId}">
+
+                                            <p class="quantity-title">数量</p>
+                                            <select name="quantity" class="quantity-input" onchange="this.form.submit()">
+                                                <option th:each="i : ${#numbers.sequence(1, 10)}"
+                                                        th:value="${i}"
+                                                        th:selected="${i == item.quantity}"
+                                                        th:text="${i} + '個'">
+                                                    1個
+                                                </option>
+                                            </select>
+                                        </form>
+
+                                        <!-- 小計 -->
+                                        <p class="cart-item-subtotal">
+                                            小計：
+                                             ¥<span th:text="${#numbers.formatInteger(item.subtotal, 3, 'COMMA')}">0</span>
+                                        </p>
+
+                                        <!-- 削除 -->
+                                        <form th:action="@{/cart/remove}" method="post" class="cart-remove-form">
+                                            <input type="hidden" name="productId" th:value="${item.productId}">
+                                            <button type="submit" class="common-btn btn-danger">削除</button>
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- 右側：合計と操作 -->
+                        <div class="col-12 col-lg-4">
+                            <div class="cart-total-box">
+							    <div class="total-row total-summary-row">
+							        <span class="total-label">食材合計</span>
+							        <span class="total-value" th:text="${totalQuantity} + '点'">0点</span>
+							
+							        <span class="total-label total-price-label">合計金額</span>
+							        <span class="total-value total-price-value">
+							            ¥<span th:text="${#numbers.formatInteger(totalAmount, 3, 'COMMA')}">0</span>
+							        </span>
+							    </div>
+							</div>
+
+                            <div class="cart-actions">
+
+                                <!-- ログインユーザー用 -->
+                                <form th:if="${isLoggedIn}" th:action="@{/checkout}" method="get" class="d-grid">
+                                    <button type="submit" class="common-btn btn-warning">レジへ進む</button>
+                                </form>
+
+                                <!-- ゲストユーザー用 -->
+                                <form th:if="${!isLoggedIn}" th:action="@{/checkout}" method="get" class="d-grid">
+                                    <button type="submit" class="common-btn btn-warning">レジへ進む</button>
+                                </form>
+                                
+							 	<form th:if="${!isLoggedIn}" th:action="@{/guest}" method="get" class="d-grid">
+									 <button type="submit" class="common-btn btn-primary">ゲスト情報登録へ</button>
+								 </form>
+
+                                <a th:href="@{/top}" class="common-link cart-link-back">ショッピングを続ける</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
-        </div>
+        </section>
     </main>
 
 </div>

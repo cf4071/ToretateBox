@@ -11,26 +11,27 @@
     font-size: 36px;
     font-weight: bold;
     color: #222222;
+    text-align: center;
 }
 
+/* =========================
+   エラーメッセージ
+========================= */
 .cart-error-message {
     display: block;
     max-width: 420px;
     margin: -20px auto 24px;
-    padding: 10px 16px;
-    background-color: #fdecea;
-    border: 1px solid #f5c6cb;
-    border-radius: 6px;
-    color: #dc3545;
-    font-size: 14px;
-    font-weight: bold;
     text-align: center;
 }
 
+/* =========================
+   空カート
+========================= */
 .cart-empty {
     background-color: #ffffff;
     border: 1px solid #d9d9d9;
     padding: 60px 20px;
+    text-align: center;
 }
 
 .cart-empty-text {
@@ -39,11 +40,15 @@
     color: #333333;
 }
 
+/* =========================
+   カート一覧
+========================= */
 .cart-list {
     background-color: #ffffff;
     border: 1px solid #d9d9d9;
     padding: 0 24px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    margin-top: 60px;
 }
 
 .cart-item {
@@ -124,34 +129,56 @@
     margin: 0;
 }
 
-.cart-delete-btn {
-    min-width: 90px;
-    font-size: 16px;
-    font-weight: bold;
-}
-
+/* =========================
+   合計ボックス
+========================= */
 .cart-total-box {
     background-color: #e5e5e5;
     border: 1px solid #cfcfcf;
-    padding: 30px;
-    margin-bottom: 24px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-    width: 100%;
+    padding: 24px;
+	width: 100%;
+	max-width: 100%;
+	margin: 60px auto 24px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .total-row {
     display: flex;
-    justify-content: flex-start;
     align-items: center;
-    gap: 40px;
-    padding: 0;
     font-size: 18px;
+    color: #333333;
+    padding: 18px 20px;
 }
 
-.total-price {
-	font-weight: bold;
+.total-summary-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: nowrap;
 }
 
+.total-label,
+.total-value {
+    white-space: nowrap;
+}
+
+.cart-total-box {
+    max-width: 500px;
+}
+
+.total-price-label {
+    margin-left: auto;
+}
+
+.total-price-value {
+    min-width: 90px;
+    text-align: right;
+}
+
+/* =========================
+   操作エリア
+========================= */
 .cart-actions {
     display: flex;
     flex-direction: column;
@@ -163,31 +190,17 @@
     margin: 0;
 }
 
-.cart-action-btn {
-    display: block;
-    width: 100%;
-    padding: 14px 20px;
-    font-size: 20px;
-    font-weight: bold;
-    border-radius: 8px;
-}
-
 .cart-link-back {
+    display: block;
+    margin-top: 25px;
     text-align: center;
     font-size: 16px;
-    color: #0d6efd;
-    text-decoration: underline;
-}
-
-.cart-link-back:hover {
-    color: #0a58ca;
 }
 
 /* =========================
    タブレット対応
 ========================= */
 @media (max-width: 991px) {
-
     .cart-item {
         gap: 24px;
     }
@@ -206,7 +219,6 @@
    スマホ対応
 ========================= */
 @media (max-width: 767px) {
-
     .cart-title {
         font-size: 28px;
     }
@@ -214,8 +226,6 @@
     .cart-error-message {
         max-width: 100%;
         margin: 0 auto 20px;
-        font-size: 13px;
-        padding: 10px 12px;
     }
 
     .cart-list {
@@ -261,5 +271,32 @@
     .cart-item-subtotal {
         margin-top: 16px;
         margin-bottom: 16px;
+    }
+
+    .cart-action-btn {
+        font-size: 16px;
+        min-height: 48px;
+    }
+
+    .cart-link-back {
+        font-size: 15px;
+    }
+
+    .total-summary-row {
+        gap: 8px;
+    }
+
+    .total-label,
+    .total-value {
+        font-size: 16px;
+    }
+
+    .total-price-label {
+        margin-left: 0;
+    }
+
+    .total-price-value {
+        min-width: auto;
+        text-align: left;
     }
 }

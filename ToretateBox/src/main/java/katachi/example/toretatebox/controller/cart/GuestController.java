@@ -27,12 +27,12 @@ public class GuestController {
     private final UserRepository userRepository;
 
     @GetMapping("/guest")
-    public String showGuest(Model model, HttpSession session) {
+    public String showGuest(Model model) {
 
-        GuestForm form = (GuestForm) session.getAttribute("guestForm");
-        if (form == null) form = new GuestForm();
+        if (!model.containsAttribute("guestForm")) {
+            model.addAttribute("guestForm", new GuestForm());
+        }
 
-        model.addAttribute("guestForm", form);
         return "cart/guest";
     }
 
@@ -42,10 +42,15 @@ public class GuestController {
             BindingResult bindingResult,
             HttpSession session,
             Principal principal,
-            RedirectAttributes ra) {
+            RedirectAttributes redirectAttributes) {
 
         if (bindingResult.hasErrors()) {
-            return "cart/guest";
+            redirectAttributes.addFlashAttribute(
+                    "org.springframework.validation.BindingResult.guestForm",
+                    bindingResult);
+            redirectAttributes.addFlashAttribute("guestForm", form);
+
+            return "redirect:/guest?error";
         }
 
         session.setAttribute("guestForm", form);

@@ -1,54 +1,90 @@
 @charset "UTF-8";
 
-body {
-    background-color: #f8f9fa;
+/* =========================
+   ゲスト情報登録画面全体
+========================= */
+.guest-page {
+    min-height: 100vh;
+    background-color: #f8f8f8;
+    padding-top: 40px;
+    padding-bottom: 60px;
 }
 
-.card {
-    background-color: #ffffff;
+/* =========================
+   フォーム全体
+========================= */
+.guest-box {
+    max-width: 560px;
+    margin: 0 auto;
 }
 
-h2 {
-    font-size: 28px;
+.guest-form {
+    width: 100%;
 }
 
-.form-label {
-    font-size: 14px;
-    color: #333;
-    margin-bottom: 6px;
+/* =========================
+   タイトル
+========================= */
+.guest-box .page-title {
+    margin-bottom: 32px;
 }
 
-.form-control {
-    border: 1px solid #999;
-    border-radius: 0;
-    height: 42px;
+/* =========================
+   エラー表示
+========================= */
+.guest-alert {
+    margin-bottom: 24px;
 }
 
-.form-control:focus {
-    box-shadow: none;
-    border-color: #666;
+.guest-alert p {
+    margin: 0;
 }
 
-.btn-warning {
-    background-color: #f4e7a1;
-    border-color: #d9c97a;
-    color: #333;
+/* =========================
+   フォーム項目
+========================= */
+.guest-form .form-group {
+    margin-bottom: 20px;
 }
 
-.btn-warning:hover {
-    background-color: #ecdc8c;
-    border-color: #cdbf71;
-    color: #333;
+.guest-form .form-label {
+    text-align: left;
 }
 
-.btn-primary {
-    background-color: #c8d9ee;
-    border-color: #a9bfdc;
-    color: #333;
+.guest-form .form-input {
+    width: 100%;
 }
 
-.btn-primary:hover {
-    background-color: #b8cde7;
-    border-color: #9cb4d4;
-    color: #333;
+
+/* =========================
+   スマホ対応
+========================= */
+@media (max-width: 576px) {
+    .guest-page {
+        padding-top: 24px;
+        padding-bottom: 40px;
+    }
+
+    .guest-box {
+        max-width: 100%;
+    }
+
+    .guest-box .page-title {
+        margin-bottom: 24px;
+    }
+
+    .guest-form .form-group {
+        margin-bottom: 18px;
+    }
+
+    .guest-btn-group {
+        margin-top: 24px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .guest-btn-group .common-btn {
+        width: 100%;
+    }
 }
