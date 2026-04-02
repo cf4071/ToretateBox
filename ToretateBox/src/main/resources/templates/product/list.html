@@ -4,146 +4,124 @@
   <meta charset="UTF-8">
   <title>食材一覧 | とれたてBOX</title>
 
+  <link rel="stylesheet" th:href="@{/css/common/common.css}">
   <link rel="stylesheet" th:href="@{/css/common/product-card.css}">
   <link rel="stylesheet" th:href="@{/css/product/list.css}">
 </head>
 
-<body class="list-page">
+<body>
 
 <div th:replace="~{layout/layout :: layout(~{::title}, ~{::content})}">
 
-<main th:fragment="content" class="py-4">
-  <div class="container-fluid list-container">
+  <main th:fragment="content">
+    <section class="page-section list-page">
+      <div class="page-container list-container">
 
-    <div class="row gx-4 gy-4">
+        <h2 class="page-title">食材一覧</h2>
 
-      <aside class="col-lg-2 col-md-3">
-        <div class="search-box sticky-search">
-          <form th:action="@{/products}" method="get" class="search-form">
+        <div class="row gx-4 gy-4">
 
-            <h3 class="search-title">カテゴリ</h3>
+	      <aside class="col-lg-2 col-md-3">
+	        <div class="search-box sticky-search">
+	          <form th:action="@{/products}" method="get" class="search-form">
+	
+	            <h3 class="search-title">カテゴリ</h3>
+	
+	            <div class="search-group">
+	              <div class="form-check mb-2">
+	                <input class="form-check-input" type="radio" name="categoryId" id="category1" value="1"
+	                       th:checked="${categoryId == 1}" onchange="this.form.submit()">
+	                <label class="form-check-label" for="category1">野菜</label>
+	              </div>
+	
+	              <div class="form-check mb-3">
+	                <input class="form-check-input" type="radio" name="categoryId" id="category2" value="2"
+	                       th:checked="${categoryId == 2}" onchange="this.form.submit()">
+	                <label class="form-check-label" for="category2">果物</label>
+	              </div>
+	            </div>
+	
+	            <a th:href="@{/top}" class="season-link d-inline-block mb-4">旬の食材一覧</a>
+	
+	            <h3 class="search-title">旬の季節</h3>
+	
+	            <div class="search-group">
+	              <div class="form-check mb-2">
+	                <input class="form-check-input" type="radio" name="season" id="spring" value="春"
+	                       th:checked="${season == '春'}" onchange="this.form.submit()">
+	                <label class="form-check-label" for="spring">春</label>
+	              </div>
+	
+	              <div class="form-check mb-2">
+	                <input class="form-check-input" type="radio" name="season" id="summer" value="夏"
+	                       th:checked="${season == '夏'}" onchange="this.form.submit()">
+	                <label class="form-check-label" for="summer">夏</label>
+	              </div>
+	
+	              <div class="form-check mb-2">
+	                <input class="form-check-input" type="radio" name="season" id="autumn" value="秋"
+	                       th:checked="${season == '秋'}" onchange="this.form.submit()">
+	                <label class="form-check-label" for="autumn">秋</label>
+	              </div>
+	
+	              <div class="form-check mb-2">
+	                <input class="form-check-input" type="radio" name="season" id="winter" value="冬"
+	                       th:checked="${season == '冬'}" onchange="this.form.submit()">
+	                <label class="form-check-label" for="winter">冬</label>
+	              </div>
+	
+	              <div class="form-check mb-3">
+	                <input class="form-check-input" type="radio" name="season" id="allseason" value="通年"
+	                       th:checked="${season == '通年'}" onchange="this.form.submit()">
+	                <label class="form-check-label" for="allseason">通年</label>
+	              </div>
+	            </div>
+	
+	          </form>
+	        </div>
+	      </aside>
 
-            <div class="search-group">
-              <div class="form-check mb-2">
-                <input class="form-check-input" type="radio" name="categoryId" id="category1" value="1"
-                       th:checked="${categoryId == 1}" onchange="this.form.submit()">
-                <label class="form-check-label" for="category1">野菜</label>
+          <section class="col-lg-10 col-md-9">
+
+            <div th:if="${products != null and !#lists.isEmpty(products)}"
+                 class="row gx-4 gy-5 justify-content-center">
+
+              <div th:each="p : ${products}" class="col-lg-3 col-md-4 col-sm-6 col-6">
+                <div class="product-card h-100 text-center d-flex flex-column">
+                  <div class="image-box">
+                    <a th:href="@{'/products/' + ${p.id}}" class="image-link">
+                      <img th:if="${p.imageUrl != null and p.imageUrl != ''}"
+                           th:src="@{${p.imageUrl}}"
+                           th:alt="${p.name}"
+                           class="img-fluid product-image">
+                    </a>
+                  </div>
+
+                  <div class="product-info mt-2">
+                    <div class="name" th:text="${p.name}">商品名</div>
+                    <div class="price" th:text="${#numbers.formatInteger(p.price, 1, 'COMMA') + '円'}">0円</div>
+                  </div>
+                </div>
               </div>
 
-              <div class="form-check mb-3">
-                <input class="form-check-input" type="radio" name="categoryId" id="category2" value="2"
-                       th:checked="${categoryId == 2}" onchange="this.form.submit()">
-                <label class="form-check-label" for="category2">果物</label>
-              </div>
             </div>
 
-            <a th:href="@{/top}" class="season-link d-inline-block mb-4">旬の食材一覧</a>
-
-            <h3 class="search-title">旬の季節</h3>
-
-            <div class="search-group">
-              <div class="form-check mb-2">
-                <input class="form-check-input" type="radio" name="season" id="spring" value="春"
-                       th:checked="${season == '春'}" onchange="this.form.submit()">
-                <label class="form-check-label" for="spring">春</label>
-              </div>
-
-              <div class="form-check mb-2">
-                <input class="form-check-input" type="radio" name="season" id="summer" value="夏"
-                       th:checked="${season == '夏'}" onchange="this.form.submit()">
-                <label class="form-check-label" for="summer">夏</label>
-              </div>
-
-              <div class="form-check mb-2">
-                <input class="form-check-input" type="radio" name="season" id="autumn" value="秋"
-                       th:checked="${season == '秋'}" onchange="this.form.submit()">
-                <label class="form-check-label" for="autumn">秋</label>
-              </div>
-
-              <div class="form-check mb-2">
-                <input class="form-check-input" type="radio" name="season" id="winter" value="冬"
-                       th:checked="${season == '冬'}" onchange="this.form.submit()">
-                <label class="form-check-label" for="winter">冬</label>
-              </div>
-
-              <div class="form-check mb-3">
-                <input class="form-check-input" type="radio" name="season" id="allseason" value="通年"
-                       th:checked="${season == '通年'}" onchange="this.form.submit()">
-                <label class="form-check-label" for="allseason">通年</label>
-              </div>
+            <div th:if="${products == null or #lists.isEmpty(products)}"
+                 class="text-center no-message">
+              <p>商品がありません</p>
             </div>
 
-          </form>
+            <nav class="mt-5" th:if="${totalPages != null and totalPages > 0}">
+              <ul class="pagination justify-content-center">
+                ...
+              </ul>
+            </nav>
+
+          </section>
         </div>
-      </aside>
-
-      <section class="col-lg-10 col-md-9">
-        <div class="text-center mb-5">
-          <h2 class="list-title">食材一覧</h2>
-        </div>
-
-        <div th:if="${products != null and !#lists.isEmpty(products)}"
-             class="row gx-4 gy-5 justify-content-center">
-
-          <div th:each="p : ${products}" class="col-lg-3 col-md-4 col-sm-6 col-6">
-            <div class="product-card h-100 text-center d-flex flex-column">
-              <div class="image-box">
-                <a th:href="@{'/products/' + ${p.id}}" class="image-link">
-                  <img th:if="${p.imageUrl != null and p.imageUrl != ''}"
-                       th:src="@{${p.imageUrl}}"
-                       th:alt="${p.name}"
-                       class="img-fluid product-image">
-                </a>
-              </div>
-
-			  <div class="product-info mt-2">
-				<div class="name" th:text="${p.name}">商品名</div>
-				<div class="price" th:text="${#numbers.formatInteger(p.price, 1, 'COMMA') + '円'}">0円</div>
-			  </div>
-            </div>
-          </div>
-
-        </div>
-
-        <div th:if="${products == null or #lists.isEmpty(products)}"
-             class="text-center empty-message">
-          <p>商品がありません</p>
-        </div>
-
-        <nav class="mt-5" th:if="${totalPages != null and totalPages > 0}">
-          <ul class="pagination justify-content-center">
-            <li class="page-item" th:classappend="${currentPage == 0} ? ' disabled'">
-              <a class="page-link"
-                 th:if="${currentPage > 0}"
-                 th:href="@{/products(page=${currentPage - 1}, categoryId=${categoryId}, season=${season})}">
-                前へ
-              </a>
-              <span class="page-link" th:if="${currentPage == 0}">前へ</span>
-            </li>
-
-            <li class="page-item"
-                th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
-                th:classappend="${i == currentPage} ? ' active'">
-              <a class="page-link"
-                 th:href="@{/products(page=${i}, categoryId=${categoryId}, season=${season})}"
-                 th:text="${i + 1}">1</a>
-            </li>
-
-            <li class="page-item" th:classappend="${currentPage >= totalPages - 1} ? ' disabled'">
-              <a class="page-link"
-                 th:if="${currentPage < totalPages - 1}"
-                 th:href="@{/products(page=${currentPage + 1}, categoryId=${categoryId}, season=${season})}">
-                次へ
-              </a>
-              <span class="page-link" th:if="${currentPage >= totalPages - 1}">次へ</span>
-            </li>
-          </ul>
-        </nav>
-      </section>
-
-    </div>
-  </div>
-</main>
+      </div>
+    </section>
+  </main>
 
 </div>
 

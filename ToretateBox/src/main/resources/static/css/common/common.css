@@ -28,7 +28,6 @@ img {
 /* =========================
    レイアウト
 ========================= */
-/* Bootstrap の .container とぶつからないように名前を変更 */
 .page-container {
   width: 100%;
   max-width: 1200px;
@@ -184,6 +183,32 @@ img {
   border-radius: 8px;
   background-color: #fff3f3;
   color: #d9534f;
+}
+
+/* =========================
+   ページネーション
+========================= */
+.pagination {
+  margin-top: 32px;
+  gap: 8px;
+}
+
+.pagination .page-link {
+  color: #333333;
+  border: none;
+  background-color: transparent;
+  font-weight: bold;
+}
+
+.pagination .page-item.active .page-link {
+  color: #000000;
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+.pagination .page-item.disabled .page-link {
+  color: #999999;
+  background-color: transparent;
 }
 
 /* =========================

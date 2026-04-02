@@ -75,32 +75,6 @@
 }
 
 /* ===============================
-   ページネーション共通
-================================ */
-.pagination {
-    margin-top: 32px;
-    gap: 8px;
-}
-
-.pagination .page-link {
-    color: #333333;
-    border: none;
-    background-color: transparent;
-    font-weight: bold;
-}
-
-.pagination .page-item.active .page-link {
-    color: #000000;
-    text-decoration: underline;
-    background-color: transparent;
-}
-
-.pagination .page-item.disabled .page-link {
-    color: #999999;
-    background-color: transparent;
-}
-
-/* ===============================
    タブレット以下
 ================================ */
 @media (max-width: 991.98px) {
