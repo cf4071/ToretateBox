@@ -41,8 +41,7 @@
               <td th:text="${#temporals.format(order.createdAt, 'yyyy/MM/dd HH:mm')}"></td>
               <td th:text="'￥' + ${order.totalAmount}"></td>
               <td>
-                <a class="btn btn-primary detail-btn"
-                   th:href="@{'/admin/orders/' + ${order.id}}">
+                <a th:href="@{'/admin/orders/' + ${order.id}}" class="common-btn btn-danger">
                   詳細
                 </a>
               </td>
@@ -82,9 +81,8 @@
     </nav>
 
     <!-- 戻るボタン -->
-    <div class="text-center mt-4">
-      <a th:href="@{/admin/products}"
-         class="btn back-btn px-4">
+    <div class="text-center">
+      <a th:href="@{/admin/products}" class="common-btn btn-primary">
         戻る
       </a>
     </div>

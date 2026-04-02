@@ -121,16 +121,6 @@ img {
   text-decoration: underline;
 }
 
-/* =========================
-   カード・枠
-========================= */
-.common-card {
-  padding: 24px;
-  border: 1px solid #dddddd;
-  border-radius: 12px;
-  background-color: #ffffff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
 
 /* =========================
    フォーム
@@ -202,7 +192,6 @@ img {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 12px;
 }
 
 /* =========================

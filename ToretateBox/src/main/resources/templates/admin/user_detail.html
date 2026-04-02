@@ -84,7 +84,7 @@
     </div>
 
     <!-- ボタン -->
-    <div class="actions d-flex justify-content-center gap-5 mt-5 flex-wrap">
+    <div class="btn-group mt-5 gap-5">
       <form th:action="@{/admin/users/{id}/delete(id=${user.id})}"
             method="post"
             onsubmit="return confirm('本当に削除しますか？');"
@@ -94,10 +94,10 @@
                th:name="${_csrf?.parameterName}"
                th:value="${_csrf?.token}" />
 
-        <button type="submit" class="btn delete-btn">削除</button>
+        <button type="submit" class="common-btn btn-danger">削除</button>
       </form>
 
-      <a th:href="@{/admin/users}" class="btn back-btn">戻る</a>
+      <a th:href="@{/admin/users}" class="common-btn btn-primary">戻る</a>
     </div>
 
   </main>

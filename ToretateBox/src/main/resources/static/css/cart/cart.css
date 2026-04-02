@@ -129,30 +129,51 @@
     margin: 0;
 }
 
-
 /* =========================
    合計ボックス
 ========================= */
 .cart-total-box {
     background-color: #e5e5e5;
     border: 1px solid #cfcfcf;
-    padding: 0;
-    margin-bottom: 24px;
+    padding: 24px;
+	width: 100%;
+	max-width: 100%;
+	margin: 60px auto 24px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-    margin-top: 60px;
 }
 
 .total-row {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     font-size: 18px;
     color: #333333;
     padding: 18px 20px;
 }
 
-.total-header {
-    background-color: #e5e5e5;
+.total-summary-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: nowrap;
+}
+
+.total-label,
+.total-value {
+    white-space: nowrap;
+}
+
+.cart-total-box {
+    max-width: 500px;
+}
+
+.total-price-label {
+    margin-left: auto;
+}
+
+.total-price-value {
+    min-width: 90px;
+    text-align: right;
 }
 
 /* =========================
@@ -169,10 +190,9 @@
     margin: 0;
 }
 
-
 .cart-link-back {
-	margin-top: 25px;
     display: block;
+    margin-top: 25px;
     text-align: center;
     font-size: 16px;
 }
@@ -260,5 +280,23 @@
 
     .cart-link-back {
         font-size: 15px;
+    }
+
+    .total-summary-row {
+        gap: 8px;
+    }
+
+    .total-label,
+    .total-value {
+        font-size: 16px;
+    }
+
+    .total-price-label {
+        margin-left: 0;
+    }
+
+    .total-price-value {
+        min-width: auto;
+        text-align: left;
     }
 }

@@ -46,7 +46,7 @@
               <td th:text="${#temporals.format(row.createdAt, 'yyyy/MM/dd')}"></td>
               <td>
                 <a th:href="@{/admin/users/{id}(id=${row.id})}"
-                   class="btn btn-primary btn-detail">
+                   class="common-btn btn-danger">
                   詳細
                 </a>
               </td>
@@ -86,7 +86,7 @@
 
     <!-- 戻るボタン -->
     <div class="text-center mt-4">
-      <a th:href="@{/admin}" class="btn back-btn px-4">
+      <a th:href="@{/admin}" class="common-btn btn-primary">
         戻る
       </a>
     </div>
