@@ -74,18 +74,19 @@ img {
 }
 
 .common-btn:focus {
-  outline: none;
-}
-
-.btn-primary {
-  background-color: rgb(0, 128, 255);
-  border-color: #4caf50;
-  color: #ffffff;
+  outline: 2px solid #4caf50;
+  outline-offset: 2px;
 }
 
 .btn-secondary {
   background-color: #ffffff;
   border-color: #cccccc;
+  color: #ffffff;
+}
+
+.btn-primary {
+  background-color: rgb(0, 128, 255);
+  border-color: rgb(0, 128, 255);
   color: #ffffff;
 }
 
@@ -192,6 +193,8 @@ img {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 40px;
+  margin-top: 40px;
 }
 
 /* =========================

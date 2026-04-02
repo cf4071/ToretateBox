@@ -15,40 +15,38 @@
 <div th:replace="~{layout/layout :: layout(~{::title}, ~{::content})}">
   <main th:fragment="content">
 
-    <section class="login-page">
-      <div class="page-container">
-
-        <div class="login-box">
-
-          <h2 class="page-title">ログイン</h2>
-
-          <div th:if="${loginError}" class="common-alert">
-            メールアドレスまたはパスワードが正しくありません。
-          </div>
-
-          <form th:action="@{/login}" method="post">
-
-			<div class="form-group">
-			  <label for="email" class="form-label">メールアドレス</label>
-			  <input type="email" id="email" name="email" class="form-input">
-			</div>
-
-            <div class="form-group">
-              <label for="password" class="form-label">パスワード</label>
-              <input type="password" id="password" name="password" class="form-input">
-            </div>
-
-            <div class="btn-group gap-5">
-              <button type="submit" class="common-btn btn-danger">ログイン</button>
-              <a th:href="@{/top}" class="common-btn btn-primary">戻る</a>
-            </div>
-
-          </form>
-
-        </div>
-
-      </div>
-    </section>
+    <section class="page-section">
+	  <div class="page-container">
+	    <h2 class="page-title">ログイン</h2>
+	
+	    <div class="login-box">
+	
+	      <div th:if="${loginError}" class="common-alert">
+	        メールアドレスまたはパスワードが正しくありません。
+	      </div>
+	
+	      <form th:action="@{/login}" method="post">
+	
+	        <div class="form-group">
+	          <label for="email" class="form-label">メールアドレス</label>
+	          <input type="email" id="email" name="email" class="form-input">
+	        </div>
+	
+	        <div class="form-group">
+	          <label for="password" class="form-label">パスワード</label>
+	          <input type="password" id="password" name="password" class="form-input">
+	        </div>
+	
+	        <div class="btn-group">
+	          <button type="submit" class="common-btn btn-danger">ログイン</button>
+	          <a th:href="@{/top}" class="common-btn btn-primary">戻る</a>
+	        </div>
+	
+	      </form>
+	
+	    </div>
+	  </div>
+	</section>
 
   </main>
 </div>
