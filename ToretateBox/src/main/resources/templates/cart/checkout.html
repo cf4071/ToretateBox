@@ -26,24 +26,24 @@
           <div class="info-grid" th:if="${address != null}">
             <div class="info-row">
               <span class="label">氏名</span>
-              <span class="value" th:text="${address.recipient}"></span>
+              <span class="value" th:text="${address.recipient}">山田 太郎</span>
             </div>
 
             <div class="info-row">
               <span class="label">郵便番号</span>
-              <span class="value" th:text="${address.postalCode}"></span>
+              <span class="value" th:text="${address.postalCode}">123-4567</span>
             </div>
 
             <div class="info-row info-row-address">
               <span class="label">住所</span>
               <span class="value">
-                <span th:text="${address.prefecture}"></span>
-                <span th:text="${address.city}"></span><br>
-                <span th:text="${address.addressLine1}"></span><br>
-                <span th:text="${address.addressLine2}"></span>
+                <span th:text="${address.prefecture}">東京都</span>
+                <span th:text="${address.city}">墨田区</span><br>
+                <span th:text="${address.addressLine1}">〇〇1-2-3</span><br>
+                <span th:text="${address.addressLine2}">△△マンション101</span>
               </span>
             </div>
-
+          </div>
 
           <p th:if="${address == null}" class="empty-text mb-0">
             住所情報がありません。住所登録をしてください。
@@ -52,25 +52,21 @@
       </div>
 
       <!-- 右：金額 + ボタン -->
-      <div class="col-12 col-lg-5">
+      <div class="col-12 col-lg-5 d-flex justify-content-end">
         <section class="checkout-side">
 
           <!-- グレーの金額ボックス -->
           <div class="payment-summary" th:if="${cart != null and !#lists.isEmpty(cart)}">
             <h3 class="payment-title">お支払い金額</h3>
 
-            <div class="payment-row">
-              <span class="payment-label">食材合計数</span>
-              <strong class="payment-value">
-                <span th:text="${totalCount}">0</span>点
-              </strong>
-            </div>
+            <div class="payment-row-inline">
+              <span class="payment-count">
+                食材合計 <span th:text="${totalCount}">0</span>点
+              </span>
 
-            <div class="payment-row">
-              <span class="payment-label">合計金額</span>
-              <strong class="payment-value">
-                <span th:text="${#numbers.formatInteger(totalAmount, 1, 'COMMA')}">0</span>円
-              </strong>
+              <span class="payment-total">
+                合計金額 ￥<span th:text="${#numbers.formatInteger(totalAmount, 1, 'COMMA')}">0</span>
+              </span>
             </div>
           </div>
 

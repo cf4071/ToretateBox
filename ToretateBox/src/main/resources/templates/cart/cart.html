@@ -111,18 +111,17 @@
 
                         <div class="cart-total-box">
                             <div class="total-row total-header">
-                                <span>食材合計数</span>
-                                <strong><span th:text="${#lists.size(cart)}">0</span>点</strong>
-                            </div>
-                            <div class="total-row">
-                                <span>合計金額</span>
-                                <strong><span th:text="${#numbers.formatInteger(totalAmount, 1, 'COMMA')}">0</span>円</strong>
+                                <span class="total-count">
+                                    食材合計<span th:text="${totalQuantity}">0</span>点
+                                </span>
+                                <span class="total-price">
+                                    合計金額￥<span th:text="${#numbers.formatInteger(totalAmount, 1, 'COMMA')}">0</span>
+                                </span>
                             </div>
                         </div>
 
                         <div class="cart-actions">
 
-                            <!-- レジへ進む（ログイン・未ログインどちらも表示） -->
                             <form th:action="@{/cart/checkout}" method="post">
                                 <input type="hidden"
                                        th:if="${_csrf != null}"

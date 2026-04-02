@@ -93,27 +93,57 @@
 .checkout-side {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    align-items: flex-end;
 }
 
 /* =========================
    お支払い金額ボックス
 ========================= */
 .payment-summary {
-    background-color: #eeeeee;   /* グレー */
-    border: 1px solid #cccccc;   /* 枠線 */
-    border-radius: 0;            /* ← これで四角になる！ */
-    padding: 30px 32px;
+    background-color: #eeeeee;
+    border: 1px solid #cccccc;
+    border-radius: 0;
+    padding: 50px;
     margin-bottom: 60px;
-    box-shadow: none;            /* ← 影を消す（PDFっぽくする） */
+    box-shadow: none;
+    width: 100%;
+    max-width: 460px;
 }
 
 .payment-title {
     font-size: 24px;
     font-weight: bold;
     color: #111;
-    margin-bottom: 28px;
+    margin-bottom: 22px;
 }
 
+/* 横並び用 */
+.payment-row-inline {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 32px;
+    padding: 0;
+    white-space: nowrap;
+    font-size: 18px;
+    color: #333;
+}
+
+.payment-count {
+    flex-shrink: 0;
+    font-size: 17px;
+    color: #333;
+}
+
+.payment-total {
+    flex-shrink: 0;
+    font-size: 19px;
+    font-weight: bold;
+    color: #111;
+}
+
+/* 旧クラスを残しても壊れにくいように維持 */
 .payment-row {
     display: flex;
     justify-content: space-between;
@@ -139,6 +169,8 @@
 ========================= */
 .confirm-form {
     margin-bottom: 60px;
+    width: 100%;
+    max-width: 460px;
 }
 
 .confirm-btn {
@@ -162,8 +194,10 @@
    戻るリンク
 ========================= */
 .back-link-area {
+    width: 100%;
+    max-width: 460px;
     text-align: left;
-    padding: 10px;
+    padding: 10px 0;
 }
 
 .back-link {
@@ -190,14 +224,27 @@
         min-height: auto;
     }
 
+    .checkout-side {
+        align-items: stretch;
+    }
+
     .payment-summary {
-        padding: 28px 24px;
+        padding: 24px 20px;
+        max-width: 100%;
+    }
+
+    .confirm-form {
+        max-width: 100%;
+    }
+
+    .back-link-area {
+        max-width: 100%;
     }
 
     .card-title,
     .payment-title {
         font-size: 24px;
-        margin-bottom: 28px;
+        margin-bottom: 24px;
     }
 
     .info-row {
@@ -210,6 +257,19 @@
     .payment-label,
     .payment-value {
         font-size: 16px;
+    }
+
+    .payment-row-inline {
+        font-size: 16px;
+        gap: 20px;
+    }
+
+    .payment-count {
+        font-size: 16px;
+    }
+
+    .payment-total {
+        font-size: 17px;
     }
 }
 
@@ -229,7 +289,7 @@
     }
 
     .payment-summary {
-        padding: 24px 18px;
+        padding: 20px 16px;
         border-radius: 16px;
     }
 
@@ -243,12 +303,23 @@
         row-gap: 6px;
     }
 
-    .payment-row {
-        flex-direction: row;
-        align-items: center;
+    .payment-row-inline {
+        flex-wrap: wrap;
+        gap: 10px 18px;
+        white-space: normal;
+        font-size: 15px;
+    }
+
+    .payment-count {
+        font-size: 15px;
+    }
+
+    .payment-total {
+        font-size: 16px;
     }
 
     .confirm-btn {
+        width: 100%;
         height: 56px;
         font-size: 17px;
     }

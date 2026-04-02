@@ -13,9 +13,6 @@
     color: #222222;
 }
 
-/* =========================
-   エラーメッセージ
-========================= */
 .cart-error-message {
     display: block;
     max-width: 420px;
@@ -136,22 +133,23 @@
 .cart-total-box {
     background-color: #e5e5e5;
     border: 1px solid #cfcfcf;
-    padding: 0;
+    padding: 30px;
     margin-bottom: 24px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    width: 100%;
 }
 
 .total-row {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
+    gap: 40px;
+    padding: 0;
     font-size: 18px;
-    color: #333333;
-    padding: 18px 20px;
 }
 
-.total-header {
-    background-color: #e5e5e5;
+.total-price {
+	font-weight: bold;
 }
 
 .cart-actions {

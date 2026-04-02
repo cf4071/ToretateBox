@@ -29,9 +29,11 @@ public class CartController {
     public String showCart(HttpSession session, Model model) {
         List<CartItem> cart = getCart(session);
         int totalAmount = calculateTotal(cart);
+        int totalQuantity = calculateTotalQuantity(cart);
 
         model.addAttribute("cart", cart);
         model.addAttribute("totalAmount", totalAmount);
+        model.addAttribute("totalQuantity", totalQuantity);
 
         return "cart/cart";
     }
@@ -161,5 +163,15 @@ public class CartController {
         }
 
         return total;
+    }
+
+    private int calculateTotalQuantity(List<CartItem> cart) {
+        int totalQuantity = 0;
+
+        for (CartItem item : cart) {
+            totalQuantity += item.getQuantity();
+        }
+
+        return totalQuantity;
     }
 }

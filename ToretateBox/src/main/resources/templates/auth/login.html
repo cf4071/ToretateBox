@@ -1,72 +1,56 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
-    <meta charset="UTF-8">
-    <title>ログイン | とれたてBOX</title>
+  <meta charset="UTF-8">
+  <title>ログイン | とれたてBOX</title>
 
-    <link rel="stylesheet" th:href="@{/css/auth/login.css}">
+  <!-- 共通CSS（必須） -->
+  <link rel="stylesheet" th:href="@{/css/common/common.css}">
+
+  <!-- ログイン専用CSS -->
+  <link rel="stylesheet" th:href="@{/css/login.css}">
 </head>
-
 <body>
 
 <div th:replace="~{layout/layout :: layout(~{::title}, ~{::content})}">
+  <main th:fragment="content">
 
-    <main th:fragment="content" class="login-page">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-12 col-sm-10 col-md-8 col-lg-7 col-xl-6">
+    <section class="login-page">
+      <div class="page-container">
 
-                    <div class="login-box">
+        <div class="login-box">
 
-                        <!-- エラーメッセージ -->
-                        <div th:if="${errorMessage}" class="alert alert-danger login-error" role="alert">
-                            <p class="mb-0" th:text="${errorMessage}"></p>
-                        </div>
+          <h2 class="page-title">ログイン</h2>
 
-                        <!-- タイトル -->
-                        <div class="text-center">
-                            <h2 class="login-heading">ログイン</h2>
-                        </div>
+          <div th:if="${loginError}" class="common-alert">
+            メールアドレスまたはパスワードが正しくありません。
+          </div>
 
-                        <!-- フォーム -->
-                        <form th:action="@{/login}" method="post" th:object="${loginForm}">
+          <form th:action="@{/login}" method="post">
 
-                            <div class="mb-4">
-                                <label for="email" class="form-label login-label">メールアドレス</label>
-                                <input type="email"
-                                       id="email"
-                                       th:field="*{email}"
-                                       class="form-control login-input"
-                                       placeholder="example@example.com"
-                                       required>
-                            </div>
-
-                            <div class="mb-5">
-                                <label for="password" class="form-label login-label">パスワード</label>
-                                <input type="password"
-                                       id="password"
-                                       th:field="*{password}"
-                                       class="form-control login-input"
-                                       placeholder="********"
-                                       required>
-                            </div>
-
-                            <!-- ボタン -->
-                            <div class="login-button-area d-flex justify-content-center">
-                                <button type="submit" class="btn login-btn-submit">ログイン</button>
-                                <a th:href="@{/top}" class="btn login-btn-back">戻る</a>
-                            </div>
-
-                        </form>
-
-                    </div>
-
-                </div>
+            <div class="form-group">
+              <label for="email" class="form-label">メールアドレス</label>
+              <input type="email" id="email" name="username" class="form-input">
             </div>
-        </div>
-    </main>
 
+            <div class="form-group">
+              <label for="password" class="form-label">パスワード</label>
+              <input type="password" id="password" name="password" class="form-input">
+            </div>
+
+            <div class="btn-group">
+              <button type="submit" class="common-btn btn-primary">ログイン</button>
+              <a th:href="@{/top}" class="common-btn btn-secondary">戻る</a>
+            </div>
+
+          </form>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
 </div>
 
 </body>
