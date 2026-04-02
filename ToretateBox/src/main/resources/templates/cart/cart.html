@@ -78,7 +78,7 @@
                                         <!-- 削除 -->
                                         <form th:action="@{/cart/remove}" method="post" class="cart-remove-form">
                                             <input type="hidden" name="productId" th:value="${item.productId}">
-                                            <button type="submit" class="common-btn btn-danger cart-delete-btn">削除</button>
+                                            <button type="submit" class="common-btn btn-danger">削除</button>
                                         </form>
                                     </div>
                                 </div>
@@ -105,16 +105,16 @@
 
                                 <!-- ログインユーザー用 -->
                                 <form th:if="${isLoggedIn}" th:action="@{/checkout}" method="get" class="d-grid">
-                                    <button type="submit" class="btn btn-warning">レジへ進む</button>
+                                    <button type="submit" class="common-btn btn-warning">レジへ進む</button>
                                 </form>
 
                                 <!-- ゲストユーザー用 -->
                                 <form th:if="${!isLoggedIn}" th:action="@{/checkout}" method="get" class="d-grid">
-                                    <button type="submit" class="btn btn-warning">レジへ進む</button>
+                                    <button type="submit" class="common-btn btn-warning">レジへ進む</button>
                                 </form>
                                 
 							 	<form th:if="${!isLoggedIn}" th:action="@{/guest}" method="get" class="d-grid">
-									 <button type="submit" class="btn btn-primary">ゲスト情報登録へ</button>
+									 <button type="submit" class="common-btn btn-primary">ゲスト情報登録へ</button>
 								 </form>
 
                                 <a th:href="@{/top}" class="common-link cart-link-back">ショッピングを続ける</a>
