@@ -1,17 +1,11 @@
 @charset "UTF-8";
 
+/* =========================
+   カートページ全体
+========================= */
 .cart-page {
     background-color: #f8f8f8;
     min-height: 100vh;
-    padding-top: 20px;
-    padding-bottom: 40px;
-}
-
-.cart-title {
-    font-size: 36px;
-    font-weight: bold;
-    color: #222222;
-    text-align: center;
 }
 
 /* =========================
@@ -20,7 +14,7 @@
 .cart-error-message {
     display: block;
     max-width: 420px;
-    margin: -20px auto 24px;
+    margin: 0 auto 24px;
     text-align: center;
 }
 
@@ -48,7 +42,6 @@
     border: 1px solid #d9d9d9;
     padding: 0 24px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-    margin-top: 60px;
 }
 
 .cart-item {
@@ -136,9 +129,9 @@
     background-color: #e5e5e5;
     border: 1px solid #cfcfcf;
     padding: 24px;
-	width: 100%;
-	max-width: 100%;
-	margin: 60px auto 24px;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto 24px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
@@ -190,6 +183,10 @@
     margin: 0;
 }
 
+.cart-actions .common-btn {
+    width: 100%;
+}
+
 .cart-link-back {
     display: block;
     margin-top: 25px;
@@ -219,13 +216,13 @@
    スマホ対応
 ========================= */
 @media (max-width: 767px) {
-    .cart-title {
-        font-size: 28px;
-    }
-
     .cart-error-message {
         max-width: 100%;
         margin: 0 auto 20px;
+    }
+
+    .cart-empty {
+        padding: 40px 16px;
     }
 
     .cart-list {
@@ -271,11 +268,6 @@
     .cart-item-subtotal {
         margin-top: 16px;
         margin-bottom: 16px;
-    }
-
-    .cart-action-btn {
-        font-size: 16px;
-        min-height: 48px;
     }
 
     .cart-link-back {

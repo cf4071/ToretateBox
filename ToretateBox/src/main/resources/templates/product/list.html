@@ -111,11 +111,35 @@
               <p>商品がありません</p>
             </div>
 
-            <nav class="mt-5" th:if="${totalPages != null and totalPages > 0}">
-              <ul class="pagination justify-content-center">
-                ...
-              </ul>
-            </nav>
+			<nav class="list-pagination" th:if="${totalPages != null and totalPages > 0}">
+			  <ul class="pagination">
+			    <li class="page-item" th:classappend="${currentPage == 0} ? ' disabled'">
+			      <a class="page-link"
+			         th:if="${currentPage > 0}"
+			         th:href="@{/products(page=${currentPage - 1}, categoryId=${categoryId}, season=${season})}">
+			        前へ
+			      </a>
+			      <span class="page-link" th:if="${currentPage == 0}">前へ</span>
+			    </li>
+			
+			    <li class="page-item"
+			        th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
+			        th:classappend="${i == currentPage} ? ' active'">
+			      <a class="page-link"
+			         th:href="@{/products(page=${i}, categoryId=${categoryId}, season=${season})}"
+			         th:text="${i + 1}">1</a>
+			    </li>
+			
+			    <li class="page-item" th:classappend="${currentPage >= totalPages - 1} ? ' disabled'">
+			      <a class="page-link"
+			         th:if="${currentPage < totalPages - 1}"
+			         th:href="@{/products(page=${currentPage + 1}, categoryId=${categoryId}, season=${season})}">
+			        次へ
+			      </a>
+			      <span class="page-link" th:if="${currentPage >= totalPages - 1}">次へ</span>
+			    </li>
+			  </ul>
+			</nav>
 
           </section>
         </div>

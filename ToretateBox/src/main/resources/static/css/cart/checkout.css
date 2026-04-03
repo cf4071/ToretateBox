@@ -6,22 +6,22 @@
 .checkout-page {
     min-height: 100vh;
     background-color: #f8f8f8;
-    padding-top: 40px;
-    padding-bottom: 60px;
 }
 
-.checkout-title {
-    margin-bottom: 40px;
-}
-
+/* =========================
+   レイアウト
+========================= */
 .checkout-layout {
-	margin-top: 60px;
+    margin-top: 40px;
     display: grid;
     grid-template-columns: 1.4fr 1fr;
     gap: 32px;
     align-items: start;
 }
 
+/* =========================
+   カード共通
+========================= */
 .checkout-card {
     background-color: #ffffff;
     border: 1px solid #d9d9d9;
@@ -41,6 +41,9 @@
     min-height: 100%;
 }
 
+/* =========================
+   お届け先情報
+========================= */
 .info-grid {
     display: flex;
     flex-direction: column;
@@ -70,6 +73,9 @@
     line-height: 1.8;
 }
 
+/* =========================
+   右側エリア
+========================= */
 .checkout-side {
     display: flex;
     flex-direction: column;
@@ -128,10 +134,16 @@
     line-height: 1.7;
 }
 
-.confirm-form {
+/* =========================
+   ボタン・リンク
+========================= */
+.checkout-form {
     margin: 0;
 }
 
+.checkout-form .common-btn {
+    width: 100%;
+}
 
 .back-link-area {
     text-align: center;
@@ -149,10 +161,7 @@
     .checkout-layout {
         grid-template-columns: 1fr;
         gap: 24px;
-    }
-
-    .checkout-title {
-        margin-bottom: 32px;
+        margin-top: 32px;
     }
 }
 
@@ -160,13 +169,8 @@
    スマホ対応
 ========================= */
 @media (max-width: 576px) {
-    .checkout-page {
-        padding-top: 24px;
-        padding-bottom: 40px;
-    }
-
-    .checkout-title {
-        margin-bottom: 24px;
+    .checkout-layout {
+        margin-top: 24px;
     }
 
     .checkout-card {
@@ -204,11 +208,6 @@
     .total-value {
         min-width: auto;
         text-align: left;
-    }
-
-    .checkout-action-btn {
-        min-height: 48px;
-        font-size: 16px;
     }
 
     .back-link {

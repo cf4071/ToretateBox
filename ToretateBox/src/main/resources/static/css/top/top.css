@@ -1,47 +1,39 @@
 @charset "UTF-8";
 
-body.top-page {
-    background-color: #f3f5f0;
-    color: #333333;
+/* =========================
+   今が旬ページ全体
+========================= */
+.top-page {
+    background-color: #f8f8f8;
 }
 
-.top-title h2 {
-    font-size: 36px;
-    font-weight: bold;
-    color: #FF9BAD;
-    margin-bottom: 0;
+.top-page .page-title {
+	color: #FF9BAD;
 }
 
-.pagination-area {
-    margin-top: 40px;
+
+/* =========================
+   商品がないとき
+========================= */
+.empty-message {
+    margin-top: 8px;
+    font-size: 18px;
+    color: #666666;
+    text-align: left;
 }
 
-.page-link-custom {
-    display: inline-block;
-    margin: 0 8px;
-    color: #333333;
-    text-decoration: none;
-    font-weight: bold;
-}
 
-.page-link-custom.active {
-    text-decoration: underline;
-}
 
-.page-link-custom:hover {
-    color: #2f6b35;
-}
-
-/* ===============================
+/* =========================
    スマホ対応
-================================ */
+========================= */
 @media (max-width: 575.98px) {
-    .top-title h2 {
-        font-size: 30px;
+    .no-message {
+        font-size: 16px;
     }
 
     .page-link-custom {
-        margin: 0 6px;
+        margin: 0 4px;
         font-size: 14px;
     }
 }

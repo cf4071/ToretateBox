@@ -100,7 +100,11 @@ section {
     margin-top: 40px;
     font-size: 18px;
     color: #666666;
-    margin-right: 140px;
+    margin-right: 180px;
+}
+
+.list-pagination {
+	margin-right: 160px;
 }
 
 /* ===============================

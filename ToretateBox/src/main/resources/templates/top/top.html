@@ -8,60 +8,77 @@
   <link rel="stylesheet" th:href="@{/css/top/top.css}">
 </head>
 
-<body class="top-page">
+<body>
 
 <div th:replace="~{layout/layout :: layout(~{::title}, ~{::content})}">
-  <main th:fragment="content" class="container py-5">
+  <main th:fragment="content">
+    <section class="page-section top-page">
+      <div class="page-container">
 
-    <div class="top-title text-center mb-5">
-      <h2>今が旬</h2>
-    </div>
+        <h2 class="page-title">今が旬</h2>
 
-    <div th:if="${products != null and !#lists.isEmpty(products)}" class="row gx-4 gy-5 justify-content-center">
+        <div th:if="${products != null and !#lists.isEmpty(products)}"
+             class="row gx-4 gy-5 justify-content-center">
 
-      <div th:each="p : ${products}" class="col-lg-3 col-md-4 col-sm-6 col-6">
-        <div class="product-card h-100 text-center d-flex flex-column">
+          <div th:each="p : ${products}" class="col-lg-3 col-md-4 col-sm-6 col-6">
+            <div class="product-card h-100 text-center d-flex flex-column">
 
-          <div class="image-box">
-            <a th:href="@{'/products/' + ${p.id}}" class="image-link">
-              <img th:if="${p.imageUrl != null and p.imageUrl != ''}"
-                   th:src="@{${p.imageUrl}}"
-                   th:alt="${p.name}"
-                   class="img-fluid product-image">
-            </a>
-          </div>
+              <div class="image-box">
+                <a th:href="@{'/products/' + ${p.id}}" class="image-link">
+                  <img th:if="${p.imageUrl != null and p.imageUrl != ''}"
+                       th:src="@{${p.imageUrl}}"
+                       th:alt="${p.name}"
+                       class="img-fluid product-image">
+                </a>
+              </div>
 
-          <div class="product-info mt-2">
-            <div class="name" th:text="${p.name}">商品名</div>
-			<div class="price" th:text="${#numbers.formatInteger(p.price, 1, 'COMMA') + '円'}">0円</div>
+              <div class="product-info mt-2">
+                <div class="product-name" th:text="${p.name}">商品名</div>
+                <div class="product-price"
+                     th:text="${#numbers.formatInteger(p.price, 1, 'COMMA') + '円'}">0円</div>
+              </div>
+
+            </div>
           </div>
 
         </div>
+
+        <div th:if="${products == null or #lists.isEmpty(products)}" class="no-message">
+          <p>商品がありません</p>
+        </div>
+
+        <nav th:if="${totalPages != null and totalPages > 0}">
+          <ul class="pagination">
+            <li class="page-item" th:classappend="${currentPage == 0} ? ' disabled'">
+              <a class="page-link"
+                 th:if="${currentPage > 0}"
+                 th:href="@{/top(page=${currentPage - 1})}">
+                前へ
+              </a>
+              <span class="page-link" th:if="${currentPage == 0}">前へ</span>
+            </li>
+
+            <li class="page-item"
+                th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
+                th:classappend="${i == currentPage} ? ' active'">
+              <a class="page-link"
+                 th:href="@{/top(page=${i})}"
+                 th:text="${i + 1}">1</a>
+            </li>
+
+            <li class="page-item" th:classappend="${currentPage >= totalPages - 1} ? ' disabled'">
+              <a class="page-link"
+                 th:if="${currentPage < totalPages - 1}"
+                 th:href="@{/top(page=${currentPage + 1})}">
+                次へ
+              </a>
+              <span class="page-link" th:if="${currentPage >= totalPages - 1}">次へ</span>
+            </li>
+          </ul>
+        </nav>
+
       </div>
-
-    </div>
-
-    <div th:if="${products == null or #lists.isEmpty(products)}" class="text-center empty-message">
-      <p>商品がありません</p>
-    </div>
-
-    <div class="pagination-area text-center mt-5" th:if="${totalPages != null and totalPages > 0}">
-      <a th:if="${currentPage > 0}"
-         th:href="@{/top(page=${currentPage - 1})}"
-         class="page-link-custom">前へ</a>
-
-      <span th:each="i : ${#numbers.sequence(0, totalPages - 1)}">
-        <a th:href="@{/top(page=${i})}"
-           th:text="${i + 1}"
-           th:classappend="${i == currentPage} ? ' active' : ''"
-           class="page-link-custom">1</a>
-      </span>
-
-      <a th:if="${currentPage < totalPages - 1}"
-         th:href="@{/top(page=${currentPage + 1})}"
-         class="page-link-custom">次へ</a>
-    </div>
-
+    </section>
   </main>
 </div>
 
