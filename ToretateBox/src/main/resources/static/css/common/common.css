@@ -28,7 +28,6 @@ img {
 /* =========================
    レイアウト
 ========================= */
-/* Bootstrap の .container とぶつからないように名前を変更 */
 .page-container {
   width: 100%;
   max-width: 1200px;
@@ -43,7 +42,7 @@ img {
 }
 
 .page-title {
-  margin-bottom: 24px;
+  margin-bottom: 40px;
   font-size: 28px;
   font-weight: bold;
   text-align: center;
@@ -108,10 +107,6 @@ img {
 	color: #ffffff;
 }
 
-
-/* =========================
-   リンク
-========================= */
 .common-link {
   color: #2f6fec;
   font-size: 14px;
@@ -123,9 +118,6 @@ img {
 }
 
 
-/* =========================
-   フォーム
-========================= */
 .form-group {
   margin-bottom: 20px;
 }
@@ -168,9 +160,7 @@ img {
   border-color: #4caf50;
 }
 
-/* =========================
-   エラー表示
-========================= */
+
 .form-error {
   margin-top: 6px;
   font-size: 13px;
@@ -184,6 +174,53 @@ img {
   border-radius: 8px;
   background-color: #fff3f3;
   color: #d9534f;
+}
+
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 32px;
+  padding-left: 0;
+  list-style: none;
+}
+
+.pagination .page-item {
+  list-style: none;
+}
+
+.pagination .page-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background-color: transparent;
+  color: #333333;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.pagination .page-link:hover {
+  text-decoration: underline;
+}
+
+.pagination .page-item.active .page-link {
+  text-decoration: underline;
+  color: #000000;
+}
+
+.pagination .page-item.disabled .page-link {
+  color: #999999;
+  pointer-events: none;
+  cursor: default;
 }
 
 /* =========================
@@ -227,5 +264,17 @@ img {
 
   .common-btn {
     width: 100%;
+  }
+  
+  .pagination {
+    gap: 6px;
+    margin-top: 24px;
+  }
+
+  .pagination .page-link {
+    min-width: 36px;
+    height: 36px;
+    padding: 0 10px;
+    font-size: 13px;
   }
 }

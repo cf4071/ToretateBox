@@ -51,7 +51,7 @@
     text-align: center;
 }
 
-.name {
+.product-name {
     font-size: 18px;
     color: #333333;
     line-height: 1.5;
@@ -59,10 +59,17 @@
     margin-bottom: 6px;
 }
 
-.price {
+.product-price {
     font-size: 16px;
     color: #333333;
     line-height: 1.4;
+}
+
+.no-message {
+    margin-top: 40px;
+    font-size: 18px;
+    color: #666666;
+    margin-right: 140px;
 }
 
 /* ===============================
@@ -74,54 +81,22 @@
     color: #666666;
 }
 
-/* ===============================
-   ページネーション共通
-================================ */
-.pagination {
-    margin-top: 32px;
-    gap: 8px;
-}
-
-.pagination .page-link {
-    color: #333333;
-    border: none;
-    background-color: transparent;
-    font-weight: bold;
-}
-
-.pagination .page-item.active .page-link {
-    color: #000000;
-    text-decoration: underline;
-    background-color: transparent;
-}
-
-.pagination .page-item.disabled .page-link {
-    color: #999999;
-    background-color: transparent;
-}
-
-/* ===============================
-   タブレット以下
-================================ */
 @media (max-width: 991.98px) {
-    .name {
+    .product-name {
         font-size: 16px;
     }
 
-    .price {
+    .product-price {
         font-size: 15px;
     }
 }
 
-/* ===============================
-   スマホ
-================================ */
 @media (max-width: 575.98px) {
-    .name {
+    .product-name {
         font-size: 15px;
     }
 
-    .price {
+    .product-price {
         font-size: 14px;
     }
 }

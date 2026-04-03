@@ -6,13 +6,8 @@
 .guest-page {
     min-height: 100vh;
     background-color: #f8f8f8;
-    padding-top: 40px;
-    padding-bottom: 60px;
 }
 
-/* =========================
-   フォーム全体
-========================= */
 .guest-box {
     max-width: 560px;
     margin: 0 auto;
@@ -22,16 +17,6 @@
     width: 100%;
 }
 
-/* =========================
-   タイトル
-========================= */
-.guest-box .page-title {
-    margin-bottom: 32px;
-}
-
-/* =========================
-   エラー表示
-========================= */
 .guest-alert {
     margin-bottom: 24px;
 }
@@ -40,9 +25,6 @@
     margin: 0;
 }
 
-/* =========================
-   フォーム項目
-========================= */
 .guest-form .form-group {
     margin-bottom: 20px;
 }
@@ -55,36 +37,30 @@
     width: 100%;
 }
 
+.guest-form .btn-group {
+    margin-top: 28px;
+}
 
 /* =========================
    スマホ対応
 ========================= */
 @media (max-width: 576px) {
-    .guest-page {
-        padding-top: 24px;
-        padding-bottom: 40px;
-    }
-
     .guest-box {
         max-width: 100%;
-    }
-
-    .guest-box .page-title {
-        margin-bottom: 24px;
     }
 
     .guest-form .form-group {
         margin-bottom: 18px;
     }
 
-    .guest-btn-group {
+    .guest-form .btn-group {
         margin-top: 24px;
         flex-direction: column;
         align-items: stretch;
         gap: 12px;
     }
 
-    .guest-btn-group .common-btn {
+    .guest-form .btn-group .common-btn {
         width: 100%;
     }
 }

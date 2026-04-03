@@ -5,101 +5,99 @@
   <meta charset="UTF-8">
   <title th:text="${product.name} + ' - 商品詳細'">商品詳細</title>
 
-  <!-- 自分のCSS -->
   <link rel="stylesheet" th:href="@{/css/product/detail.css}">
 </head>
 
-<body class="detail-page">
+<body>
 
 <div th:replace="~{layout/layout :: layout(~{::title}, ~{::content})}">
 
-<main th:fragment="content" class="py-5">
-  <div class="container">
+  <main th:fragment="content">
+    <section class="page-section detail-page">
+      <div class="page-container">
 
-    <!-- タイトル -->
-    <div class="text-center mb-5">
-      <h2 class="detail-title">食材詳細</h2>
-    </div>
+        <h2 class="page-title">食材詳細</h2>
 
-    <!-- 上段：画像 + 説明 -->
-    <div class="row g-5 align-items-start mb-5">
+        <!-- 上段：画像 + 説明 -->
+        <div class="row g-5 align-items-start mb-5">
 
-      <!-- 左：画像 -->
-      <div class="col-lg-5">
-        <div class="detail-image-box">
-          <img th:if="${product.imageUrl != null and product.imageUrl != ''}"
-               th:src="${product.imageUrl}"
-               th:alt="${product.name}"
-               class="detail-image">
+          <!-- 左：画像 -->
+          <div class="col-lg-5">
+            <div class="detail-image-box">
+              <img th:if="${product.imageUrl != null and product.imageUrl != ''}"
+                   th:src="${product.imageUrl}"
+                   th:alt="${product.name}"
+                   class="detail-image">
 
-          <img th:if="${product.imageUrl == null or product.imageUrl == ''}"
-               th:src="@{/images/no-image.png}"
-               alt="画像なし"
-               class="detail-image">
-        </div>
-      </div>
-
-      <!-- 右：名前 + 説明 -->
-      <div class="col-lg-7">
-        <div class="detail-description-area">
-          <h3 class="detail-name mb-4" th:text="${product.name}">食材名</h3>
-
-          <div class="detail-description"
-               th:if="${product.description != null and product.description != ''}">
-            <p th:text="${product.description}" class="mb-0"></p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- 下段：情報 + ボタン -->
-    <form th:action="@{/cart/add}" method="post">
-      <input type="hidden" name="productId" th:value="${product.id}">
-
-      <div class="detail-bottom-wrap">
-
-        <!-- 左：カテゴリ、旬、数量、価格 -->
-        <div class="detail-meta-box">
-
-          <p class="mb-4">
-            <span class="detail-label">カテゴリ</span>：
-            <span th:text="${product.category.name}">カテゴリ</span>
-          </p>
-
-          <p class="mb-4" th:if="${product.season != null and product.season != ''}">
-            <span class="detail-label">旬の季節</span>：
-            <span th:text="${product.season}">春</span>
-          </p>
-
-          <div class="mb-4">
-            <select id="quantity" name="quantity" class="quantity-select" required>
-              <option value="" selected disabled>数量</option>
-              <option th:each="i : ${#numbers.sequence(1, 10)}"
-                      th:value="${i}"
-                      th:text="${i}">
-              </option>
-            </select>
+              <img th:if="${product.imageUrl == null or product.imageUrl == ''}"
+                   th:src="@{/images/no-image.png}"
+                   alt="画像なし"
+                   class="detail-image">
+            </div>
           </div>
 
-          <p class="mb-0">
-		    <span class="detail-label">値段</span>：
-		  	<span th:text="${#numbers.formatInteger(product.price, 1, 'COMMA')}">0</span> 円
-		  </p>
+          <!-- 右：名前 + 説明 -->
+          <div class="col-lg-7">
+            <div class="detail-description-area">
+              <h3 class="detail-name mb-4" th:text="${product.name}">食材名</h3>
+
+              <div class="detail-description"
+                   th:if="${product.description != null and product.description != ''}">
+                <p th:text="${product.description}" class="mb-0"></p>
+              </div>
+            </div>
+          </div>
 
         </div>
 
-        <!-- 右：ボタン -->
-        <div class="detail-buttons">
-          <button type="submit" class="common-btn btn-warning">カートへ</button>
-          <a th:href="@{/products}" class="common-btn btn-primary">戻る</a>
-        </div>
+        <!-- 下段：情報 + ボタン -->
+        <form th:action="@{/cart/add}" method="post">
+          <input type="hidden" name="productId" th:value="${product.id}">
+
+          <div class="detail-bottom-wrap">
+
+            <!-- 左：カテゴリ、旬、数量、価格 -->
+            <div class="detail-meta-box">
+
+              <p class="mb-4">
+                <span class="detail-label">カテゴリ</span>：
+                <span th:text="${product.category.name}">カテゴリ</span>
+              </p>
+
+              <p class="mb-4" th:if="${product.season != null and product.season != ''}">
+                <span class="detail-label">旬の季節</span>：
+                <span th:text="${product.season}">春</span>
+              </p>
+
+              <div class="mb-4">
+                <select id="quantity" name="quantity" class="quantity-select" required>
+                  <option value="" selected disabled>数量</option>
+                  <option th:each="i : ${#numbers.sequence(1, 10)}"
+                          th:value="${i}"
+                          th:text="${i}">
+                  </option>
+                </select>
+              </div>
+
+              <p class="mb-0">
+                <span class="detail-label">値段</span>：
+                <span th:text="${#numbers.formatInteger(product.price, 1, 'COMMA')}">0</span> 円
+              </p>
+
+            </div>
+
+            <!-- 右：ボタン -->
+            <div class="detail-buttons">
+              <button type="submit" class="common-btn btn-warning">カートへ</button>
+              <a th:href="@{/products}" class="common-btn btn-primary">戻る</a>
+            </div>
+
+          </div>
+        </form>
 
       </div>
-    </form>
-
-  </div>
-</main>
+    </section>
+  </main>
 
 </div>
 

@@ -1,15 +1,15 @@
 @charset "UTF-8";
 
+/* =========================
+   詳細ページ全体
+========================= */
 .detail-page {
     background-color: #f5f5f5;
 }
 
-.detail-title {
-    font-size: 30px;
-    font-weight: bold;
-    color: #333333;
-}
-
+/* =========================
+   画像
+========================= */
 .detail-image-box {
     width: 100%;
     min-height: 420px;
@@ -29,7 +29,9 @@
     display: block;
 }
 
-
+/* =========================
+   説明エリア
+========================= */
 .detail-description-area {
     padding-top: 8px;
 }
@@ -47,9 +49,14 @@
     min-height: 180px;
 }
 
+/* =========================
+   下段レイアウト
+========================= */
 .detail-bottom-wrap {
     display: flex;
     align-items: flex-start;
+    justify-content: flex-start;
+    gap: 40px;
     margin-top: 20px;
 }
 
@@ -80,11 +87,11 @@
     gap: 18px;
     align-items: flex-start;
     margin-top: 0;
+    flex-shrink: 0;
 }
 
-
 /* =========================
-   スマホ対応
+   タブレット以下
 ========================= */
 @media (max-width: 991.98px) {
     .detail-image-box {
@@ -119,15 +126,48 @@
         font-size: 15px;
     }
 
-    .detail-btn-cart {
-        width: 220px;
-        font-size: 20px;
-        padding: 14px 20px;
+    .detail-buttons {
+        width: 100%;
+        align-items: flex-start;
+    }
+}
+
+/* =========================
+   スマホ
+========================= */
+@media (max-width: 575.98px) {
+    .detail-image-box {
+        min-height: 240px;
+        padding: 16px;
     }
 
-    .detail-btn-back {
-        width: 180px;
-        font-size: 18px;
-        padding: 12px 20px;
+    .detail-image {
+        max-height: 200px;
+    }
+
+    .detail-name {
+        font-size: 22px;
+    }
+
+    .detail-description {
+        font-size: 15px;
+        line-height: 1.8;
+    }
+
+    .detail-meta-box {
+        font-size: 16px;
+    }
+
+    .quantity-select {
+        width: 100px;
+        font-size: 14px;
+    }
+
+    .detail-buttons {
+        width: 100%;
+    }
+
+    .detail-buttons .common-btn {
+        width: 100%;
     }
 }
