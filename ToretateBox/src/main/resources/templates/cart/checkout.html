@@ -10,7 +10,7 @@
 
 <div th:replace="~{layout/layout :: layout(~{::title}, ~{::content})}">
   <main th:fragment="content">
-    <section class="checkout-page">
+    <section class="page-section">
       <div class="page-container">
 
         <h2 class="page-title">レジ</h2>
@@ -19,6 +19,8 @@
 
           <!-- 左：お届け先 -->
           <section class="checkout-card address-card">
+
+            <h3 class="card-title">お届け先</h3>
 
             <div class="info-grid" th:if="${address != null}">
               <div class="info-row">
@@ -50,7 +52,6 @@
           <!-- 右：金額 + ボタン -->
           <section class="checkout-side">
 
-            <!-- カートに商品があるとき -->
             <div class="checkout-card payment-summary" th:if="${cart != null and !#lists.isEmpty(cart)}">
               <h3 class="card-title payment-title">お支払い金額</h3>
 
@@ -62,25 +63,22 @@
 
                 <span class="payment-label total-label">合計金額</span>
                 <span class="payment-value total-value">
-                  ¥<span th:text="${#numbers.formatInteger(totalAmount, 3, 'COMMA')}">0</span>
+                  ¥<span th:text="${#numbers.formatInteger(totalAmount, 1, 'COMMA')}">0</span>
                 </span>
               </div>
             </div>
 
-            <!-- カートが空のとき -->
             <div class="checkout-card payment-summary" th:if="${cart == null or #lists.isEmpty(cart)}">
               <h3 class="card-title payment-title">お支払い金額</h3>
               <p class="empty-text">カートに商品が入っていません。</p>
             </div>
 
-            <!-- 注文確定ボタン -->
-            <form th:action="@{/order/confirm}" method="post" class="d-grid">
+            <form th:action="@{/order/confirm}" method="post" class="checkout-form">
               <button type="submit" class="common-btn btn-warning">
                 ご注文を確定する
               </button>
             </form>
 
-            <!-- 戻るリンク -->
             <div class="back-link-area">
               <a th:href="@{/cart}" class="common-link back-link">ショッピングカートに戻る</a>
             </div>

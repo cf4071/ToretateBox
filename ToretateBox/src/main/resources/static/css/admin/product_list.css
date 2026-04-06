@@ -7,12 +7,6 @@
     max-width: 980px;
 }
 
-.admin-title {
-    font-size: 2rem;
-    color: #111;
-    letter-spacing: 0.04em;
-}
-
 .admin-table-wrap {
     background-color: #fff;
 }
@@ -90,34 +84,10 @@
     line-height: 1.6;
 }
 
-
-
-.admin-pagination .page-link {
-    color: #222;
-    border: none;
-    background-color: transparent;
-    font-weight: 600;
-    margin: 0 8px;
-}
-
-.admin-pagination .page-item.active .page-link {
-    color: #000;
-    background-color: transparent;
-    border: none;
-}
-
-.admin-pagination .page-link:focus {
-    box-shadow: none;
-}
-
 /* =========================
    スマホ対応
 ========================= */
 @media (max-width: 768px) {
-    .admin-title {
-        font-size: 1.6rem;
-    }
-
     .admin-table thead th,
     .admin-table tbody td {
         font-size: 0.85rem;
@@ -127,12 +97,5 @@
     .admin-thumb {
         width: 60px;
         height: 60px;
-    }
-
-    .admin-edit-btn,
-    .admin-delete-btn {
-        min-width: 70px;
-        padding: 5px 10px;
-        font-size: 0.85rem;
     }
 }

@@ -14,7 +14,7 @@
 
   <main th:fragment="content" class="container py-5 admin-wrapper">
 
-    <h2 class="admin-title text-center fw-bold mb-5">食材管理</h2>
+    <h2 class="page-title">食材管理</h2>
 
     <div class="alert alert-light text-center border"
          th:if="${products == null or #lists.isEmpty(products)}">
@@ -45,10 +45,10 @@
             <td th:text="${p.id}">1</td>
 
             <td class="admin-image-cell"
-                th:with="imgSrc=${(p.imageUrl == null or p.imageUrl == '') 
-                                  ? '/images/no-image.png' 
-                                  : (#strings.startsWith(p.imageUrl, '/') 
-                                      ? p.imageUrl 
+                th:with="imgSrc=${(p.imageUrl == null or p.imageUrl == '')
+                                  ? '/images/no-image.png'
+                                  : (#strings.startsWith(p.imageUrl, '/')
+                                      ? p.imageUrl
                                       : '/images/' + p.imageUrl)}">
               <img class="admin-thumb img-fluid"
                    th:src="@{${imgSrc}}"
@@ -83,7 +83,7 @@
 
     <nav class="mt-5"
          th:if="${productPage != null and productPage.totalPages > 1}">
-      <ul class="pagination justify-content-center admin-pagination">
+      <ul class="pagination justify-content-center">
 
         <li class="page-item" th:if="${productPage.hasPrevious()}">
           <a class="page-link"

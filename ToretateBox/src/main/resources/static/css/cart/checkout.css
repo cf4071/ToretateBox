@@ -1,18 +1,10 @@
 @charset "UTF-8";
 
 /* =========================
-   レジ画面全体
-========================= */
-.checkout-page {
-    min-height: 100vh;
-    background-color: #f8f8f8;
-}
-
-/* =========================
-   レイアウト
+   レジ画面専用
 ========================= */
 .checkout-layout {
-    margin-top: 40px;
+    margin-top: 0;
     display: grid;
     grid-template-columns: 1.4fr 1fr;
     gap: 32px;
@@ -41,9 +33,7 @@
     min-height: 100%;
 }
 
-/* =========================
-   お届け先情報
-========================= */
+
 .info-grid {
     display: flex;
     flex-direction: column;
@@ -73,9 +63,6 @@
     line-height: 1.8;
 }
 
-/* =========================
-   右側エリア
-========================= */
 .checkout-side {
     display: flex;
     flex-direction: column;
@@ -134,9 +121,6 @@
     line-height: 1.7;
 }
 
-/* =========================
-   ボタン・リンク
-========================= */
 .checkout-form {
     margin: 0;
 }
@@ -161,7 +145,6 @@
     .checkout-layout {
         grid-template-columns: 1fr;
         gap: 24px;
-        margin-top: 32px;
     }
 }
 
@@ -169,10 +152,6 @@
    スマホ対応
 ========================= */
 @media (max-width: 576px) {
-    .checkout-layout {
-        margin-top: 24px;
-    }
-
     .checkout-card {
         padding: 18px 16px;
     }

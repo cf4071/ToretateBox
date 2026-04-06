@@ -4,98 +4,106 @@
 <head>
   <meta charset="UTF-8">
   <title>購入履歴 | とれたてBOX</title>
-
   <link rel="stylesheet" th:href="@{/css/user/purchase_history.css}">
 </head>
 
 <body>
 
 <div th:replace="~{layout/layout :: layout(~{::title}, ~{::content})}">
-  <main th:fragment="content" class="ph-wrapper">
+  <main th:fragment="content">
+    <section class="page-section purchase-history-page">
+      <div class="page-container">
 
-    <h2 class="ph-title">購入履歴</h2>
+        <div class="purchase-history-box">
+          <h2 class="page-title">購入履歴</h2>
 
-    <p class="ph-empty" th:if="${#lists.isEmpty(orders)}">
-      購入履歴はまだありません。
-    </p>
+          <p class="ph-empty" th:if="${#lists.isEmpty(orders)}">
+            購入履歴はまだありません。
+          </p>
 
-    <section class="ph-list" th:if="${!#lists.isEmpty(orders)}">
-      <article class="ph-card" th:each="o : ${orders}">
+          <section class="ph-list" th:if="${!#lists.isEmpty(orders)}">
+            <article class="ph-card" th:each="o : ${orders}">
 
-        <!-- 上段（注文日 / 合計金額 / 注文番号） -->
-        <div class="ph-card-head">
-          <div class="ph-head-col">
-            <div class="ph-label">注文日</div>
-            <div class="ph-value"
-                 th:text="${o.createdAt != null ? #temporals.format(o.createdAt,'yyyy/MM/dd') : ''}">
-            </div>
-          </div>
+              <div class="ph-card-head">
+                <div class="ph-head-col">
+                  <div class="ph-label">注文日</div>
+                  <div class="ph-value"
+                       th:text="${o.createdAt != null ? #temporals.format(o.createdAt,'yyyy/MM/dd') : ''}">
+                  </div>
+                </div>
 
-          <div class="ph-head-col ph-head-col-center">
-            <div class="ph-label">合計金額</div>
-            <div class="ph-value">
-              <span class="ph-money" th:text="${o.totalAmount}">0</span>
-              <span class="ph-yen">円</span>
-            </div>
-          </div>
+                <div class="ph-head-col ph-head-col-center">
+                  <div class="ph-label">合計金額</div>
+                  <div class="ph-value">
+                    <span class="ph-money" th:text="${#numbers.formatInteger(o.totalAmount, 1, 'COMMA')}">0</span>
+                    <span class="ph-yen">円</span>
+                  </div>
+                </div>
 
-          <div class="ph-head-col ph-head-col-right">
-            <div class="ph-label">注文番号</div>
-            <div class="ph-value" th:text="${o.id}">0</div>
+                <div class="ph-head-col ph-head-col-right">
+                  <div class="ph-label">注文番号</div>
+                  <div class="ph-value" th:text="${o.id}">0</div>
+                </div>
+              </div>
+
+              <div class="ph-items" th:if="${orderItemsMap != null and orderItemsMap[o.id] != null}">
+                <div class="ph-item-row ph-item-head">
+                  <div class="ph-item-name">購入した食材の名前</div>
+                  <div class="ph-item-qty">数量</div>
+                  <div class="ph-item-sub">小計</div>
+                </div>
+
+                <div class="ph-item-row" th:each="it : ${orderItemsMap[o.id]}">
+                  <div class="ph-item-name" th:text="${it.productName}">にんじん</div>
+                  <div class="ph-item-qty">
+                    <span th:text="${it.quantity}">1</span>
+                  </div>
+                  <div class="ph-item-sub">
+                    <span th:text="${#numbers.formatInteger(it.subtotal, 1, 'COMMA')}">100</span> 円
+                  </div>
+                </div>
+              </div>
+
+            </article>
+          </section>
+
+		  <nav class="pagination" th:if="${orderPage != null and orderPage.totalPages > 1}">
+			
+			  <li class="page-item" th:classappend="${!orderPage.hasPrevious()} ? ' disabled' : ''">
+			    <a class="page-link"
+			       th:if="${orderPage.hasPrevious()}"
+			       th:href="@{/purchase_history(page=${orderPage.number - 1})}">
+			      前へ
+			    </a>
+			    <span class="page-link" th:unless="${orderPage.hasPrevious()}">前へ</span>
+			  </li>
+			
+			  <li class="page-item"
+			      th:each="i : ${#numbers.sequence(0, orderPage.totalPages - 1)}"
+			      th:classappend="${i == orderPage.number} ? ' active' : ''">
+			    <a class="page-link"
+			       th:href="@{/purchase_history(page=${i})}"
+			       th:text="${i + 1}">1</a>
+			  </li>
+			
+			  <li class="page-item" th:classappend="${!orderPage.hasNext()} ? ' disabled' : ''">
+			    <a class="page-link"
+			       th:if="${orderPage.hasNext()}"
+			       th:href="@{/purchase_history(page=${orderPage.number + 1})}">
+			      次へ
+			    </a>
+			    <span class="page-link" th:unless="${orderPage.hasNext()}">次へ</span>
+			  </li>
+			
+		  </nav>
+
+          <div class="btn-group">
+            <a class="common-btn btn-primary" th:href="@{/top}">戻る</a>
           </div>
         </div>
 
-        <!-- ✅ 明細（食材名 / 数量 / 小計） -->
-        <div class="ph-items" th:if="${orderItemsMap != null and orderItemsMap[o.id] != null}">
-          <div class="ph-item-row ph-item-head">
-            <div class="ph-item-name">購入した食材の名前</div>
-            <div class="ph-item-qty">数量</div>
-            <div class="ph-item-sub">小計</div>
-          </div>
-
-          <div class="ph-item-row" th:each="it : ${orderItemsMap[o.id]}">
-            <div class="ph-item-name" th:text="${it.productName}">
-				にんじん
-			</div>
-            <div class="ph-item-qty">
-              <span th:text="${it.quantity}">1</span>
-            </div>
-            <div class="ph-item-sub">
-              <span th:text="${it.subtotal}">100</span> 円
-            </div>
-          </div>
-        </div>
-
-      </article>
+      </div>
     </section>
-    
-	<nav class="ph-pagination" th:if="${orderPage != null and orderPage.totalPages > 1}">
-    
-	  <a class="ph-page"
-	     th:if="${orderPage.hasPrevious()}"
-	     th:href="@{/purchase_history(page=${orderPage.number - 1})}">
-	    前へ
-	  </a>
-	
-	  <span th:each="i : ${#numbers.sequence(0, orderPage.totalPages - 1)}">
-	    <a class="ph-page"
-	       th:href="@{/purchase_history(page=${i})}"
-	       th:text="${i + 1}"
-	       th:classappend="${i == orderPage.number} ? ' is-active' : ''">
-	    </a>
-	  </span>
-	
-	  <a class="ph-page"
-	     th:if="${orderPage.hasNext()}"
-	     th:href="@{/purchase_history(page=${orderPage.number + 1})}">
-	    次へ
-	  </a>
-	</nav>
-
-    <div class="ph-actions">
-      <a class="common-btn btn-primary" th:href="@{/top}">戻る</a>
-    </div>
-
   </main>
 </div>
 

@@ -1,84 +1,21 @@
 @charset "UTF-8";
 
-/* =========================
-   ページ全体
-========================= */
-.mypage-wrapper {
+.mypage-page {
     min-height: 100vh;
-    padding-top: 40px;
-    padding-bottom: 80px;
 }
 
-/* =========================
-   タイトル
-========================= */
-.mypage-title {
-    font-size: 42px;
-    font-weight: 700;
-    color: #222;
-    text-align: center;
-    width: 520px;
-    margin: 0 auto 40px auto;
-}
-
-/* =========================
-   フォーム全体
-========================= */
-.mypage-form {
-    width: 520px;
+.mypage-box {
+    width: 100%;
+    max-width: 520px;
     margin: 0 auto;
 }
 
-/* =========================
-   1行ずつ
-========================= */
-.form-row {
-    margin-bottom: 22px;
-}
-
-.form-row label {
-    display: block;
-    font-size: 18px;
-    font-weight: 700;
-    color: #222;
-    margin-bottom: 8px;
-}
-
-.form-row input {
+.mypage-form {
     width: 100%;
-    height: 42px;
-    box-sizing: border-box;
-    border: 1px solid #666;
-    background-color: #fff;
-    padding: 8px 12px;
-    font-size: 15px;
-    color: #333;
 }
 
-/* readonlyでも見やすくする */
-.form-row input[readonly] {
-    background-color: #fff;
-    color: #333;
-    opacity: 1;
-    cursor: default;
+@media (max-width: 576px) {
+    .mypage-box {
+        max-width: 100%;
+    }
 }
-
-/* =========================
-   区切り線
-========================= */
-.mypage-separator {
-    border: none;
-    border-top: 1px solid #cfcfcf;
-    margin: 30px 0 24px;
-}
-
-/* =========================
-   小見出し
-========================= */
-.mypage-subtitle {
-    font-size: 24px;
-    font-weight: 700;
-    color: #222;
-    margin-bottom: 24px;
-}
-

@@ -1,26 +1,10 @@
 @charset "UTF-8";
 
-/* =========================
-   カートページ全体
-========================= */
 .cart-page {
     background-color: #f8f8f8;
     min-height: 100vh;
 }
 
-/* =========================
-   エラーメッセージ
-========================= */
-.cart-error-message {
-    display: block;
-    max-width: 420px;
-    margin: 0 auto 24px;
-    text-align: center;
-}
-
-/* =========================
-   空カート
-========================= */
 .cart-empty {
     background-color: #ffffff;
     border: 1px solid #d9d9d9;
@@ -34,9 +18,7 @@
     color: #333333;
 }
 
-/* =========================
-   カート一覧
-========================= */
+
 .cart-list {
     background-color: #ffffff;
     border: 1px solid #d9d9d9;
@@ -169,9 +151,6 @@
     text-align: right;
 }
 
-/* =========================
-   操作エリア
-========================= */
 .cart-actions {
     display: flex;
     flex-direction: column;

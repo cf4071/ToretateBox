@@ -9,112 +9,114 @@
 <body>
 
 <div th:replace="~{layout/layout :: layout(~{::title}, ~{::content})}">
-    <main th:fragment="content" class="signup-page">
+    <main th:fragment="content">
+        <section class="page-section signup-page">
+            <div class="page-container">
 
-        <div class="signup-wrapper">
+                <div class="signup-wrapper">
+                    <h2 class="page-title">新規ユーザー登録</h2>
 
-            <h2 class="signup-title">新規ユーザー登録</h2>
+                    <div th:if="${errorMessage}" class="common-alert">
+                        <p th:text="${errorMessage}">エラーメッセージ</p>
+                    </div>
 
-            <div th:if="${errorMessage}" class="error-message">
-                <p th:text="${errorMessage}"></p>
+                    <form th:action="@{/signup}" method="post" th:object="${signupForm}" class="signup-form">
+
+                        <div class="form-group">
+                            <label class="form-label" for="name">氏名</label>
+                            <input type="text" id="name" th:field="*{name}" class="form-input">
+                            <div class="form-error"
+                                 th:if="${#fields.hasErrors('name')}"
+                                 th:errors="*{name}"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="nameKana">フリガナ</label>
+                            <input type="text" id="nameKana" th:field="*{nameKana}" class="form-input">
+                            <div class="form-error"
+                                 th:if="${#fields.hasErrors('nameKana')}"
+                                 th:errors="*{nameKana}"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="phoneNumber">電話番号</label>
+                            <input type="text" id="phoneNumber" th:field="*{phoneNumber}" class="form-input">
+                            <div class="form-error"
+                                 th:if="${#fields.hasErrors('phoneNumber')}"
+                                 th:errors="*{phoneNumber}"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="email">メールアドレス</label>
+                            <input type="email" id="email" th:field="*{email}" class="form-input">
+                            <div class="form-error"
+                                 th:if="${#fields.hasErrors('email')}"
+                                 th:errors="*{email}"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="password">パスワード</label>
+                            <input type="password" id="password" th:field="*{password}" class="form-input">
+                            <div class="form-error"
+                                 th:if="${#fields.hasErrors('password')}"
+                                 th:errors="*{password}"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="passwordConfirm">パスワード（確認）</label>
+                            <input type="password" id="passwordConfirm" th:field="*{passwordConfirm}" class="form-input">
+                            <div class="form-error"
+                                 th:if="${#fields.hasErrors('passwordConfirm')}"
+                                 th:errors="*{passwordConfirm}"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="postalCode">郵便番号</label>
+                            <input type="text" id="postalCode" th:field="*{postalCode}" class="form-input">
+                            <div class="form-error"
+                                 th:if="${#fields.hasErrors('postalCode')}"
+                                 th:errors="*{postalCode}"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="prefecture">都道府県</label>
+                            <input type="text" id="prefecture" th:field="*{prefecture}" class="form-input">
+                            <div class="form-error"
+                                 th:if="${#fields.hasErrors('prefecture')}"
+                                 th:errors="*{prefecture}"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="city">市区町村</label>
+                            <input type="text" id="city" th:field="*{city}" class="form-input">
+                            <div class="form-error"
+                                 th:if="${#fields.hasErrors('city')}"
+                                 th:errors="*{city}"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="addressLine1">町名・番地</label>
+                            <input type="text" id="addressLine1" th:field="*{addressLine1}" class="form-input">
+                            <div class="form-error"
+                                 th:if="${#fields.hasErrors('addressLine1')}"
+                                 th:errors="*{addressLine1}"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="addressLine2">建物名・部屋番号（任意）</label>
+                            <input type="text" id="addressLine2" th:field="*{addressLine2}" class="form-input">
+                        </div>
+
+                        <div class="btn-group">
+                            <button type="submit" class="common-btn btn-danger">登録</button>
+                            <a th:href="@{/top}" class="common-btn btn-primary">戻る</a>
+                        </div>
+
+                    </form>
+                </div>
+
             </div>
-
-            <form th:action="@{/signup}" method="post" th:object="${signupForm}">
-
-                <div class="form-group">
-                    <label>氏名</label>
-                    <input type="text" th:field="*{name}">
-                    <div class="field-error text-danger text-center"
-                       th:if="${#fields.hasErrors('name')}"
-                       th:errors="*{name}"></div>
-                </div>
-
-                <div class="form-group">
-                    <label>フリガナ</label>
-                    <input type="text" th:field="*{nameKana}">
-                    <div class="field-error text-danger text-center"
-                       th:if="${#fields.hasErrors('nameKana')}"
-                       th:errors="*{nameKana}"></div>
-                </div>
-
-                <div class="form-group">
-                    <label>電話番号</label>
-                    <input type="text" th:field="*{phoneNumber}">
-                    <div class="field-error text-danger text-center"
-                       th:if="${#fields.hasErrors('phoneNumber')}"
-                       th:errors="*{phoneNumber}"></div>
-                </div>
-
-                <div class="form-group">
-                    <label>メールアドレス</label>
-                    <input type="email" th:field="*{email}">
-                    <div class="field-error text-danger text-center"
-                       th:if="${#fields.hasErrors('email')}"
-                       th:errors="*{email}"></div>
-                </div>
-
-                <div class="form-group">
-                    <label>パスワード</label>
-                    <input type="password" th:field="*{password}">
-                    <div class="field-error text-danger text-center"
-                       th:if="${#fields.hasErrors('password')}"
-                       th:errors="*{password}"></div>
-                </div>
-
-                <div class="form-group">
-                    <label>パスワード（確認）</label>
-                    <input type="password" th:field="*{passwordConfirm}">
-                    <div class="field-error text-danger text-center"
-                       th:if="${#fields.hasErrors('passwordConfirm')}"
-                       th:errors="*{passwordConfirm}"></div>
-                </div>
-
-                <div class="form-group">
-                    <label>郵便番号</label>
-                    <input type="text" th:field="*{postalCode}">
-                    <div class="field-error text-danger text-center"
-                       th:if="${#fields.hasErrors('postalCode')}"
-                       th:errors="*{postalCode}"></div>
-                </div>
-
-                <div class="form-group">
-                    <label>都道府県</label>
-                    <input type="text" th:field="*{prefecture}">
-                    <div class="field-error text-danger text-center"
-                       th:if="${#fields.hasErrors('prefecture')}"
-                       th:errors="*{prefecture}"></div>
-                </div>
-
-                <div class="form-group">
-                    <label>市区町村</label>
-                    <input type="text" th:field="*{city}">
-                    <div class="field-error text-danger text-center"
-                       th:if="${#fields.hasErrors('city')}"
-                       th:errors="*{city}"></div>
-                </div>
-
-                <div class="form-group">
-                    <label>町名・番地</label>
-                    <input type="text" th:field="*{addressLine1}">
-                    <div class="field-error text-danger text-center"
-                       th:if="${#fields.hasErrors('addressLine1')}"
-                       th:errors="*{addressLine1}"></div>
-                </div>
-
-                <div class="form-group">
-                    <label>建物名・部屋番号（任意）</label>
-                    <input type="text" th:field="*{addressLine2}">
-                </div>
-
-                <div class="btn-group gap-5">
-                    <button type="submit" class="common-btn btn-danger">登録</button>
-                    <a th:href="@{/top}" class="common-btn btn-primary">戻る</a>
-                </div>
-
-            </form>
-
-        </div>
-
+        </section>
     </main>
 </div>
 

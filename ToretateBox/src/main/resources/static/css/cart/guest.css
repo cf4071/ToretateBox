@@ -1,66 +1,21 @@
 @charset "UTF-8";
 
-/* =========================
-   ゲスト情報登録画面全体
-========================= */
 .guest-page {
     min-height: 100vh;
-    background-color: #f8f8f8;
 }
 
 .guest-box {
-    max-width: 560px;
-    margin: 0 auto;
-}
-
-.guest-form {
     width: 100%;
-}
-
-.guest-alert {
-    margin-bottom: 24px;
+    max-width: 520px;
+    margin: 0 auto;
 }
 
 .guest-alert p {
     margin: 0;
 }
 
-.guest-form .form-group {
-    margin-bottom: 20px;
-}
-
-.guest-form .form-label {
-    text-align: left;
-}
-
-.guest-form .form-input {
-    width: 100%;
-}
-
-.guest-form .btn-group {
-    margin-top: 28px;
-}
-
-/* =========================
-   スマホ対応
-========================= */
 @media (max-width: 576px) {
     .guest-box {
         max-width: 100%;
-    }
-
-    .guest-form .form-group {
-        margin-bottom: 18px;
-    }
-
-    .guest-form .btn-group {
-        margin-top: 24px;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 12px;
-    }
-
-    .guest-form .btn-group .common-btn {
-        width: 100%;
     }
 }

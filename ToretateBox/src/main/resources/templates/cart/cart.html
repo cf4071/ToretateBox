@@ -17,32 +17,27 @@
 
                 <!-- エラーメッセージ -->
                 <div th:if="${errorMessage}"
-                     class="common-alert cart-error-message"
+                     class="common-alert"
                      th:text="${errorMessage}">
                     エラーメッセージ
                 </div>
 
-                <!-- カートが空の場合 -->
                 <div th:if="${cartItems == null or #lists.isEmpty(cartItems)}" class="cart-empty">
                     <p class="cart-empty-text">カートに商品が入っていません。</p>
                     <a th:href="@{/top}" class="common-link cart-link-back">ショッピングを続ける</a>
                 </div>
 
-                <!-- カートに商品がある場合 -->
                 <div th:if="${cartItems != null and !#lists.isEmpty(cartItems)}">
                     <div class="row g-4">
 
-                        <!-- 左側：商品一覧 -->
                         <div class="col-12 col-lg-8">
                             <div class="cart-list">
 
                                 <div class="cart-item" th:each="item : ${cartItems}">
-                                    <!-- 商品画像 -->
                                     <div class="cart-item-image">
                                         <img th:src="@{${item.imageUrl}}" alt="商品画像">
                                     </div>
 
-                                    <!-- 商品情報 -->
                                     <div class="cart-item-main">
                                         <p class="cart-item-name" th:text="${item.name}">商品名</p>
                                         <p class="cart-item-price">
@@ -52,10 +47,8 @@
                                         </p>
                                     </div>
 
-                                    <!-- 右側情報 -->
                                     <div class="cart-item-side">
 
-                                        <!-- 数量変更 -->
                                         <form th:action="@{/cart/update}" method="post" class="cart-quantity-form">
                                             <input type="hidden" name="productId" th:value="${item.productId}">
 
@@ -70,13 +63,11 @@
                                             </select>
                                         </form>
 
-                                        <!-- 小計 -->
                                         <p class="cart-item-subtotal">
                                             小計：
                                             ¥<span th:text="${#numbers.formatInteger(item.subtotal, 3, 'COMMA')}">0</span>
                                         </p>
 
-                                        <!-- 削除 -->
                                         <form th:action="@{/cart/remove}" method="post" class="cart-remove-form">
                                             <input type="hidden" name="productId" th:value="${item.productId}">
                                             <button type="submit" class="common-btn btn-danger">削除</button>
@@ -87,7 +78,6 @@
                             </div>
                         </div>
 
-                        <!-- 右側：合計と操作 -->
                         <div class="col-12 col-lg-4">
                             <div class="cart-total-box">
                                 <div class="total-row total-summary-row">
@@ -101,23 +91,29 @@
                                 </div>
                             </div>
 
-                            <div class="cart-actions">
+                             <div class="cart-actions">
 
-                                <!-- ログインユーザー用 -->
-                                <form th:if="${isLoggedIn}" th:action="@{/checkout}" method="get">
-                                    <button type="submit" class="common-btn btn-warning">レジへ進む</button>
+                                <form th:action="@{/cart/checkout}" method="post">
+                                    <input type="hidden"
+                                           th:if="${_csrf != null}"
+                                           th:name="${_csrf.parameterName}"
+                                           th:value="${_csrf.token}">
+                                    <button type="submit" class="common-btn btn-warning">
+                                        レジへ進む
+                                    </button>
                                 </form>
 
-                                <!-- ゲストユーザー用 -->
-                                <form th:if="${!isLoggedIn}" th:action="@{/checkout}" method="get">
-                                    <button type="submit" class="common-btn btn-warning">レジへ進む</button>
-                                </form>
-
+                                <!-- ゲストユーザーのみ -->
                                 <form th:if="${!isLoggedIn}" th:action="@{/guest}" method="get">
-                                    <button type="submit" class="common-btn btn-primary">ゲスト情報登録へ</button>
+                                    <button type="submit" class="common-btn btn-primary">
+                                        ゲスト情報登録へ
+                                    </button>
                                 </form>
 
-                                <a th:href="@{/top}" class="common-link cart-link-back">ショッピングを続ける</a>
+                                <a th:href="@{/top}" class="common-link cart-link-back">
+                                    ショッピングを続ける
+                                </a>
+
                             </div>
                         </div>
 

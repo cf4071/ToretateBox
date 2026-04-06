@@ -3,24 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>ログアウト | とれたてBOX</title>
-
 </head>
 
-<body class="bg-light">
+<body>
 
 <div th:replace="~{layout/layout :: layout(~{::title}, ~{::content})}">
 
-<main th:fragment="content" class="container text-center py-5">
+    <main th:fragment="content">
+        <section class="page-section logout-page">
+            <div class="page-container">
 
-    <!-- メッセージ -->
-    <h2 class="mb-5">ログアウトしました</h2>
+                <div class="logout-box">
+                    <h2 class="page-title">ログアウトしました</h2>
 
-    <!-- ボタン -->
-    <a th:href="@{/products}" class="common-btn btn-success">
-        食材一覧へ
-    </a>
+                    <div class="btn-group">
+                        <a th:href="@{/products}" class="common-btn btn-success">食材一覧へ</a>
+                    </div>
+                </div>
 
-</main>
+            </div>
+        </section>
+    </main>
+
 </div>
 
 </body>
