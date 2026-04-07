@@ -13,7 +13,7 @@
 
   <main class="container py-5 admin-wrapper">
 
-    <h2 class="admin-title text-center fw-bold mb-5">食材編集</h2>
+    <h2 class="page-title">食材編集</h2>
 
     <form th:action="@{/admin/product_update}"
           th:object="${productForm}"
@@ -28,10 +28,10 @@
       <div class="admin-form-row row g-0 row-orange">
         <div class="col-md-3 admin-label-cell">食材名</div>
         <div class="col-md-5 admin-input-cell">
-          <input type="text" th:field="*{name}" class="form-control">
+          <input type="text" th:field="*{name}" class="form-input">
         </div>
         <div class="col-md-4 admin-error-cell">
-          <p class="error"
+          <p class="form-error"
              th:if="${#fields.hasErrors('name')}"
              th:errors="*{name}"></p>
         </div>
@@ -41,10 +41,10 @@
       <div class="admin-form-row row g-0 row-white">
         <div class="col-md-3 admin-label-cell">カテゴリ</div>
         <div class="col-md-5 admin-input-cell">
-          <input type="number" th:field="*{categoryId}" class="form-control">
+          <input type="number" th:field="*{categoryId}" class="form-input">
         </div>
         <div class="col-md-4 admin-error-cell">
-          <p class="error"
+          <p class="form-error"
              th:if="${#fields.hasErrors('categoryId')}"
              th:errors="*{categoryId}"></p>
         </div>
@@ -54,10 +54,10 @@
       <div class="admin-form-row row g-0 row-orange">
         <div class="col-md-3 admin-label-cell">旬の季節</div>
         <div class="col-md-5 admin-input-cell">
-          <input type="text" th:field="*{season}" class="form-control">
+          <input type="text" th:field="*{season}" class="form-input">
         </div>
         <div class="col-md-4 admin-error-cell">
-          <p class="error"
+          <p class="form-error"
              th:if="${#fields.hasErrors('season')}"
              th:errors="*{season}"></p>
         </div>
@@ -66,9 +66,9 @@
       <!-- 食材説明 -->
       <div class="admin-form-row row g-0 row-white">
         <div class="col-md-3 admin-label-cell">食材説明</div>
-        <div class="col-md-9 admin-input-cell">
-          <textarea th:field="*{description}" rows="4" class="form-control"></textarea>
-          <p class="error mt-2"
+        <div class="col-md-9 admin-input-cell admin-textarea-cell">
+          <textarea th:field="*{description}" rows="4" class="form-textarea"></textarea>
+          <p class="form-error mt-2"
              th:if="${#fields.hasErrors('description')}"
              th:errors="*{description}"></p>
         </div>
@@ -78,10 +78,10 @@
       <div class="admin-form-row row g-0 row-orange">
         <div class="col-md-3 admin-label-cell">値段</div>
         <div class="col-md-5 admin-input-cell">
-          <input type="number" th:field="*{price}" class="form-control">
+          <input type="number" th:field="*{price}" class="form-input">
         </div>
         <div class="col-md-4 admin-error-cell">
-          <p class="error"
+          <p class="form-error"
              th:if="${#fields.hasErrors('price')}"
              th:errors="*{price}"></p>
         </div>
@@ -90,28 +90,25 @@
       <!-- 画像 -->
       <div class="admin-form-row row g-0 row-white">
         <div class="col-md-3 admin-label-cell">画像</div>
-        <div class="col-md-9 admin-input-cell">
+        <div class="col-md-9 admin-input-cell admin-textarea-cell">
 
-          <!-- 現在画像 -->
           <div th:if="*{imageUrl != null and imageUrl != ''}" class="mb-3">
             <img th:src="@{*{imageUrl}}"
                  alt="現在の画像"
                  class="admin-preview-img">
           </div>
 
-          <!-- 新しい画像 -->
-          <input type="file" th:field="*{imageFile}" class="form-control image-input">
+          <input type="file" th:field="*{imageFile}" class="form-input image-input">
 
-          <p class="error mt-2"
+          <p class="form-error mt-2"
              th:if="${#fields.hasErrors('imageFile')}"
              th:errors="*{imageFile}"></p>
         </div>
       </div>
 
-      <!-- ボタン -->
-      <div class="btn-group">
-        <button type="submit" class="common-btn btn-danger admin-btn me-3">更新</button>
-        <a th:href="@{/admin/products}" class="common-btn btn-primary" >戻る</a>
+      <div class="btn-group admin-btn-group">
+        <button type="submit" class="common-btn btn-danger">更新</button>
+        <a th:href="@{/admin/products}" class="common-btn btn-primary">戻る</a>
       </div>
 
     </form>

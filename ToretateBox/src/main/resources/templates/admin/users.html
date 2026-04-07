@@ -3,8 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>ユーザー管理 | とれたてBOX</title>
-
-  <!-- 自分のCSS -->
   <link rel="stylesheet" th:href="@{/css/admin/users.css}">
 </head>
 <body class="users-page">
@@ -13,12 +11,8 @@
 
   <main th:fragment="content" class="container py-5">
 
-    <!-- タイトル -->
-    <div class="text-center mb-5">
-      <h2 class="users-title fw-bold">ユーザー管理</h2>
-    </div>
+    <h2 class="page-title">ユーザー管理</h2>
 
-    <!-- テーブル -->
     <div class="users-table-wrap mx-auto">
       <div class="table-responsive">
         <table class="table users-table align-middle text-center mb-0">
@@ -60,33 +54,47 @@
       </div>
     </div>
 
-    <!-- ページネーション -->
-    <div class="users-pagination text-center mt-4">
-      <a class="page-number"
-         th:if="${currentPage > 0}"
-         th:href="@{/admin/users(page=${currentPage - 1})}">
-         ‹
-      </a>
+    <nav class="mt-4" th:if="${totalPages != null and totalPages > 0}">
+	  <ul class="pagination justify-content-center">
+	
+	    <li class="page-item"
+	        th:classappend="${currentPage == 0} ? ' disabled'">
+	      <a class="page-link"
+	         th:if="${currentPage > 0}"
+	         th:href="@{/admin/users(page=${currentPage - 1})}">
+	        前へ
+	      </a>
+	      <span class="page-link" th:if="${currentPage == 0}">前へ</span>
+	    </li>
+	
+	    <li class="page-item"
+	        th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
+	        th:classappend="${i == currentPage} ? ' active' : ''">
+	      <a class="page-link"
+	         th:href="@{/admin/users(page=${i})}"
+	         th:text="${i + 1}">
+	        1
+	      </a>
+	    </li>
+	
+	    <li class="page-item"
+	        th:classappend="${currentPage >= totalPages - 1} ? ' disabled'">
+	      <a class="page-link"
+	         th:if="${currentPage < totalPages - 1}"
+	         th:href="@{/admin/users(page=${currentPage + 1})}">
+	        次へ
+	      </a>
+	      <span class="page-link"
+	            th:if="${currentPage >= totalPages - 1}">
+	        次へ
+	      </span>
+	    </li>
+	
+	  </ul>
+	</nav>
 
-      <span th:each="i : ${#numbers.sequence(0, totalPages - 1)}">
-        <a class="page-number"
-           th:href="@{/admin/users(page=${i})}"
-           th:text="${i + 1}"
-           th:classappend="${i == currentPage} ? ' active' : ''">
-          1
-        </a>
-      </span>
-
-      <a class="page-number"
-         th:if="${currentPage + 1 < totalPages}"
-         th:href="@{/admin/users(page=${currentPage + 1})}">
-         ›
-      </a>
-    </div>
-
-    <!-- 戻るボタン -->
-    <div class="text-center mt-4">
-      <a th:href="@{/admin}" class="common-btn btn-primary">
+    <div class="users-back">
+      <a th:href="@{/admin/products}" class="common-btn btn-primary">
         戻る
       </a>
     </div>

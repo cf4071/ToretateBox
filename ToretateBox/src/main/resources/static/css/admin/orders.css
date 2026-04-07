@@ -4,12 +4,6 @@
     background-color: #f3f3f3;
 }
 
-.orders-title {
-    font-size: 36px;
-    color: #222222;
-    letter-spacing: 0.05em;
-}
-
 .orders-card {
     max-width: 1100px;
     background-color: transparent;
@@ -56,63 +50,25 @@
     padding: 24px 12px !important;
 }
 
-
-
-.custom-pagination .page-link {
-    border: none;
-    background-color: transparent;
-    color: #222222;
-    font-weight: bold;
-    font-size: 24px;
-    margin: 0 8px;
-    box-shadow: none;
+.orders-back {
+    margin-top: 24px;
+    text-align: center;
 }
-
-.custom-pagination .page-item.active .page-link {
-    background-color: transparent;
-    color: #000000;
-    text-decoration: underline;
-}
-
-.custom-pagination .page-link:hover {
-    background-color: transparent;
-    color: #000000;
-}
-
-
 
 /* =========================
    レスポンシブ
 ========================= */
 @media (max-width: 992px) {
-    .orders-title {
-        font-size: 30px;
-    }
-
     .orders-table thead th,
     .orders-table tbody td {
         font-size: 13px;
         padding: 10px 8px;
     }
-
-    .detail-btn {
-        min-width: 66px;
-        font-size: 12px;
-        padding: 5px 10px;
-    }
 }
 
 @media (max-width: 768px) {
-    .orders-title {
-        font-size: 26px;
-    }
-
-    .custom-pagination .page-link {
-        font-size: 20px;
-        margin: 0 4px;
-    }
-
-    .back-btn {
+    .orders-back .common-btn {
+        width: auto;
         min-width: 96px;
     }
 }

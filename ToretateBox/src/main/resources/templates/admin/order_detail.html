@@ -2,9 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>注文詳細</title>
-
-  <!-- 自分のCSS -->
+  <title>注文詳細 | とれたてBOX</title>
   <link rel="stylesheet" th:href="@{/css/admin/order_detail.css}">
 </head>
 <body class="order-detail-page">
@@ -13,13 +11,8 @@
 
   <main th:fragment="content" class="container py-5">
 
-    <!-- タイトル -->
-    <div class="detail-header text-center">
-      <h2 class="detail-title">注文詳細</h2>
-      <div class="title-line"></div>
-    </div>
+    <h2 class="page-title">注文詳細</h2>
 
-    <!-- 中央の細い本文エリア -->
     <div class="detail-sheet mx-auto">
 
       <!-- 基本情報 -->
@@ -66,7 +59,7 @@
       <!-- 注文商品 -->
       <section class="detail-section">
         <div class="block-row align-items-start">
-          <div class="block-label pt-2">注文食材</div>
+          <div class="block-label">注文食材</div>
           <div class="block-value">
             <div class="table-responsive">
               <table class="table item-table mb-0">
@@ -81,7 +74,7 @@
                   <tr th:each="item : ${order.items}">
                     <td th:text="${item.productName}"></td>
                     <td th:text="${item.quantity}"></td>
-                    <td th:text="${item.subtotal} + '円'"></td>
+                    <td th:text="${#numbers.formatInteger(item.subtotal, 1, 'COMMA')} + '円'"></td>
                   </tr>
 
                   <tr th:if="${#lists.isEmpty(order.items)}">
@@ -98,13 +91,13 @@
       <section class="detail-section total-section">
         <div class="info-row total-row">
           <div class="info-label">合計金額</div>
-          <div class="info-value fw-bold" th:text="${order.totalAmount} + '円'"></div>
+          <div class="info-value total-price"
+               th:text="${#numbers.formatInteger(order.totalAmount, 1, 'COMMA')} + '円'"></div>
         </div>
       </section>
 
-      <!-- 戻る -->
-      <div class="text-center mt-4">
-        <a th:href="@{/admin/orders}" class="common-btn btn-primary" >戻る</a>
+      <div class="detail-back">
+        <a th:href="@{/admin/orders}" class="common-btn btn-primary">戻る</a>
       </div>
 
     </div>

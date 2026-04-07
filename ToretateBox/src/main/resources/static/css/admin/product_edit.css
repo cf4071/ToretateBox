@@ -4,12 +4,6 @@
     max-width: 1000px;
 }
 
-.admin-title {
-    font-size: 2rem;
-    color: #333;
-    letter-spacing: 0.04em;
-}
-
 .admin-form-card {
     max-width: 850px;
     background-color: #ffffff;
@@ -39,12 +33,12 @@
 
 .admin-label-cell {
     padding: 18px 16px;
-    font-weight: 700;
-    color: #444;
     display: flex;
     align-items: center;
-    border-right: 1px solid #ddd2c8;
     min-height: 88px;
+    border-right: 1px solid #ddd2c8;
+    font-weight: bold;
+    color: #444444;
 }
 
 .admin-input-cell {
@@ -55,8 +49,9 @@
     border-right: 1px solid #ddd2c8;
 }
 
-.admin-input-cell:has(textarea) {
-    align-items: flex-start;
+.admin-textarea-cell {
+    display: block;
+    padding: 14px 18px;
 }
 
 .admin-error-cell {
@@ -78,54 +73,28 @@
     background-color: #ffffff;
 }
 
-.admin-input-cell .form-control {
-    width: 100%;
-    margin: 0;
-    border: 1px solid #d0c3b6;
+.admin-preview-img {
+    max-width: 180px;
+    height: auto;
+    border: 1px solid #cccccc;
     border-radius: 4px;
-    font-size: 1rem;
-    box-shadow: none;
-}
-
-.admin-input-cell .form-control:focus {
-    border-color: #b89f84;
-    box-shadow: 0 0 0 0.15rem rgba(184, 159, 132, 0.2);
-}
-
-textarea.form-control {
-    resize: vertical;
-    min-height: 120px;
+    display: block;
 }
 
 .image-input {
     width: 100%;
 }
 
-.admin-preview-img {
-    max-width: 180px;
-    height: auto;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    display: block;
+.admin-btn-group {
+    padding: 32px 24px;
+    margin-top: 0;
+    background-color: #ffffff;
 }
-
-.error {
-    color: #d9534f;
-    font-size: 14px;
-    font-weight: 700;
-    margin: 0;
-    line-height: 1.4;
-}
-
 
 /* =========================
    スマホ
 ========================= */
 @media (max-width: 768px) {
-    .admin-title {
-        font-size: 1.6rem;
-    }
-
     .admin-label-cell,
     .admin-input-cell,
     .admin-error-cell {
@@ -138,12 +107,8 @@ textarea.form-control {
     }
 
     .admin-input-cell,
-    .admin-error-cell {
+    .admin-error-cell,
+    .admin-textarea-cell {
         padding: 14px 16px;
-    }
-
-    .admin-btn {
-        min-width: 90px;
-        font-size: 0.9rem;
     }
 }

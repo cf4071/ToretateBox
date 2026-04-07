@@ -17,12 +17,8 @@
 
   <main th:fragment="content" class="container py-5">
 
-    <!-- タイトル -->
-    <div class="text-center mb-5">
-      <h1 class="page-title">ユーザー詳細</h1>
-    </div>
+    <h2 class="page-title">ユーザー詳細</h2>
 
-    <!-- 詳細テーブル -->
     <div class="detail-wrap mx-auto">
       <div class="detail-heading">ユーザー詳細</div>
 
@@ -83,8 +79,7 @@
       </div>
     </div>
 
-    <!-- ボタン -->
-    <div class="btn-group mt-5 gap-5">
+    <div class="btn-group mt-5">
       <form th:action="@{/admin/users/{id}/delete(id=${user.id})}"
             method="post"
             onsubmit="return confirm('本当に削除しますか？');"
