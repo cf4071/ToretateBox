@@ -85,9 +85,16 @@
          th:if="${productPage != null and productPage.totalPages > 1}">
       <ul class="pagination justify-content-center">
 
-        <li class="page-item" th:if="${productPage.hasPrevious()}">
+        <li class="page-item"
+            th:classappend="${!productPage.hasPrevious()} ? ' disabled' : ''">
           <a class="page-link"
+             th:if="${productPage.hasPrevious()}"
              th:href="@{/admin/products(page=${productPage.number - 1})}">
+            前へ
+          </a>
+          <a class="page-link"
+             th:unless="${productPage.hasPrevious()}"
+             href="#">
             前へ
           </a>
         </li>
@@ -102,9 +109,16 @@
           </a>
         </li>
 
-        <li class="page-item" th:if="${productPage.hasNext()}">
+        <li class="page-item"
+            th:classappend="${!productPage.hasNext()} ? ' disabled' : ''">
           <a class="page-link"
+             th:if="${productPage.hasNext()}"
              th:href="@{/admin/products(page=${productPage.number + 1})}">
+            次へ
+          </a>
+          <a class="page-link"
+             th:unless="${productPage.hasNext()}"
+             href="#">
             次へ
           </a>
         </li>

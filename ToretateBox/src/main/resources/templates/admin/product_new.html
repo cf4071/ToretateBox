@@ -13,7 +13,7 @@
 
   <main class="container py-5 admin-wrapper">
 
-    <h2 class="admin-title text-center fw-bold mb-5">食材登録</h2>
+    <h2 class="page-title">食材登録</h2>
 
     <form th:action="@{/admin/products/new}"
           th:object="${productForm}"
@@ -32,10 +32,10 @@
           食材名
         </div>
         <div class="col-md-5 admin-input-cell">
-          <input type="text" th:field="*{name}" class="form-control">
+          <input type="text" th:field="*{name}" class="form-input">
         </div>
         <div class="col-md-4 admin-error-cell">
-          <p class="error mb-0"
+          <p class="form-error"
              th:if="${#fields.hasErrors('name')}"
              th:errors="*{name}"></p>
         </div>
@@ -47,10 +47,10 @@
           カテゴリ
         </div>
         <div class="col-md-5 admin-input-cell">
-          <input type="number" th:field="*{categoryId}" class="form-control">
+          <input type="number" th:field="*{categoryId}" class="form-input">
         </div>
         <div class="col-md-4 admin-error-cell">
-          <p class="error mb-0"
+          <p class="form-error"
              th:if="${#fields.hasErrors('categoryId')}"
              th:errors="*{categoryId}"></p>
         </div>
@@ -62,10 +62,10 @@
           旬の季節
         </div>
         <div class="col-md-5 admin-input-cell">
-          <input type="text" th:field="*{season}" class="form-control">
+          <input type="text" th:field="*{season}" class="form-input">
         </div>
         <div class="col-md-4 admin-error-cell">
-          <p class="error mb-0"
+          <p class="form-error"
              th:if="${#fields.hasErrors('season')}"
              th:errors="*{season}"></p>
         </div>
@@ -76,9 +76,9 @@
         <div class="col-md-3 admin-label-cell">
           食材説明
         </div>
-        <div class="col-md-9 admin-input-cell">
-          <textarea th:field="*{description}" rows="4" class="form-control"></textarea>
-          <p class="error mt-2 mb-0"
+        <div class="col-md-9 admin-input-cell admin-textarea-cell">
+          <textarea th:field="*{description}" rows="4" class="form-textarea"></textarea>
+          <p class="form-error mt-2"
              th:if="${#fields.hasErrors('description')}"
              th:errors="*{description}"></p>
         </div>
@@ -90,10 +90,10 @@
           値段
         </div>
         <div class="col-md-5 admin-input-cell">
-          <input type="number" th:field="*{price}" class="form-control">
+          <input type="number" th:field="*{price}" class="form-input">
         </div>
         <div class="col-md-4 admin-error-cell">
-          <p class="error mb-0"
+          <p class="form-error"
              th:if="${#fields.hasErrors('price')}"
              th:errors="*{price}"></p>
         </div>
@@ -104,16 +104,16 @@
         <div class="col-md-3 admin-label-cell">
           画像
         </div>
-        <div class="col-md-9 admin-input-cell">
+        <div class="col-md-9 admin-input-cell admin-textarea-cell">
           <input type="hidden" th:field="*{imageUrl}">
-          <input type="file" th:field="*{imageFile}" class="form-control image-input">
-          <p class="error mt-2 mb-0"
+          <input type="file" th:field="*{imageFile}" class="form-input image-input">
+          <p class="form-error mt-2"
              th:if="${#fields.hasErrors('imageFile')}"
              th:errors="*{imageFile}"></p>
         </div>
       </div>
 
-      <div class="btn-group gap-5">
+      <div class="btn-group admin-btn-group">
         <button type="submit" class="common-btn btn-danger">登録</button>
         <a th:href="@{/admin/products}" class="common-btn btn-primary">もどる</a>
       </div>

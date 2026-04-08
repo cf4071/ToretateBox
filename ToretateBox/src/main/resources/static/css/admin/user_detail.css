@@ -4,13 +4,6 @@
     background-color: #f3f3f3;
 }
 
-.page-title {
-    font-size: 42px;
-    font-weight: 700;
-    color: #222222;
-    letter-spacing: 0.04em;
-}
-
 .detail-wrap {
     max-width: 760px;
     background-color: transparent;
@@ -62,15 +55,10 @@
     background-color: #ffffff;
 }
 
-
 /* =========================
    スマホ対応
 ========================= */
 @media (max-width: 768px) {
-    .page-title {
-        font-size: 32px;
-    }
-
     .detail-heading {
         font-size: 16px;
     }
@@ -83,12 +71,5 @@
 
     .detail-table th {
         width: 42%;
-    }
-
-    .delete-btn,
-    .back-btn {
-        min-width: 96px;
-        font-size: 14px;
-        padding: 9px 18px;
     }
 }

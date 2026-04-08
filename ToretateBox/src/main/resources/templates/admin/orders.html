@@ -2,9 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>注文管理</title>
-
-  <!-- 自分のCSS -->
+  <title>注文管理 | とれたてBOX</title>
   <link rel="stylesheet" th:href="@{/css/admin/orders.css}">
 </head>
 <body class="orders-page">
@@ -13,12 +11,8 @@
 
   <main th:fragment="content" class="container py-5">
 
-    <!-- タイトル -->
-    <div class="text-center mb-5">
-      <h2 class="orders-title fw-bold">注文管理</h2>
-    </div>
+    <h2 class="page-title">注文管理</h2>
 
-    <!-- テーブルカード -->
     <div class="orders-card mx-auto">
       <div class="table-responsive">
         <table class="table orders-table align-middle text-center mb-0">
@@ -36,10 +30,10 @@
           <tbody>
             <tr th:each="order : ${orders}">
               <td th:text="${order.id}"></td>
-			  <td th:text="${order.name != null ? order.name : ''}"></td>
-			  <td th:text="${order.email != null ? order.email : ''}"></td>
+              <td th:text="${order.name != null ? order.name : ''}"></td>
+              <td th:text="${order.email != null ? order.email : ''}"></td>
               <td th:text="${#temporals.format(order.createdAt, 'yyyy/MM/dd HH:mm')}"></td>
-              <td th:text="'￥' + ${order.totalAmount}"></td>
+              <td th:text="'￥' + ${#numbers.formatInteger(order.totalAmount, 1, 'COMMA')}"></td>
               <td>
                 <a th:href="@{'/admin/orders/' + ${order.id}}" class="common-btn btn-danger">
                   詳細
@@ -55,13 +49,17 @@
       </div>
     </div>
 
-    <!-- ページネーション -->
     <nav class="mt-4" th:if="${page != null and page.totalPages > 1}">
-      <ul class="pagination justify-content-center custom-pagination">
+      <ul class="pagination justify-content-center">
 
-        <li class="page-item" th:if="${!page.first}">
+        <li class="page-item"
+            th:classappend="${page.first} ? ' disabled'">
           <a class="page-link"
-             th:href="@{/admin/orders(page=${page.number - 1})}">‹</a>
+             th:if="${!page.first}"
+             th:href="@{/admin/orders(page=${page.number - 1})}">
+            前へ
+          </a>
+          <span class="page-link" th:if="${page.first}">前へ</span>
         </li>
 
         <li class="page-item"
@@ -72,16 +70,20 @@
              th:text="${i + 1}">1</a>
         </li>
 
-        <li class="page-item" th:if="${!page.last}">
+        <li class="page-item"
+            th:classappend="${page.last} ? ' disabled'">
           <a class="page-link"
-             th:href="@{/admin/orders(page=${page.number + 1})}">›</a>
+             th:if="${!page.last}"
+             th:href="@{/admin/orders(page=${page.number + 1})}">
+            次へ
+          </a>
+          <span class="page-link" th:if="${page.last}">次へ</span>
         </li>
 
       </ul>
     </nav>
 
-    <!-- 戻るボタン -->
-    <div class="text-center">
+    <div class="orders-back">
       <a th:href="@{/admin/products}" class="common-btn btn-primary">
         戻る
       </a>
