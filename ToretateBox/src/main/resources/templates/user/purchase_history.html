@@ -67,35 +67,35 @@
             </article>
           </section>
 
-		  <nav class="pagination" th:if="${orderPage != null and orderPage.totalPages > 1}">
-			
-			  <li class="page-item" th:classappend="${!orderPage.hasPrevious()} ? ' disabled' : ''">
-			    <a class="page-link"
-			       th:if="${orderPage.hasPrevious()}"
-			       th:href="@{/purchase_history(page=${orderPage.number - 1})}">
-			      前へ
-			    </a>
-			    <span class="page-link" th:unless="${orderPage.hasPrevious()}">前へ</span>
-			  </li>
-			
-			  <li class="page-item"
-			      th:each="i : ${#numbers.sequence(0, orderPage.totalPages - 1)}"
-			      th:classappend="${i == orderPage.number} ? ' active' : ''">
-			    <a class="page-link"
-			       th:href="@{/purchase_history(page=${i})}"
-			       th:text="${i + 1}">1</a>
-			  </li>
-			
-			  <li class="page-item" th:classappend="${!orderPage.hasNext()} ? ' disabled' : ''">
-			    <a class="page-link"
-			       th:if="${orderPage.hasNext()}"
-			       th:href="@{/purchase_history(page=${orderPage.number + 1})}">
-			      次へ
-			    </a>
-			    <span class="page-link" th:unless="${orderPage.hasNext()}">次へ</span>
-			  </li>
-			
-		  </nav>
+          <nav class="ph-pagination-wrap" th:if="${orderPage != null}">
+            <ul class="pagination">
+              <li class="page-item" th:classappend="${!orderPage.hasPrevious()} ? ' disabled' : ''">
+                <a class="page-link"
+                   th:if="${orderPage.hasPrevious()}"
+                   th:href="@{/purchase_history(page=${orderPage.number - 1})}">
+                  前へ
+                </a>
+                <span class="page-link" th:unless="${orderPage.hasPrevious()}">前へ</span>
+              </li>
+
+              <li class="page-item"
+                  th:each="i : ${#numbers.sequence(0, orderPage.totalPages - 1)}"
+                  th:classappend="${i == orderPage.number} ? ' active' : ''">
+                <a class="page-link"
+                   th:href="@{/purchase_history(page=${i})}"
+                   th:text="${i + 1}">1</a>
+              </li>
+
+              <li class="page-item" th:classappend="${!orderPage.hasNext()} ? ' disabled' : ''">
+                <a class="page-link"
+                   th:if="${orderPage.hasNext()}"
+                   th:href="@{/purchase_history(page=${orderPage.number + 1})}">
+                  次へ
+                </a>
+                <span class="page-link" th:unless="${orderPage.hasNext()}">次へ</span>
+              </li>
+            </ul>
+          </nav>
 
           <div class="btn-group">
             <a class="common-btn btn-primary" th:href="@{/top}">戻る</a>
