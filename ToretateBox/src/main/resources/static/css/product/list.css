@@ -87,7 +87,14 @@ body.list-page {
     flex-direction: column;
 }
 
-/* タイトルは右カラム基準 */
+/* 右カラム内の基準になる箱 */
+.list-content {
+    width: 100%;
+    max-width: 920px;
+    margin: 0 auto;
+}
+
+/* タイトル */
 .list-title {
     font-size: 36px;
     font-weight: bold;
@@ -103,17 +110,17 @@ body.list-page {
 
 /* 商品がないとき */
 .no-message {
-    min-height: 220px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin-top: 8px;
     text-align: center;
-    margin-top: 16px;
     color: #666666;
     font-size: 18px;
 }
 
-/* ページネーションも右カラム基準 */
+.no-message p {
+    margin: 0;
+}
+
+/* ページネーション */
 .list-pagination {
     display: flex;
     justify-content: center;
@@ -143,6 +150,10 @@ section {
     .search-box {
         margin-bottom: 24px;
         padding-top: 0;
+    }
+
+    .list-content {
+        max-width: 100%;
     }
 
     .list-title {
@@ -175,5 +186,6 @@ section {
     .no-message {
         min-height: 180px;
         font-size: 16px;
+        padding-top: 12px;
     }
 }

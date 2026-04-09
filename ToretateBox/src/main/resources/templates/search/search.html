@@ -19,7 +19,7 @@
 
         <h2 class="page-title" th:text="'検索結果：' + ${keyword}">検索結果</h2>
 
-        <div th:if="${products == null or #lists.isEmpty(products)}" class="no-message">
+        <div th:if="${products == null or #lists.isEmpty(products)}" class="text-center">
           <p>該当する商品がありません。</p>
         </div>
 
