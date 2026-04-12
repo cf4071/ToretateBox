@@ -1,8 +1,5 @@
 @charset "UTF-8";
 
-/* =========================
-   ヘッダー全体
-========================= */
 .site-header {
     background-color: #f7f7f7;
     border-bottom: 1px solid #dddddd;
@@ -23,9 +20,6 @@
     padding-bottom: 18px;
 }
 
-/* =========================
-   上段
-========================= */
 .header-top {
     display: flex;
     align-items: center;
@@ -123,9 +117,6 @@
     box-shadow: none;
 }
 
-/* =========================
-   ハンバーガー
-========================= */
 .dropdown {
     position: relative;
     z-index: 6000;
@@ -156,9 +147,6 @@
     border-radius: 2px;
 }
 
-/* =========================
-   ドロップダウン
-========================= */
 .mypage-dropdown {
     min-width: 220px;
     padding: 10px 0;
@@ -186,9 +174,6 @@
     color: #222222;
 }
 
-/* =========================
-   下段検索欄
-========================= */
 .header-bottom {
     margin-top: 16px;
 }

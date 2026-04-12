@@ -26,6 +26,12 @@
 
                 <div class="search-group">
                   <div class="form-check mb-2">
+                    <input class="form-check-input" type="radio" name="categoryId" id="categoryAll" value=""
+                           th:checked="${categoryId == null}" onchange="this.form.submit()">
+                    <label class="form-check-label" for="categoryAll">全て</label>
+                  </div>
+
+                  <div class="form-check mb-2">
                     <input class="form-check-input" type="radio" name="categoryId" id="category1" value="1"
                            th:checked="${categoryId == 1}" onchange="this.form.submit()">
                     <label class="form-check-label" for="category1">野菜</label>
@@ -43,6 +49,12 @@
                 <h3 class="search-title">旬の季節</h3>
 
                 <div class="search-group">
+                  <div class="form-check mb-2">
+                    <input class="form-check-input" type="radio" name="season" id="seasonAll" value=""
+                           th:checked="${season == null or season == ''}" onchange="this.form.submit()">
+                    <label class="form-check-label" for="seasonAll">全て</label>
+                  </div>
+
                   <div class="form-check mb-2">
                     <input class="form-check-input" type="radio" name="season" id="spring" value="春"
                            th:checked="${season == '春'}" onchange="this.form.submit()">
@@ -116,7 +128,7 @@
                   <li class="page-item" th:classappend="${currentPage == 0} ? ' disabled'">
                     <a class="page-link"
                        th:if="${currentPage > 0}"
-                       th:href="@{/products(page=${currentPage - 1}, categoryId=${categoryId}, season=${season})}">
+                       th:href="@{/products(page=${currentPage - 1}, keyword=${keyword}, categoryId=${categoryId}, season=${season})}">
                       前へ
                     </a>
                     <span class="page-link" th:if="${currentPage == 0}">前へ</span>
@@ -126,14 +138,14 @@
                       th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
                       th:classappend="${i == currentPage} ? ' active'">
                     <a class="page-link"
-                       th:href="@{/products(page=${i}, categoryId=${categoryId}, season=${season})}"
+                       th:href="@{/products(page=${i}, keyword=${keyword}, categoryId=${categoryId}, season=${season})}"
                        th:text="${i + 1}">1</a>
                   </li>
 
                   <li class="page-item" th:classappend="${currentPage >= totalPages - 1} ? ' disabled'">
                     <a class="page-link"
                        th:if="${currentPage < totalPages - 1}"
-                       th:href="@{/products(page=${currentPage + 1}, categoryId=${categoryId}, season=${season})}">
+                       th:href="@{/products(page=${currentPage + 1}, keyword=${keyword}, categoryId=${categoryId}, season=${season})}">
                       次へ
                     </a>
                     <span class="page-link" th:if="${currentPage >= totalPages - 1}">次へ</span>

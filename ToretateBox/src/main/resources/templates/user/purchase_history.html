@@ -48,7 +48,7 @@
 
               <div class="ph-items" th:if="${orderItemsMap != null and orderItemsMap[o.id] != null}">
                 <div class="ph-item-row ph-item-head">
-                  <div class="ph-item-name">購入した食材の名前</div>
+                  <div class="ph-item-name">購入食材</div>
                   <div class="ph-item-qty">数量</div>
                   <div class="ph-item-sub">小計</div>
                 </div>
@@ -67,7 +67,7 @@
             </article>
           </section>
 
-          <nav class="ph-pagination-wrap" th:if="${orderPage != null}">
+          <nav class="ph-pagination-wrap" th:if="${orderPage != null and orderPage.totalPages > 0}">
             <ul class="pagination">
               <li class="page-item" th:classappend="${!orderPage.hasPrevious()} ? ' disabled' : ''">
                 <a class="page-link"

@@ -48,23 +48,22 @@ public class ProductsController {
             @RequestParam(defaultValue = "0") int page,
             Model model) {
 
+        // 空文字が来たときは null にそろえる
+        if (keyword != null && keyword.isBlank()) {
+            keyword = null;
+        }
+
+        if (season != null && season.isBlank()) {
+            season = null;
+        }
+
         Pageable pageable = PageRequest.of(page, 10);
         Page<Product> productPage;
 
         if (isNotBlank(keyword)) {
             productPage = productsService.searchProducts(keyword, pageable);
 
-            model.addAttribute("products", productPage.getContent());
-            model.addAttribute("keyword", keyword);
-            model.addAttribute("categoryId", categoryId);
-            model.addAttribute("season", season);
-            model.addAttribute("currentPage", page);
-            model.addAttribute("totalPages", productPage.getTotalPages());
-
-            return "product/list";
-        }
-
-        if (categoryId != null && isNotBlank(season)) {
+        } else if (categoryId != null && isNotBlank(season)) {
             productPage = productsService.searchByCategoryAndSeason(categoryId, season, pageable);
 
         } else if (categoryId != null) {
@@ -78,6 +77,7 @@ public class ProductsController {
         }
 
         model.addAttribute("products", productPage.getContent());
+        model.addAttribute("keyword", keyword);
         model.addAttribute("categoryId", categoryId);
         model.addAttribute("season", season);
         model.addAttribute("currentPage", page);
