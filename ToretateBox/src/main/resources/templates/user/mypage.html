@@ -5,7 +5,6 @@
   <title>ユーザー情報 | とれたてBOX</title>
   <link rel="stylesheet" th:href="@{/css/user/mypage.css}">
 </head>
-
 <body>
 
 <div th:replace="~{layout/layout :: layout(~{::title}, ~{::content})}">
@@ -17,64 +16,65 @@
         <div class="mypage-box">
           <h2 class="page-title">ユーザー情報</h2>
 
-          <div class="mypage-form">
+          <div class="user-info-table">
 
-            <div class="form-group">
-              <label class="form-label" for="name">氏名</label>
-              <input type="text" id="name" th:value="${user.name}" class="form-input" readonly>
+            <div class="info-row">
+              <div class="info-label">氏名</div>
+              <div class="info-value" th:text="${user.name}">田中 太郎</div>
             </div>
 
-            <div class="form-group">
-              <label class="form-label" for="nameKana">フリガナ</label>
-              <input type="text" id="nameKana" th:value="${user.nameKana}" class="form-input" readonly>
+            <div class="info-row">
+              <div class="info-label">フリガナ</div>
+              <div class="info-value" th:text="${user.nameKana}">タナカ タロウ</div>
             </div>
 
-            <div class="form-group">
-              <label class="form-label" for="email">メールアドレス</label>
-              <input type="text" id="email" th:value="${user.email}" class="form-input" readonly>
+            <div class="info-row">
+              <div class="info-label">メールアドレス</div>
+              <div class="info-value" th:text="${user.email}">sample@example.com</div>
             </div>
 
-            <div class="form-group">
-              <label class="form-label" for="phoneNumber">電話番号</label>
-              <input type="text" id="phoneNumber" th:value="${user.phoneNumber}" class="form-input" readonly>
+            <div class="info-row">
+              <div class="info-label">電話番号</div>
+              <div class="info-value" th:text="${user.phoneNumber}">09012345678</div>
             </div>
 
-            <div class="form-group">
-              <label class="form-label" for="password">パスワード</label>
-              <input type="text" id="password" th:value="${maskedPassword}" class="form-input" readonly>
+            <div class="info-row">
+              <div class="info-label">パスワード</div>
+              <div class="info-value" th:text="${maskedPassword}">********</div>
             </div>
 
-            <div class="form-group">
-              <label class="form-label" for="postalCode">郵便番号</label>
-              <input type="text" id="postalCode" th:value="${address != null ? address.postalCode : ''}" class="form-input" readonly>
+            <div class="info-row">
+              <div class="info-label">郵便番号</div>
+              <div class="info-value" th:text="${address != null ? address.postalCode : ''}">123-4567</div>
             </div>
 
-            <div class="form-group">
-              <label class="form-label" for="prefecture">都道府県</label>
-              <input type="text" id="prefecture" th:value="${address != null ? address.prefecture : ''}" class="form-input" readonly>
+            <div class="info-row">
+              <div class="info-label">都道府県</div>
+              <div class="info-value" th:text="${address != null ? address.prefecture : ''}">東京都</div>
             </div>
 
-            <div class="form-group">
-              <label class="form-label" for="city">市区町村</label>
-              <input type="text" id="city" th:value="${address != null ? address.city : ''}" class="form-input" readonly>
+            <div class="info-row">
+              <div class="info-label">市区町村</div>
+              <div class="info-value" th:text="${address != null ? address.city : ''}">新宿区</div>
             </div>
 
-            <div class="form-group">
-              <label class="form-label" for="addressLine1">町名・番地</label>
-              <input type="text" id="addressLine1" th:value="${address != null ? address.addressLine1 : ''}" class="form-input" readonly>
+            <div class="info-row">
+              <div class="info-label">町名・番地</div>
+              <div class="info-value" th:text="${address != null ? address.addressLine1 : ''}">西新宿1-1-1</div>
             </div>
 
-            <div class="form-group">
-              <label class="form-label" for="addressLine2">建物名・部屋番号</label>
-              <input type="text" id="addressLine2" th:value="${address != null ? address.addressLine2 : ''}" class="form-input" readonly>
-            </div>
-
-            <div class="btn-group">
-              <a class="common-btn btn-danger" th:href="@{/edit}">編集</a>
-              <a class="common-btn btn-primary" th:href="@{/top}">戻る</a>
+            <div class="info-row">
+              <div class="info-label">建物名・部屋番号</div>
+              <div class="info-value" th:text="${address != null ? address.addressLine2 : ''}">○○マンション101</div>
             </div>
 
           </div>
+
+          <div class="btn-group">
+            <a class="common-btn btn-danger" th:href="@{/edit}">編集</a>
+            <a class="common-btn btn-primary" th:href="@{/top}">戻る</a>
+          </div>
+
         </div>
 
       </div>
