@@ -1,37 +1,16 @@
 package katachi.example.toretatebox.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 import katachi.example.toretatebox.domain.model.Product;
-import lombok.RequiredArgsConstructor;
 
-@Service
-@RequiredArgsConstructor
-public class CartService {
+public interface CartService {
 
-    private final ProductsService productsService;
+    void addProduct(Integer productId);
 
-    private final List<Product> cartItems = new ArrayList<>();
+    void removeProduct(Integer productId);
 
-    public void addProduct(Integer productId) {
-        Product product = productsService.findById(productId);
-        if (product != null) {
-            cartItems.add(product);
-        }
-    }
+    List<Product> getCartItems();
 
-    public void removeProduct(Integer productId) {
-        cartItems.removeIf(p -> p.getId().equals(productId));
-    }
-
-    public List<Product> getCartItems() {
-        return new ArrayList<>(cartItems);
-    }
-
-    public int getTotalPrice() {
-        return cartItems.stream().mapToInt(Product::getPrice).sum();
-    }
+    int getTotalPrice();
 }

@@ -5,66 +5,28 @@ import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
 
 import katachi.example.toretatebox.domain.model.Product;
-import katachi.example.toretatebox.repository.ProductsRepository;
-import lombok.RequiredArgsConstructor;
 
-@Service
-@RequiredArgsConstructor
-public class ProductsService {
+public interface ProductsService {
 
-    private final ProductsRepository productsRepository;
+    List<Product> getAllProducts();
 
+    Page<Product> findAllPage(Pageable pageable);
 
-    public List<Product> getAllProducts() {
-        return productsRepository.findAll();
-    }
+    Product findById(Integer id);
 
+    Optional<Product> getProductById(Integer id);
 
-    public Page<Product> findAllPage(Pageable pageable) {
-        return productsRepository.findAll(pageable);
-    }
+    Product save(Product product);
 
-    public Product findById(Integer id) {
-        return productsRepository.findById(id).orElse(null);
-    }
+    void deleteById(Integer id);
 
-    public Optional<Product> getProductById(Integer id) {
-        return productsRepository.findById(id);
-    }
+    Page<Product> searchProducts(String keyword, Pageable pageable);
 
-    public Product save(Product product) {
-        return productsRepository.save(product);
-    }
+    Page<Product> searchBySeason(String season, Pageable pageable);
 
-    public void deleteById(Integer id) {
-        productsRepository.deleteById(id);
-    }
+    Page<Product> searchByCategory(Integer categoryId, Pageable pageable);
 
-    public Page<Product> searchProducts(String keyword, Pageable pageable) {
-
-        if (keyword == null || keyword.isBlank()) {
-            return Page.empty(pageable);
-        }
-
-        return productsRepository.findByNameContaining(keyword, pageable);
-    }
-
-    public Page<Product> searchBySeason(String season, Pageable pageable) {
-        return productsRepository.findBySeason(season, pageable);
-    }
-
-    public Page<Product> searchByCategory(Integer categoryId, Pageable pageable) {
-        return productsRepository.findByCategoryId(categoryId, pageable);
-    }
-
-    public Page<Product> searchByCategoryAndSeason(
-            Integer categoryId,
-            String season,
-            Pageable pageable) {
-
-        return productsRepository.findByCategoryIdAndSeason(categoryId, season, pageable);
-    }
+    Page<Product> searchByCategoryAndSeason(Integer categoryId, String season, Pageable pageable);
 }
