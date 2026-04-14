@@ -47,7 +47,11 @@
           カテゴリ
         </div>
         <div class="col-md-5 admin-input-cell">
-          <input type="number" th:field="*{categoryId}" class="form-input">
+          <select th:field="*{categoryId}" class="form-input">
+            <option value="">選択してください</option>
+            <option value="1">野菜</option>
+            <option value="2">果物</option>
+          </select>
         </div>
         <div class="col-md-4 admin-error-cell">
           <p class="form-error"
@@ -62,7 +66,14 @@
           旬の季節
         </div>
         <div class="col-md-5 admin-input-cell">
-          <input type="text" th:field="*{season}" class="form-input">
+          <select th:field="*{season}" class="form-input">
+            <option value="">選択してください</option>
+            <option value="春">春</option>
+            <option value="夏">夏</option>
+            <option value="秋">秋</option>
+            <option value="冬">冬</option>
+            <option value="通年">通年</option>
+          </select>
         </div>
         <div class="col-md-4 admin-error-cell">
           <p class="form-error"

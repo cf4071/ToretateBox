@@ -10,6 +10,7 @@
 }
 
 .orders-table {
+    width: 100%;
     border: 1px solid #d7d7c8;
     background-color: #ffffff;
     table-layout: fixed;
@@ -55,6 +56,25 @@
     text-align: center;
 }
 
+.orders-table th:last-child,
+.orders-table td:last-child {
+    width: 140px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.orders-table td:last-child .common-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 100px;
+    min-width: 0;
+    padding: 10px 12px;
+    box-sizing: border-box;
+    white-space: nowrap;
+}
+
 /* =========================
    レスポンシブ
 ========================= */
@@ -64,11 +84,33 @@
         font-size: 13px;
         padding: 10px 8px;
     }
+
+    .orders-table th:last-child,
+    .orders-table td:last-child {
+        width: 110px;
+    }
+
+    .orders-table td:last-child .common-btn {
+        max-width: 90px;
+        padding: 8px 8px;
+        font-size: 13px;
+    }
 }
 
 @media (max-width: 768px) {
     .orders-back .common-btn {
         width: auto;
         min-width: 96px;
+    }
+
+    .orders-table th:last-child,
+    .orders-table td:last-child {
+        width: 90px;
+    }
+
+    .orders-table td:last-child .common-btn {
+        max-width: 100%;
+        padding: 8px 6px;
+        font-size: 12px;
     }
 }

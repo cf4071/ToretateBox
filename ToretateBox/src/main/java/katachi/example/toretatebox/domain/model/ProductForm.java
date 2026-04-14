@@ -20,7 +20,7 @@ public class ProductForm {
     @NotNull(message = "カテゴリを選んでください")
     private Integer categoryId;
 
-    @NotBlank(message = "旬の季節を入力してください")
+    @NotBlank(message = "旬の季節を選んでください")
     @Size(max = 20, message = "旬の季節は20文字以内で入力してください")
     private String season;
 

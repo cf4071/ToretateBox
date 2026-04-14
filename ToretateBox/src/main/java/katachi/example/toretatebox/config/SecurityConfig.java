@@ -22,7 +22,6 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
 
             .authorizeHttpRequests(auth -> auth
-
                 .requestMatchers(
                     "/css/**",
                     "/js/**",
@@ -54,7 +53,6 @@ public class SecurityConfig {
                 .loginProcessingUrl("/login")
                 .usernameParameter("email")
                 .passwordParameter("password")
-
                 .successHandler((request, response, authentication) -> {
                     boolean isAdmin = authentication.getAuthorities().stream()
                             .anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"));
@@ -65,7 +63,6 @@ public class SecurityConfig {
                         response.sendRedirect("/top");
                     }
                 })
-
                 .failureUrl("/login?error")
                 .permitAll()
             )
@@ -91,9 +88,11 @@ public class SecurityConfig {
             UserDetailsService userDetailsService,
             PasswordEncoder passwordEncoder
     ) {
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setUserDetailsService(userDetailsService);
+        DaoAuthenticationProvider provider =
+                new DaoAuthenticationProvider(userDetailsService);
+
         provider.setPasswordEncoder(passwordEncoder);
+
         return provider;
     }
 }

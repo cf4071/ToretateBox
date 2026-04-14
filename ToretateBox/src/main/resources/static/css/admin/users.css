@@ -9,6 +9,7 @@
 }
 
 .users-table {
+    width: 100%;
     background-color: #ffffff;
     border: 1px solid #d8d8c8;
     table-layout: fixed;
@@ -54,6 +55,31 @@
     text-align: center;
 }
 
+.users-table th:last-child,
+.users-table td:last-child {
+    width: 140px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.users-table td:last-child .common-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 100px;
+    min-width: 0;
+    padding: 10px 12px;
+    box-sizing: border-box;
+    white-space: nowrap;
+}
+
+.users-table td:nth-child(2),
+.users-table td:nth-child(6) {
+    word-break: break-word;
+    overflow-wrap: anywhere;
+}
+
 /* =========================
    レスポンシブ
 ========================= */
@@ -63,10 +89,32 @@
         font-size: 13px;
         padding: 10px 8px;
     }
+
+    .users-table th:last-child,
+    .users-table td:last-child {
+        width: 110px;
+    }
+
+    .users-table td:last-child .common-btn {
+        max-width: 90px;
+        padding: 8px 8px;
+        font-size: 13px;
+    }
 }
 
 @media (max-width: 768px) {
     .users-back .common-btn {
         min-width: 96px;
+    }
+
+    .users-table th:last-child,
+    .users-table td:last-child {
+        width: 90px;
+    }
+
+    .users-table td:last-child .common-btn {
+        max-width: 100%;
+        padding: 8px 6px;
+        font-size: 12px;
     }
 }
