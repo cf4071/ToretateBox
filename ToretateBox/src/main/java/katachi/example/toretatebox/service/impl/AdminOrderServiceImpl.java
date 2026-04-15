@@ -72,11 +72,11 @@ public class AdminOrderServiceImpl implements AdminOrderService {
         dto.setCreatedAt(order.getCreatedAt());
         dto.setTotalAmount(order.getTotalAmount());
 
+        dto.setCustomerName(address.getRecipient());
+
         if (user != null) {
-            dto.setCustomerName(user.getName());
             dto.setEmail(user.getEmail());
         } else {
-            dto.setCustomerName("");
             dto.setEmail("");
         }
 

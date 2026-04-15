@@ -1,8 +1,5 @@
 @charset "UTF-8";
 
-/* =========================
-   全体共通
-========================= */
 * {
   box-sizing: border-box;
 }
@@ -25,9 +22,6 @@ img {
   display: block;
 }
 
-/* =========================
-   レイアウト
-========================= */
 .page-container {
   width: 100%;
   max-width: 1200px;
@@ -49,9 +43,6 @@ img {
   color: #222222;
 }
 
-/* =========================
-   ボタン
-========================= */
 .common-btn {
   display: inline-flex;
   align-items: center;
@@ -77,31 +68,31 @@ img {
   outline-offset: 2px;
 }
 
-.btn-secondary {
+.btn-white {
   background-color: #ffffff;
   border-color: #cccccc;
-  color: #ffffff;
+  color: #333333;
 }
 
-.btn-primary {
+.btn-blue {
   background-color: rgb(0, 128, 255);
   border-color: rgb(0, 128, 255);
   color: #ffffff;
 }
 
-.btn-danger {
+.btn-red {
   background-color: #d9534f;
   border-color: #d9534f;
   color: #ffffff;
 }
 
-.btn-warning {
+.btn-yellow {
 	background-color: rgb(255, 255, 128);
 	border-color: #cccccc;
 	color: #333333;
 }
 
-.btn-success {
+.btn-green {
 	background-color: #4caf50;
 	border-color: #cccccc;
 	color: #ffffff;
@@ -224,11 +215,6 @@ img {
   cursor: default;
 }
 
-
-
-/* =========================
-   ボタン並び
-========================= */
 .btn-group {
   display: flex;
   flex-wrap: wrap;

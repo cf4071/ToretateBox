@@ -38,4 +38,8 @@ public class Order {
   @ManyToOne
   @JoinColumn(name="user_id", referencedColumnName="id", insertable=false, updatable=false)
   private User user;
+  
+  @ManyToOne
+  @JoinColumn(name="address_id", referencedColumnName="id", insertable=false, updatable=false)
+  private Address address;
 }

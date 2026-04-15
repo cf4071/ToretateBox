@@ -9,7 +9,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class AdminOrderRow {
     private Integer id;
-    private String name;
+    private String recipient;
     private String email;
     private LocalDateTime createdAt;
     private int totalAmount;

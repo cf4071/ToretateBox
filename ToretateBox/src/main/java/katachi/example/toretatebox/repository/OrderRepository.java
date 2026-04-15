@@ -22,13 +22,14 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
     @Query("""
         SELECT new katachi.example.toretatebox.domain.dto.AdminOrderRow(
             o.id,
-            u.name,
+            a.recipient,
             u.email,
             o.createdAt,
             o.totalAmount
         )
         FROM Order o
         LEFT JOIN o.user u
+        LEFT JOIN o.address a
         ORDER BY o.createdAt DESC
     """)
     Page<AdminOrderRow> findAdminOrderRows(Pageable pageable);
