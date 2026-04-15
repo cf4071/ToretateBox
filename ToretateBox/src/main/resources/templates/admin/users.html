@@ -40,7 +40,7 @@
               <td th:text="${#temporals.format(row.createdAt, 'yyyy/MM/dd')}"></td>
               <td>
                 <a th:href="@{/admin/users/{id}(id=${row.id})}"
-                   class="common-btn btn-danger">
+                   class="common-btn btn-red">
                   詳細
                 </a>
               </td>
@@ -94,7 +94,7 @@
 	</nav>
 
     <div class="users-back">
-      <a th:href="@{/admin/products}" class="common-btn btn-primary">
+      <a th:href="@{/admin/products}" class="common-btn btn-blue">
         戻る
       </a>
     </div>

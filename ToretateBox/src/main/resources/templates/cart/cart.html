@@ -70,7 +70,7 @@
 
                                         <form th:action="@{/cart/remove}" method="post" class="cart-remove-form">
                                             <input type="hidden" name="productId" th:value="${item.productId}">
-                                            <button type="submit" class="common-btn btn-danger">削除</button>
+                                            <button type="submit" class="common-btn btn-red">削除</button>
                                         </form>
                                     </div>
                                 </div>
@@ -98,14 +98,14 @@
                                            th:if="${_csrf != null}"
                                            th:name="${_csrf.parameterName}"
                                            th:value="${_csrf.token}">
-                                    <button type="submit" class="common-btn btn-warning">
+                                    <button type="submit" class="common-btn btn-yellow">
                                         レジへ進む
                                     </button>
                                 </form>
 
                                 <!-- ゲストユーザーのみ -->
                                 <form th:if="${!isLoggedIn}" th:action="@{/guest}" method="get">
-                                    <button type="submit" class="common-btn btn-primary">
+                                    <button type="submit" class="common-btn btn-blue">
                                         ゲスト情報登録へ
                                     </button>
                                 </form>

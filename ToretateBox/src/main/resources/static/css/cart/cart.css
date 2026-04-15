@@ -109,9 +109,6 @@
     margin: 0;
 }
 
-/* =========================
-   合計ボックス
-========================= */
 .cart-total-box {
     background-color: #e5e5e5;
     border: 1px solid #cfcfcf;
@@ -155,9 +152,6 @@
     overflow-wrap: anywhere;
 }
 
-/* =========================
-   ボタンまわり
-========================= */
 .cart-actions {
     display: flex;
     flex-direction: column;
@@ -180,9 +174,6 @@
     font-size: 16px;
 }
 
-/* =========================
-   タブレット対応
-========================= */
 @media (max-width: 991px) {
     .cart-item {
         gap: 24px;
@@ -211,9 +202,6 @@
     }
 }
 
-/* =========================
-   スマホ対応
-========================= */
 @media (max-width: 767px) {
     .cart-error-message {
         max-width: 100%;

@@ -18,10 +18,8 @@
 
         <h2 class="page-title">食材詳細</h2>
 
-        <!-- 上段：画像 + 説明 -->
         <div class="row g-5 align-items-start mb-5">
 
-          <!-- 左：画像 -->
           <div class="col-lg-5">
             <div class="detail-image-box">
               <img th:if="${product.imageUrl != null and product.imageUrl != ''}"
@@ -36,7 +34,6 @@
             </div>
           </div>
 
-          <!-- 右：名前 + 説明 -->
           <div class="col-lg-7">
             <div class="detail-description-area">
               <h3 class="detail-name mb-4" th:text="${product.name}">食材名</h3>
@@ -50,13 +47,11 @@
 
         </div>
 
-        <!-- 下段：情報 + ボタン -->
         <form th:action="@{/cart/add}" method="post">
           <input type="hidden" name="productId" th:value="${product.id}">
 
           <div class="detail-bottom-wrap">
 
-            <!-- 左：カテゴリ、旬、数量、価格 -->
             <div class="detail-meta-box">
 
               <p class="mb-4">
@@ -88,8 +83,8 @@
 
             <!-- 右：ボタン -->
             <div class="detail-buttons">
-              <button type="submit" class="common-btn btn-warning">カートへ</button>
-              <a th:href="@{/products}" class="common-btn btn-primary">戻る</a>
+              <button type="submit" class="common-btn btn-yellow">カートへ</button>
+              <a th:href="@{/products}" class="common-btn btn-blue">戻る</a>
             </div>
 
           </div>
