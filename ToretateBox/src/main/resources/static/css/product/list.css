@@ -81,20 +81,17 @@ body.list-page {
     border-radius: 4px;
 }
 
-/* 右カラム全体 */
 .product-area {
     display: flex;
     flex-direction: column;
 }
 
-/* 右カラム内の基準になる箱 */
 .list-content {
     width: 100%;
     max-width: 920px;
     margin: 0 auto;
 }
 
-/* タイトル */
 .list-title {
     font-size: 36px;
     font-weight: bold;
@@ -103,12 +100,10 @@ body.list-page {
     text-align: center;
 }
 
-/* 商品一覧 */
 .product-list-row {
     margin-bottom: 40px;
 }
 
-/* 商品がないとき */
 .no-message {
     margin-top: 8px;
     text-align: center;
@@ -120,7 +115,6 @@ body.list-page {
     margin: 0;
 }
 
-/* ページネーション */
 .list-pagination {
     display: flex;
     justify-content: center;
@@ -138,9 +132,6 @@ section {
     overflow: visible;
 }
 
-/* ===============================
-   タブレット以下
-================================ */
 @media (max-width: 991.98px) {
     .sticky-search {
         position: static;
@@ -166,9 +157,6 @@ section {
     }
 }
 
-/* ===============================
-   スマホ
-================================ */
 @media (max-width: 575.98px) {
     .search-title {
         font-size: 20px;

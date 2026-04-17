@@ -64,15 +64,39 @@
                 <span th:text="${product.season}">春</span>
               </p>
 
-              <div class="mb-4">
-                <select id="quantity" name="quantity" class="quantity-select" required>
-                  <option value="" selected disabled>数量</option>
-                  <option th:each="i : ${#numbers.sequence(1, 10)}"
-                          th:value="${i}"
-                          th:text="${i}">
-                  </option>
-                </select>
-              </div>
+			  <div class="mb-4">
+			    <p class="detail-label mb-2">数量</p>
+			    <div class="quantity-buttons">
+			      <button type="button" class="qty-btn" onclick="changeQty(-1)">−</button>
+			      <input type="number"
+			           id="quantity"
+			           name="quantity"
+			           class="quantity-input"
+			           value="1"
+			           min="1"
+			           max="10"
+			           readonly>
+			      <button type="button" class="qty-btn" onclick="changeQty(1)">＋</button>
+			    </div>
+			  </div>
+			  
+			  <script>
+				  function changeQty(change) {
+				    const input = document.getElementById('quantity');
+				    let value = parseInt(input.value, 10);
+				
+				    if (isNaN(value)) {
+				      value = 1;
+				    }
+				
+				    value += change;
+				
+				    if (value < 1) value = 1;
+				    if (value > 10) value = 10;
+				
+				    input.value = value;
+				  }
+			  </script>
 
               <p class="mb-0">
                 <span class="detail-label">値段</span>：
@@ -81,7 +105,6 @@
 
             </div>
 
-            <!-- 右：ボタン -->
             <div class="detail-buttons">
               <button type="submit" class="common-btn btn-yellow">カートへ</button>
               <a th:href="@{/products}" class="common-btn btn-blue">戻る</a>

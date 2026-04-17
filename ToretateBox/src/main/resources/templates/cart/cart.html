@@ -15,7 +15,6 @@
 
                 <h2 class="page-title">ショッピングカート</h2>
 
-                <!-- エラーメッセージ -->
                 <div th:if="${errorMessage}"
                      class="common-alert"
                      th:text="${errorMessage}">
@@ -53,14 +52,24 @@
                                             <input type="hidden" name="productId" th:value="${item.productId}">
 
                                             <p class="quantity-title">数量</p>
-                                            <select name="quantity" class="quantity-input" onchange="this.form.submit()">
-                                                <option th:each="i : ${#numbers.sequence(1, 10)}"
-                                                        th:value="${i}"
-                                                        th:selected="${i == item.quantity}"
-                                                        th:text="${i} + '個'">
-                                                    1個
-                                                </option>
-                                            </select>
+
+                                            <div class="quantity-buttons">
+                                                <button type="button"
+                                                        class="qty-btn"
+                                                        onclick="changeCartQty(this, -1)">−</button>
+
+                                                <input type="number"
+                                                       name="quantity"
+                                                       class="quantity-input"
+                                                       th:value="${item.quantity}"
+                                                       min="1"
+                                                       max="10"
+                                                       readonly>
+
+                                                <button type="button"
+                                                        class="qty-btn"
+                                                        onclick="changeCartQty(this, 1)">＋</button>
+                                            </div>
                                         </form>
 
                                         <p class="cart-item-subtotal">
@@ -91,7 +100,7 @@
                                 </div>
                             </div>
 
-                             <div class="cart-actions">
+                            <div class="cart-actions">
 
                                 <form th:action="@{/cart/checkout}" method="post">
                                     <input type="hidden"
@@ -103,7 +112,6 @@
                                     </button>
                                 </form>
 
-                                <!-- ゲストユーザーのみ -->
                                 <form th:if="${!isLoggedIn}" th:action="@{/guest}" method="get">
                                     <button type="submit" class="common-btn btn-blue">
                                         ゲスト情報登録へ
@@ -125,6 +133,32 @@
     </main>
 
 </div>
+
+<script>
+    function changeCartQty(button, change) {
+        const form = button.closest('form');
+        const input = form.querySelector('.quantity-input');
+
+        let value = parseInt(input.value, 10);
+
+        if (isNaN(value)) {
+            value = 1;
+        }
+
+        value += change;
+
+        if (value < 1) {
+            value = 1;
+        }
+
+        if (value > 10) {
+            value = 10;
+        }
+
+        input.value = value;
+        form.submit();
+    }
+</script>
 
 </body>
 </html>

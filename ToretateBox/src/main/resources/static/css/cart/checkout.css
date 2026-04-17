@@ -1,8 +1,5 @@
 @charset "UTF-8";
 
-/* =========================
-   レジ画面専用
-========================= */
 .checkout-layout {
     margin-top: 0;
     display: grid;
@@ -11,9 +8,6 @@
     align-items: start;
 }
 
-/* =========================
-   カード共通
-========================= */
 .checkout-card {
     background-color: #ffffff;
     border: 1px solid #d9d9d9;
@@ -138,9 +132,6 @@
     font-size: 15px;
 }
 
-/* =========================
-   タブレット対応
-========================= */
 @media (max-width: 991px) {
     .checkout-layout {
         grid-template-columns: 1fr;
@@ -148,9 +139,6 @@
     }
 }
 
-/* =========================
-   スマホ対応
-========================= */
 @media (max-width: 576px) {
     .checkout-card {
         padding: 18px 16px;

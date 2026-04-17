@@ -55,9 +55,6 @@
     background-color: #ffffff;
 }
 
-/* =========================
-   スマホ対応
-========================= */
 @media (max-width: 768px) {
     .detail-heading {
         font-size: 16px;

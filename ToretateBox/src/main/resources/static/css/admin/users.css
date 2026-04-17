@@ -80,9 +80,7 @@
     overflow-wrap: anywhere;
 }
 
-/* =========================
-   レスポンシブ
-========================= */
+
 @media (max-width: 992px) {
     .users-table thead th,
     .users-table tbody td {

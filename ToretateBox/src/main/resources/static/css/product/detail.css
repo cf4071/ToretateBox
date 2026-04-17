@@ -1,15 +1,9 @@
 @charset "UTF-8";
 
-/* =========================
-   詳細ページ全体
-========================= */
 .detail-page {
     background-color: #f5f5f5;
 }
 
-/* =========================
-   画像
-========================= */
 .detail-image-box {
     width: 100%;
     min-height: 420px;
@@ -29,9 +23,6 @@
     display: block;
 }
 
-/* =========================
-   説明エリア
-========================= */
 .detail-description-area {
     padding-top: 8px;
 }
@@ -49,9 +40,6 @@
     min-height: 180px;
 }
 
-/* =========================
-   下段レイアウト
-========================= */
 .detail-bottom-wrap {
     display: flex;
     align-items: flex-start;
@@ -72,13 +60,28 @@
     color: #333333;
 }
 
-.quantity-select {
-    width: 140px;
-    padding: 6px 10px;
+.quantity-buttons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.qty-btn {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.quantity-input {
+    width: 70px;
+    height: 40px;
+    text-align: center;
+    border: 1px solid #ccc;
     font-size: 16px;
-    border: 1px solid #999999;
-    border-radius: 2px;
-    background-color: #ffffff;
+    background-color: #fff;
 }
 
 .detail-buttons {
@@ -90,9 +93,6 @@
     flex-shrink: 0;
 }
 
-/* =========================
-   タブレット以下
-========================= */
 @media (max-width: 991.98px) {
     .detail-image-box {
         min-height: 300px;

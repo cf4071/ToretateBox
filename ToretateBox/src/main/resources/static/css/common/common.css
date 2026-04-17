@@ -223,9 +223,6 @@ img {
   margin-top: 40px;
 }
 
-/* =========================
-   スマホ対応
-========================= */
 @media (max-width: 576px) {
   .page-container {
     padding-left: 12px;

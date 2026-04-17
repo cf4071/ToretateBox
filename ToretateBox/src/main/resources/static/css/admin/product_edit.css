@@ -91,9 +91,6 @@
     background-color: #ffffff;
 }
 
-/* =========================
-   スマホ
-========================= */
 @media (max-width: 768px) {
     .admin-label-cell,
     .admin-input-cell,

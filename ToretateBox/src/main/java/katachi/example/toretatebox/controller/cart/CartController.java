@@ -145,7 +145,7 @@ public class CartController {
                 || "anonymousUser".equals(authentication.getPrincipal())) {
 
             redirectAttributes.addFlashAttribute("errorMessage",
-                    "ログインまたはユーザー登録してください。");
+                    "ログインまたはゲスト情報登録をしてください。");
             return "redirect:/cart";
         }
 
