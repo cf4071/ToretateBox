@@ -23,7 +23,7 @@
 ## 画面デモ
 
 ### 商品閲覧
-[動画を見る](./videos/demo-products.mp4)
+[動画を見る](README.md/videos/demo-products.mp4)
 
 ### カート機能
 [動画を見る](./videos/demo-cart.mp4)
