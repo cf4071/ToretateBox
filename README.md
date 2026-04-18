@@ -23,16 +23,16 @@
 ## 画面デモ
 
 ### 商品閲覧
-[動画を見る](./ToretateBox/videos/demo-products.mp4)
+[動画を見る](./ToretateBox/videos/Demo-Products.mp4)
 
 ### カート機能
-[動画を見る](./ToretateBox/videos/demo-cart.mp4)
+[動画を見る](./ToretateBox/videos/Demo-Cart.mp4)
 
 ### 購入（ログインユーザー）
-[動画を見る](./ToretateBox/videos/demo-login.mp4)
+[動画を見る](./ToretateBox/videos/Demo-Login.mp4)
 
 ### 購入（ゲストユーザー）
-[動画を見る](./ToretateBox/videos/demo-guest.mp4)
+[動画を見る](./ToretateBox/videos/Demo-Guest.mp4)
 
 ## データベース設定
 
