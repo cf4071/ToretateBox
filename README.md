@@ -28,13 +28,19 @@ https://github.com/user-attachments/assets/7eaa9514-9d12-4a6c-a211-78bbadf6dfe5
 
 
 ### カート機能
-[動画を見る](./ToretateBox/videos/Demo-Cart.mp4)
+https://github.com/user-attachments/assets/2f8ce1fa-f9b5-4b99-bac6-aa340f5fef16
+
+
 
 ### 購入（ログインユーザー）
-[動画を見る](./ToretateBox/videos/Demo-Login.mp4)
+https://github.com/user-attachments/assets/b159ec7f-3ce4-4071-861e-84c35ac32919
+
+
 
 ### 購入（ゲストユーザー）
-[動画を見る](./ToretateBox/videos/Demo-Guest.mp4)
+https://github.com/user-attachments/assets/b2d86f58-7a1b-4a23-b343-481f125d5962
+
+
 
 ## データベース設定
 
