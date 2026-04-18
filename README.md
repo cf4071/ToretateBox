@@ -23,7 +23,9 @@
 ## 画面デモ
 
 ### 商品閲覧
-[動画を見る](./ToretateBox/videos/Demo-Products.mp4)
+https://github.com/user-attachments/assets/7eaa9514-9d12-4a6c-a211-78bbadf6dfe5
+
+
 
 ### カート機能
 [動画を見る](./ToretateBox/videos/Demo-Cart.mp4)
