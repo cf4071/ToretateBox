@@ -63,8 +63,8 @@ https://github.com/user-attachments/assets/b2d86f58-7a1b-4a23-b343-481f125d5962
 - Thymeleaf
 - MySQL
 - HTML / CSS
-- Java Script
-- BootStrap
+- JavaScript
+- Bootstrap
 
 ## 工夫した点
 
