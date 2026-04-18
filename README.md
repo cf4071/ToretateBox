@@ -24,24 +24,28 @@
 
 ### 商品閲覧
 トップ画面から商品一覧・詳細ページへの遷移を確認できます。
+
 https://github.com/user-attachments/assets/7eaa9514-9d12-4a6c-a211-78bbadf6dfe5
 
 
 
 ### カート機能
 商品追加・数量変更・削除などのカート操作が可能です。
+
 https://github.com/user-attachments/assets/2f8ce1fa-f9b5-4b99-bac6-aa340f5fef16
 
 
 
 ### 購入（ログインユーザー）
 ログイン済みユーザーによる購入の流れを確認できます。
+
 https://github.com/user-attachments/assets/b159ec7f-3ce4-4071-861e-84c35ac32919
 
 
 
 ### 購入（ゲストユーザー）
 ゲストユーザーでも購入できる流れを確認できます。
+
 https://github.com/user-attachments/assets/b2d86f58-7a1b-4a23-b343-481f125d5962
 
 
