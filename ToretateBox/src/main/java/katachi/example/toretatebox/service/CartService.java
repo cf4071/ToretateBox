@@ -2,15 +2,22 @@ package katachi.example.toretatebox.service;
 
 import java.util.List;
 
-import katachi.example.toretatebox.domain.model.Product;
+import jakarta.servlet.http.HttpSession;
+import katachi.example.toretatebox.domain.model.CartItem;
 
 public interface CartService {
 
-    void addProduct(Integer productId);
+    List<CartItem> getCart(HttpSession session);
 
-    void removeProduct(Integer productId);
+    void addToCart(HttpSession session, Integer productId, int quantity);
 
-    List<Product> getCartItems();
+    void updateQuantity(HttpSession session, Integer productId, int quantity);
 
-    int getTotalPrice();
+    void removeFromCart(HttpSession session, Integer productId);
+
+    void clearCart(HttpSession session);
+
+    int calculateTotal(List<CartItem> cart);
+
+    int calculateTotalQuantity(List<CartItem> cart);
 }

@@ -60,6 +60,10 @@
     color: #333333;
 }
 
+.quantity-select {
+    width: 120px;
+}
+
 .quantity-buttons {
     display: flex;
     align-items: center;
@@ -83,6 +87,7 @@
     font-size: 16px;
     background-color: #fff;
 }
+
 
 .detail-buttons {
     display: flex;

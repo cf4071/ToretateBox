@@ -1,6 +1,5 @@
 package katachi.example.toretatebox.controller.cart;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.security.core.Authentication;
@@ -14,8 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpSession;
 import katachi.example.toretatebox.domain.model.CartItem;
-import katachi.example.toretatebox.domain.model.Product;
-import katachi.example.toretatebox.service.ProductsService;
+import katachi.example.toretatebox.service.CartService;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -23,17 +21,13 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CartController {
 
-    private final ProductsService productsService;
+    private final CartService cartService;
 
     @GetMapping
     public String showCart(HttpSession session, Model model, Authentication authentication) {
-        List<CartItem> cart = getCart(session);
-        int totalAmount = calculateTotal(cart);
-
-        int totalQuantity = 0;
-        for (CartItem item : cart) {
-            totalQuantity += item.getQuantity();
-        }
+        List<CartItem> cart = cartService.getCart(session);
+        int totalAmount = cartService.calculateTotal(cart);
+        int totalQuantity = cartService.calculateTotalQuantity(cart);
 
         boolean isLoggedIn = authentication != null
                 && authentication.isAuthenticated()
@@ -53,35 +47,7 @@ public class CartController {
             @RequestParam(defaultValue = "1") int quantity,
             HttpSession session) {
 
-        if (quantity < 1) {
-            quantity = 1;
-        }
-
-        Product product = productsService.findById(productId);
-        if (product == null) {
-            return "redirect:/products";
-        }
-
-        List<CartItem> cart = getCart(session);
-
-        for (CartItem item : cart) {
-            if (item.getProductId().equals(productId)) {
-                item.setQuantity(item.getQuantity() + quantity);
-                session.setAttribute("cart", cart);
-                return "redirect:/cart";
-            }
-        }
-
-        CartItem newItem = new CartItem();
-        newItem.setProductId(product.getId());
-        newItem.setName(product.getName());
-        newItem.setPrice(product.getPrice());
-        newItem.setQuantity(quantity);
-        newItem.setImageUrl(product.getImageUrl());
-
-        cart.add(newItem);
-        session.setAttribute("cart", cart);
-
+        cartService.addToCart(session, productId, quantity);
         return "redirect:/cart";
     }
 
@@ -91,20 +57,7 @@ public class CartController {
             @RequestParam(required = false) Integer quantity,
             HttpSession session) {
 
-        if (quantity == null || quantity < 1) {
-            quantity = 1;
-        }
-
-        List<CartItem> cart = getCart(session);
-
-        for (CartItem item : cart) {
-            if (item.getProductId().equals(productId)) {
-                item.setQuantity(quantity);
-                break;
-            }
-        }
-
-        session.setAttribute("cart", cart);
+        cartService.updateQuantity(session, productId, quantity == null ? 1 : quantity);
         return "redirect:/cart";
     }
 
@@ -113,17 +66,13 @@ public class CartController {
             @RequestParam Integer productId,
             HttpSession session) {
 
-        List<CartItem> cart = getCart(session);
-
-        cart.removeIf(item -> item.getProductId().equals(productId));
-
-        session.setAttribute("cart", cart);
+        cartService.removeFromCart(session, productId);
         return "redirect:/cart";
     }
 
     @PostMapping("/clear")
     public String clearCart(HttpSession session) {
-        session.removeAttribute("cart");
+        cartService.clearCart(session);
         return "redirect:/cart";
     }
 
@@ -133,7 +82,7 @@ public class CartController {
             HttpSession session,
             RedirectAttributes redirectAttributes) {
 
-        List<CartItem> cart = getCart(session);
+        List<CartItem> cart = cartService.getCart(session);
 
         if (cart.isEmpty()) {
             redirectAttributes.addFlashAttribute("errorMessage", "カートに商品がありません。");
@@ -150,26 +99,5 @@ public class CartController {
         }
 
         return "redirect:/checkout";
-    }
-
-    @SuppressWarnings("unchecked")
-    private List<CartItem> getCart(HttpSession session) {
-        List<CartItem> cart = (List<CartItem>) session.getAttribute("cart");
-
-        if (cart == null) {
-            cart = new ArrayList<>();
-        }
-
-        return cart;
-    }
-
-    private int calculateTotal(List<CartItem> cart) {
-        int total = 0;
-
-        for (CartItem item : cart) {
-            total += item.getSubtotal();
-        }
-
-        return total;
     }
 }

@@ -49,28 +49,21 @@
                                     <div class="cart-item-side">
 
                                         <form th:action="@{/cart/update}" method="post" class="cart-quantity-form">
-                                            <input type="hidden" name="productId" th:value="${item.productId}">
-
-                                            <p class="quantity-title">数量</p>
-
-                                            <div class="quantity-buttons">
-                                                <button type="button"
-                                                        class="qty-btn"
-                                                        onclick="changeCartQty(this, -1)">−</button>
-
-                                                <input type="number"
-                                                       name="quantity"
-                                                       class="quantity-input"
-                                                       th:value="${item.quantity}"
-                                                       min="1"
-                                                       max="10"
-                                                       readonly>
-
-                                                <button type="button"
-                                                        class="qty-btn"
-                                                        onclick="changeCartQty(this, 1)">＋</button>
-                                            </div>
-                                        </form>
+										    <input type="hidden" name="productId" th:value="${item.productId}">
+										
+										    <label class="quantity-title" th:for="'quantity-' + ${item.productId}">数量</label>
+										
+										    <select th:id="'quantity-' + ${item.productId}"
+										            name="quantity"
+										            class="form-select cart-quantity-select"
+										            onchange="this.form.submit()">
+										        <option th:each="i : ${#numbers.sequence(1, 10)}"
+										                th:value="${i}"
+										                th:text="${i}"
+										                th:selected="${i == item.quantity}">
+										        </option>
+										    </select>
+										</form>
 
                                         <p class="cart-item-subtotal">
                                             小計：
