@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>食材一覧 | とれたてBOX</title>
 
-  <link rel="stylesheet" th:href="@{/css/common/common.css}">
   <link rel="stylesheet" th:href="@{/css/common/product-card.css}">
   <link rel="stylesheet" th:href="@{/css/product/list.css}">
 </head>
@@ -93,7 +92,7 @@
           <section class="col-lg-10 col-md-9 product-area">
             <div class="list-content">
 
-              <h2 class="page-title list-title">食材一覧</h2>
+              <h2 class="page-title">食材一覧</h2>
 
               <div th:if="${products != null and !#lists.isEmpty(products)}"
                    class="row gx-4 gy-5 justify-content-center product-list-row">
@@ -109,10 +108,10 @@
                       </a>
                     </div>
 
-                    <div class="product-info mt-2">
-                      <div class="name" th:text="${p.name}">商品名</div>
-                      <div class="price" th:text="${#numbers.formatInteger(p.price, 1, 'COMMA') + '円'}">0円</div>
-                    </div>
+					<div class="product-info mt-2">
+					  <div class="product-name" th:text="${p.name}">商品名</div>
+					  <div class="product-price" th:text="${#numbers.formatInteger(p.price, 1, 'COMMA') + '円'}">0円</div>
+					</div>
                   </div>
                 </div>
 

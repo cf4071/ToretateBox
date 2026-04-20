@@ -28,8 +28,14 @@ public class UserEditController {
     @GetMapping("/edit")
     public String showEdit(Authentication auth, Model model) {
 
+        if (auth == null) {
+            return "redirect:/login";
+        }
+
         User user = userRepository.findByEmail(auth.getName());
-        if (user == null) return "redirect:/login";
+        if (user == null) {
+            return "redirect:/login";
+        }
 
         Address address = addressRepository.findTopByUserIdOrderByIdDesc(user.getId());
 
@@ -60,20 +66,38 @@ public class UserEditController {
             BindingResult result,
             Model model) {
 
-        if (!result.hasErrors()) {
-            if (form.getPassword() != null && !form.getPassword().isBlank()) {
-                if (!form.getPassword().equals(form.getPasswordConfirm())) {
-                    result.rejectValue("passwordConfirm", "password.mismatch", "パスワードが一致しません");
-                }
+        if (auth == null) {
+            return "redirect:/login";
+        }
+
+        User user = userRepository.findByEmail(auth.getName());
+        if (user == null) {
+            return "redirect:/login";
+        }
+
+        if (form.getPassword() != null && !form.getPassword().isBlank()) {
+
+            if (form.getPassword().length() < 8) {
+                result.rejectValue("password", "password.short", "パスワードは8文字以上で入力してください");
             }
+
+            if (form.getPasswordConfirm() == null || form.getPasswordConfirm().isBlank()) {
+                result.rejectValue("passwordConfirm", "passwordConfirm.blank", "パスワード（再確認）を入力してください");
+            }
+
+            else if (!form.getPassword().equals(form.getPasswordConfirm())) {
+                result.rejectValue("passwordConfirm", "password.mismatch", "パスワードが一致しません");
+            }
+        }
+
+        User existingUser = userRepository.findByEmail(form.getEmail());
+        if (existingUser != null && existingUser.getId() != user.getId()) {
+            result.rejectValue("email", "email.duplicate", "そのメールアドレスはすでに使用されています");
         }
 
         if (result.hasErrors()) {
             return "user/user_edit";
         }
-
-        User user = userRepository.findByEmail(auth.getName());
-        if (user == null) return "redirect:/login";
 
         Address address = addressRepository.findTopByUserIdOrderByIdDesc(user.getId());
         if (address == null) {
@@ -84,11 +108,8 @@ public class UserEditController {
         user.setName(form.getName());
         user.setNameKana(form.getNameKana());
         user.setPhoneNumber(form.getPhoneNumber());
-
-        // メール変更をいったん止めるならコメントアウト
         user.setEmail(form.getEmail());
 
-        // パスワードは入力されたときだけ更新
         if (form.getPassword() != null && !form.getPassword().isBlank()) {
             user.setPassword(passwordEncoder.encode(form.getPassword()));
         }

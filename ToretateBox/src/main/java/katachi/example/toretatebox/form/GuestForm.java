@@ -1,6 +1,7 @@
 package katachi.example.toretatebox.form;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
@@ -13,9 +14,11 @@ public class GuestForm {
 
     @NotBlank(message = "電話番号を入力してください")
     @Size(max = 20, message = "電話番号は20文字以内で入力してください")
+    @Pattern(regexp = "^[0-9]+$", message = "電話番号は数字で入力してください")
     private String phoneNumber;
 
     @NotBlank(message = "郵便番号を入力してください")
+    @Pattern(regexp = "^\\d{7}$|^\\d{3}-\\d{4}$", message = "郵便番号は7桁またはハイフン付き8桁で入力してください")
     private String postalCode;
 
     @NotBlank(message = "都道府県を入力してください")
