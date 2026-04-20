@@ -90,10 +90,10 @@
     margin-bottom: 8px;
 }
 
-.quantity-select {
-    width: 120px;
+.cart-quantity-select {
+    width: 90px;
+    max-width: 100%;
 }
-
 
 .cart-item-subtotal {
     font-size: 18px;
@@ -247,9 +247,6 @@
         padding-top: 0;
     }
 
-    .quantity-input {
-        margin-left: 0;
-    }
 
     .cart-item-subtotal {
         margin-top: 16px;

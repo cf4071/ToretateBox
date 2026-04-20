@@ -64,30 +64,6 @@
     width: 120px;
 }
 
-.quantity-buttons {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.qty-btn {
-    width: 40px;
-    height: 40px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    font-size: 20px;
-    cursor: pointer;
-}
-
-.quantity-input {
-    width: 70px;
-    height: 40px;
-    text-align: center;
-    border: 1px solid #ccc;
-    font-size: 16px;
-    background-color: #fff;
-}
-
 
 .detail-buttons {
     display: flex;
