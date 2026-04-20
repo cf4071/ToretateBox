@@ -127,31 +127,6 @@
 
 </div>
 
-<script>
-    function changeCartQty(button, change) {
-        const form = button.closest('form');
-        const input = form.querySelector('.quantity-input');
-
-        let value = parseInt(input.value, 10);
-
-        if (isNaN(value)) {
-            value = 1;
-        }
-
-        value += change;
-
-        if (value < 1) {
-            value = 1;
-        }
-
-        if (value > 10) {
-            value = 10;
-        }
-
-        input.value = value;
-        form.submit();
-    }
-</script>
 
 </body>
 </html>
