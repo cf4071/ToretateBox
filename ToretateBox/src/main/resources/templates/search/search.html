@@ -17,7 +17,10 @@
     <section class="page-section search-page">
       <div class="page-container search-container">
 
-        <h2 class="page-title search-title" th:text="'検索結果：' + ${keyword}">検索結果</h2>
+        <h2 class="page-title search-title"
+            th:text="${keyword != null} ? '検索結果：' + ${keyword} : '検索結果'">
+          検索結果
+        </h2>
 
         <div th:if="${products == null or #lists.isEmpty(products)}" class="no-message">
           <p>該当する商品がありません。</p>
@@ -35,12 +38,17 @@
                        th:src="@{${p.imageUrl}}"
                        th:alt="${p.name}"
                        class="img-fluid product-image">
+
+                  <img th:if="${p.imageUrl == null or p.imageUrl == ''}"
+                       th:src="@{/images/no-image.png}"
+                       alt="画像なし"
+                       class="img-fluid product-image">
                 </a>
               </div>
 
               <div class="product-info mt-2">
-                <div class="name" th:text="${p.name}">商品名</div>
-                <div class="price"
+                <div class="product-name" th:text="${p.name}">商品名</div>
+                <div class="product-price"
                      th:text="${#numbers.formatInteger(p.price, 1, 'COMMA') + '円'}">0円</div>
               </div>
 
@@ -48,9 +56,13 @@
           </div>
         </div>
 
-        <nav class="search-pagination" th:if="${totalPages != null and totalPages > 0}">
+        <nav class="search-pagination"
+             th:if="${products != null and !#lists.isEmpty(products)}">
+
           <ul class="pagination">
-            <li class="page-item" th:classappend="${currentPage == 0} ? ' disabled'">
+
+            <li class="page-item"
+                th:classappend="${currentPage == 0} ? ' disabled'">
               <a class="page-link"
                  th:if="${currentPage > 0}"
                  th:href="@{/search(page=${currentPage - 1}, keyword=${keyword})}">
@@ -64,17 +76,24 @@
                 th:classappend="${i == currentPage} ? ' active'">
               <a class="page-link"
                  th:href="@{/search(page=${i}, keyword=${keyword})}"
-                 th:text="${i + 1}">1</a>
+                 th:text="${i + 1}">
+                1
+              </a>
             </li>
 
-            <li class="page-item" th:classappend="${currentPage >= totalPages - 1} ? ' disabled'">
+            <li class="page-item"
+                th:classappend="${currentPage >= totalPages - 1} ? ' disabled'">
               <a class="page-link"
                  th:if="${currentPage < totalPages - 1}"
                  th:href="@{/search(page=${currentPage + 1}, keyword=${keyword})}">
                 次へ
               </a>
-              <span class="page-link" th:if="${currentPage >= totalPages - 1}">次へ</span>
+              <span class="page-link"
+                    th:if="${currentPage >= totalPages - 1}">
+                次へ
+              </span>
             </li>
+
           </ul>
         </nav>
 

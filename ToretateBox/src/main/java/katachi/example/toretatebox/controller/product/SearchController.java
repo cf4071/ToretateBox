@@ -24,9 +24,22 @@ public class SearchController {
             @RequestParam(defaultValue = "0") int page,
             Model model) {
 
-        Pageable pageable = PageRequest.of(page, 8);
+        if (page < 0) {
+            page = 0;
+        }
 
+        if (keyword != null && keyword.isBlank()) {
+            keyword = null;
+        }
+
+        Pageable pageable = PageRequest.of(page, 8);
         Page<Product> resultPage = productsService.searchProducts(keyword, pageable);
+
+        if (page >= resultPage.getTotalPages() && resultPage.getTotalPages() > 0) {
+            page = resultPage.getTotalPages() - 1;
+            pageable = PageRequest.of(page, 8);
+            resultPage = productsService.searchProducts(keyword, pageable);
+        }
 
         model.addAttribute("keyword", keyword);
         model.addAttribute("products", resultPage.getContent());

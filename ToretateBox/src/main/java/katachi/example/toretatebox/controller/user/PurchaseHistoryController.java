@@ -47,16 +47,29 @@ public class PurchaseHistoryController {
             return "redirect:/login";
         }
 
+        if (page < 0) {
+            page = 0;
+        }
+
         String email = principal.getName();
         User user = userRepository.findByEmail(email);
 
-        PageRequest pageable = PageRequest.of(page, 10, Sort.by("createdAt").descending());
-        Page<Order> orderPage = orderRepository.findByUserIdOrderByCreatedAtDesc(user.getId(), pageable);
+        if (user == null) {
+            return "redirect:/login";
+        }
+
+        Page<Order> orderPage = getOrderPage(user.getId(), page);
+
+        if (page >= orderPage.getTotalPages() && orderPage.getTotalPages() > 0) {
+            page = orderPage.getTotalPages() - 1;
+            orderPage = getOrderPage(user.getId(), page);
+        }
 
         model.addAttribute("orders", orderPage.getContent());
         model.addAttribute("orderPage", orderPage);
 
         if (orderPage.isEmpty()) {
+            model.addAttribute("orderItemsMap", new HashMap<Integer, List<OrderItemView>>());
             return "user/purchase_history";
         }
 
@@ -95,5 +108,10 @@ public class PurchaseHistoryController {
 
         model.addAttribute("orderItemsMap", orderItemsMap);
         return "user/purchase_history";
+    }
+
+    private Page<Order> getOrderPage(Integer userId, int page) {
+        PageRequest pageable = PageRequest.of(page, 10, Sort.by("createdAt").descending());
+        return orderRepository.findByUserIdOrderByCreatedAtDesc(userId, pageable);
     }
 }

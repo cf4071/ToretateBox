@@ -19,15 +19,21 @@ public class AdminOrderController {
 
     private final AdminOrderService adminOrderService;
 
-
     @GetMapping("/orders")
     public String orders(
             @RequestParam(name = "page", defaultValue = "0") int page,
             Model model) {
 
-        var pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "createdAt"));
+        if (page < 0) {
+            page = 0;
+        }
 
-        var orderPage = adminOrderService.findAdminOrderRows(pageable);
+        var orderPage = getOrderPage(page);
+
+        if (page >= orderPage.getTotalPages() && orderPage.getTotalPages() > 0) {
+            page = orderPage.getTotalPages() - 1;
+            orderPage = getOrderPage(page);
+        }
 
         model.addAttribute("orders", orderPage.getContent());
         model.addAttribute("page", orderPage);
@@ -35,13 +41,15 @@ public class AdminOrderController {
         return "admin/orders";
     }
 
-
     @GetMapping("/orders/{id}")
     public String detail(@PathVariable Integer id, Model model) {
-
         var order = adminOrderService.getOrderDetail(id);
         model.addAttribute("order", order);
+        return "admin/order_detail";
+    }
 
-        return "admin/order_detail"; 
+    private org.springframework.data.domain.Page<?> getOrderPage(int page) {
+        var pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "createdAt"));
+        return adminOrderService.findAdminOrderRows(pageable);
     }
 }

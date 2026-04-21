@@ -36,8 +36,16 @@ public class AdminUserController {
             @RequestParam(defaultValue = "0") int page,
             Model model) {
 
-        PageRequest pageable = PageRequest.of(page, 10, Sort.by("id").ascending());
-        Page<User> userPage = userRepository.findAll(pageable);
+        if (page < 0) {
+            page = 0;
+        }
+
+        Page<User> userPage = getUserPage(page);
+
+        if (page >= userPage.getTotalPages() && userPage.getTotalPages() > 0) {
+            page = userPage.getTotalPages() - 1;
+            userPage = getUserPage(page);
+        }
 
         List<AdminUserRow> rows = userPage.getContent().stream().map(u -> {
 
@@ -86,6 +94,11 @@ public class AdminUserController {
         return "admin/user_detail";
     }
 
+    private Page<User> getUserPage(int page) {
+        PageRequest pageable = PageRequest.of(page, 10, Sort.by("id").ascending());
+        return userRepository.findAll(pageable);
+    }
+
     private String buildAddress(Address a) {
         String line2 = (a.getAddressLine2() == null || a.getAddressLine2().isBlank())
                 ? ""
@@ -98,10 +111,7 @@ public class AdminUserController {
     @PostMapping("/users/{id}/delete")
     public String deleteUser(@PathVariable Integer id) {
 
-        // 先に住所データを削除
         addressRepository.deleteByUserId(id);
-
-        // そのあとユーザーを削除
         userRepository.deleteById(id);
 
         return "redirect:/admin/users";

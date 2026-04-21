@@ -1,6 +1,7 @@
 package katachi.example.toretatebox.controller.product;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,15 +23,25 @@ public class ProductsController {
 
     private final ProductsService productsService;
 
+    private static final Set<String> VALID_SEASONS =
+            Set.of("春", "夏", "秋", "冬", "通年");
+
     @GetMapping("/top")
     public String showTopPage(
             @RequestParam(defaultValue = "0") int page,
             Model model) {
 
-        String season = getCurrentSeason();
-        Pageable pageable = PageRequest.of(page, 8);
+        if (page < 0) {
+            page = 0;
+        }
 
-        Page<Product> productPage = productsService.searchBySeason(season, pageable);
+        String season = getCurrentSeason();
+        Page<Product> productPage = getTopPageResult(page, season);
+
+        if (page >= productPage.getTotalPages() && productPage.getTotalPages() > 0) {
+            page = productPage.getTotalPages() - 1;
+            productPage = getTopPageResult(page, season);
+        }
 
         model.addAttribute("products", productPage.getContent());
         model.addAttribute("season", season);
@@ -48,7 +59,10 @@ public class ProductsController {
             @RequestParam(defaultValue = "0") int page,
             Model model) {
 
-        // 空文字が来たときは null にそろえる
+        if (page < 0) {
+            page = 0;
+        }
+
         if (keyword != null && keyword.isBlank()) {
             keyword = null;
         }
@@ -57,23 +71,19 @@ public class ProductsController {
             season = null;
         }
 
-        Pageable pageable = PageRequest.of(page, 10);
-        Page<Product> productPage;
+        if (season != null && !VALID_SEASONS.contains(season)) {
+            season = null;
+        }
 
-        if (isNotBlank(keyword)) {
-            productPage = productsService.searchProducts(keyword, pageable);
+        if (categoryId != null && categoryId != 1 && categoryId != 2) {
+            categoryId = null;
+        }
 
-        } else if (categoryId != null && isNotBlank(season)) {
-            productPage = productsService.searchByCategoryAndSeason(categoryId, season, pageable);
+        Page<Product> productPage = getProductsPageResult(keyword, categoryId, season, page);
 
-        } else if (categoryId != null) {
-            productPage = productsService.searchByCategory(categoryId, pageable);
-
-        } else if (isNotBlank(season)) {
-            productPage = productsService.searchBySeason(season, pageable);
-
-        } else {
-            productPage = productsService.findAllPage(pageable);
+        if (page >= productPage.getTotalPages() && productPage.getTotalPages() > 0) {
+            page = productPage.getTotalPages() - 1;
+            productPage = getProductsPageResult(keyword, categoryId, season, page);
         }
 
         model.addAttribute("products", productPage.getContent());
@@ -106,6 +116,31 @@ public class ProductsController {
     public String saveProduct(Product product) {
         productsService.save(product);
         return "redirect:/products";
+    }
+
+    private Page<Product> getTopPageResult(int page, String season) {
+        Pageable pageable = PageRequest.of(page, 8);
+        return productsService.searchBySeason(season, pageable);
+    }
+
+    private Page<Product> getProductsPageResult(String keyword, Integer categoryId, String season, int page) {
+        Pageable pageable = PageRequest.of(page, 10);
+
+        if (isNotBlank(keyword)) {
+            return productsService.searchProducts(keyword, pageable);
+
+        } else if (categoryId != null && isNotBlank(season)) {
+            return productsService.searchByCategoryAndSeason(categoryId, season, pageable);
+
+        } else if (categoryId != null) {
+            return productsService.searchByCategory(categoryId, pageable);
+
+        } else if (isNotBlank(season)) {
+            return productsService.searchBySeason(season, pageable);
+
+        } else {
+            return productsService.findAllPage(pageable);
+        }
     }
 
     private String getCurrentSeason() {

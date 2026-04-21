@@ -37,9 +37,16 @@ public class AdminProductController {
             @RequestParam(name = "page", defaultValue = "0") int page,
             Model model) {
 
-        int size = 10;
-        PageRequest pageable = PageRequest.of(page, size, Sort.by("id").descending());
-        Page<Product> productPage = productsRepository.findAll(pageable);
+        if (page < 0) {
+            page = 0;
+        }
+
+        Page<Product> productPage = getProductPage(page);
+
+        if (page >= productPage.getTotalPages() && productPage.getTotalPages() > 0) {
+            page = productPage.getTotalPages() - 1;
+            productPage = getProductPage(page);
+        }
 
         model.addAttribute("products", productPage.getContent());
         model.addAttribute("productPage", productPage);
@@ -150,6 +157,12 @@ public class AdminProductController {
     public String delete(@PathVariable Integer id) {
         productsRepository.deleteById(id);
         return "redirect:/admin/products";
+    }
+
+    private Page<Product> getProductPage(int page) {
+        int size = 10;
+        PageRequest pageable = PageRequest.of(page, size, Sort.by("id").descending());
+        return productsRepository.findAll(pageable);
     }
 
     private String saveImageAndGetUrl(MultipartFile imageFile) {
