@@ -75,17 +75,8 @@ public class UserEditController {
             return "redirect:/login";
         }
 
-        if (form.getPassword() != null && !form.getPassword().isBlank()) {
-
-            if (form.getPassword().length() < 8) {
-                result.rejectValue("password", "password.short", "パスワードは8文字以上で入力してください");
-            }
-
-            if (form.getPasswordConfirm() == null || form.getPasswordConfirm().isBlank()) {
-                result.rejectValue("passwordConfirm", "passwordConfirm.blank", "パスワード（再確認）を入力してください");
-            }
-
-            else if (!form.getPassword().equals(form.getPasswordConfirm())) {
+        if (!result.hasErrors()) {
+            if (!form.getPassword().equals(form.getPasswordConfirm())) {
                 result.rejectValue("passwordConfirm", "password.mismatch", "パスワードが一致しません");
             }
         }
@@ -109,10 +100,7 @@ public class UserEditController {
         user.setNameKana(form.getNameKana());
         user.setPhoneNumber(form.getPhoneNumber());
         user.setEmail(form.getEmail());
-
-        if (form.getPassword() != null && !form.getPassword().isBlank()) {
-            user.setPassword(passwordEncoder.encode(form.getPassword()));
-        }
+        user.setPassword(passwordEncoder.encode(form.getPassword()));
 
         address.setRecipient(form.getName());
         address.setPhoneNumber(form.getPhoneNumber());

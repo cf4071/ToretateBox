@@ -23,10 +23,12 @@ public class UserEditForm {
     @NotBlank(message = "メールアドレスを入力してください")
     @Size(max = 254, message = "メールアドレスは254文字以内で入力してください")
     private String email;
-    
+
+    @NotBlank(message = "パスワードを入力してください")
     @Size(min = 8, message = "パスワードは8文字以上で入力してください")
     private String password;
 
+    @NotBlank(message = "パスワード（再確認）を入力してください")
     private String passwordConfirm;
 
     @NotBlank(message = "郵便番号を入力してください")
@@ -44,7 +46,7 @@ public class UserEditForm {
     @NotBlank(message = "町名・番地を入力してください")
     @Size(max = 50, message = "町名・番地は50文字以内で入力してください")
     private String addressLine1;
-    
-    @Size(max=50, message = "建物名・部屋番号は50文字以内で入力してください")
+
+    @Size(max = 50, message = "建物名・部屋番号は50文字以内で入力してください")
     private String addressLine2;
 }

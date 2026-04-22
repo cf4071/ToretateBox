@@ -18,7 +18,7 @@ public class SignupForm {
     private String nameKana;
 
     @NotBlank(message = "電話番号を入力してください")
-    @Pattern(regexp = "\\d{10,11}", message = "電話番号はハイフンなしで10〜11桁で入力してください")
+    @Pattern(regexp = "\\d{10,11}", message = "電話番号は数字で入力してください")
     private String phoneNumber;
 
     @Email(message = "メールアドレスの形式が正しくありません")
@@ -35,7 +35,7 @@ public class SignupForm {
 
     @NotBlank(message = "郵便番号を入力してください")
     @Pattern(regexp = "^\\d{7}$|^\\d{3}-\\d{4}$",
-             message = "郵便番号は7桁またはハイフン付きで入力してください")
+             message = "郵便番号は7桁またはハイフン付き8桁で入力してください")
     private String postalCode;
 
     @NotBlank(message = "都道府県を入力してください")
