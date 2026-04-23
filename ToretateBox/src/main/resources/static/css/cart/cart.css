@@ -47,7 +47,8 @@
     border: 1px solid #cccccc;
     border-radius: 8px;
     background-color: #ffffff;
-    object-fit: cover;
+    object-fit: contain;
+    padding: 8px;
 }
 
 .cart-item-main {
