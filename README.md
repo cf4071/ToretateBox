@@ -1,3 +1,7 @@
+
+
+
+
 # とれたてBOX
 
 ## 概要
@@ -20,34 +24,34 @@
 - 購入機能
 - 管理者による管理機能(食材、注文、顧客)
 
+
 ## 画面デモ
 
-### 商品閲覧
+### 食材閲覧
 トップ画面から商品一覧・詳細ページへの遷移を確認できます。
 
-https://github.com/user-attachments/assets/7eaa9514-9d12-4a6c-a211-78bbadf6dfe5
+
 
 
 
 ### カート機能
 商品追加・数量変更・削除などのカート操作が可能です。
 
-https://github.com/user-attachments/assets/2f8ce1fa-f9b5-4b99-bac6-aa340f5fef16
+https://github.com/user-attachments/assets/fb9616eb-5c4d-473d-a8a7-e7574a675d99
+
 
 
 
 ### 購入（ログインユーザー）
 ログイン済みユーザーによる購入の流れを確認できます。
 
-https://github.com/user-attachments/assets/b159ec7f-3ce4-4071-861e-84c35ac32919
-
+https://github.com/user-attachments/assets/eb73cdbe-65ad-4f8a-857a-7356bb2c9cca
 
 
 ### 購入（ゲストユーザー）
 ゲストユーザーでも購入できる流れを確認できます。
 
-https://github.com/user-attachments/assets/b2d86f58-7a1b-4a23-b343-481f125d5962
-
+https://github.com/user-attachments/assets/9cecd91b-98bf-4f27-90ad-aae959ddf9cf
 
 
 ## データベース設定
