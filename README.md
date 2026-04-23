@@ -30,14 +30,14 @@
 ### 食材閲覧
 トップ画面から商品一覧・詳細ページへの遷移を確認できます。
 
-
+https://github.com/user-attachments/assets/0c3cbd93-3e98-470e-9e31-578540711ca7
 
 
 
 ### カート機能
 商品追加・数量変更・削除などのカート操作が可能です。
 
-
+https://github.com/user-attachments/assets/8bf317cc-cba6-4341-9249-e3064228a4df
 
 
 
@@ -46,20 +46,19 @@
 
 
 
+
+https://github.com/user-attachments/assets/ffe95de6-9595-492c-b32b-b535def7a833
+
+
+
 ### 購入（ゲストユーザー）
 ゲストユーザーでも購入できる流れを確認できます。
 
 
-
-https://github.com/user-attachments/assets/fe3572bc-77a2-4b24-ae2a-ab799cc68168
-
-
-
-https://github.com/user-attachments/assets/56506962-6cff-4a4e-b325-cd4b6cddcf2c
+https://github.com/user-attachments/assets/1aba387b-4a99-4602-b526-7a54ffd04c0f
 
 
 
-https://github.com/user-attachments/assets/b02900d1-b6af-474e-9942-411a661d3689
 
 
 
