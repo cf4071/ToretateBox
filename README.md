@@ -37,7 +37,6 @@
 ### カート機能
 商品追加・数量変更・削除などのカート操作が可能です。
 
-https://github.com/user-attachments/assets/fb9616eb-5c4d-473d-a8a7-e7574a675d99
 
 
 
@@ -45,13 +44,23 @@ https://github.com/user-attachments/assets/fb9616eb-5c4d-473d-a8a7-e7574a675d99
 ### 購入（ログインユーザー）
 ログイン済みユーザーによる購入の流れを確認できます。
 
-https://github.com/user-attachments/assets/eb73cdbe-65ad-4f8a-857a-7356bb2c9cca
 
 
 ### 購入（ゲストユーザー）
 ゲストユーザーでも購入できる流れを確認できます。
 
-https://github.com/user-attachments/assets/9cecd91b-98bf-4f27-90ad-aae959ddf9cf
+
+
+https://github.com/user-attachments/assets/fe3572bc-77a2-4b24-ae2a-ab799cc68168
+
+
+
+https://github.com/user-attachments/assets/56506962-6cff-4a4e-b325-cd4b6cddcf2c
+
+
+
+https://github.com/user-attachments/assets/b02900d1-b6af-474e-9942-411a661d3689
+
 
 
 ## データベース設定
