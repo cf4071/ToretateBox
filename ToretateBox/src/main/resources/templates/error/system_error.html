@@ -3,22 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>エラー | とれたてBOX</title>
+    <link rel="stylesheet" th:href="@{/css/error/system_error.css}">
 </head>
 
 <body>
 
-<div style="text-align:center; margin-top:100px;">
+<div th:replace="~{layout/layout :: layout(~{::title}, ~{::content})}">
+    <main th:fragment="content">
+        <section class="page-section system-error-page">
+            <div class="page-container">
 
-    <p style="color:red; font-size:18px; font-weight:bold;"
-       th:text="${errorMessage}">
-    </p>
+                <div class="system-error-box">
+                    <p class="system-error-message">
+					    申し訳ございません。エラーが発生しました。<br>
+					    時間をおいて再度お試しください。
+					</p>
 
-    <div style="margin-top:30px;">
-        <a th:href="@{/products}">
-            <button>戻る</button>
-        </a>
-    </div>
+                    <a th:href="@{/top}" class="common-btn btn-blue">
+                        戻る
+                    </a>
+                </div>
 
+            </div>
+        </section>
+    </main>
 </div>
 
 </body>

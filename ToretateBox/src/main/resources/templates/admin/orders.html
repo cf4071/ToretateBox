@@ -35,7 +35,7 @@
               <td th:text="${#temporals.format(order.createdAt, 'yyyy/MM/dd HH:mm')}"></td>
               <td th:text="'￥' + ${#numbers.formatInteger(order.totalAmount, 1, 'COMMA')}"></td>
               <td>
-                <a th:href="@{'/admin/orders/' + ${order.id}}" class="common-btn btn-red">
+                <a th:href="@{'/admin/orders/' + ${order.id}}" class="common-btn btn-blue">
                   詳細
                 </a>
               </td>
