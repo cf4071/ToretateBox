@@ -24,6 +24,43 @@
 - 購入機能
 - 管理者による管理機能(食材、注文、顧客)
 
+## 起動方法
+
+① データベース作成
+
+CREATE DATABASE toretatebox;
+
+② application.properties 設定
+
+spring.datasource.url=jdbc:mysql://localhost:3306/toretatebox  
+spring.datasource.username=root  
+spring.datasource.password=password  
+
+③ SQL実行
+
+- schema.sql（テーブル作成）
+- data.sql（初期データ）
+
+④ アプリ起動
+
+http://localhost:8080 にアクセス
+
+---
+
+## テスト用アカウント
+
+### 一般ユーザー
+メールアドレス：user@example.com  
+パスワード：password  
+
+### 管理者ユーザー
+メールアドレス：admin@example.com  
+パスワード：password  
+
+※ パスワードはBCryptでハッシュ化されています。
+
+---
+
 
 ## 画面デモ
 
