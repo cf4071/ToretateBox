@@ -24,34 +24,79 @@
 - 購入機能
 - 管理者による管理機能(食材、注文、顧客)
 
+## 起動方法
+
+① データベース作成
+
+CREATE DATABASE toretatebox;
+
+② application.properties 設定
+
+spring.datasource.url=jdbc:mysql://localhost:3306/toretatebox  
+spring.datasource.username=root  
+spring.datasource.password=password  
+
+③ SQL実行
+
+- schema.sql（テーブル作成）
+- data.sql（初期データ）
+
+④ アプリ起動
+
+http://localhost:8080 にアクセス
+
+---
+
+## テスト用アカウント
+
+### 一般ユーザー
+メールアドレス：user@example.com  
+パスワード：password  
+
+### 管理者ユーザー
+メールアドレス：admin@example.com  
+パスワード：password  
+
+※ パスワードはBCryptでハッシュ化されています。
+
+---
+
 
 ## 画面デモ
 
 ### 食材閲覧
 トップ画面から商品一覧・詳細ページへの遷移を確認できます。
 
-
+https://github.com/user-attachments/assets/0c3cbd93-3e98-470e-9e31-578540711ca7
 
 
 
 ### カート機能
 商品追加・数量変更・削除などのカート操作が可能です。
 
-https://github.com/user-attachments/assets/fb9616eb-5c4d-473d-a8a7-e7574a675d99
-
+https://github.com/user-attachments/assets/8bf317cc-cba6-4341-9249-e3064228a4df
 
 
 
 ### 購入（ログインユーザー）
 ログイン済みユーザーによる購入の流れを確認できます。
 
-https://github.com/user-attachments/assets/eb73cdbe-65ad-4f8a-857a-7356bb2c9cca
+
+
+
+https://github.com/user-attachments/assets/ffe95de6-9595-492c-b32b-b535def7a833
+
 
 
 ### 購入（ゲストユーザー）
 ゲストユーザーでも購入できる流れを確認できます。
 
-https://github.com/user-attachments/assets/9cecd91b-98bf-4f27-90ad-aae959ddf9cf
+
+https://github.com/user-attachments/assets/1aba387b-4a99-4602-b526-7a54ffd04c0f
+
+
+
+
 
 
 ## データベース設定
