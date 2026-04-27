@@ -33,7 +33,9 @@
               <td th:text="${order.recipient != null ? order.recipient : ''}"></td>
               <td th:text="${order.email != null ? order.email : ''}"></td>
               <td th:text="${#temporals.format(order.createdAt, 'yyyy/MM/dd HH:mm')}"></td>
-              <td th:text="'￥' + ${#numbers.formatInteger(order.totalAmount, 1, 'COMMA')}"></td>
+              <td>
+				  <span th:text="${#numbers.formatInteger(order.totalAmount, 1, 'COMMA')}">0</span> 円
+			  </td>
               <td>
                 <a th:href="@{'/admin/orders/' + ${order.id}}" class="common-btn btn-red">
                   詳細

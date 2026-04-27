@@ -25,6 +25,11 @@ public class ProductsController {
 
     private static final Set<String> VALID_SEASONS =
             Set.of("春", "夏", "秋", "冬", "通年");
+    
+    @GetMapping("/")
+    public String showRootPage() {
+        return "redirect:/top";
+    }
 
     @GetMapping("/top")
     public String showTopPage(

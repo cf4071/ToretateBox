@@ -74,9 +74,10 @@
                   <tr th:each="item : ${order.items}">
                     <td th:text="${item.productName}"></td>
                     <td th:text="${item.quantity}"></td>
-                    <td th:text="${#numbers.formatInteger(item.subtotal, 1, 'COMMA')} + '円'"></td>
-                  </tr>
-
+					<td>
+					  <span th:text="${#numbers.formatInteger(item.subtotal, 1, 'COMMA')}">0</span> 円
+					</td>                  
+				  </tr>
                   <tr th:if="${#lists.isEmpty(order.items)}">
                     <td colspan="3" class="empty-row">明細がありません</td>
                   </tr>
