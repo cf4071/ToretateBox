@@ -34,7 +34,10 @@
 
                                 <div class="cart-item" th:each="item : ${cartItems}">
                                     <div class="cart-item-image">
-                                        <img th:src="@{${item.imageUrl}}" alt="商品画像">
+                                        <img th:src="${item.imageUrl != null and item.imageUrl != ''} 
+										              ? ${item.imageUrl} 
+										              : @{/images/no-image.png}"
+										     alt="商品画像">
                                     </div>
 
                                     <div class="cart-item-main">

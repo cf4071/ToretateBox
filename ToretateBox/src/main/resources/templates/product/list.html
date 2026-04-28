@@ -100,13 +100,14 @@
                 <div th:each="p : ${products}" class="col-lg-3 col-md-4 col-sm-6 col-6">
                   <div class="product-card h-100 text-center d-flex flex-column">
                     <div class="image-box">
-                      <a th:href="@{'/products/' + ${p.id}}" class="image-link">
-                        <img th:if="${p.imageUrl != null and p.imageUrl != ''}"
-                             th:src="@{${p.imageUrl}}"
-                             th:alt="${p.name}"
-                             class="img-fluid product-image">
-                      </a>
-                    </div>
+					  <a th:href="@{'/products/' + ${p.id}}" class="image-link">
+					    <img th:src="${p.imageUrl != null and p.imageUrl != ''} 
+						              ? ${p.imageUrl} 
+						              : @{/images/no-image.png}"
+						     th:alt="${p.name}"
+						     class="img-fluid product-image">
+					  </a>
+					</div>
 
 					<div class="product-info mt-2">
 					  <div class="product-name" th:text="${p.name}">商品名</div>

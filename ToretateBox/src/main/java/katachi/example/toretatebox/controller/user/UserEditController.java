@@ -75,15 +75,33 @@ public class UserEditController {
             return "redirect:/login";
         }
 
-        if (!result.hasErrors()) {
+        // パスワードが入力された場合のみチェックする
+        if (form.getPassword() != null && !form.getPassword().isBlank()) {
+
+            if (form.getPassword().length() < 8) {
+                result.rejectValue(
+                        "password",
+                        "password.size",
+                        "パスワードは8文字以上で入力してください"
+                );
+            }
+
             if (!form.getPassword().equals(form.getPasswordConfirm())) {
-                result.rejectValue("passwordConfirm", "password.mismatch", "パスワードが一致しません");
+                result.rejectValue(
+                        "passwordConfirm",
+                        "password.mismatch",
+                        "パスワードが一致しません"
+                );
             }
         }
 
         User existingUser = userRepository.findByEmail(form.getEmail());
         if (existingUser != null && existingUser.getId() != user.getId()) {
-            result.rejectValue("email", "email.duplicate", "そのメールアドレスはすでに使用されています");
+            result.rejectValue(
+                    "email",
+                    "email.duplicate",
+                    "そのメールアドレスはすでに使用されています"
+            );
         }
 
         if (result.hasErrors()) {
@@ -100,7 +118,10 @@ public class UserEditController {
         user.setNameKana(form.getNameKana());
         user.setPhoneNumber(form.getPhoneNumber());
         user.setEmail(form.getEmail());
-        user.setPassword(passwordEncoder.encode(form.getPassword()));
+
+        if (form.getPassword() != null && !form.getPassword().isBlank()) {
+            user.setPassword(passwordEncoder.encode(form.getPassword()));
+        }
 
         address.setRecipient(form.getName());
         address.setPhoneNumber(form.getPhoneNumber());

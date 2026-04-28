@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>ユーザー登録 | とれたてBOX</title>
+    <link rel="stylesheet" th:href="@{/css/common/common.css}">
     <link rel="stylesheet" th:href="@{/css/auth/signup.css}">
 </head>
 
 <body>
 
-<div th:replace="~{layout/layout :: layout(~{::title}, ~{::content})}">
     <main th:fragment="content">
         <section class="page-section signup-page">
             <div class="page-container">
@@ -118,7 +118,6 @@
             </div>
         </section>
     </main>
-</div>
 
 </body>
 </html>

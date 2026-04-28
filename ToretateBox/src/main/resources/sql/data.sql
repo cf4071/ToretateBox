@@ -11,10 +11,10 @@
 	-- users
 	-- ===========================
 	INSERT INTO users (id, name, name_kana, phone_number, email, password, is_admin, is_deleted, created_at, updated_at) VALUES
-	(1, 'ゲスト購入者', 'ゲスト', '00000000000', 'guest@example.com', '$2a$10$3HI4bO4/mg8DixUoZshvq.hMtYpocl/fje7g8SFFjSos7c0U/zcHC', FALSE, FALSE, '2025-12-26 09:56:33', '2025-12-26 09:56:33'),
-	(2, '石井隆', 'イシイタカシ', '09197845598', 'bull@example.com', '$2a$10$3HI4bO4/mg8DixUoZshvq.hMtYpocl/fje7g8SFFjSos7c0U/zcHC', FALSE, FALSE, '2025-12-26 10:57:27', '2025-12-26 10:57:27'),
-	(3, '日本太郎', 'ニホンタロウ', '01022345566', 'yama@example.com', '$2a$10$3HI4bO4/mg8DixUoZshvq.hMtYpocl/fje7g8SFFjSos7c0U/zcHC', FALSE, FALSE, '2025-12-26 11:53:10', '2025-12-26 11:53:10'),
-	(4, '我那覇健司', 'ガナハケンジ', '09055662345', 'okinawa@example.com', '$2a$10$3HI4bO4/mg8DixUoZshvq.hMtYpocl/fje7g8SFFjSos7c0U/zcHC', TRUE,  FALSE, '2026-01-26 13:29:59', '2026-01-26 13:30:31');
+	(1, 'ゲスト購入者', 'ゲスト', '00000000000', 'guest@example.com', '$2a$10$vLZnO6ICRpgoYd2/B9i3vegcwt4lyvWPQuTZhtA8TNXvEKDoqr0im', FALSE, FALSE, '2025-12-26 09:56:33', '2025-12-26 09:56:33'),
+	(2, '石井隆', 'イシイタカシ', '09197845598', 'bull@example.com', '$2a$10$0VsGLjGFmae0ZiqNcAlM/.9vIWLkdODYqjubUBdpC1RNtPLHsS/p2', FALSE, FALSE, '2025-12-26 10:57:27', '2025-12-26 10:57:27'),
+	(3, '日本太郎', 'ニホンタロウ', '01022345566', 'yama@example.com', '$2a$10$vLZnO6ICRpgoYd2/B9i3vegcwt4lyvWPQuTZhtA8TNXvEKDoqr0im', FALSE, FALSE, '2025-12-26 11:53:10', '2025-12-26 11:53:10'),
+	(4, '我那覇健司', 'ガナハケンジ', '09055662345', 'okinawa@example.com', '$2a$10$mhsTpaupx0FX5ES/egHhROgkISEDeBf0quVvIX.yo2I7T/52hZOtW', TRUE,  FALSE, '2026-01-26 13:29:59', '2026-01-26 13:30:31');
 	
 	-- ============================
 	-- addresses

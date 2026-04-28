@@ -34,22 +34,19 @@
 
               <div class="image-box">
                 <a th:href="@{'/products/' + ${p.id}}" class="image-link">
-                  <img th:if="${p.imageUrl != null and p.imageUrl != ''}"
-                       th:src="@{${p.imageUrl}}"
-                       th:alt="${p.name}"
-                       class="img-fluid product-image">
-
-                  <img th:if="${p.imageUrl == null or p.imageUrl == ''}"
-                       th:src="@{/images/no-image.png}"
-                       alt="画像なし"
-                       class="img-fluid product-image">
+                  <img th:src="${p.imageUrl != null and p.imageUrl != ''} 
+				              ? ${p.imageUrl} 
+				              : @{/images/no-image.png}"
+				     th:alt="${p.name}"
+				     class="img-fluid product-image">
                 </a>
               </div>
 
               <div class="product-info mt-2">
                 <div class="product-name" th:text="${p.name}">商品名</div>
-                <div class="product-price"
-                     th:text="${#numbers.formatInteger(p.price, 1, 'COMMA') + '円'}">0円</div>
+                <div class="product-price">
+				  <span th:text="${#numbers.formatInteger(p.price, 1, 'COMMA')}">0</span> 円
+				</div>
               </div>
 
             </div>

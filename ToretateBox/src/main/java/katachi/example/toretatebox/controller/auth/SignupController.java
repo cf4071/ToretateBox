@@ -69,6 +69,6 @@ public class SignupController {
             return "auth/signup";
         }
 
-        return "redirect:/top";
+        return "redirect:/login";
     }
 }

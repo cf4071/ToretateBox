@@ -100,9 +100,10 @@
         <div class="col-md-3 admin-label-cell">
           値段
         </div>
-        <div class="col-md-5 admin-input-cell">
-          <input type="number" th:field="*{price}" class="form-input">
-        </div>
+		<div class="col-md-5 admin-input-cell price-input-wrap">
+		  <input type="number" th:field="*{price}" class="form-input">
+		  <span class="price-unit">円</span>
+		</div>
         <div class="col-md-4 admin-error-cell">
           <p class="form-error"
              th:if="${#fields.hasErrors('price')}"

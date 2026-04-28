@@ -86,17 +86,20 @@
       </div>
 
       <!-- 値段 -->
-      <div class="admin-form-row row g-0 row-orange">
-        <div class="col-md-3 admin-label-cell">値段</div>
-        <div class="col-md-5 admin-input-cell">
-          <input type="number" th:field="*{price}" class="form-input">
-        </div>
-        <div class="col-md-4 admin-error-cell">
-          <p class="form-error"
-             th:if="${#fields.hasErrors('price')}"
-             th:errors="*{price}"></p>
-        </div>
-      </div>
+	 <div class="admin-form-row row g-0 row-orange">
+		<div class="col-md-3 admin-label-cell">値段</div>
+		
+	    <div class="col-md-5 admin-input-cell price-input-wrap">
+		    <input type="number" th:field="*{price}" class="form-input">
+		    <span class="price-unit">円</span>
+		</div>
+		
+		<div class="col-md-4 admin-error-cell">
+		    <p class="form-error"
+		       th:if="${#fields.hasErrors('price')}"
+		       th:errors="*{price}"></p>
+		</div>
+	 </div>
 
       <!-- 画像 -->
       <div class="admin-form-row row g-0 row-white">
@@ -104,9 +107,9 @@
         <div class="col-md-9 admin-input-cell admin-textarea-cell">
 
           <div th:if="*{imageUrl != null and imageUrl != ''}" class="mb-3">
-            <img th:src="@{*{imageUrl}}"
-                 alt="現在の画像"
-                 class="admin-preview-img">
+            <img th:src="*{imageUrl}"
+			     alt="現在の画像"
+			     class="admin-preview-img">
           </div>
 
           <input type="file" th:field="*{imageFile}" class="form-input image-input">

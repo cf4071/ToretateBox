@@ -44,16 +44,12 @@
 
             <td th:text="${p.id}">1</td>
 
-            <td class="admin-image-cell"
-                th:with="imgSrc=${(p.imageUrl == null or p.imageUrl == '')
-                                  ? '/images/no-image.png'
-                                  : (#strings.startsWith(p.imageUrl, '/')
-                                      ? p.imageUrl
-                                      : '/images/' + p.imageUrl)}">
+            <td class="admin-image-cell">
               <img class="admin-thumb img-fluid"
-                   th:src="@{${imgSrc}}"
-                   th:alt="${p.name} + 'の画像'"
-                   onerror="this.src='/images/no-image.png';">
+				     th:src="${p.imageUrl != null and p.imageUrl != ''} 
+				              ? ${p.imageUrl} 
+				              : @{/images/no-image.png}"
+				     th:alt="${p.name} + 'の画像'">
             </td>
 
             <td class="admin-name-cell" th:text="${p.name}">食材名</td>

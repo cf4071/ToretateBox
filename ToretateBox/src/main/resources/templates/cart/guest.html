@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>ゲスト情報登録 | とれたてBOX</title>
+    <link rel="stylesheet" th:href="@{/css/common/common.css}">
     <link rel="stylesheet" th:href="@{/css/cart/guest.css}">
 </head>
 
 <body>
 
-<div th:replace="~{layout/layout :: layout(~{::title}, ~{::content})}">
     <main th:fragment="content">
         <section class="page-section guest-page">
             <div class="page-container">
@@ -89,7 +89,6 @@
             </div>
         </section>
     </main>
-</div>
 
 </body>
 </html>

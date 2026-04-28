@@ -67,6 +67,8 @@ public class PurchaseHistoryController {
 
         model.addAttribute("orders", orderPage.getContent());
         model.addAttribute("orderPage", orderPage);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", orderPage.getTotalPages());
 
         if (orderPage.isEmpty()) {
             model.addAttribute("orderItemsMap", new HashMap<Integer, List<OrderItemView>>());
