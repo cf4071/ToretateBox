@@ -50,12 +50,12 @@ http://localhost:8080 にアクセス
 ## テスト用アカウント
 
 ### 一般ユーザー
-メールアドレス：user@example.com  
-パスワード：password  
+メールアドレス：bull@example.com  
+パスワード：kyabetsu  
 
 ### 管理者ユーザー
-メールアドレス：admin@example.com  
-パスワード：password  
+メールアドレス：okinawa@example.com  
+パスワード：umibudou
 
 ※ パスワードはBCryptでハッシュ化されています。
 
