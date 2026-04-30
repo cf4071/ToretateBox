@@ -129,7 +129,7 @@ public class ProductsController {
     }
 
     private Page<Product> getProductsPageResult(String keyword, Integer categoryId, String season, int page) {
-        Pageable pageable = PageRequest.of(page, 10);
+        Pageable pageable = PageRequest.of(page, 8);
 
         if (isNotBlank(keyword)) {
             return productsService.searchProducts(keyword, pageable);

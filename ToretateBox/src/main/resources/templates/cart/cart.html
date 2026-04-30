@@ -97,21 +97,13 @@
 
                             <div class="cart-actions">
 
-								<form th:if="${isLoggedIn}" th:action="@{/cart/checkout}" method="post">
-								    <input type="hidden"
-								           th:if="${_csrf != null}"
-								           th:name="${_csrf.parameterName}"
-								           th:value="${_csrf.token}">
-								    <button type="submit" class="common-btn btn-yellow">
-								        レジへ進む
-								    </button>
-								</form>
+								<a th:if="${isLoggedIn}" th:href="@{/cart/checkout}" class="common-btn btn-yellow">
+								    レジへ進む
+								</a>
 
-                                <form th:if="${!isLoggedIn}" th:action="@{/guest}" method="get">
-                                    <button type="submit" class="common-btn btn-blue">
-                                        ゲスト情報登録へ
-                                    </button>
-                                </form>
+                                <a th:if="${!isLoggedIn}" th:href="@{/guest}" class="common-btn btn-blue">
+								    ゲスト情報登録へ
+								</a>
 
                                 <a th:href="@{/top}" class="common-link cart-link-back">
                                     ショッピングを続ける

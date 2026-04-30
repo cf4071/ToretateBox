@@ -106,11 +106,13 @@
         <div class="col-md-3 admin-label-cell">画像</div>
         <div class="col-md-9 admin-input-cell admin-textarea-cell">
 
-          <div th:if="*{imageUrl != null and imageUrl != ''}" class="mb-3">
-            <img th:src="*{imageUrl}"
-			     alt="現在の画像"
-			     class="admin-preview-img">
-          </div>
+		<div class="mb-3">
+		  <img th:src="*{imageUrl != null and imageUrl != ''} 
+		                ? *{imageUrl} 
+		                : @{/images/no-image.png}"
+		       alt="現在の画像"
+		       class="admin-preview-img">
+		</div>
 
           <input type="file" th:field="*{imageFile}" class="form-input image-input">
 
