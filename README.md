@@ -28,22 +28,16 @@
 
 ① データベース作成
 
-CREATE DATABASE toretatebox;
+CREATE DATABASE toretatebox; 
 
-② application.properties 設定
-
-spring.datasource.url=jdbc:mysql://localhost:3306/toretatebox  
-spring.datasource.username=root  
-spring.datasource.password=password  
-
-③ SQL実行
+② SQL実行
 
 - schema.sql（テーブル作成）
 - data.sql（初期データ）
 
-④ アプリ起動
+③ アプリ起動
 
-http://localhost:8080 にアクセス
+http://localhost:8080/ にアクセス
 
 ---
 
@@ -95,16 +89,6 @@ https://github.com/user-attachments/assets/ffe95de6-9595-492c-b32b-b535def7a833
 https://github.com/user-attachments/assets/1aba387b-4a99-4602-b526-7a54ffd04c0f
 
 
-
-
-
-
-## データベース設定
-
-以下のSQLを使用してください。
-
-- テーブル作成：src/main/resources/sql/schema.sql
-- 初期データ：src/main/resources/sql/data.sql
   
 ## 使用技術
 
