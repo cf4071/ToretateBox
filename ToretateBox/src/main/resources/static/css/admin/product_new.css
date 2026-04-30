@@ -15,66 +15,80 @@
 .admin-form-row {
     margin: 0;
     border-bottom: 1px solid #ddd2c8;
+    align-items: stretch !important;
 }
 
 .admin-form-row:last-of-type {
     border-bottom: none;
 }
 
-.admin-form-row > div {
-    margin: 0;
-}
-
-.admin-label-cell,
-.admin-input-cell,
-.admin-error-cell {
-    box-sizing: border-box;
-}
-
 .admin-label-cell {
     padding: 18px 16px;
+    min-height: 88px;
+    height: auto;
     display: flex;
     align-items: center;
-    min-height: 88px;
     border-right: 1px solid #ddd2c8;
     font-weight: bold;
     color: #444444;
 }
 
 .admin-input-cell {
-    padding: 14px 18px;
-    display: flex;
-    align-items: center;
+    padding: 16px 22px;
     min-height: 88px;
-    border-right: 1px solid #ddd2c8;
-}
-
-.admin-textarea-cell {
-    display: block;
-    padding: 14px 18px;
-}
-
-.admin-error-cell {
-    padding: 14px 16px;
+    height: auto;
     display: flex;
-    align-items: center;
-    min-height: 88px;
+    flex-direction: column;
+    justify-content: center;
 }
-
 .row-orange .admin-label-cell,
-.row-orange .admin-input-cell,
-.row-orange .admin-error-cell {
+.row-orange .admin-input-cell {
     background-color: #fff3e0;
 }
 
 .row-white .admin-label-cell,
-.row-white .admin-input-cell,
-.row-white .admin-error-cell {
+.row-white .admin-input-cell {
     background-color: #ffffff;
+}
+
+.form-input,
+.form-textarea {
+    width: 100%;
+}
+
+.form-input {
+    max-width: none;
+}
+
+.form-textarea {
+    width: 100%;
+    min-height: 140px;
+}
+
+.price-input-wrap {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.price-input-wrap .form-input {
+    max-width: 520px;
+}
+
+.price-unit {
+    white-space: nowrap;
 }
 
 .image-input {
     width: 100%;
+    max-width: none;
+}
+
+.form-error {
+    margin-top: 8px;
+    margin-bottom: 0;
 }
 
 .admin-btn-group {
@@ -83,22 +97,15 @@
     background-color: #ffffff;
 }
 
-
 @media (max-width: 768px) {
-    .admin-label-cell,
-    .admin-input-cell,
-    .admin-error-cell {
+    .admin-label-cell {
         min-height: auto;
         border-right: none;
-    }
-
-    .admin-label-cell {
         border-bottom: 1px solid #ddd2c8;
     }
 
-    .admin-input-cell,
-    .admin-error-cell,
-    .admin-textarea-cell {
+    .admin-input-cell {
+        min-height: auto;
         padding: 14px 16px;
     }
 }
