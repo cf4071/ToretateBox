@@ -32,6 +32,7 @@ CREATE DATABASE toretatebox;
 
 ② SQL実行
 
+src/main/resources/sql
 - schema.sql（テーブル作成）
 - data.sql（初期データ）
 
