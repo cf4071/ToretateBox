@@ -43,7 +43,7 @@
                                     <div class="cart-item-main">
                                         <p class="cart-item-name" th:text="${item.name}">商品名</p>
 										<p class="cart-item-price">
-										    値段：
+										    価格（税込）：
 										    <span th:text="${#numbers.formatInteger(item.price, 1, 'COMMA')}">0</span> 円
 										</p>
                                     </div>
@@ -88,7 +88,7 @@
                                     <span class="total-label">食材合計</span>
                                     <span class="total-value" th:text="${totalQuantity} + '点'">0点</span>
 
-                                    <span class="total-label total-price-label">合計金額</span>
+                                    <span class="total-label total-price-label">合計（税込）</span>
                                     <span class="total-value total-price-value">
 									    <span th:text="${#numbers.formatInteger(totalAmount, 1, 'COMMA')}">0</span> 円
 									</span>
