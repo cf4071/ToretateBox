@@ -127,18 +127,44 @@
 
 .total-summary-row {
     display: grid;
-    grid-template-columns: auto auto auto minmax(0, 1fr);
+    grid-template-columns: auto 1fr;
     align-items: center;
-    column-gap: 20px;
+    column-gap: 16px;
     row-gap: 12px;
     width: 100%;
 }
 
+.total-value {
+    text-align: right;
+}
+
+.total-price-value {
+    text-align: right;
+}
 .total-label,
 .total-value {
     white-space: nowrap;
     line-height: 1.5;
     min-width: 0;
+}
+
+/* 食材合計・合計（税込）は普通 */
+.cart-total-box .total-label {
+    font-weight: normal;
+    color: #333333;
+}
+
+/* 2点などの数値は濃くする */
+.cart-total-box .total-value {
+    font-weight: bold;
+    color: #222222;
+}
+
+/* 合計金額は一番目立たせる */
+.cart-total-box .total-price-value {
+    font-size: 20px;
+    font-weight: bold;
+    color: #222222;
 }
 
 .total-price-label {
@@ -248,7 +274,6 @@
         padding-top: 0;
     }
 
-
     .cart-item-subtotal {
         margin-top: 16px;
         margin-bottom: 16px;
@@ -275,6 +300,10 @@
     .total-label,
     .total-value {
         font-size: 16px;
+    }
+
+    .cart-total-box .total-price-value {
+        font-size: 18px;
     }
 
     .total-price-value {

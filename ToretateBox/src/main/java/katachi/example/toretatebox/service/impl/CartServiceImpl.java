@@ -16,12 +16,16 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CartServiceImpl implements CartService {
 
+    private static final String CART_SESSION_KEY = "cart";
+    private static final int MIN_QUANTITY = 1;
+    private static final int MAX_QUANTITY = 10;
+
     private final ProductsService productsService;
 
     @Override
     @SuppressWarnings("unchecked")
     public List<CartItem> getCart(HttpSession session) {
-        List<CartItem> cart = (List<CartItem>) session.getAttribute("cart");
+        List<CartItem> cart = (List<CartItem>) session.getAttribute(CART_SESSION_KEY);
         if (cart == null) {
             cart = new ArrayList<>();
         }
@@ -30,12 +34,7 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public void addToCart(HttpSession session, Integer productId, int quantity) {
-        if (quantity < 1) {
-            quantity = 1;
-        }
-        if (quantity > 10) {
-            quantity = 10;
-        }
+        quantity = normalizeQuantity(quantity);
 
         Product product = productsService.findById(productId);
         if (product == null) {
@@ -47,11 +46,8 @@ public class CartServiceImpl implements CartService {
         for (CartItem item : cart) {
             if (item.getProductId().equals(productId)) {
                 int newQuantity = item.getQuantity() + quantity;
-                if (newQuantity > 10) {
-                    newQuantity = 10;
-                }
-                item.setQuantity(newQuantity);
-                session.setAttribute("cart", cart);
+                item.setQuantity(normalizeQuantity(newQuantity));
+                session.setAttribute(CART_SESSION_KEY, cart);
                 return;
             }
         }
@@ -64,17 +60,12 @@ public class CartServiceImpl implements CartService {
         newItem.setImageUrl(product.getImageUrl());
 
         cart.add(newItem);
-        session.setAttribute("cart", cart);
+        session.setAttribute(CART_SESSION_KEY, cart);
     }
 
     @Override
     public void updateQuantity(HttpSession session, Integer productId, int quantity) {
-        if (quantity < 1) {
-            quantity = 1;
-        }
-        if (quantity > 10) {
-            quantity = 10;
-        }
+        quantity = normalizeQuantity(quantity);
 
         List<CartItem> cart = getCart(session);
 
@@ -85,19 +76,19 @@ public class CartServiceImpl implements CartService {
             }
         }
 
-        session.setAttribute("cart", cart);
+        session.setAttribute(CART_SESSION_KEY, cart);
     }
 
     @Override
     public void removeFromCart(HttpSession session, Integer productId) {
         List<CartItem> cart = getCart(session);
         cart.removeIf(item -> item.getProductId().equals(productId));
-        session.setAttribute("cart", cart);
+        session.setAttribute(CART_SESSION_KEY, cart);
     }
 
     @Override
     public void clearCart(HttpSession session) {
-        session.removeAttribute("cart");
+        session.removeAttribute(CART_SESSION_KEY);
     }
 
     @Override
@@ -116,5 +107,17 @@ public class CartServiceImpl implements CartService {
             totalQuantity += item.getQuantity();
         }
         return totalQuantity;
+    }
+
+    private int normalizeQuantity(int quantity) {
+        if (quantity < MIN_QUANTITY) {
+            return MIN_QUANTITY;
+        }
+
+        if (quantity > MAX_QUANTITY) {
+            return MAX_QUANTITY;
+        }
+
+        return quantity;
     }
 }

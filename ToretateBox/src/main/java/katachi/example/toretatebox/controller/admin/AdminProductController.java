@@ -61,11 +61,6 @@ public class AdminProductController {
         return new ProductForm();
     }
 
-    @GetMapping("/products_new")
-    public String showNew() {
-        return "admin/product_new";
-    }
-
     @GetMapping("/product_new")
     public String showNewAlias() {
         return "admin/product_new";

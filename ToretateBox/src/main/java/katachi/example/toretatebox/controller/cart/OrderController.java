@@ -21,6 +21,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class OrderController {
 
+    private static final int GUEST_USER_ID = 1;
+
     private final OrderService orderService;
     private final AddressService addressService;
     private final UserRepository userRepository;
@@ -94,14 +96,14 @@ public class OrderController {
 
     private Integer resolveUserId(Principal principal) {
         if (principal == null) {
-            return 1;
+            return GUEST_USER_ID;
         }
 
         String email = principal.getName();
         User user = userRepository.findByEmail(email);
 
         if (user == null) {
-            return 1;
+            return GUEST_USER_ID;
         }
 
         return user.getId();

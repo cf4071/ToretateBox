@@ -27,7 +27,6 @@
     min-height: 100%;
 }
 
-
 .info-grid {
     display: flex;
     flex-direction: column;
@@ -73,7 +72,7 @@
 }
 
 .payment-row {
-    padding: 14px 0;
+    padding: 10px 0;
     border-top: 1px solid #d0d0d0;
 }
 
@@ -82,30 +81,36 @@
 }
 
 .payment-row.single-line {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr;
     align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
+    column-gap: 16px;
+    row-gap: 12px;
 }
 
 .payment-label {
     font-size: 16px;
     color: #333333;
+    white-space: nowrap;
 }
 
 .payment-value {
     font-size: 18px;
     font-weight: bold;
     color: #222222;
+    text-align: right;
+    white-space: nowrap;
 }
 
 .total-label {
-    margin-left: auto;
+    margin-left: 0;
 }
 
 .total-value {
-    min-width: 90px;
+    min-width: auto;
     text-align: right;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .empty-text {
@@ -162,9 +167,11 @@
 
     .payment-value {
         font-size: 16px;
+        text-align: right;
     }
 
     .payment-row.single-line {
+        grid-template-columns: auto 1fr;
         gap: 8px;
     }
 
@@ -174,7 +181,8 @@
 
     .total-value {
         min-width: auto;
-        text-align: left;
+        text-align: right;
+        font-size: 18px;
     }
 
     .back-link {
