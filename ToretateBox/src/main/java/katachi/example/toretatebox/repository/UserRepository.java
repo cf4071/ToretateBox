@@ -1,5 +1,7 @@
 package katachi.example.toretatebox.repository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -19,4 +21,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
      * ・ユーザー登録時の重複チェック用
      */
     boolean existsByEmail(String email);
+    
+    Page<User> findByIdGreaterThan(Integer id, Pageable pageable);
 }

@@ -17,6 +17,12 @@
     text-align: left;
 }
 
+.no-message {
+    margin-top: 8px;
+    text-align: center;
+    color: #666666;
+    font-size: 18px;
+}
 
 @media (max-width: 575.98px) {
     .no-message {

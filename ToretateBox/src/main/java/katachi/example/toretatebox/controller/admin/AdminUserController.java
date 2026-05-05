@@ -30,6 +30,7 @@ public class AdminUserController {
 
     private final UserRepository userRepository;
     private final AddressRepository addressRepository;
+    private static final int GUEST_USER_ID = -1;
 
     @GetMapping("/users")
     public String list(
@@ -76,6 +77,10 @@ public class AdminUserController {
     public String detail(
             @PathVariable Integer id,
             Model model) {
+    	
+    	if (id <= GUEST_USER_ID) {
+    	    return "redirect:/admin/users";
+    	}
 
         Optional<User> opt = userRepository.findById(id);
         if (opt.isEmpty()) {
@@ -96,7 +101,7 @@ public class AdminUserController {
 
     private Page<User> getUserPage(int page) {
         PageRequest pageable = PageRequest.of(page, 10, Sort.by("id").ascending());
-        return userRepository.findAll(pageable);
+        return userRepository.findByIdGreaterThan(GUEST_USER_ID, pageable);
     }
 
     private String buildAddress(Address a) {
@@ -110,6 +115,10 @@ public class AdminUserController {
     @Transactional
     @PostMapping("/users/{id}/delete")
     public String deleteUser(@PathVariable Integer id) {
+    	
+    	if (id <= GUEST_USER_ID) {
+    	    return "redirect:/admin/users";
+    	}
 
         addressRepository.deleteByUserId(id);
         userRepository.deleteById(id);

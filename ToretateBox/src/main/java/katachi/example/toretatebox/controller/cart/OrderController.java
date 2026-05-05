@@ -21,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class OrderController {
 
-    private static final int GUEST_USER_ID = 1;
+    private static final int GUEST_USER_ID = -1;
 
     private final OrderService orderService;
     private final AddressService addressService;

@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.UUID;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -30,7 +31,10 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/admin")
 public class AdminProductController {
 
+    private static final int PRODUCT_PAGE_SIZE = 10;
+
     private final ProductsRepository productsRepository;
+    private final ModelMapper modelMapper;
 
     @GetMapping("/products")
     public String list(
@@ -62,7 +66,7 @@ public class AdminProductController {
     }
 
     @GetMapping("/product_new")
-    public String showNewAlias() {
+    public String showNew() {
         return "admin/product_new";
     }
 
@@ -82,12 +86,7 @@ public class AdminProductController {
             imageUrl = saveImageAndGetUrl(imageFile);
         }
 
-        Product product = new Product();
-        product.setName(form.getName());
-        product.setCategoryId(form.getCategoryId());
-        product.setSeason(form.getSeason());
-        product.setDescription(form.getDescription());
-        product.setPrice(form.getPrice());
+        Product product = modelMapper.map(form, Product.class);
         product.setImageUrl(imageUrl);
 
         productsRepository.save(product);
@@ -100,15 +99,7 @@ public class AdminProductController {
         Product product = productsRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid product id: " + id));
 
-        ProductForm form = new ProductForm();
-        form.setId(product.getId());
-        form.setName(product.getName());
-        form.setCategoryId(product.getCategoryId());
-        form.setSeason(product.getSeason());
-        form.setDescription(product.getDescription());
-        form.setPrice(product.getPrice());
-        form.setImageUrl(product.getImageUrl());
-
+        ProductForm form = modelMapper.map(product, ProductForm.class);
         model.addAttribute("productForm", form);
 
         return "admin/product_edit";
@@ -136,11 +127,7 @@ public class AdminProductController {
             }
         }
 
-        product.setName(form.getName());
-        product.setCategoryId(form.getCategoryId());
-        product.setSeason(form.getSeason());
-        product.setDescription(form.getDescription());
-        product.setPrice(form.getPrice());
+        modelMapper.map(form, product);
         product.setImageUrl(imageUrl);
 
         productsRepository.save(product);
@@ -155,8 +142,12 @@ public class AdminProductController {
     }
 
     private Page<Product> getProductPage(int page) {
-        int size = 10;
-        PageRequest pageable = PageRequest.of(page, size, Sort.by("id").descending());
+        PageRequest pageable = PageRequest.of(
+                page,
+                PRODUCT_PAGE_SIZE,
+                Sort.by("id").descending()
+        );
+
         return productsRepository.findAll(pageable);
     }
 
@@ -178,7 +169,6 @@ public class AdminProductController {
             Files.createDirectories(uploadDir);
 
             Path savePath = uploadDir.resolve(saveName).normalize();
-
             imageFile.transferTo(savePath.toFile());
 
             return "/uploads/" + saveName;
