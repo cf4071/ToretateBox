@@ -7,10 +7,10 @@ import lombok.Data;
 @Data
 public class LoginForm {
 
-    @NotBlank(message = "メールアドレスを入力してください。")
-    @Email(message = "正しい形式で入力してください。")
+    @NotBlank(message = "{error.login.email.required}")
+    @Email(message = "{error.login.email.format}")
     private String email;
 
-    @NotBlank(message = "パスワードを入力してください。")
+    @NotBlank(message = "{error.login.password.required}")
     private String password;
 }

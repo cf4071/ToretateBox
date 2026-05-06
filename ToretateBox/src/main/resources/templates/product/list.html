@@ -122,7 +122,7 @@
 
               <div th:if="${products == null or #lists.isEmpty(products)}"
                    class="no-message">
-                <p>該当する商品がありません</p>
+                <p th:text="#{message.product.empty}">該当する商品がありません</p>
               </div>
 
               <nav class="list-pagination" th:if="${totalPages != null and totalPages > 0}">

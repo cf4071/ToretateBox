@@ -23,7 +23,7 @@
                     <form th:action="@{/signup}" method="post" th:object="${signupForm}" class="signup-form">
 
                         <div class="form-group">
-                            <label class="form-label" for="name">氏名</label>
+                            <label class="form-label" for="name" th:text="#{label.name}">氏名</label>
                             <input type="text" id="name" th:field="*{name}" class="form-input">
                             <div class="form-error"
                                  th:if="${#fields.hasErrors('name')}"
@@ -31,7 +31,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label" for="nameKana">フリガナ</label>
+                            <label class="form-label" for="nameKana" th:text="#{label.nameKana}">フリガナ</label>
                             <input type="text" id="nameKana" th:field="*{nameKana}" class="form-input">
                             <div class="form-error"
                                  th:if="${#fields.hasErrors('nameKana')}"
@@ -39,7 +39,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label" for="phoneNumber">電話番号</label>
+                            <label class="form-label" for="phoneNumber" th:text="#{label.phone}">電話番号</label>
                             <input type="text" id="phoneNumber" th:field="*{phoneNumber}" class="form-input">
                             <div class="form-error"
                                  th:if="${#fields.hasErrors('phoneNumber')}"
@@ -47,7 +47,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label" for="email">メールアドレス</label>
+                            <label class="form-label" for="email" th:text="#{label.email}">メールアドレス</label>
                             <input type="email" id="email" th:field="*{email}" class="form-input">
                             <div class="form-error"
                                  th:if="${#fields.hasErrors('email')}"
@@ -55,7 +55,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label" for="password">パスワード</label>
+                            <label class="form-label" for="password" th:text="#{label.password}">パスワード</label>
                             <input type="password" id="password" th:field="*{password}" class="form-input">
                             <div class="form-error"
                                  th:if="${#fields.hasErrors('password')}"
@@ -63,7 +63,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label" for="passwordConfirm">パスワード（再確認）</label>
+                            <label class="form-label" for="passwordConfirm" th:text="#{label.passwordConfirm}">パスワード（再確認）</label>
                             <input type="password" id="passwordConfirm" th:field="*{passwordConfirm}" class="form-input">
                             <div class="form-error"
                                  th:if="${#fields.hasErrors('passwordConfirm')}"
@@ -71,7 +71,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label" for="postalCode">郵便番号</label>
+                            <label class="form-label" for="postalCode" th:text="#{label.postal}">郵便番号</label>
                             <input type="text" id="postalCode" th:field="*{postalCode}" class="form-input">
                             <div class="form-error"
                                  th:if="${#fields.hasErrors('postalCode')}"
@@ -79,7 +79,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label" for="prefecture">都道府県</label>
+                            <label class="form-label" for="prefecture" th:text="#{label.prefecture}">都道府県</label>
                             <input type="text" id="prefecture" th:field="*{prefecture}" class="form-input">
                             <div class="form-error"
                                  th:if="${#fields.hasErrors('prefecture')}"
@@ -87,7 +87,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label" for="city">市区町村</label>
+                            <label class="form-label" for="city" th:text="#{label.city}">市区町村</label>
                             <input type="text" id="city" th:field="*{city}" class="form-input">
                             <div class="form-error"
                                  th:if="${#fields.hasErrors('city')}"
@@ -95,7 +95,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label" for="addressLine1">町名・番地</label>
+                            <label class="form-label" for="addressLine1" th:text="#{label.address1}">町名・番地</label>
                             <input type="text" id="addressLine1" th:field="*{addressLine1}" class="form-input">
                             <div class="form-error"
                                  th:if="${#fields.hasErrors('addressLine1')}"
@@ -103,7 +103,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label" for="addressLine2">建物名・部屋番号（任意）</label>
+                            <label class="form-label" for="addressLine2" th:text="#{label.address2}">建物名・部屋番号（任意）</label>
                             <input type="text" id="addressLine2" th:field="*{addressLine2}" class="form-input">
                         </div>
 

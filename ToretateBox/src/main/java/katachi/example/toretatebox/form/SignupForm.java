@@ -9,46 +9,46 @@ import lombok.Data;
 @Data
 public class SignupForm {
 
-    @NotBlank(message = "氏名を入力してください")
-    @Size(max = 20, message = "氏名は20文字以内で入力してください")
+    @NotBlank(message = "{error.name.required}")
+    @Size(max = 20, message = "{error.name.size}")
     private String name;
 
-    @NotBlank(message = "フリガナを入力してください")
-    @Size(max = 20, message = "フリガナは20文字以内で入力してください")
+    @NotBlank(message = "{error.nameKana.required}")
+    @Size(max = 20, message = "{error.nameKana.size}")
     private String nameKana;
 
-    @NotBlank(message = "電話番号を入力してください")
-    @Pattern(regexp = "\\d{10,11}", message = "電話番号は数字で入力してください")
+    @NotBlank(message = "{error.phone.required}")
+    @Pattern(regexp = "\\d{10,11}", message = "{error.phone.pattern}")
     private String phoneNumber;
 
-    @Email(message = "メールアドレスの形式が正しくありません")
-    @NotBlank(message = "メールアドレスを入力してください")
-    @Size(max = 254, message = "メールアドレスは254文字以内で入力してください")
+    @Email(message ="{error.email.format}")
+    @NotBlank(message = "{error.email.required}")
+    @Size(max = 254, message = "{error.email.size}")
     private String email;
 
-    @NotBlank(message = "パスワードを入力してください")
-    @Size(min = 8, message = "パスワードは8文字以上で入力してください")
+    @NotBlank(message = "{error.password.required}")
+    @Size(min = 8, message = "{error.password.size}")
     private String password;
 
-    @NotBlank(message = "パスワード(再確認)を入力してください")
+    @NotBlank(message = "{error.passwordConfirm.required}")
     private String passwordConfirm;
 
-    @NotBlank(message = "郵便番号を入力してください")
+    @NotBlank(message = "{error.postal.required}")
     @Pattern(regexp = "^\\d{7}$|^\\d{3}-\\d{4}$",
-             message = "郵便番号は7桁またはハイフン付き8桁で入力してください")
+             message = "{error.postal.pattern}")
     private String postalCode;
 
-    @NotBlank(message = "都道府県を入力してください")
+    @NotBlank(message = "{error.prefecture.required}")
     private String prefecture;
 
-    @NotBlank(message = "市区町村を入力してください")
-    @Size(max = 20, message = "市区町村は20文字以内で入力してください")
+    @NotBlank(message = "{error.city.required}")
+    @Size(max = 20, message = "{error.city.size}")
     private String city;
 
-    @NotBlank(message = "町名・番地を入力してください")
-    @Size(max = 50, message = "町名・番地は50文字以内で入力してください")
+    @NotBlank(message = "{error.address1.required}")
+    @Size(max = 50, message = "{error.address1.size}")
     private String addressLine1;
 
-    @Size(max = 50, message = "建物名は50文字以内で入力してください")
+    @Size(max = 50, message = "{error.address2.size}")
     private String addressLine2;
 }

@@ -22,7 +22,7 @@
         </h2>
 
         <div th:if="${products == null or #lists.isEmpty(products)}" class="no-message">
-          <p>該当する商品がありません。</p>
+          <p th:text="#{message.search.empty}">該当する商品がありません。</p>
         </div>
 
         <div th:if="${products != null and !#lists.isEmpty(products)}"
