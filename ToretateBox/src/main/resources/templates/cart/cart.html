@@ -22,7 +22,7 @@
                 </div>
 
                 <div th:if="${cartItems == null or #lists.isEmpty(cartItems)}" class="cart-empty">
-                    <p class="cart-empty-text">カートに商品が入っていません。</p>
+                    <p class="cart-empty-text" th:text="#{message.cart.empty}">カートに商品がありません。</p>
                     <a th:href="@{/top}" class="common-link cart-link-back">ショッピングを続ける</a>
                 </div>
 
@@ -43,7 +43,7 @@
                                     <div class="cart-item-main">
                                         <p class="cart-item-name" th:text="${item.name}">商品名</p>
 										<p class="cart-item-price">
-										    価格（税込）：
+										    <span th:text="#{label.price}">価格（税込）</span>：
 										    <span th:text="${#numbers.formatInteger(item.price, 1, 'COMMA')}">0</span> 円
 										</p>
                                     </div>
@@ -53,7 +53,7 @@
                                         <form th:action="@{/cart/update}" method="post" class="cart-quantity-form">
 										    <input type="hidden" name="productId" th:value="${item.productId}">
 										
-										    <label class="quantity-title" th:for="'quantity-' + ${item.productId}">数量</label>
+										    <label class="quantity-title" th:for="'quantity-' + ${item.productId}" th:text="#{label.quantity}">数量</label>
 										
 										    <select th:id="'quantity-' + ${item.productId}"
 										            name="quantity"
@@ -68,7 +68,7 @@
 										</form>
 
                                         <p class="cart-item-subtotal">
-										    小計：
+										    <span th:text="#{label.subtotal}">小計</span>：
 										    <span th:text="${#numbers.formatInteger(item.subtotal, 1, 'COMMA')}">0</span> 円
 										</p>
 
@@ -85,10 +85,10 @@
                         <div class="col-12 col-lg-4">
                             <div class="cart-total-box">
                                 <div class="total-row total-summary-row">
-                                    <span class="total-label">食材合計</span>
+                                    <span class="total-label" th:text="#{label.total}">食材合計</span>
                                     <span class="total-value" th:text="${totalQuantity} + '点'">0点</span>
 
-                                    <span class="total-label total-price-label">合計（税込）</span>
+                                    <span class="total-label total-price-label" th:text="#{label.totalprice}">合計（税込）</span>
                                     <span class="total-value total-price-value">
 									    <span th:text="${#numbers.formatInteger(totalAmount, 1, 'COMMA')}">0</span> 円
 									</span>

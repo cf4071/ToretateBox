@@ -22,17 +22,17 @@
 
             <div class="info-grid" th:if="${address != null}">
               <div class="info-row">
-                <span class="label">氏名</span>
+                <span class="label" th:text="#{label.name}">氏名</span>
                 <span class="value" th:text="${address.recipient}">山田太郎</span>
               </div>
 
               <div class="info-row">
-                <span class="label">郵便番号</span>
+                <span class="label" th:text="#{label.postal}">郵便番号</span>
                 <span class="value" th:text="${address.postalCode}">123-4567</span>
               </div>
 
               <div class="info-row info-row-address">
-                <span class="label">住所</span>
+                <span class="label" th:text="#{label.address}">住所</span>
                 <span class="value">
                   <span th:text="${address.prefecture}">東京都</span>
                   <span th:text="${address.city}">墨田区</span><br>
@@ -42,7 +42,7 @@
               </div>
             </div>
 
-            <p th:if="${address == null}" class="empty-text">
+            <p th:if="${address == null}" class="empty-text" th:text="#{message.address.empty}">
               住所情報がありません。住所登録をしてください。
             </p>
           </section>
@@ -54,12 +54,12 @@
               <h3 class="card-title payment-title">お支払い金額</h3>
 
               <div class="payment-row single-line">
-                <span class="payment-label">食材合計</span>
+                <span class="payment-label" th:text="#{label.total}">食材合計</span>
                 <span class="payment-value">
                   <span th:text="${totalCount}">0</span>点
                 </span>
 
-                <span class="payment-label total-label">合計（税込）</span>
+                <span class="payment-label total-label" th:text="#{label.totalprice}">合計（税込）</span>
                 <span class="payment-value total-value">
                   <span th:text="${#numbers.formatInteger(totalAmount, 1, 'COMMA')}">0</span> 円
                 </span>
@@ -68,7 +68,7 @@
 
             <div class="checkout-card payment-summary" th:if="${cart == null or #lists.isEmpty(cart)}">
               <h3 class="card-title payment-title">お支払い金額</h3>
-              <p class="empty-text">カートに商品が入っていません。</p>
+              <p class="empty-text" th:text="#{message.cart.empty}">カートに商品がありません。</p>
             </div>
 
             <form th:action="@{/order/confirm}" method="post" class="checkout-form">

@@ -8,31 +8,33 @@ import lombok.Data;
 @Data
 public class GuestForm {
 
-    @NotBlank(message = "宛名を入力してください")
-    @Size(max = 20, message = "宛名は20文字以内で入力してください")
+    @NotBlank(message = "{error.guest.name.required}")
+    @Size(max = 20, message = "{error.guest.name.size}")
     private String name;
 
-    @NotBlank(message = "電話番号を入力してください")
-    @Size(max = 20, message = "電話番号は20文字以内で入力してください")
-    @Pattern(regexp = "^[0-9]+$", message = "電話番号は数字で入力してください")
+    @NotBlank(message = "{error.guest.phone.required}")
+    @Size(max = 20, message = "{error.guest.phone.size}")
+    @Pattern(regexp = "^[0-9]+$", message = "{error.guest.phone.pattern}")
     private String phoneNumber;
 
-    @NotBlank(message = "郵便番号を入力してください")
-    @Pattern(regexp = "^\\d{7}$|^\\d{3}-\\d{4}$", message = "郵便番号は7桁またはハイフン付き8桁で入力してください")
+    @NotBlank(message = "{error.guest.postal.required}")
+    @Pattern(
+        regexp = "^\\d{7}$|^\\d{3}-\\d{4}$",
+        message = "{error.guest.postal.pattern}"
+    )
     private String postalCode;
 
-    @NotBlank(message = "都道府県を入力してください")
-    @Size(max = 10, message = "都道府県は10文字以内で入力してください")
+    @NotBlank(message = "{error.guest.prefecture.required}")
     private String prefecture;
 
-    @NotBlank(message = "市区町村を入力してください")
-    @Size(max = 20, message = "市区町村は20文字以内で入力してください")
+    @NotBlank(message = "{error.guest.city.required}")
+    @Size(max = 20, message = "{error.guest.city.size}")
     private String city;
 
-    @NotBlank(message = "町名・番地を入力してください")
-    @Size(max = 50, message = "町名・番地は50文字以内で入力してください")
+    @NotBlank(message = "{error.guest.address1.required}")
+    @Size(max = 50, message = "{error.guest.address1.size}")
     private String addressLine1;
 
-    @Size(max = 50, message = "建物名・部屋番号は50文字以内で入力してください")
+    @Size(max = 50, message = "{error.guest.address2.size}")
     private String addressLine2;
 }
