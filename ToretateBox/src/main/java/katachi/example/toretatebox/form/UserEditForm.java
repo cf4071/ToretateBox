@@ -37,7 +37,7 @@ public class UserEditForm {
     private String prefecture;
 
     @NotBlank(message = "{error.edit.city.required}")
-    @Size(max = 20, message = "市区町村は20文字以内で入力してください")
+    @Size(max = 20, message = "{error.edit.city.size}")
     private String city;
 
     @NotBlank(message = "{error.edit.address1.required}")
