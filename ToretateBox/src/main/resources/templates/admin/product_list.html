@@ -28,13 +28,13 @@
 
         <thead>
           <tr>
-            <th class="col-id">食材ID</th>
-            <th class="col-image">食材画像</th>
-            <th class="col-name">食材名</th>
-            <th class="col-desc">食材説明</th>
-            <th class="col-price">値段</th>
-            <th class="col-date">登録日</th>
-            <th class="col-actions">操作</th>
+            <th class="col-id" th:text="#{label.admin.product.id}">食材ID</th>
+            <th class="col-image" th:text="#{label.admin.product.image}">食材画像</th>
+            <th class="col-name" th:text="#{label.admin.product.name}">食材名</th>
+            <th class="col-desc" th:text="#{label.admin.product.desc}">食材説明</th>
+            <th class="col-price" th:text="#{label.admin.product.price}">値段</th>
+            <th class="col-date" th:text="#{label.admin.product.createdAt}">登録日</th>
+            <th class="col-actions" th:text="#{label.admin.product.action}">操作</th>
           </tr>
         </thead>
 

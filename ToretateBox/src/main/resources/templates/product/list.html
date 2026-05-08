@@ -21,67 +21,67 @@
             <div class="search-box sticky-search">
               <form th:action="@{/products}" method="get" class="search-form">
 
-                <h3 class="search-title">カテゴリ</h3>
+                <h3 class="search-title" th:text="#{label.category}">カテゴリ</h3>
 
                 <div class="search-group">
                   <div class="form-check mb-2">
                     <input class="form-check-input" type="radio" name="categoryId" id="categoryAll" value=""
                            th:checked="${categoryId == null}" onchange="this.form.submit()">
-                    <label class="form-check-label" for="categoryAll">全て</label>
+                    <label class="form-check-label" for="categoryAll" th:text="#{label.allCategory}">全て</label>
                   </div>
 
                   <div class="form-check mb-2">
                     <input class="form-check-input" type="radio" name="categoryId" id="category1" value="1"
                            th:checked="${categoryId == 1}" onchange="this.form.submit()">
-                    <label class="form-check-label" for="category1">野菜</label>
+                    <label class="form-check-label" for="category1" th:text="#{label.vegetable}">野菜</label>
                   </div>
 
                   <div class="form-check mb-3">
                     <input class="form-check-input" type="radio" name="categoryId" id="category2" value="2"
                            th:checked="${categoryId == 2}" onchange="this.form.submit()">
-                    <label class="form-check-label" for="category2">果物</label>
+                    <label class="form-check-label" for="category2" th:text="#{label.fruit}">果物</label>
                   </div>
                 </div>
 
                 <a th:href="@{/top}" class="season-link d-inline-block mb-4">旬の食材一覧</a>
 
-                <h3 class="search-title">旬の季節</h3>
+                <h3 class="search-title" th:text="#{lable.season}">旬の季節</h3>
 
                 <div class="search-group">
                   <div class="form-check mb-2">
                     <input class="form-check-input" type="radio" name="season" id="seasonAll" value=""
                            th:checked="${season == null or season == ''}" onchange="this.form.submit()">
-                    <label class="form-check-label" for="seasonAll">全て</label>
+                    <label class="form-check-label" for="seasonAll" th:text="#{label.allSeason}">全て</label>
                   </div>
 
                   <div class="form-check mb-2">
                     <input class="form-check-input" type="radio" name="season" id="spring" value="春"
                            th:checked="${season == '春'}" onchange="this.form.submit()">
-                    <label class="form-check-label" for="spring">春</label>
+                    <label class="form-check-label" for="spring" th:text="#{label.spring}">春</label>
                   </div>
 
                   <div class="form-check mb-2">
                     <input class="form-check-input" type="radio" name="season" id="summer" value="夏"
                            th:checked="${season == '夏'}" onchange="this.form.submit()">
-                    <label class="form-check-label" for="summer">夏</label>
+                    <label class="form-check-label" for="summer" th:text="#{label.summer}">夏</label>
                   </div>
 
                   <div class="form-check mb-2">
                     <input class="form-check-input" type="radio" name="season" id="autumn" value="秋"
                            th:checked="${season == '秋'}" onchange="this.form.submit()">
-                    <label class="form-check-label" for="autumn">秋</label>
+                    <label class="form-check-label" for="autumn" th:text="#{label.autumn}">秋</label>
                   </div>
 
                   <div class="form-check mb-2">
                     <input class="form-check-input" type="radio" name="season" id="winter" value="冬"
                            th:checked="${season == '冬'}" onchange="this.form.submit()">
-                    <label class="form-check-label" for="winter">冬</label>
+                    <label class="form-check-label" for="winter" th:text="#{label.winter}">冬</label>
                   </div>
 
                   <div class="form-check mb-3">
                     <input class="form-check-input" type="radio" name="season" id="allseason" value="通年"
                            th:checked="${season == '通年'}" onchange="this.form.submit()">
-                    <label class="form-check-label" for="allseason">通年</label>
+                    <label class="form-check-label" for="allseason" th:text="#{label.allYear}">通年</label>
                   </div>
                 </div>
 

@@ -12,29 +12,28 @@ public class GuestForm {
     @Size(max = 20, message = "{error.guest.name.size}")
     private String name;
 
-    @NotBlank(message = "{error.guest.phone.required}")
-    @Size(max = 20, message = "{error.guest.phone.size}")
-    @Pattern(regexp = "^[0-9]+$", message = "{error.guest.phone.pattern}")
+    @NotBlank(message = "{error.phone.required}")
+    @Pattern(regexp = "^[0-9]+$", message = "{error.phone.pattern}")
     private String phoneNumber;
 
-    @NotBlank(message = "{error.guest.postal.required}")
+    @NotBlank(message = "{error.postal.required}")
     @Pattern(
         regexp = "^\\d{7}$|^\\d{3}-\\d{4}$",
-        message = "{error.guest.postal.pattern}"
+        message = "{error.postal.pattern}"
     )
     private String postalCode;
 
-    @NotBlank(message = "{error.guest.prefecture.required}")
+    @NotBlank(message = "{error.prefecture.required}")
     private String prefecture;
 
-    @NotBlank(message = "{error.guest.city.required}")
-    @Size(max = 20, message = "{error.guest.city.size}")
+    @NotBlank(message = "{error.city.required}")
+    @Size(max = 20, message = "{error.city.size}")
     private String city;
 
-    @NotBlank(message = "{error.guest.address1.required}")
-    @Size(max = 50, message = "{error.guest.address1.size}")
+    @NotBlank(message = "{error.address1.required}")
+    @Size(max = 50, message = "{error.address1.size}")
     private String addressLine1;
 
-    @Size(max = 50, message = "{error.guest.address2.size}")
+    @Size(max = 50, message = "{error.address2.size}")
     private String addressLine2;
 }

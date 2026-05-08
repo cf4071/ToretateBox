@@ -21,35 +21,35 @@
             購入履歴はまだありません。
           </p>
 
-          <section class="ph-list" th:if="${!#lists.isEmpty(orders)}">
+          <section class="ph-list" th:if="${!#lists.isEmpty(orders)}" th:text="#{message.purchaseHistory.empty}">
             <article class="ph-card" th:each="o : ${orders}">
 
               <div class="ph-card-head">
                 <div class="ph-head-col">
-                  <div class="ph-label">注文日</div>
+                  <div class="ph-label" th:text="#{label.orderDate}">注文日</div>
                   <div class="ph-value"
                        th:text="${o.createdAt != null ? #temporals.format(o.createdAt,'yyyy/MM/dd') : ''}">
                   </div>
                 </div>
 
                 <div class="ph-head-col ph-head-col-center">
-                  <div class="ph-label">合計（税込）</div>
+                  <div class="ph-label" th:text="#{label.orderTotal}">合計（税込）</div>
                   <div class="ph-value">
 					<span class="ph-money" th:text="${#numbers.formatInteger(o.totalAmount, 1, 'COMMA')}">0</span> 円
                   </div>
                 </div>
 
                 <div class="ph-head-col ph-head-col-right">
-                  <div class="ph-label">注文番号</div>
+                  <div class="ph-label" th:text="#{label.orderNumber}">注文番号</div>
                   <div class="ph-value" th:text="${o.id}">0</div>
                 </div>
               </div>
 
               <div class="ph-items" th:if="${orderItemsMap != null and orderItemsMap[o.id] != null}">
                 <div class="ph-item-row ph-item-head">
-                  <div class="ph-item-name">購入食材</div>
-                  <div class="ph-item-qty">数量</div>
-                  <div class="ph-item-sub">小計</div>
+                  <div class="ph-item-name" th:text="#{label.purchasedProduct}">購入食材</div>
+                  <div class="ph-item-qty" th:text="#{label.quantity}">数量</div>
+                  <div class="ph-item-sub" th:text="#{label.subtotal}">小計</div>
                 </div>
 
                 <div class="ph-item-row" th:each="it : ${orderItemsMap[o.id]}">
