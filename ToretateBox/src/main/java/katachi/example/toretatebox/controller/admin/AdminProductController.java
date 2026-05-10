@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import katachi.example.toretatebox.domain.model.Product;
-import katachi.example.toretatebox.domain.model.ProductForm;
+import katachi.example.toretatebox.form.ProductForm;
 import katachi.example.toretatebox.repository.ProductsRepository;
 import lombok.RequiredArgsConstructor;
 

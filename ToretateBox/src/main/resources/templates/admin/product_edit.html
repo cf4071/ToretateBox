@@ -26,7 +26,7 @@
 
       <!-- 食材名 -->
       <div class="admin-form-row row g-0 row-orange">
-		<div class="col-md-3 admin-label-cell">食材名</div>
+		<div class="col-md-3 admin-label-cell" th:text="#{label.admin.product.name}">食材名</div>
 		<div class="col-md-9 admin-input-cell">
 		  <input type="text" th:field="*{name}" class="form-input">
 		  <p class="form-error"
@@ -37,7 +37,7 @@
 
       <!-- カテゴリ -->
 	  <div class="admin-form-row row g-0 row-white">
-		  <div class="col-md-3 admin-label-cell">カテゴリ</div>
+		  <div class="col-md-3 admin-label-cell" th:text="#{label.admin.product.category}">カテゴリ</div>
 		  <div class="col-md-9 admin-input-cell">
 		    <select th:field="*{categoryId}" class="form-input">
 		      <option value="">選択してください</option>
@@ -52,7 +52,7 @@
 
       <!-- 旬の季節 -->
       <div class="admin-form-row row g-0 row-orange">
-		  <div class="col-md-3 admin-label-cell">旬の季節</div>
+		  <div class="col-md-3 admin-label-cell" th:text="#{label.admin.product.season}">旬の季節</div>
 		  <div class="col-md-9 admin-input-cell">
 		    <select th:field="*{season}" class="form-input">
 		      <option value="">選択してください</option>
@@ -69,7 +69,7 @@
 	  </div>
       <!-- 食材説明 -->
       <div class="admin-form-row row g-0 row-white">
-        <div class="col-md-3 admin-label-cell">食材説明</div>
+        <div class="col-md-3 admin-label-cell" th:text="#{label.admin.product.desc}">食材説明</div>
         <div class="col-md-9 admin-input-cell admin-textarea-cell">
           <textarea th:field="*{description}" rows="4" class="form-textarea"></textarea>
           <p class="form-error mt-2"
@@ -78,9 +78,9 @@
         </div>
       </div>
 
-      <!-- 値段 -->
+      <!-- 価格 -->
 	  <div class="admin-form-row row g-0 row-orange">
-		  <div class="col-md-3 admin-label-cell">値段</div>
+		  <div class="col-md-3 admin-label-cell" th:text="#{label.admin.product.price}">価格</div>
 		  <div class="col-md-9 admin-input-cell">
 		    <div class="price-input-wrap">
 		      <input type="number" th:field="*{price}" class="form-input">
@@ -93,7 +93,7 @@
 	  </div>
       <!-- 画像 -->
       <div class="admin-form-row row g-0 row-white">
-        <div class="col-md-3 admin-label-cell">画像</div>
+        <div class="col-md-3 admin-label-cell" th:text="#{label.admin.product.image}">画像</div>
         <div class="col-md-9 admin-input-cell admin-textarea-cell">
 
 		<div class="mb-3">
