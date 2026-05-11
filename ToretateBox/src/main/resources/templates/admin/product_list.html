@@ -14,7 +14,7 @@
 
   <main th:fragment="content" class="container py-5 admin-wrapper">
 
-    <h2 class="page-title">食材管理</h2>
+    <h2 class="page-title" th:text="#{page.admin.productList.title}">食材管理</h2>
 
     <div class="alert alert-light text-center border"
          th:if="${products == null or #lists.isEmpty(products)}">
@@ -67,7 +67,7 @@
 
             <td class="admin-actions">
               <a class="common-btn btn-blue"
-                 th:href="@{/admin/product_edit/{id}(id=${p.id})}">
+                 th:href="@{/admin/product_edit/{id}(id=${p.id})}" th:text="#{button.prduct.edit}">
                 編集
               </a>
             </td>

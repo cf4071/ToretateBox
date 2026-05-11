@@ -23,7 +23,8 @@
     font-size: 15px;
     border: 1px solid #cfd8b6;
     padding: 14px 10px;
-    white-space: nowrap;
+    white-space: normal;
+    word-break: break-word;
 }
 
 .orders-table tbody td {

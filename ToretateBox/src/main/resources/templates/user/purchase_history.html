@@ -17,7 +17,7 @@
         <div class="purchase-history-box">
           <h2 class="page-title">購入履歴</h2>
 
-          <p class="ph-empty" th:if="${#lists.isEmpty(orders)}">
+          <p class="ph-empty" th:if="${#lists.isEmpty(orders)}" th:text="#{message.purchaseHistory.empty}">
             購入履歴はまだありません。
           </p>
 
@@ -97,7 +97,7 @@
           </nav>
 
           <div class="btn-group">
-            <a class="common-btn btn-blue" th:href="@{/top}">戻る</a>
+            <a class="common-btn btn-blue" th:href="@{/top}" th:text="#{button.purchaseHistory.back}">戻る</a>
           </div>
         </div>
 

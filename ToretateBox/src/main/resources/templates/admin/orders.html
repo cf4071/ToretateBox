@@ -18,12 +18,12 @@
         <table class="table orders-table align-middle text-center mb-0">
           <thead>
             <tr>
-              <th>注文ID</th>
-              <th>注文者名</th>
-              <th>メール</th>
-              <th>注文日時</th>
-              <th>合計金額</th>
-              <th>詳細</th>
+              <th th:text="#{label.admin.order.id}">注文ID</th>
+              <th th:text="#{label.admin.order.customerName}">注文者名</th>
+              <th th:text="#{label.admin.order.email}">メール</th>
+              <th th:text="#{label.admin.order.createdAt}">注文日時</th>
+              <th th:text="#{label.admin.order.totalAmount}">合計金額</th>
+              <th th:text="#{label.admin.order.action}">操作</th>
             </tr>
           </thead>
 
@@ -44,7 +44,7 @@
             </tr>
 
             <tr th:if="${#lists.isEmpty(orders)}">
-              <td colspan="6" class="empty-row">注文データがありません</td>
+              <td colspan="6" class="empty-row" th:text="#{message.admin.order.empty">注文データがありません</td>
             </tr>
           </tbody>
         </table>

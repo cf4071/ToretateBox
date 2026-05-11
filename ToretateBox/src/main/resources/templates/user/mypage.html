@@ -14,7 +14,7 @@
       <div class="page-container">
 
         <div class="mypage-box">
-          <h2 class="page-title">ユーザー情報</h2>
+          <h2 class="page-title" th:text="#{page.mypage.title}">ユーザー情報</h2>
 
           <div class="user-info-table">
 
@@ -71,8 +71,8 @@
           </div>
 
           <div class="btn-group">
-            <a class="common-btn btn-red" th:href="@{/edit}">編集</a>
-            <a class="common-btn btn-blue" th:href="@{/top}">戻る</a>
+            <a class="common-btn btn-red" th:href="@{/edit}" th:text="#{button.mypage.edit}">編集</a>
+            <a class="common-btn btn-blue" th:href="@{/top}" th:text="#{button.mypage.back}">戻る</a>
           </div>
 
         </div>

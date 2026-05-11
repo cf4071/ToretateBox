@@ -43,7 +43,7 @@
                   </div>
                 </div>
 
-                <a th:href="@{/top}" class="season-link d-inline-block mb-4">旬の食材一覧</a>
+                <a th:href="@{/top}" class="season-link d-inline-block mb-4" th:text="#{link.season.products}">旬の食材一覧</a>
 
                 <h3 class="search-title" th:text="#{lable.season}">旬の季節</h3>
 
@@ -92,7 +92,7 @@
           <section class="col-lg-10 col-md-9 product-area">
             <div class="list-content">
 
-              <h2 class="page-title">食材一覧</h2>
+              <h2 class="page-title" th:text="#{page.product.list.title}">食材一覧</h2>
 
               <div th:if="${products != null and !#lists.isEmpty(products)}"
                    class="row gx-4 gy-5 justify-content-center product-list-row">

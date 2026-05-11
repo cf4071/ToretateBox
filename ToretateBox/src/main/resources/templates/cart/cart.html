@@ -13,7 +13,7 @@
         <section class="page-section cart-page">
             <div class="page-container">
 
-                <h2 class="page-title">ショッピングカート</h2>
+                <h2 class="page-title" th:text="#{page.cart.title}">ショッピングカート</h2>
 
                 <div th:if="${errorMessage}"
                      class="common-alert"
@@ -23,7 +23,7 @@
 
                 <div th:if="${cartItems == null or #lists.isEmpty(cartItems)}" class="cart-empty">
                     <p class="cart-empty-text" th:text="#{message.cart.empty}">カートに商品がありません。</p>
-                    <a th:href="@{/top}" class="common-link cart-link-back">ショッピングを続ける</a>
+                    <a th:href="@{/top}" class="common-link cart-link-back" th:text="#{link.continuShopping}">ショッピングを続ける</a>
                 </div>
 
                 <div th:if="${cartItems != null and !#lists.isEmpty(cartItems)}">
@@ -74,7 +74,7 @@
 
                                         <form th:action="@{/cart/remove}" method="post" class="cart-remove-form">
                                             <input type="hidden" name="productId" th:value="${item.productId}">
-                                            <button type="submit" class="common-btn btn-red">削除</button>
+                                            <button type="submit" class="common-btn btn-red" th:text="#{button.cart.delete}">削除</button>
                                         </form>
                                     </div>
                                 </div>
@@ -97,15 +97,15 @@
 
                             <div class="cart-actions">
 
-								<a th:if="${isLoggedIn}" th:href="@{/checkout}" class="common-btn btn-yellow">
+								<a th:if="${isLoggedIn}" th:href="@{/checkout}" class="common-btn btn-yellow" th:text="#{button.cart.chekout}">
 								    レジへ進む
 								</a>
 
-                                <a th:if="${!isLoggedIn}" th:href="@{/guest}" class="common-btn btn-blue">
+                                <a th:if="${!isLoggedIn}" th:href="@{/guest}" class="common-btn btn-blue" th:text="#{button.guest}">
 								    ゲスト情報登録へ
 								</a>
 
-                                <a th:href="@{/top}" class="common-link cart-link-back">
+                                <a th:href="@{/top}" class="common-link cart-link-back" th:text="#{link.continuShopping}">
                                     ショッピングを続ける
                                 </a>
 

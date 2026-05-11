@@ -22,7 +22,9 @@
     font-size: 14px;
     border: 1px solid #d4ddbd;
     padding: 14px 10px;
-    white-space: nowrap;
+
+    white-space: normal;
+    word-break: break-word;
 }
 
 .users-table tbody td {
@@ -41,6 +43,7 @@
 .users-table tbody tr:nth-child(even) td {
     background-color: #eef4df;
 }
+
 
 .empty-row {
     text-align: center;

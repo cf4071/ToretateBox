@@ -16,7 +16,7 @@
     <section class="page-section detail-page">
       <div class="page-container">
 
-        <h2 class="page-title">食材詳細</h2>
+        <h2 class="page-title" th:text="#{page.product.detail.title}">食材詳細</h2>
 
         <div class="row g-5 align-items-start mb-5">
 
@@ -91,8 +91,8 @@
             </div>
 
             <div class="detail-buttons">
-              <button type="submit" class="common-btn btn-yellow">カートへ</button>
-              <a th:href="@{/products}" class="common-btn btn-blue">戻る</a>
+              <button type="submit" class="common-btn btn-yellow" th:text="#{button.cart.add}">カートへ</button>
+              <a th:href="@{/products}" class="common-btn btn-blue" th:text="#{button.list.back}">戻る</a>
             </div>
 
           </div>

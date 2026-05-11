@@ -15,7 +15,7 @@
     <section class="page-section top-page">
       <div class="page-container">
 
-        <h2 class="page-title">今が旬</h2>
+        <h2 class="page-title" th:text="#{page.top.title}">今が旬</h2>
 
         <div th:if="${products != null and !#lists.isEmpty(products)}"
              class="row gx-4 gy-5 justify-content-center">

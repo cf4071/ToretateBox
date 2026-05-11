@@ -14,7 +14,7 @@
             <div class="page-container">
                 <div class="guest-box">
 
-                    <h2 class="page-title">ゲスト情報登録</h2>
+                    <h2 class="page-title" th:text="#{page.guest.title}">ゲスト情報登録</h2>
 
                     <div th:if="${errorMessage}" class="common-alert guest-alert">
                         <p th:text="${errorMessage}">エラーメッセージ</p>
@@ -79,8 +79,8 @@
                         </div>
 
                         <div class="btn-group">
-                            <button type="submit" class="common-btn btn-yellow">レジへ進む</button>
-                            <a th:href="@{/cart}" class="common-btn btn-blue">戻る</a>
+                            <button type="submit" class="common-btn btn-yellow" th:text="#{button.guest.checkout}">レジへ進む</button>
+                            <a th:href="@{/cart}" class="common-btn btn-blue" th:text="#{button.guest.back}">戻る</a>
                         </div>
 
                     </form>

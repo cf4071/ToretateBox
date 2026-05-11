@@ -51,7 +51,7 @@
           <section class="checkout-side">
 
             <div class="checkout-card payment-summary" th:if="${cart != null and !#lists.isEmpty(cart)}">
-              <h3 class="card-title payment-title">お支払い金額</h3>
+              <h3 class="card-title payment-title" th:text="#{label.paymentTitle}">お支払い金額</h3>
 
               <div class="payment-row single-line">
                 <span class="payment-label" th:text="#{label.total}">食材合計</span>
@@ -67,18 +67,18 @@
             </div>
 
             <div class="checkout-card payment-summary" th:if="${cart == null or #lists.isEmpty(cart)}">
-              <h3 class="card-title payment-title">お支払い金額</h3>
+              <h3 class="card-title payment-title" th:text="#{label.payment.amount}">お支払い金額</h3>
               <p class="empty-text" th:text="#{message.cart.empty}">カートに商品がありません。</p>
             </div>
 
             <form th:action="@{/order/confirm}" method="post" class="checkout-form">
-              <button type="submit" class="common-btn btn-yellow">
+              <button type="submit" class="common-btn btn-yellow" th:text="#{button.payment.amount}">
                 ご注文を確定する
               </button>
             </form>
 
             <div class="back-link-area">
-              <a th:href="@{/cart}" class="common-link back-link">ショッピングカートに戻る</a>
+              <a th:href="@{/cart}" class="common-link back-link" th:text="#{link.cart.back}">ショッピングカートに戻る</a>
             </div>
 
           </section>

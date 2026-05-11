@@ -17,12 +17,12 @@
   <main th:fragment="content"
         class="complete-wrapper container d-flex flex-column justify-content-center align-items-center text-center">
 
-    <h2 class="complete-title">ご注文ありがとうございました</h2>
+    <h2 class="complete-title" th:text="#{message.order.complete}">ご注文ありがとうございました</h2>
 
     <p class="complete-text">
       お客様の注文番号は
       「<strong th:text="${orderId}">000</strong>」
-      です
+      番です
     </p>
 
     <div class="mt-4">

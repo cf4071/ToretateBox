@@ -21,53 +21,53 @@
         <table class="table detail-table mb-0">
           <tbody>
             <tr>
-              <th>メールアドレス(ID)</th>
+              <th th:text="#{label.admin.user.emailId}">メールアドレス(ID)</th>
               <td th:text="${user.email}"></td>
             </tr>
 
             <tr>
-              <th>ユーザー名</th>
+              <th th:text="#{label.admin.user.name}">ユーザー名</th>
               <td th:text="${user.name}"></td>
             </tr>
 
             <tr>
-              <th>フリガナ</th>
+              <th th:text="#{label.admin.user.nameKana}">フリガナ</th>
               <td th:text="${user.nameKana}"></td>
             </tr>
 
             <tr>
-              <th>電話番号</th>
+              <th th:text="#{label.admin.user.phone}">電話番号</th>
               <td th:text="${user.phoneNumber}"></td>
             </tr>
 
             <tr>
-              <th>郵便番号</th>
+              <th th:text="#{label.admin.user.postal}">郵便番号</th>
               <td th:text="${postalCode}"></td>
             </tr>
 
             <tr>
-              <th>都道府県</th>
+              <th th:text="#{label.admin.user.prefecture}">都道府県</th>
               <td th:text="${addr != null ? addr.prefecture : 'なし'}"></td>
             </tr>
 
             <tr>
-              <th>市区町村</th>
+              <th th:text="#{label.admin.user.city}">市区町村</th>
               <td th:text="${addr != null ? addr.city : 'なし'}"></td>
             </tr>
 
             <tr>
-              <th>町名・番地</th>
+              <th th:text="#{label.admin.user.address1}">町名・番地</th>
               <td th:text="${addr != null ? addr.addressLine1 : 'なし'}"></td>
             </tr>
 
             <tr>
-              <th>建物名・部屋番号</th>
+              <th th:text="#{label.admin.user.address2}">建物名・部屋番号</th>
               <td th:text="${addr != null && addr.addressLine2 != null && !addr.addressLine2.isEmpty() 
                              ? addr.addressLine2 : 'なし'}"></td>
             </tr>
 
             <tr>
-              <th>登録日</th>
+              <th th:text="#{label.admin.user.createdAt}">登録日</th>
               <td th:text="${#temporals.format(user.createdAt, 'yyyy/MM/dd')}"></td>
             </tr>
           </tbody>
@@ -79,7 +79,7 @@
 
       <form th:action="@{/admin/users/{id}/delete(id=${user.id})}"
             method="post"
-            onsubmit="return confirm('本当に削除しますか？');"
+            th:onsubmit="|return confirm('${#messages.msg('message.confirm.delete')}');|"
             class="m-0">
 
         <input type="hidden"
