@@ -13,7 +13,7 @@
 
   <main class="container py-5 admin-wrapper">
 
-    <h2 class="page-title">食材登録</h2>
+    <h2 class="page-title" th:text="#{page.admin.productNew.title}">食材登録</h2>
 
     <form th:action="@{/admin/products/new}"
           th:object="${productForm}"
@@ -42,9 +42,9 @@
 		  <div class="col-md-3 admin-label-cell" th:text="#{label.admin.product.category}">カテゴリ</div>
 		  <div class="col-md-9 admin-input-cell">
 		    <select th:field="*{categoryId}" class="form-input">
-		      <option value="">選択してください</option>
-		      <option value="1">野菜</option>
-		      <option value="2">果物</option>
+		      <option value="" th:text="#{option.category.select}">選択してください</option>
+		      <option value="1" th:text="#{option.category.vegetable}">野菜</option>
+		      <option value="2" th:text="#{option.category.fruit}">果物</option>
 		    </select>
 		    <p class="form-error"
 		       th:if="${#fields.hasErrors('categoryId')}"
@@ -57,12 +57,12 @@
 		  <div class="col-md-3 admin-label-cell" th:text="#{label.admin.product.season}">旬の季節</div>
 		  <div class="col-md-9 admin-input-cell">
 		    <select th:field="*{season}" class="form-input">
-		      <option value="">選択してください</option>
-		      <option value="春">春</option>
-		      <option value="夏">夏</option>
-		      <option value="秋">秋</option>
-		      <option value="冬">冬</option>
-		      <option value="通年">通年</option>
+		      <option value="" th:text="#{option.season.select}">選択してください</option>
+		      <option value="春" th:text="#{option.season.spring}">春</option>
+		      <option value="夏" th:text="#{option.season.summer}">夏</option>
+		      <option value="秋" th:text="#{option.season.autumn}">秋</option>
+		      <option value="冬" th:text="#{option.season.winter}">冬</option>
+		      <option value="通年" th:text="#{option.season.allYear}">通年</option>
 		    </select>
 		    <p class="form-error"
 		       th:if="${#fields.hasErrors('season')}"
@@ -112,8 +112,8 @@
       </div>
 
       <div class="btn-group admin-btn-group">
-        <button type="submit" class="common-btn btn-red">登録</button>
-        <a th:href="@{/admin/products}" class="common-btn btn-blue">もどる</a>
+        <button type="submit" class="common-btn btn-red" th:text="#{button.admin.product.register}">登録</button>
+        <a th:href="@{/admin/products}" class="common-btn btn-blue" th:text="#{button.admin.product.back}">戻る</a>
       </div>
 
     </form>

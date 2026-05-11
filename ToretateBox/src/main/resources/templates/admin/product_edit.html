@@ -13,7 +13,7 @@
 
   <main class="container py-5 admin-wrapper">
 
-    <h2 class="page-title">食材編集</h2>
+    <h2 class="page-title" th:text="#{page.productEdit.title}">食材編集</h2>
 
     <form th:action="@{/admin/product_update}"
           th:object="${productForm}"
