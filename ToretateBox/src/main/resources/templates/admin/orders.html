@@ -11,7 +11,7 @@
 
   <main th:fragment="content" class="container py-5">
 
-    <h2 class="page-title">注文管理</h2>
+    <h2 class="page-title" th:text="#{page.admin.orderList.title}">注文管理</h2>
 
     <div class="orders-card mx-auto">
       <div class="table-responsive">
@@ -37,7 +37,7 @@
 				  <span th:text="${#numbers.formatInteger(order.totalAmount, 1, 'COMMA')}">0</span> 円
 			  </td>
               <td>
-                <a th:href="@{'/admin/orders/' + ${order.id}}" class="common-btn btn-blue">
+                <a th:href="@{'/admin/orders/' + ${order.id}}" class="common-btn btn-blue" th:text="#{button.admin.order.detail}">
                   詳細
                 </a>
               </td>
@@ -86,7 +86,7 @@
     </nav>
 
     <div class="orders-back">
-      <a th:href="@{/admin/products}" class="common-btn btn-blue">
+      <a th:href="@{/admin/products}" class="common-btn btn-blue" th:text="#{button.admin.orderList.back}">
         戻る
       </a>
     </div>

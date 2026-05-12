@@ -11,7 +11,7 @@
 
   <main th:fragment="content" class="container py-5">
 
-    <h2 class="page-title">ユーザー管理</h2>
+    <h2 class="page-title" th:text="#{page.admin.userList.title}">ユーザー管理</h2>
 
     <div class="users-table-wrap mx-auto">
       <div class="table-responsive">
@@ -40,7 +40,7 @@
               <td th:text="${#temporals.format(row.createdAt, 'yyyy/MM/dd')}"></td>
               <td>
                 <a th:href="@{/admin/users/{id}(id=${row.id})}"
-                   class="common-btn btn-blue">
+                   class="common-btn btn-blue" th:text="#{button.admin.user.detail}">
                   詳細
                 </a>
               </td>
@@ -94,7 +94,7 @@
 	</nav>
 
     <div class="users-back">
-      <a th:href="@{/admin/products}" class="common-btn btn-blue">
+      <a th:href="@{/admin/products}" class="common-btn btn-blue" th:text="#{button.admin.userList.back}">
         戻る
       </a>
     </div>

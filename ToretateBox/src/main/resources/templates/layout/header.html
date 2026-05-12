@@ -18,7 +18,8 @@
       <!-- ロゴ -->
       <div class="col-12 col-lg-auto">
         <a th:href="@{/top}"
-           class="logo-text text-decoration-none d-inline-block px-4 py-2 rounded-3 border">
+           class="logo-text text-decoration-none d-inline-block px-4 py-2 rounded-3 border"
+           th:text="#{header.logo}">
           とれたてBOX
         </a>
       </div>
@@ -30,10 +31,10 @@
           <!-- 管理者 -->
           <nav sec:authorize="hasRole('ADMIN')">
             <ul class="list-unstyled d-flex flex-wrap align-items-center justify-content-lg-end justify-content-start gap-4 mb-0 header-menu-list">
-              <li><a th:href="@{/admin/products}" class="menu-link text-decoration-none">食材管理</a></li>
-              <li><a th:href="@{/admin/product_new}" class="menu-link text-decoration-none">食材登録</a></li>
-              <li><a th:href="@{/admin/orders}" class="menu-link text-decoration-none">注文管理</a></li>
-              <li><a th:href="@{/admin/users}" class="menu-link text-decoration-none">顧客管理</a></li>
+              <li><a th:href="@{/admin/products}" class="menu-link text-decoration-none" th:text="#{header.menu.admin.products}">食材管理</a></li>
+              <li><a th:href="@{/admin/product_new}" class="menu-link text-decoration-none" th:text="#{header.menu.admin.productNew}">食材登録</a></li>
+              <li><a th:href="@{/admin/orders}" class="menu-link text-decoration-none" th:text="#{header.menu.admin.orders}">注文管理</a></li>
+              <li><a th:href="@{/admin/users}" class="menu-link text-decoration-none" th:text="#{header.menu.admin.users}">顧客管理</a></li>
               <li>
                 <form th:action="@{/logout}" method="post" class="mb-0">
                   <button type="submit" class="menu-link btn btn-link p-0 text-decoration-none header-link-button">
@@ -47,8 +48,8 @@
           <!-- 一般ユーザー -->
           <nav sec:authorize="isAuthenticated() and !hasRole('ADMIN')">
             <ul class="list-unstyled d-flex flex-wrap align-items-center justify-content-lg-end justify-content-start gap-4 mb-0 header-menu-list">
-              <li><a th:href="@{/products}" class="menu-link text-decoration-none">食材一覧</a></li>
-              <li><a th:href="@{/cart}" class="menu-link text-decoration-none">カート</a></li>
+              <li><a th:href="@{/products}" class="menu-link text-decoration-none" th:text="#{header.menu.productList}">食材一覧</a></li>
+              <li><a th:href="@{/cart}" class="menu-link text-decoration-none" th:text="#{header.menu.cart}">カート</a></li>
               <li>
                 <div class="dropdown">
                   <button class="btn p-0 border-0 bg-transparent shadow-none hamburger-btn"
@@ -66,12 +67,12 @@
 
                   <ul class="dropdown-menu dropdown-menu-end mypage-dropdown"
                       aria-labelledby="mypageMenuButton">
-                    <li><a class="dropdown-item" th:href="@{/mypage}">ユーザー情報確認</a></li>
-                    <li><a class="dropdown-item" th:href="@{/edit}">ユーザー情報編集</a></li>
-                    <li><a class="dropdown-item" th:href="@{/purchase_history}">購入履歴</a></li>
+                    <li><a class="dropdown-item" th:href="@{/mypage}" th:text="#{header.menu.mypage}">ユーザー情報確認</a></li>
+                    <li><a class="dropdown-item" th:href="@{/edit}" th:text="#{header.menu.mypageEdit}">ユーザー情報編集</a></li>
+                    <li><a class="dropdown-item" th:href="@{/purchase_history}" th:text="#{header.menu.history}">購入履歴</a></li>
                     <li>
                       <form th:action="@{/logout}" method="post" class="mb-0">
-                        <button type="submit" class="dropdown-item">ログアウト</button>
+                        <button type="submit" class="dropdown-item" th:text="#{header.menu.logout}">ログアウト</button>
                       </form>
                     </li>
                   </ul>
@@ -83,9 +84,9 @@
           <!-- 未ログイン -->
           <nav sec:authorize="isAnonymous()">
             <ul class="list-unstyled d-flex flex-wrap align-items-center justify-content-lg-end justify-content-start gap-4 mb-0 header-menu-list">
-              <li><a th:href="@{/products}" class="menu-link text-decoration-none">食材一覧</a></li>
-              <li><a th:href="@{/signup}" class="menu-link text-decoration-none">ユーザー登録</a></li>
-              <li><a th:href="@{/login}" class="menu-link text-decoration-none">ログイン</a></li>
+              <li><a th:href="@{/products}" class="menu-link text-decoration-none" th:text="#{header.menu.productList}">食材一覧</a></li>
+              <li><a th:href="@{/signup}" class="menu-link text-decoration-none" th:text="#{header.menu.signup}">ユーザー登録</a></li>
+              <li><a th:href="@{/login}" class="menu-link text-decoration-none" th:text="#{header.menu.login}">ログイン</a></li>
             </ul>
           </nav>
 
@@ -103,7 +104,7 @@
                  placeholder="フリーワード検索">
         </div>
         <div class="col-12 col-md-auto">
-          <button type="submit" class="common-btn btn-blue w-100 search-submit-btn">
+          <button type="submit" class="common-btn btn-blue w-100 search-submit-btn" th:text="#{button.search}">
             検索
           </button>
         </div>

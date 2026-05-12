@@ -42,7 +42,7 @@
               </div>
             </div>
 
-            <p th:if="${address == null}" class="empty-text" th:text="#{message.address.empty}">
+            <p th:if="${address == null}" class="empty-text" th:text="#{message.checkout.address.empty}">
               住所情報がありません。住所登録をしてください。
             </p>
           </section>
@@ -68,7 +68,7 @@
 
             <div class="checkout-card payment-summary" th:if="${cart == null or #lists.isEmpty(cart)}">
               <h3 class="card-title payment-title" th:text="#{label.payment.amount}">お支払い金額</h3>
-              <p class="empty-text" th:text="#{message.cart.empty}">カートに商品がありません。</p>
+              <p class="empty-text" th:text="#{message.checkout.cart.empty}">カートに商品がありません。</p>
             </div>
 
             <form th:action="@{/order/confirm}" method="post" class="checkout-form">

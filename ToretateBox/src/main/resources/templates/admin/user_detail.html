@@ -13,7 +13,7 @@
 
   <main th:fragment="content" class="container py-5">
 
-    <h2 class="page-title">ユーザー詳細</h2>
+    <h2 class="page-title" th:text="#{page.admin.userDetail.title}">ユーザー詳細</h2>
 
     <div class="detail-wrap mx-auto">
 
@@ -79,17 +79,17 @@
 
       <form th:action="@{/admin/users/{id}/delete(id=${user.id})}"
             method="post"
-            th:onsubmit="|return confirm('${#messages.msg('message.confirm.delete')}');|"
+            onsubmit="return confirm('本当に削除しますか？');"
             class="m-0">
 
         <input type="hidden"
                th:name="${_csrf?.parameterName}"
                th:value="${_csrf?.token}" />
 
-        <button type="submit" class="common-btn btn-red">削除</button>
+        <button type="submit" class="common-btn btn-red" th:text="#{button.admin.userDetail.delete}">削除</button>
       </form>
 
-      <a th:href="@{/admin/users}" class="common-btn btn-blue">戻る</a>
+      <a th:href="@{/admin/users}" class="common-btn btn-blue" th:text="#{button.admin.userDetail.back}">戻る</a>
 
     </div>
 

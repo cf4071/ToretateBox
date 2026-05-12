@@ -79,7 +79,7 @@
 					</td>                  
 				  </tr>
                   <tr th:if="${#lists.isEmpty(order.items)}">
-                    <td colspan="3" class="empty-row">明細がありません</td>
+                    <td colspan="3" class="empty-row" th:text="#{message.admin.orderItem.empty}">明細がありません</td>
                   </tr>
                 </tbody>
               </table>
@@ -98,7 +98,7 @@
       </section>
 
       <div class="detail-back">
-        <a th:href="@{/admin/orders}" class="common-btn btn-blue">戻る</a>
+        <a th:href="@{/admin/orders}" class="common-btn btn-blue" th:text="#{button.admin.orderDetail.back}">戻る</a>
       </div>
 
     </div>
