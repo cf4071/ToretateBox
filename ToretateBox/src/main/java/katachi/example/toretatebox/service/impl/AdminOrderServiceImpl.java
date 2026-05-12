@@ -25,6 +25,8 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class AdminOrderServiceImpl implements AdminOrderService {
+	
+	private static final int GUEST_USER_ID = -1;
 
     private final OrderRepository orderRepository;
     private final UserRepository userRepository;
@@ -72,12 +74,14 @@ public class AdminOrderServiceImpl implements AdminOrderService {
         dto.setCreatedAt(order.getCreatedAt());
         dto.setTotalAmount(order.getTotalAmount());
 
+        boolean isGuestOrder = order.getUserId() != null && order.getUserId() == GUEST_USER_ID;
+
         dto.setCustomerName(address.getRecipient());
 
-        if (user != null) {
-            dto.setEmail(user.getEmail());
-        } else {
+        if (isGuestOrder) {
             dto.setEmail("");
+        } else {
+            dto.setEmail(user != null ? user.getEmail() : "");
         }
 
         dto.setPhone(address.getPhoneNumber());
