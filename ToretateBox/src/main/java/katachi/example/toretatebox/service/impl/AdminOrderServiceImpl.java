@@ -26,6 +26,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AdminOrderServiceImpl implements AdminOrderService {
 	
+	// ゲスト購入用の固定ユーザーID
 	private static final int GUEST_USER_ID = -1;
 
     private final OrderRepository orderRepository;

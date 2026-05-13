@@ -1,6 +1,6 @@
 package katachi.example.toretatebox.controller.auth;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,12 +13,14 @@ import katachi.example.toretatebox.domain.model.Address;
 import katachi.example.toretatebox.domain.model.User;
 import katachi.example.toretatebox.form.SignupForm;
 import katachi.example.toretatebox.service.UserService;
+import lombok.RequiredArgsConstructor;
 
 @Controller
+@RequiredArgsConstructor
 public class SignupController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+    private final ModelMapper modelMapper;
 
     @GetMapping("/signup")
     public String showSignupForm(Model model) {
@@ -46,21 +48,10 @@ public class SignupController {
         }
 
         try {
-            User user = new User();
-            user.setName(form.getName());
-            user.setNameKana(form.getNameKana());
-            user.setPhoneNumber(form.getPhoneNumber());
-            user.setEmail(form.getEmail());
-            user.setPassword(form.getPassword());
+            User user = modelMapper.map(form, User.class);
 
-            Address address = new Address();
+            Address address = modelMapper.map(form, Address.class);
             address.setRecipient(form.getName());
-            address.setPhoneNumber(form.getPhoneNumber());
-            address.setPostalCode(form.getPostalCode());
-            address.setPrefecture(form.getPrefecture());
-            address.setCity(form.getCity());
-            address.setAddressLine1(form.getAddressLine1());
-            address.setAddressLine2(form.getAddressLine2());
 
             userService.registerWithAddress(user, address);
 

@@ -2,6 +2,7 @@ package katachi.example.toretatebox.controller.cart;
 
 import java.security.Principal;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,8 +24,12 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class GuestController {
 
+    // ゲスト購入用の固定ユーザーID
+    private static final int GUEST_USER_ID = -1;
+
     private final AddressService addressService;
     private final UserRepository userRepository;
+    private final ModelMapper modelMapper;
 
     @GetMapping("/guest")
     public String showGuest(Model model) {
@@ -48,6 +53,7 @@ public class GuestController {
             redirectAttributes.addFlashAttribute(
                     "org.springframework.validation.BindingResult.guestForm",
                     bindingResult);
+
             redirectAttributes.addFlashAttribute("guestForm", form);
 
             return "redirect:/guest?error";
@@ -55,25 +61,21 @@ public class GuestController {
 
         session.setAttribute("guestForm", form);
 
-        Address address = new Address();
+        Address address = modelMapper.map(form, Address.class);
 
         if (principal != null) {
             User user = userRepository.findByEmail(principal.getName());
+
             if (user != null) {
                 address.setUserId(user.getId());
             }
+
         } else {
-            // ゲスト固定ユーザーID
-            address.setUserId(1);
+            // ゲスト購入時は固定ユーザーを使用する
+            address.setUserId(GUEST_USER_ID);
         }
 
         address.setRecipient(form.getName());
-        address.setPhoneNumber(form.getPhoneNumber());
-        address.setPostalCode(form.getPostalCode());
-        address.setPrefecture(form.getPrefecture());
-        address.setCity(form.getCity());
-        address.setAddressLine1(form.getAddressLine1());
-        address.setAddressLine2(form.getAddressLine2());
 
         Address saved = addressService.save(address);
 
