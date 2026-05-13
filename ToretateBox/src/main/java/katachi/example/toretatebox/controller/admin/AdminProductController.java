@@ -30,7 +30,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @RequestMapping("/admin")
 public class AdminProductController {
-
+	
+	// 注文管理画面の1ページ表示件数
     private static final int PRODUCT_PAGE_SIZE = 10;
 
     private final ProductsRepository productsRepository;

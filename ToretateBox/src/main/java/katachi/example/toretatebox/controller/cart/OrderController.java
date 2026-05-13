@@ -20,7 +20,8 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequiredArgsConstructor
 public class OrderController {
-
+	
+	// ゲスト購入用の固定ユーザーID
     private static final int GUEST_USER_ID = -1;
 
     private final OrderService orderService;
@@ -95,13 +96,16 @@ public class OrderController {
     }
 
     private Integer resolveUserId(Principal principal) {
+    	
+    	// 未ログイン時はゲスト購入用ユーザーIDを返す
         if (principal == null) {
             return GUEST_USER_ID;
         }
 
         String email = principal.getName();
         User user = userRepository.findByEmail(email);
-
+        
+     // ユーザー情報が取得できない場合もゲスト扱い
         if (user == null) {
             return GUEST_USER_ID;
         }

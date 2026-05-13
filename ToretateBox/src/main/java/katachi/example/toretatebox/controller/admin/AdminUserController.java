@@ -27,10 +27,15 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @RequestMapping("/admin")
 public class AdminUserController {
-
+	
+	// ゲスト購入用の固定ユーザーID
+    private static final int GUEST_USER_ID = -1;
+    
+    // ユーザー管理画面の1ページ表示件数
+    private static final int PAGE_SIZE = 10; 
+	
     private final UserRepository userRepository;
     private final AddressRepository addressRepository;
-    private static final int GUEST_USER_ID = -1;
 
     @GetMapping("/users")
     public String list(
@@ -100,7 +105,7 @@ public class AdminUserController {
     }
 
     private Page<User> getUserPage(int page) {
-        PageRequest pageable = PageRequest.of(page, 10, Sort.by("id").ascending());
+    	PageRequest pageable = PageRequest.of(page, PAGE_SIZE, Sort.by("id").ascending());
         return userRepository.findByIdGreaterThan(GUEST_USER_ID, pageable);
     }
 

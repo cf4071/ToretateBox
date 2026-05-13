@@ -18,7 +18,7 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 
     Page<Order> findByUserIdOrderByCreatedAtDesc(Integer userId, Pageable pageable);
 
-
+    // userId = -1 はゲスト購入ユーザー
     @Query("""
     	    SELECT new katachi.example.toretatebox.domain.dto.AdminOrderRow(
     	        o.id,

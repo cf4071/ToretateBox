@@ -30,6 +30,9 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequiredArgsConstructor
 public class PurchaseHistoryController {
+	
+	// 購入履歴画面の1ページ表示件数
+	private static final int PAGE_SIZE = 10;
 
     private final OrderRepository orderRepository;
     private final OrderItemRepository orderItemRepository;
@@ -113,7 +116,7 @@ public class PurchaseHistoryController {
     }
 
     private Page<Order> getOrderPage(Integer userId, int page) {
-        PageRequest pageable = PageRequest.of(page, 10, Sort.by("createdAt").descending());
+    	PageRequest pageable = PageRequest.of(page, PAGE_SIZE, Sort.by("createdAt").descending());
         return orderRepository.findByUserIdOrderByCreatedAtDesc(userId, pageable);
     }
 }

@@ -16,7 +16,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @RequestMapping("/admin")
 public class AdminOrderController {
-
+	
+	// 注文管理画面の1ページ表示件数
+	private static final int PAGE_SIZE = 10;
+	
     private final AdminOrderService adminOrderService;
 
     @GetMapping("/orders")
@@ -49,7 +52,10 @@ public class AdminOrderController {
     }
 
     private org.springframework.data.domain.Page<?> getOrderPage(int page) {
-        var pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "createdAt"));
+        var pageable = PageRequest.of(
+        		page,
+        		PAGE_SIZE,
+        		Sort.by(Sort.Direction.DESC, "createdAt"));
         return adminOrderService.findAdminOrderRows(pageable);
     }
 }

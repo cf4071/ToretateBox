@@ -17,6 +17,8 @@ import lombok.RequiredArgsConstructor;
 public class CartServiceImpl implements CartService {
 
     private static final String CART_SESSION_KEY = "cart";
+    
+    // カートに入れられる数量の最小値・最大値
     private static final int MIN_QUANTITY = 1;
     private static final int MAX_QUANTITY = 10;
 
