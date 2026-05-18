@@ -21,7 +21,7 @@
             購入履歴はまだありません。
           </p>
 
-          <section class="ph-list" th:if="${!#lists.isEmpty(orders)}" th:text="#{message.purchaseHistory.empty}">
+          <section class="ph-list" th:if="${!#lists.isEmpty(orders)}">
             <article class="ph-card" th:each="o : ${orders}">
 
               <div class="ph-card-head">
