@@ -63,14 +63,22 @@ http://localhost:8080/ にアクセス
 ### 食材閲覧
 トップ画面から商品一覧・詳細ページへの遷移を確認できます。
 
-https://github.com/user-attachments/assets/0c3cbd93-3e98-470e-9e31-578540711ca7
+
+
+https://github.com/user-attachments/assets/0875d8aa-1a53-4d00-b76c-6c82de752d80
+
+
 
 
 
 ### カート機能
 商品追加・数量変更・削除などのカート操作が可能です。
 
-https://github.com/user-attachments/assets/8bf317cc-cba6-4341-9249-e3064228a4df
+
+
+https://github.com/user-attachments/assets/0bada0f7-6c9d-42e6-8c8f-7d377552bc52
+
+
 
 
 
@@ -80,7 +88,11 @@ https://github.com/user-attachments/assets/8bf317cc-cba6-4341-9249-e3064228a4df
 
 
 
-https://github.com/user-attachments/assets/ffe95de6-9595-492c-b32b-b535def7a833
+
+
+https://github.com/user-attachments/assets/2089c25e-5263-4bff-a960-2078373f21b9
+
+
 
 
 
@@ -88,7 +100,11 @@ https://github.com/user-attachments/assets/ffe95de6-9595-492c-b32b-b535def7a833
 ゲストユーザーでも購入できる流れを確認できます。
 
 
-https://github.com/user-attachments/assets/1aba387b-4a99-4602-b526-7a54ffd04c0f
+
+
+https://github.com/user-attachments/assets/6c7ca427-db84-45e6-8a39-302e5b42118a
+
+
 
 
   
