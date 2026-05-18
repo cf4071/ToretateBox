@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>レジ | とれたてBOX</title>
+  <title th:text="#{page.checkout.title + #{site.title}">レジ | とれたてBOX</title>
   <link rel="stylesheet" th:href="@{/css/cart/checkout.css}">
 </head>
 
@@ -13,7 +13,7 @@
     <section class="page-section">
       <div class="page-container">
 
-        <h2 class="page-title">レジ</h2>
+        <h2 class="page-title" th:text="#{page.checkout.title}">レジ</h2>
 
         <div class="checkout-layout">
 

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>エラー | とれたてBOX</title>
+    <title th:text="#{page.error.title} + ' | とれたてBOX'">エラー | とれたてBOX</title>
     <link rel="stylesheet" th:href="@{/css/error/system_error.css}">
 </head>
 
@@ -14,7 +14,8 @@
             <div class="page-container">
 
                 <div class="system-error-box">
-                    <p class="system-error-message">
+                    <p class="system-error-message"
+                       th:text="utext=#{message.system.error}">
 					    申し訳ございません。エラーが発生しました。<br>
 					    時間をおいて再度お試しください。
 					</p>
