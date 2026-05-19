@@ -102,7 +102,132 @@
 								</a>
 
                                 <a th:if="${!isLoggedIn}" th:href="@{/guest}" class="common-btn btn-blue" th:text="#{button.guest}">
-								    ゲスト情報登録へ
+								    <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{page.cart.title} + #{site.title}">カート | とれたてBOX</title>
+    <link rel="stylesheet" th:href="@{/css/cart/cart.css}">
+</head>
+<body>
+
+<div th:replace="~{layout/layout :: layout(~{::title}, ~{::content})}">
+
+    <main th:fragment="content">
+        <section class="page-section cart-page">
+            <div class="page-container">
+
+                <h2 class="page-title" th:text="#{page.cart.title}">ショッピングカート</h2>
+
+                <div th:if="${errorMessage}"
+                     class="common-alert"
+                     th:text="${errorMessage}">
+                    エラーメッセージ
+                </div>
+
+                <div th:if="${cartItems == null or #lists.isEmpty(cartItems)}" class="cart-empty">
+                    <p class="cart-empty-text" th:text="#{message.cart.empty}">カートに商品がありません。</p>
+                    <a th:href="@{/top}" class="common-link cart-link-back" th:text="#{link.continuShopping}">ショッピングを続ける</a>
+                </div>
+
+                <div th:if="${cartItems != null and !#lists.isEmpty(cartItems)}">
+                    <div class="row g-4">
+
+                        <div class="col-12 col-lg-8">
+                            <div class="cart-list">
+
+                                <div class="cart-item" th:each="item : ${cartItems}">
+                                    <div class="cart-item-image">
+                                        <img th:src="${item.imageUrl != null and item.imageUrl != ''} 
+										              ? ${item.imageUrl} 
+										              : @{/images/no-image.png}"
+										     alt="商品画像">
+                                    </div>
+
+                                    <div class="cart-item-main">
+                                        <p class="cart-item-name" th:text="${item.name}">商品名</p>
+										<p class="cart-item-price">
+										    <span th:text="#{label.price}">価格（税込）</span>：
+										    <span th:text="${#numbers.formatInteger(item.price, 1, 'COMMA')}">0</span> 円
+										</p>
+                                    </div>
+
+                                    <div class="cart-item-side">
+
+                                        <form th:action="@{/cart/update}" method="post" class="cart-quantity-form">
+										    <input type="hidden" name="productId" th:value="${item.productId}">
+										
+										    <label class="quantity-title" th:for="'quantity-' + ${item.productId}" th:text="#{label.quantity}">数量</label>
+										
+										    <select th:id="'quantity-' + ${item.productId}"
+										            name="quantity"
+										            class="form-select cart-quantity-select"
+										            onchange="this.form.submit()">
+										        <option th:each="i : ${#numbers.sequence(1, 10)}"
+										                th:value="${i}"
+										                th:text="${i}"
+										                th:selected="${i == item.quantity}">
+										        </option>
+										    </select>
+										</form>
+
+                                        <p class="cart-item-subtotal">
+										    <span th:text="#{label.subtotal}">小計</span>：
+										    <span th:text="${#numbers.formatInteger(item.subtotal, 1, 'COMMA')}">0</span> 円
+										</p>
+
+                                        <form th:action="@{/cart/remove}" method="post" class="cart-remove-form">
+                                            <input type="hidden" name="productId" th:value="${item.productId}">
+                                            <button type="submit" class="common-btn btn-red" th:text="#{button.cart.delete}">削除</button>
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-4">
+                            <div class="cart-total-box">
+                                <div class="total-row total-summary-row">
+                                    <span class="total-label" th:text="#{label.total}">食材合計</span>
+                                    <span class="total-value" th:text="${totalQuantity} + '点'">0点</span>
+
+                                    <span class="total-label total-price-label" th:text="#{label.totalPrice}">合計（税込）</span>
+                                    <span class="total-value total-price-value">
+									    <span th:text="${#numbers.formatInteger(totalAmount, 1, 'COMMA')}">0</span> 円
+									</span>
+                                </div>
+                            </div>
+
+                            <div class="cart-actions">
+
+								<a th:if="${isLoggedIn}" th:href="@{/checkout}" class="common-btn btn-yellow" th:text="#{button.cart.checkout}">
+								    レジへ進む
+								</a>
+
+                                <a th:if="${!isLoggedIn}" th:href="@{/guest}" class="common-btn btn-blue" th:text="#{button.guest}">
+								    レジへ進む（ゲスト情報登録へ）
+								</a>
+
+                                <a th:href="@{/top}" class="common-link cart-link-back" th:text="#{link.continuShopping}">
+                                    ショッピングを続ける
+                                </a>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+</div>
+
+
+</body>
+</html>
 								</a>
 
                                 <a th:href="@{/top}" class="common-link cart-link-back" th:text="#{link.continuShopping}">

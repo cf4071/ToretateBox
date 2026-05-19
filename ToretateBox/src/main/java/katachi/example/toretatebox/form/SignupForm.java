@@ -18,7 +18,10 @@ public class SignupForm {
     private String nameKana;
 
     @NotBlank(message = "{error.phone.required}")
-    @Pattern(regexp = "\\d{10,11}", message = "{error.phone.pattern}")
+    @Pattern(
+    	regexp = "^\\d{10,11}$|^\\d{2,4}-\\d{2,4}-\\d{3,4}$",
+    	message = "{error.phone.pattern}"
+    )
     private String phoneNumber;
 
     @Email(message ="{error.email.format}")
@@ -34,8 +37,10 @@ public class SignupForm {
     private String passwordConfirm;
 
     @NotBlank(message = "{error.postal.required}")
-    @Pattern(regexp = "^\\d{7}$|^\\d{3}-\\d{4}$",
-             message = "{error.postal.pattern}")
+    @Pattern(
+    		 regexp = "^\\d{7}$|^\\d{3}-\\d{4}$",
+             message = "{error.postal.pattern}"
+    )
     private String postalCode;
 
     @NotBlank(message = "{error.prefecture.required}")

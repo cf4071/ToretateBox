@@ -28,7 +28,7 @@ public class ProductForm {
     private String description;
 
     @NotNull(message = "{error.product.price.required}")
-    @Min(value = 1, message = "{error.product.price.mi}")
+    @Min(value = 1, message = "{error.product.price.min}")
     private Integer price;
 
     private String imageUrl;
