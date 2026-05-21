@@ -9,13 +9,16 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import katachi.example.toretatebox.service.CartService;
+
 @Configuration
 public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(
             HttpSecurity http,
-            DaoAuthenticationProvider authenticationProvider
+            DaoAuthenticationProvider authenticationProvider,
+            CartService cartService
     ) throws Exception {
 
         http
@@ -54,6 +57,12 @@ public class SecurityConfig {
                 .usernameParameter("email")
                 .passwordParameter("password")
                 .successHandler((request, response, authentication) -> {
+
+                    cartService.mergeSessionCartToDb(
+                            request.getSession(),
+                            authentication
+                    );
+
                     boolean isAdmin = authentication.getAuthorities().stream()
                             .anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"));
 

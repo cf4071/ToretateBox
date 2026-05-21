@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import katachi.example.toretatebox.domain.model.Address;
-import katachi.example.toretatebox.domain.model.CartItem;
+import katachi.example.toretatebox.domain.model.Cart;
 import katachi.example.toretatebox.domain.model.Order;
 import katachi.example.toretatebox.domain.model.OrderItem;
 import katachi.example.toretatebox.repository.OrderItemRepository;
@@ -23,10 +23,11 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional
-    public Integer createOrder(List<CartItem> cart, Address address, Integer userId) {
+    public Integer createOrder(List<Cart> cart, Address address, Integer userId) {
 
         int totalAmount = 0;
-        for (CartItem item : cart) {
+
+        for (Cart item : cart) {
             totalAmount += item.getPrice() * item.getQuantity();
         }
 
@@ -37,7 +38,7 @@ public class OrderServiceImpl implements OrderService {
 
         Order saved = orderRepository.save(order);
 
-        for (CartItem item : cart) {
+        for (Cart item : cart) {
             OrderItem oi = new OrderItem();
             oi.setOrderId(saved.getId());
             oi.setProductId(item.getProductId());

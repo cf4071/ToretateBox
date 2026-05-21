@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpSession;
-import katachi.example.toretatebox.domain.model.CartItem;
+import katachi.example.toretatebox.domain.model.Cart;
 import katachi.example.toretatebox.service.CartService;
 import lombok.RequiredArgsConstructor;
 
@@ -24,19 +24,19 @@ public class CartController {
     private final CartService cartService;
 
     @GetMapping
-    public String showCart(HttpSession session, Model model, Authentication authentication) {
-        List<CartItem> cart = cartService.getCart(session);
+    public String showCart(
+            HttpSession session,
+            Model model,
+            Authentication authentication) {
+
+        List<Cart> cart = cartService.getCart(session, authentication);
         int totalAmount = cartService.calculateTotal(cart);
         int totalQuantity = cartService.calculateTotalQuantity(cart);
-
-        boolean isLoggedIn = authentication != null
-                && authentication.isAuthenticated()
-                && !"anonymousUser".equals(authentication.getPrincipal());
 
         model.addAttribute("cartItems", cart);
         model.addAttribute("totalAmount", totalAmount);
         model.addAttribute("totalQuantity", totalQuantity);
-        model.addAttribute("isLoggedIn", isLoggedIn);
+        model.addAttribute("isLoggedIn", isLoggedIn(authentication));
 
         return "cart/cart";
     }
@@ -45,9 +45,10 @@ public class CartController {
     public String addToCart(
             @RequestParam Integer productId,
             @RequestParam(defaultValue = "1") int quantity,
-            HttpSession session) {
+            HttpSession session,
+            Authentication authentication) {
 
-        cartService.addToCart(session, productId, quantity);
+        cartService.addToCart(session, authentication, productId, quantity);
         return "redirect:/cart";
     }
 
@@ -55,24 +56,35 @@ public class CartController {
     public String updateCartQuantity(
             @RequestParam Integer productId,
             @RequestParam(required = false) Integer quantity,
-            HttpSession session) {
+            HttpSession session,
+            Authentication authentication) {
 
-        cartService.updateQuantity(session, productId, quantity == null ? 1 : quantity);
+        cartService.updateQuantity(
+                session,
+                authentication,
+                productId,
+                quantity == null ? 1 : quantity
+        );
+
         return "redirect:/cart";
     }
 
     @PostMapping("/remove")
     public String removeFromCart(
             @RequestParam Integer productId,
-            HttpSession session) {
+            HttpSession session,
+            Authentication authentication) {
 
-        cartService.removeFromCart(session, productId);
+        cartService.removeFromCart(session, authentication, productId);
         return "redirect:/cart";
     }
 
     @PostMapping("/clear")
-    public String clearCart(HttpSession session) {
-        cartService.clearCart(session);
+    public String clearCart(
+            HttpSession session,
+            Authentication authentication) {
+
+        cartService.clearCart(session, authentication);
         return "redirect:/cart";
     }
 
@@ -82,22 +94,23 @@ public class CartController {
             HttpSession session,
             RedirectAttributes redirectAttributes) {
 
-        List<CartItem> cart = cartService.getCart(session);
+        List<Cart> cart = cartService.getCart(session, authentication);
 
         if (cart.isEmpty()) {
             redirectAttributes.addFlashAttribute("errorMessage", "カートに商品がありません。");
             return "redirect:/cart";
         }
 
-        if (authentication == null
-                || !authentication.isAuthenticated()
-                || "anonymousUser".equals(authentication.getPrincipal())) {
-
-            redirectAttributes.addFlashAttribute("errorMessage",
-                    "ログインまたはゲスト情報登録をしてください。");
-            return "redirect:/cart";
+        if (!isLoggedIn(authentication)) {
+            return "redirect:/guest";
         }
 
         return "redirect:/checkout";
+    }
+
+    private boolean isLoggedIn(Authentication authentication) {
+        return authentication != null
+                && authentication.isAuthenticated()
+                && !"anonymousUser".equals(authentication.getPrincipal());
     }
 }

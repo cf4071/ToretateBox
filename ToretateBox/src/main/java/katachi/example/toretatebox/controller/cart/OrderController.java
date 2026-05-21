@@ -3,6 +3,7 @@ package katachi.example.toretatebox.controller.cart;
 import java.security.Principal;
 import java.util.List;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,50 +11,50 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpSession;
 import katachi.example.toretatebox.domain.model.Address;
-import katachi.example.toretatebox.domain.model.CartItem;
+import katachi.example.toretatebox.domain.model.Cart;
 import katachi.example.toretatebox.domain.model.User;
 import katachi.example.toretatebox.repository.UserRepository;
 import katachi.example.toretatebox.service.AddressService;
+import katachi.example.toretatebox.service.CartService;
 import katachi.example.toretatebox.service.OrderService;
 import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
 public class OrderController {
-	
-	// ゲスト購入用の固定ユーザーID
+
     private static final int GUEST_USER_ID = -1;
 
     private final OrderService orderService;
     private final AddressService addressService;
     private final UserRepository userRepository;
+    private final CartService cartService;
 
     @PostMapping("/order/confirm")
     public String confirmOrder(
             HttpSession session,
             RedirectAttributes ra,
-            Principal principal
+            Authentication authentication
     ) {
-        @SuppressWarnings("unchecked")
-        List<CartItem> cart = (List<CartItem>) session.getAttribute("cart");
+        List<Cart> cart = cartService.getCart(session, authentication);
 
         if (cart == null || cart.isEmpty()) {
             ra.addFlashAttribute("error", "カートが空です。");
             return "redirect:/cart";
         }
 
-        Address address = resolveAddress(session, ra, principal);
+        Address address = resolveAddress(session, ra, authentication);
         if (address == null) {
             return "redirect:/guest";
         }
 
-        Integer userId = resolveUserId(principal);
+        Integer userId = resolveUserId(authentication);
 
         Integer orderId = orderService.createOrder(cart, address, userId);
 
-        session.removeAttribute("cart");
+        cartService.clearCart(session, authentication);
 
-        if (principal == null) {
+        if (!isLoggedIn(authentication)) {
             session.removeAttribute("guestAddressId");
             session.removeAttribute("guestForm");
         }
@@ -67,7 +68,11 @@ public class OrderController {
         return "order/complete";
     }
 
-    private Address resolveAddress(HttpSession session, RedirectAttributes ra, Principal principal) {
+    private Address resolveAddress(
+            HttpSession session,
+            RedirectAttributes ra,
+            Principal principal) {
+
         if (principal != null) {
             Integer userId = resolveUserId(principal);
             Address address = addressService.findLatestByUserId(userId);
@@ -81,12 +86,14 @@ public class OrderController {
         }
 
         Integer guestAddressId = (Integer) session.getAttribute("guestAddressId");
+
         if (guestAddressId == null) {
             ra.addFlashAttribute("error", "住所情報がありません。ゲスト情報を入力してください。");
             return null;
         }
 
         Address address = addressService.findById(guestAddressId);
+
         if (address == null) {
             ra.addFlashAttribute("error", "住所情報が見つかりませんでした。もう一度入力してください。");
             return null;
@@ -96,20 +103,24 @@ public class OrderController {
     }
 
     private Integer resolveUserId(Principal principal) {
-    	
-    	// 未ログイン時はゲスト購入用ユーザーIDを返す
+
         if (principal == null) {
             return GUEST_USER_ID;
         }
 
         String email = principal.getName();
         User user = userRepository.findByEmail(email);
-        
-     // ユーザー情報が取得できない場合もゲスト扱い
+
         if (user == null) {
             return GUEST_USER_ID;
         }
 
         return user.getId();
+    }
+
+    private boolean isLoggedIn(Authentication authentication) {
+        return authentication != null
+                && authentication.isAuthenticated()
+                && !"anonymousUser".equals(authentication.getPrincipal());
     }
 }
