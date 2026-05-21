@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>ユーザー情報編集 | とれたてBOX</title>
+    <title th:text="#{page.mypageEdit.title} + #{site.title}">ユーザー情報編集 | とれたてBOX</title>
     <link rel="stylesheet" th:href="@{/css/user/user_edit.css}">
 </head>
 
@@ -16,7 +16,7 @@
 
                 <div class="edit-box">
 
-                    <h2 class="page-title">ユーザー情報編集</h2>
+                    <h2 class="page-title" th:text="#{page.mypageEdit.title}">ユーザー情報編集</h2>
 
                     <form th:action="@{/edit}" th:object="${userEditForm}" method="post" class="edit-form">
 

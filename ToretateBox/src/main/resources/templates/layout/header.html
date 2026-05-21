@@ -85,6 +85,7 @@
           <nav sec:authorize="isAnonymous()">
             <ul class="list-unstyled d-flex flex-wrap align-items-center justify-content-lg-end justify-content-start gap-4 mb-0 header-menu-list">
               <li><a th:href="@{/products}" class="menu-link text-decoration-none" th:text="#{header.menu.productList}">食材一覧</a></li>
+                  <li><a th:href="@{/cart}" class="menu-link text-decoration-none" th:text="#{header.menu.cart}">カート</a></li>
               <li><a th:href="@{/signup}" class="menu-link text-decoration-none" th:text="#{header.menu.signup}">ユーザー登録</a></li>
               <li><a th:href="@{/login}" class="menu-link text-decoration-none" th:text="#{header.menu.login}">ログイン</a></li>
             </ul>

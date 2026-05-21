@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>食材一覧 | とれたてBOX</title>
+  <title th:text="#{page.product.list.title} + #{site.title}">食材一覧 | とれたてBOX</title>
 
   <link rel="stylesheet" th:href="@{/css/common/product-card.css}">
   <link rel="stylesheet" th:href="@{/css/product/list.css}">
